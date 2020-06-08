@@ -38,6 +38,7 @@ dependencies:
   # State management
   bloc: ^4.0.0
   flutter_bloc: ^4.0.0
+  equatable: ^1.2.0
 
   # Caching
   hive: ^1.4.1+1
