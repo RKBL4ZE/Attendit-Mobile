@@ -1,3 +1,4 @@
+import 'package:Attendit/features/home/domain/entities/student_assignment.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
@@ -14,6 +15,11 @@ class HomeRepository implements IHomeRepository {
 
   @override
   Future<Either<Failure, StudentDetails>> getStudentDetails() {
+    // TODO: implement getStudentDetails
+    throw UnimplementedError();
+  }
+  @override
+  Future<Either<Failure, List<StudentAssignment>>> getStudentAssignment() {
     // TODO: implement getStudentDetails
     throw UnimplementedError();
   }

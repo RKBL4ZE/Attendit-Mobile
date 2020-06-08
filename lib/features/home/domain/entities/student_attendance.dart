@@ -4,7 +4,8 @@ import 'package:meta/meta.dart';
 class StudentAttendance extends Equatable {
   final String subjectCode;
   final String subjectName;
-  final num lecturesAttended;  final num totalLectures;
+  final num lecturesAttended;
+  final num totalLectures;
 
   StudentAttendance(
       {@required this.subjectCode,
