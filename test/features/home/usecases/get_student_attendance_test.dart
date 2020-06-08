@@ -4,6 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../../lib/features/home/domain/entities/student_attendance.dart';
+
 class MockHomeRepository extends Mock implements IHomeRepository {}
 
 void main() {
@@ -14,4 +16,6 @@ void main() {
     mockHomeRepository = MockHomeRepository();
     usecase = GetStudentAttendance(mockHomeRepository);
   });
+
+  final tStudentAttendance = List<StudentAttendance>();
 }

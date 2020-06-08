@@ -13,3 +13,22 @@ class GetStudentDetails {
     return await repository.getStudentDetails();
   }
 }
+
+//
+
+// {
+//
+//   "subjectName": "Maths",
+//   "subjectCode": "BCA 202",
+//   "lecturesAttended": 15,
+//   "totalLectures": 20
+
+// },
+// {
+
+//   "subjectName": "Technical Commuincation",
+//   "subjectCode": "BCA 302",
+//   "lecturesAttended": 19,
+//   "totalLectures": 20
+
+// }
