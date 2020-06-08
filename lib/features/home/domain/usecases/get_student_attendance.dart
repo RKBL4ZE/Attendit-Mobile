@@ -9,7 +9,7 @@ class GetStudentAttendance {
 
   GetStudentAttendance(this.repository);
 
-  Future<Either<Failure, StudentAttendance>> call() async {
+  Future<Either<Failure, List<StudentAttendance>>> call() async {
     return await repository.getStudentAttendance();
   }
 }

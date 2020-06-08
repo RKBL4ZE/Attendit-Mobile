@@ -7,5 +7,5 @@ import '../entities/student_details.dart';
 abstract class IHomeRepository {
   Future<Either<Failure, StudentDetails>> getStudentDetails();
 
-  Future<Either<Failure, StudentAttendance>> getStudentAttendance();
+  Future<Either<Failure, List<StudentAttendance>>> getStudentAttendance();
 }

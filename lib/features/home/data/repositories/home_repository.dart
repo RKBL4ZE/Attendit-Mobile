@@ -7,7 +7,7 @@ import '../../domain/repositories/i_home_repository.dart';
 
 class HomeRepository implements IHomeRepository {
   @override
-  Future<Either<Failure, StudentAttendance>> getStudentAttendance() {
+  Future<Either<Failure, List<StudentAttendance>>> getStudentAttendance() {
     // TODO: implement getStudentAttendance
     throw UnimplementedError();
   }
