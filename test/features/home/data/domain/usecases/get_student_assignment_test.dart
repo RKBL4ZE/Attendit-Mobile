@@ -48,7 +48,7 @@ void main() {
         .thenAnswer((_) async => Right(tStudentAssignment));
 
     // act
-    final result = await usecase.call();
+    final result = await usecase();
 
     // assert
     expect(result, Right(tStudentAssignment));

@@ -62,4 +62,8 @@ class StudentDetails extends Equatable {
         courseId,
         courseName
       ];
+
+
+
+  
 }
