@@ -22,6 +22,7 @@ class StudentDetailsModel extends StudentDetails {
     @required final String semesterName,
     @required final num courseId,
     @required final String courseName,
+    
   }) : super(
           enrollment: enrollment,
           name: name,
