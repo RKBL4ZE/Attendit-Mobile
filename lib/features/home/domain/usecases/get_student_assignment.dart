@@ -5,13 +5,13 @@ import 'package:dartz/dartz.dart';
 
 import '../repositories/i_home_repository.dart';
 
-class GetStudentAssignment
+class GetStudentAssignments
     implements UseCase<List<StudentAssignment>, NoParams> {
   final IHomeRepository repository;
 
-  GetStudentAssignment(this.repository);
+  GetStudentAssignments(this.repository);
 
   Future<Either<Failure, List<StudentAssignment>>> call(NoParams params) async {
-    return await repository.getStudentAssignment();
+    return await repository.getStudentAssignments();
   }
 }

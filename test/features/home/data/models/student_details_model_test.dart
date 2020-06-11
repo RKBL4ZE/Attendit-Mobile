@@ -24,7 +24,8 @@ void main() {
       semesterId: 2,
       courseId: 1,
       semesterName: "BCA Sem2",
-      courseName: "BCA");
+      courseName: "BCA",
+      classroomId: "classroomId");
 
   test(
     'should be a subclass of StudentDetailsModel entity',
@@ -74,7 +75,8 @@ void main() {
           "semesterId": 2,
           "courseId": 1,
           "semesterName": "BCA Sem2",
-          "courseName": "BCA"
+          "courseName": "BCA",
+          "classroomId": "classroomId"
         };
         expect(result, expectedJsonMap);
       },

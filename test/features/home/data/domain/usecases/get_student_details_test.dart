@@ -17,7 +17,7 @@ void main() {
     usecase = GetStudentDetails(mockHomeRepository);
   });
 
-  final tStudentDetails = StudentDetails(
+  final tStudentDetails = StudentDetails(classroomId: "43453tg",
     address: "L - Extn 9B, 110059",
     courseName: "BCA",
     courseId: 1,

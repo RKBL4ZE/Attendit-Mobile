@@ -16,5 +16,6 @@
 	"semesterId": 2,
 	"courseId": 1,
 	"semesterName": "BCA Sem2",
-	"courseName": "BCA"
+	"courseName": "BCA",
+	"classroomId": "classroomId"
 }

@@ -19,7 +19,7 @@ class HomeRepository implements IHomeRepository {
     throw UnimplementedError();
   }
   @override
-  Future<Either<Failure, List<StudentAssignment>>> getStudentAssignment() {
+  Future<Either<Failure, List<StudentAssignment>>> getStudentAssignments() {
     // TODO: implement getStudentDetails
     throw UnimplementedError();
   }

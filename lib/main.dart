@@ -21,8 +21,10 @@ class MyApp extends StatelessWidget {
       create: (_) => getIt(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        
         //title: 'Flutter Demo',
         theme: ThemeData(
+          fontFamily: 'Karla',
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),

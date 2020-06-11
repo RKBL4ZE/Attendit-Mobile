@@ -72,7 +72,12 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  fonts:
+    - family: Karla
+      fonts:
+        - asset: ./assets/fonts/Karla/Karla-Regular.ttf
+ #       - asset: ./assets/fonts/Raleway-Italic.ttf
+          style: italic
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

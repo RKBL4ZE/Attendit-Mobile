@@ -9,7 +9,6 @@ class LoginForm extends StatelessWidget {
   //static const routeName = '/LoginPage';
   @override
   Widget build(BuildContext context) {
-    
     return BlocBuilder(
       bloc: BlocProvider.of<AuthBloc>(context),
       builder: (context, state) => Container(
@@ -37,7 +36,7 @@ class LoginForm extends StatelessWidget {
                       child: Text("User ID",
                           style: TextStyle(
                             fontSize: 18,
-                            fontFamily: 'Karla',
+                           // fontFamily: 'Karla',
                             color: Color.fromRGBO(29, 53, 84, 1),
                           )
 
@@ -45,26 +44,41 @@ class LoginForm extends StatelessWidget {
 
                           ),
                     ),
-                    Material(
-                      borderRadius: BorderRadius.circular(15.0),
-                      elevation: 10.0,
-                      shadowColor: Color.fromRGBO(152, 214, 217, 1),
-                      child: TextField(
-                        controller: username,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.account_circle),
+                    Container(
+                      decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withAlpha(70),
+                    blurRadius: 6.0,
+                    spreadRadius: 7.0,
+                    offset: Offset(
+                      0.0,
+                      3.0,
+                    ),
+                  ),
+                ]),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(10.0),
+                      //  elevation: 5.0,
+                        shadowColor: Color.fromRGBO(152, 214, 217, 1),
+                        child: TextField(
+                          controller: username,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.account_circle),
 
-                          border: InputBorder.none,
+                            border: InputBorder.none,
 
-                          //  contentPadding: EdgeInsets.all(8),
+                            //  contentPadding: EdgeInsets.all(8),
 
-                          //Add th Hint text here.
+                            //Add th Hint text here.
 
-                          hintText: "Enter UserID",
+                            hintText: "Enter UserID",
 
-                          hintStyle: TextStyle(
-                              fontSize: 15.0,
-                              color: Color.fromRGBO(168, 181, 198, 1)),
+                            hintStyle: TextStyle(
+                                fontSize: 18.0,
+                                color: Color.fromRGBO(168, 181, 198, 1)),
+                          ),
                         ),
                       ),
                     )
@@ -95,26 +109,41 @@ class LoginForm extends StatelessWidget {
                             // style: Theme.of(context).textTheme.title,
 
                             )),
-                    Material(
-                      borderRadius: BorderRadius.circular(15.0),
-                      elevation: 10.0,
-                      shadowColor: Color.fromRGBO(152, 214, 217, 1),
-                      child: TextField(
-                        controller: password,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.security),
+                    Container(
+                      decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withAlpha(70),
+                    blurRadius: 6.0,
+                    spreadRadius: 7.0,
+                    offset: Offset(
+                      0.0,
+                      3.0,
+                    ),
+                  ),
+                ]),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(10.0),
+                       // elevation: 10.0,
+                        shadowColor: Color.fromRGBO(152, 214, 217, 1),
+                        child: TextField(
+                          controller: password,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.security),
 
-                          border: InputBorder.none,
+                            border: InputBorder.none,
 
-                          //contentPadding: EdgeInsets.all(8),
+                            //contentPadding: EdgeInsets.all(8),
 
-                          //Add th Hint text here.
+                            //Add th Hint text here.
 
-                          hintText: "Enter Password",
+                            hintText: "Enter Password",
 
-                          hintStyle: TextStyle(
-                              fontSize: 15.0,
-                              color: Color.fromRGBO(168, 181, 198, 1)),
+                            hintStyle: TextStyle(
+                                fontSize: 18.0,
+                                color: Color.fromRGBO(168, 181, 198, 1)),
+                          ),
                         ),
                       ),
                     ),
@@ -146,20 +175,31 @@ class LoginForm extends StatelessWidget {
                               username: username.text));
                         },
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80.0)),
+                            borderRadius: BorderRadius.circular(10.0)),
                         padding: EdgeInsets.all(0.0),
-                        child: Ink(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromRGBO(95, 197, 209, 1),
-                                  Color.fromRGBO(152, 214, 217, 1)
+                        child: Container(
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromRGBO(95, 197, 209, 1)
+                                        .withAlpha(60),
+                                    blurRadius: 9.0,
+                                    spreadRadius: 7.0,
+                                    offset: Offset(
+                                      0.0,
+                                      3.0,
+                                    ),
+                                  ),
                                 ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              borderRadius: BorderRadius.circular(15.0)),
-                          child: Container(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(95, 197, 209, 1),
+                                    Color.fromRGBO(152, 214, 217, 1)
+                                  ],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0)),
                             constraints: BoxConstraints(
                                 maxWidth: 300.0, minHeight: 50.0),
                             alignment: Alignment.center,
@@ -169,7 +209,6 @@ class LoginForm extends StatelessWidget {
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
-                        ),
                       ),
                     ),
                   ],

@@ -9,5 +9,5 @@ abstract class IHomeRepository {
 
   Future<Either<Failure, List<StudentAttendance>>> getStudentAttendance();
 
-  Future<Either<Failure, List<StudentAssignment>>> getStudentAssignment();
+  Future<Either<Failure, List<StudentAssignment>>> getStudentAssignments();
 }

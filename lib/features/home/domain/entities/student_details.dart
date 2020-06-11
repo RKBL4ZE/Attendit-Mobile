@@ -20,6 +20,7 @@ class StudentDetails extends Equatable {
   final String semesterName;
   final num courseId;
   final String courseName;
+   final String classroomId;
 
   StudentDetails(
       {@required this.enrollment,
@@ -39,7 +40,8 @@ class StudentDetails extends Equatable {
       @required this.semesterId,
       @required this.semesterName,
       @required this.courseId,
-      @required this.courseName});
+      @required this.courseName,
+      @required this.classroomId});
 
   @override
   List<Object> get props => [
@@ -60,7 +62,8 @@ class StudentDetails extends Equatable {
         semesterId,
         semesterName,
         courseId,
-        courseName
+        courseName,
+        classroomId
       ];
 
 

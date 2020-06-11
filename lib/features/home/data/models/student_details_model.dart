@@ -22,6 +22,7 @@ class StudentDetailsModel extends StudentDetails {
     @required final String semesterName,
     @required final num courseId,
     @required final String courseName,
+    @required final String classroomId,
     
   }) : super(
           enrollment: enrollment,
@@ -42,6 +43,7 @@ class StudentDetailsModel extends StudentDetails {
           semesterName: semesterName,
           courseId: courseId,
           courseName: courseName,
+          classroomId: classroomId,
         );
 
   factory StudentDetailsModel.fromJson(Map<String, dynamic> json) {
@@ -64,6 +66,7 @@ class StudentDetailsModel extends StudentDetails {
       semesterName: json['semesterName'],
       courseId: json['courseId'],
       courseName: json['courseName'],
+      classroomId: json['classroomId'],
     );
   }
 
@@ -87,6 +90,7 @@ class StudentDetailsModel extends StudentDetails {
       'semesterName': semesterName,
       'courseId': courseId,
       'courseName': courseName,
+      'classroomId': classroomId,
     };
   }
 }
