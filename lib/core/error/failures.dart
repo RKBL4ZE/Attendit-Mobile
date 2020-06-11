@@ -11,6 +11,11 @@ class ServerFailure extends Failure {
   List<Object> get props => [];
 }
 
+class UnauthorizedFailure extends Failure {
+  @override
+  List<Object> get props => [];
+}
+
 class Unknown extends Failure {
   @override
   List<Object> get props => [];

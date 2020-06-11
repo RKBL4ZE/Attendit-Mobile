@@ -17,8 +17,8 @@ abstract class IAuthLocalDataSource {
 
 const CACHED_USER_TOKENS = 'CACHED_USER_TOKENS';
 
-@lazySingleton
 @Injectable(as: IAuthLocalDataSource)
+@lazySingleton
 class AuthLocalDataSource implements IAuthLocalDataSource {
   final Box _box;
 

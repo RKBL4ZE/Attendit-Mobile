@@ -29,6 +29,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async* {
     if (event is LoginEvent) {
       yield LoginLoading();
+      print(event.username);
+      print(event.password);
+      print(event.prefix);
+      print(event.userType);
       final failureOrSucess = await userLogin(Params(
           prefix: event.prefix,
           userType: event.userType,

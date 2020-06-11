@@ -8,8 +8,8 @@ import 'package:Attendit/features/auth/domain/repositories/i_auth_repository.dar
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-@lazySingleton
 @Injectable(as: IAuthRepository)
+@lazySingleton
 class AuthRepository implements IAuthRepository {
   final IAuthLocalDataSource _localDataSource;
   final INetworkInfo _networkInfo;
@@ -58,6 +58,8 @@ class AuthRepository implements IAuthRepository {
         return Right(true);
       } on ServerException {
         return Left(ServerFailure());
+      } on UnauthorizedException {
+        return Left(UnauthorizedFailure());
       }
     } else {
       return Left(NetworkFailure());

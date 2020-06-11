@@ -9,7 +9,6 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final password = TextEditingController();
     final username = TextEditingController();
-    // final prop = Dummy_AllPropertys.toList();
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) => Scaffold(
@@ -26,7 +25,9 @@ class LoginPage extends StatelessWidget {
         ),
         body: Center(
             child: Container(
-          decoration: BoxDecoration(),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(247, 247, 247, 1),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,20 +55,19 @@ class LoginPage extends StatelessWidget {
                       Material(
                         borderRadius: BorderRadius.circular(15.0),
                         elevation: 10.0,
-                        shadowColor: Colors.blueGrey,
+                        shadowColor: Color.fromRGBO(152, 214, 217, 1),
                         child: TextField(
                           controller: username,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(8),
+                            prefixIcon: Icon(Icons.account_circle),
+                            border: InputBorder.none,
+                            //  contentPadding: EdgeInsets.all(8),
 
                             //Add th Hint text here.
-                            hintText: "08914902017",
+                            hintText: "Enter UserID",
                             hintStyle: TextStyle(
                                 fontSize: 15.0,
                                 color: Color.fromRGBO(168, 181, 198, 1)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
                           ),
                         ),
                       )
@@ -96,19 +96,18 @@ class LoginPage extends StatelessWidget {
                       Material(
                         borderRadius: BorderRadius.circular(15.0),
                         elevation: 10.0,
-                        shadowColor: Colors.blueGrey,
+                        shadowColor: Color.fromRGBO(152, 214, 217, 1),
                         child: TextField(
                           controller: password,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(8),
+                            prefixIcon: Icon(Icons.security),
+                            border: InputBorder.none,
+                            //contentPadding: EdgeInsets.all(8),
                             //Add th Hint text here.
-                            hintText: "PasS123",
+                            hintText: "Enter Password",
                             hintStyle: TextStyle(
                                 fontSize: 15.0,
                                 color: Color.fromRGBO(168, 181, 198, 1)),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
                           ),
                         ),
                       ),
@@ -132,8 +131,8 @@ class LoginPage extends StatelessWidget {
                             context.bloc<AuthBloc>().add(LoginEvent(
                                 prefix: "msi",
                                 userType: "student",
-                                password: password.toString(),
-                                username: username.toString()));
+                                password: password.text,
+                                username: username.text));
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),

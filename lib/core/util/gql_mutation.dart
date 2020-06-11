@@ -1,8 +1,8 @@
 mixin Gqlmutation {
-  static String loginMutation = r'''
+  static String loginMutation = '''
 
-    mutation ($prefix: String!, $userType: String!, $username: String!, $password: String!) {
-      login(prefix: prefix, userType: userType, username: username, password: password) {
+    mutation loginMut (\$prefix: String!, \$userType: String!, \$username: String!, \$password: String!) {
+      login(prefix: \$prefix, userType: \$userType, username: \$username, password: \$password) {
         accesstoken
         refreshtoken
       }
@@ -10,10 +10,10 @@ mixin Gqlmutation {
 
   ''';
 
-  static String refreshMutation = r'''
+  static String refreshMutation = '''
 
-    mutation ($refreshtoken: String!) {
-      refresh(refreshtoken: refreshtoken) {
+    mutation (\$refreshtoken: String!) {
+      refresh(refreshtoken: \$refreshtoken) {
         accesstoken
         refreshtoken
       }

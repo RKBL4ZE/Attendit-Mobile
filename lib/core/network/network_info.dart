@@ -5,8 +5,8 @@ abstract class INetworkInfo {
   Future<bool> get isConnected;
 }
 
-@lazySingleton
 @Injectable(as: INetworkInfo)
+@lazySingleton
 class NetworkInfo implements INetworkInfo {
   const NetworkInfo(this.connectionChecker);
 
