@@ -1,7 +1,12 @@
 import 'package:Attendit/core/injection/injection.dart';
-import 'package:Attendit/features/home/presentation/pages/home_page.dart';
+import 'package:Attendit/features/auth/presentation/pages/login_page.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import 'core/injection/injection.dart';
+import 'features/auth/presentation/bloc/auth_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,12 +19,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      //title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BlocProvider<AuthBloc>(
+        create: (_) => getIt(),
+        child: LoginPage(),
+      ),
     );
   }
 }
