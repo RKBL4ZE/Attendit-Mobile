@@ -8,12 +8,16 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
+
+
 //part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
+
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
+const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -46,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Either<Failure, bool> failureOrSuccess,
   ) async* {
     yield failureOrSuccess.fold(
-      (failure) => Error(message: _mapFailureToMessage(failure)),
+      (failure) => AuthError(message: _mapFailureToMessage(failure)),
       (_) => UserLogedIn(),
     );
   }
@@ -57,8 +61,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         return SERVER_FAILURE_MESSAGE;
       case CacheFailure:
         return CACHE_FAILURE_MESSAGE;
+      case  UnauthorizedFailure:
+        return UNAUTHORIZED_FAILURE_MESSAGE;  
       default:
         return 'Unexpected error';
+
     }
   }
 }
