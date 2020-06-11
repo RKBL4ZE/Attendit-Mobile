@@ -6,7 +6,7 @@ abstract class INetworkInfo {
 }
 
 @lazySingleton
-@RegisterAs(INetworkInfo)
+@Injectable(as: INetworkInfo)
 class NetworkInfo implements INetworkInfo {
   const NetworkInfo(this.connectionChecker);
 

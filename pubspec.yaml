@@ -42,6 +42,7 @@ dependencies:
 
   # Caching
   hive: ^1.4.1+1
+  
 
   # Misc
   dartz: ^0.9.1

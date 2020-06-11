@@ -1,3 +1,4 @@
+import 'package:Attendit/core/usecase/usecase.dart';
 import 'package:Attendit/features/home/domain/entities/student_details.dart';
 import 'package:Attendit/features/home/domain/repositories/i_home_repository.dart';
 import 'package:Attendit/features/home/domain/usecases/get_student_details.dart';
@@ -43,7 +44,7 @@ void main() {
         .thenAnswer((_) async => Right(tStudentDetails));
 
     // act
-    final result = await usecase.call();
+    final result = await usecase.call(NoParams());
 
 
     // assert

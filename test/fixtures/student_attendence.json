@@ -1,6 +1,6 @@
 {
-          "subjectName": "subname",
-          "subjectCode": "123",
-          "lecturesAttended": 45,
-          "totalLectures": 50
-        }
+  "subjectName": "subname",
+  "subjectCode": "123",
+  "lecturesAttended": 45,
+  "totalLectures": 50
+}

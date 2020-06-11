@@ -4,16 +4,15 @@ import '../../domain/entities/student_attendance.dart';
 
 class StudentAttendanceModel extends StudentAttendance {
   StudentAttendanceModel({
-  @required final String subjectCode,
-  @required final String subjectName,
-  @required final num lecturesAttended,
-  @required final num totalLectures,
-
+    @required final String subjectCode,
+    @required final String subjectName,
+    @required final num lecturesAttended,
+    @required final num totalLectures,
   }) : super(
-       subjectCode:subjectCode,
-       subjectName:subjectName,
-       lecturesAttended:lecturesAttended,
-       totalLectures:totalLectures,
+          subjectCode: subjectCode,
+          subjectName: subjectName,
+          lecturesAttended: lecturesAttended,
+          totalLectures: totalLectures,
         );
 
   factory StudentAttendanceModel.fromJson(Map<String, dynamic> json) {
@@ -31,7 +30,6 @@ class StudentAttendanceModel extends StudentAttendance {
       'subjectName': subjectName,
       'lecturesAttended': lecturesAttended,
       'totalLectures': totalLectures,
-  
     };
   }
 }
