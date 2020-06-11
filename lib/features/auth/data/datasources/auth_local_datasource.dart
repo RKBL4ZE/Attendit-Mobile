@@ -26,11 +26,10 @@ class AuthLocalDataSource implements IAuthLocalDataSource {
 
   @override
   Future<UserTokensModel> getLocalTokens() {
-    final accesstoken = _box.get('accesstoken');
-    final refreshtoken = _box.get('refreshtoken');
-    if (accesstoken != null && refreshtoken != null) {
+    final userTokenString = _box.get(CACHED_USER_TOKENS);
+    if (userTokenString != null) {
       final tUserTokensModel =
-          UserTokensModel(accesstoken: accesstoken, refreshtoken: refreshtoken);
+          UserTokensModel.fromJson(json.decode(userTokenString));
 
       return Future.value(tUserTokensModel);
     }
@@ -39,6 +38,6 @@ class AuthLocalDataSource implements IAuthLocalDataSource {
 
   @override
   Future<void> setLocalTokens(UserTokensModel userTokensModel) {
-    return _box.putAll(userTokensModel.toJson());
+    return _box.put(CACHED_USER_TOKENS, json.encode(userTokensModel.toJson()));
   }
 }

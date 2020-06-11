@@ -27,14 +27,12 @@ void main() {
       'should return UserTokens from Box[Hive] when there is one in the cache',
       () async {
         // arrange
-        when(mockBox.get('accesstoken')).thenReturn("ACCESS_TOKEN");
-        when(mockBox.get('refreshtoken')).thenReturn("REFRESH_TOKEN");
+        when(mockBox.get(any)).thenReturn(fixture('user_tokens.json'));
         // act
         final result = await dataSource.getLocalTokens();
         print(result);
         // assert
-        verify(mockBox.get('accesstoken'));
-        verify(mockBox.get('refreshtoken'));
+        verify(mockBox.get(any));
         expect(result, equals(tUserTokensModel));
       },
     );
