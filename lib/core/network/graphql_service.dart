@@ -19,6 +19,9 @@ abstract class IGraphQLService {
 const String ENDPOINT =
     "http://attenditapi-env-1.eba-dagbus3d.us-east-1.elasticbeanstalk.com/graphql";
 
+// const String ENDPOINT =
+//     "http:///graphql";
+
 const CACHED_USER_TOKENS = 'CACHED_USER_TOKENS';
 
 @Injectable(as: IGraphQLService)
@@ -36,7 +39,11 @@ class GraphQLService implements IGraphQLService {
     );
 
     final AuthLink authLink = AuthLink(
-      getToken: getFreshToken,
+      getToken: () async {
+        String token = await getFreshToken();
+        print(token);
+        return "Bearer $token";
+      },
     );
 
     final Link link = authLink.concat(httpLink);
@@ -65,16 +72,18 @@ class GraphQLService implements IGraphQLService {
         MutationOptions(documentNode: gql(mutation), variables: variables));
   }
 
-  FutureOr<String> getFreshToken() async {
-    print('LOL');
+  Future<String> getFreshToken() async {
     final userTokenString = _box.get(CACHED_USER_TOKENS);
     if (userTokenString != null) {
       final tUserTokensModel =
           UserTokensModel.fromJson(json.decode(userTokenString));
 
+      // print(tUserTokensModel.accesstoken);
+
       final currenTime = DateTime.now().millisecondsSinceEpoch;
       final tokenExpiration = tUserTokensModel.exp;
-      if ((currenTime) < tokenExpiration - 600000) {
+      // print(tokenExpiration);
+      if ((currenTime / 1000) < (tokenExpiration - 600)) {
         return Future.value(tUserTokensModel.accesstoken);
       } else {
         if (await _networkInfo.isConnected) {

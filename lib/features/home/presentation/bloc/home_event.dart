@@ -1,4 +1,11 @@
 part of 'home_bloc.dart';
 
-enum HomeEvent { increment, decrement }
+@immutable
+abstract class HomeEvent extends Equatable {
+  const HomeEvent();
+}
 
+class GetDetailsEvent extends HomeEvent {
+  @override
+  List<Object> get props => [];
+}

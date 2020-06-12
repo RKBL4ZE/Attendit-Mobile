@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../models/student_assigments_model.dart';
@@ -39,6 +40,8 @@ const String CACHE_STUDENT_DETAILS = "CACHE_STUDENT_DETAILS";
 const String CACHE_STUDENT_ATTENDANCE = "CACHE_STUDENT_ATTENDANCE";
 const String CACHE_STUDENT_ASSIGNMENTS = "CACHE_STUDENT_ASSIGNMENTS";
 
+@Injectable(as: IHomeLocalDataSource)
+@lazySingleton
 class HomeLocalDataSource implements IHomeLocalDataSource {
   final Box _box;
 

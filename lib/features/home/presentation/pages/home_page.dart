@@ -20,30 +20,41 @@ class MyHomePage extends StatelessWidget {
 class CounterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //
+    final _bloc = BlocProvider.of<HomeBloc>(context);
+    _bloc.add(GetDetailsEvent());
     return Scaffold(
       appBar: AppBar(
         title: Text('LOL'),
       ),
-      body: BlocBuilder<HomeBloc, int>(
+      body: BlocBuilder<HomeBloc, HomeState>(
         bloc: BlocProvider.of<HomeBloc>(context),
-        builder: (context, counter) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$counter',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ],
-          ),
-        ),
+        builder: (context, state) {
+          if (state is DetailsLoading) {
+            return Center(
+              child: Text('Loading'),
+            );
+          }
+          if (state is DetailsLoaded) {
+            print(state);
+            return Center(
+              child: Text(state.studentDetails.name),
+            );
+          }
+          if (state is DetailsError) {
+            print(state);
+            return Center(
+              child: Text(state.message),
+            );
+          }
+          return Center(
+            child: Text('Initial'),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.bloc<HomeBloc>().add(HomeEvent.increment);
+          context.bloc<HomeBloc>().add(GetDetailsEvent());
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),

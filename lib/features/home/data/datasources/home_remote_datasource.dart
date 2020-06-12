@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:Attendit/core/network/graphql_service.dart';
 import 'package:Attendit/features/home/data/models/student_assigments_model.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/util/gql_mutation.dart';
@@ -34,8 +36,10 @@ abstract class IHomeRemoteDataSource {
   Future<List<StudentAssignmentModel>> getStudentAssignments();
 }
 
+@Injectable(as: IHomeRemoteDataSource)
+@lazySingleton
 class HomeRemoteDataSource implements IHomeRemoteDataSource {
-  final GraphQLClient _client;
+  final IGraphQLService _client;
 
   HomeRemoteDataSource(this._client);
 
@@ -54,11 +58,11 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
   @override
   Future<StudentDetailsModel> getStudentDetails() async {
     try {
-      final result = await _client
-          .query(QueryOptions(documentNode: gql(Gqlquery.studentDetailsQuery)));//todo: future change query 
+      final result = await _client.query(
+          query: Gqlquery.studentDetailsQuery); //todo: future change query
       if (result.exception == null) {
         return StudentDetailsModel.fromJson(
-            json.decode(result.data["StudentDetails"]));
+            result.data["Student"]);
       }
       throw UnauthorizedException();
     } on UnauthorizedException {

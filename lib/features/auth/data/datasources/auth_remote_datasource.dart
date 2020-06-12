@@ -35,6 +35,7 @@ class AuthRemoteDataSource implements IAuthRemoteDataSource {
         "password": password
       });
       if (result.exception == null) {
+        print(result.data);
         return UserTokensModel.fromJson(result.data['login']);
       }
       print(result.exception);
