@@ -1,7 +1,9 @@
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
+import 'package:Attendit/features/home/presentation/widgets/student_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -23,11 +25,10 @@ class CounterWidget extends StatelessWidget {
     //
     final _bloc = BlocProvider.of<HomeBloc>(context);
     _bloc.add(GetDetailsEvent());
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('LOL'),
-      ),
-      body: BlocBuilder<HomeBloc, HomeState>(
+    return SingleChildScrollView(
+            child: Container(
+          margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+          child: BlocBuilder<HomeBloc, HomeState>(
         bloc: BlocProvider.of<HomeBloc>(context),
         builder: (context, state) {
           if (state is DetailsLoading) {
@@ -36,10 +37,20 @@ class CounterWidget extends StatelessWidget {
             );
           }
           if (state is DetailsLoaded) {
+            final student = state.studentDetails;
             print(state);
-            return Center(
-              child: Text(state.studentDetails.name),
-            );
+            return Column(
+            children: <Widget>[
+              StudentProfileWidget(
+                enrollmentno: state.studentDetails.enrollment,
+                othrdetail: "${student.semesterName} Section-${student.section}",
+                studentimg:
+                    student.profilePicture,
+                studentname: student.name,
+              ),
+              
+            ],
+          );
           }
           if (state is DetailsError) {
             print(state);
@@ -52,13 +63,7 @@ class CounterWidget extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.bloc<HomeBloc>().add(GetDetailsEvent());
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
+      
+          ) );
   }
 }

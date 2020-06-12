@@ -22,7 +22,7 @@ class NavigatorBloc extends Bloc<NavigatorEvent, dynamic> {
     if (event is NavigatorActionPop) {
       navigatorKey.currentState.pop();
     } else if (event is NavigateToHomeEvent) {
-      navigatorKey.currentState.pushReplacementNamed('/home');
+      navigatorKey.currentState.pushReplacementNamed('/navbar');
     }
   }
 }

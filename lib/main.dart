@@ -1,5 +1,6 @@
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
-import 'package:Attendit/features/home/presentation/pages/home_page.dart';
+
+import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -25,16 +26,11 @@ class MyApp extends StatelessWidget {
 
         //title: 'Flutter Demo',
         theme: ThemeData(
-          fontFamily: 'Karla',
           primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: 'Karala',
         ),
-        routes: {
-          '/': (_) => LoginPage(),
-          '/home': (_) => MyHomePage(
-                title: 'LOL',
-              )
-        },
+        routes: {'/': (_) => LoginPage(), 
+        '/navbar': (_) => NavBar()},
       ),
     );
   }
