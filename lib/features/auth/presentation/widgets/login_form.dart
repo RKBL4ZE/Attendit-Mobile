@@ -36,7 +36,7 @@ class LoginForm extends StatelessWidget {
                       child: Text("User ID",
                           style: TextStyle(
                             fontSize: 18,
-                           // fontFamily: 'Karla',
+                            // fontFamily: 'Karla',
                             color: Color.fromRGBO(29, 53, 84, 1),
                           )
 
@@ -46,21 +46,21 @@ class LoginForm extends StatelessWidget {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withAlpha(70),
-                    blurRadius: 6.0,
-                    spreadRadius: 7.0,
-                    offset: Offset(
-                      0.0,
-                      3.0,
-                    ),
-                  ),
-                ]),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withAlpha(70),
+                              blurRadius: 6.0,
+                              spreadRadius: 7.0,
+                              offset: Offset(
+                                0.0,
+                                3.0,
+                              ),
+                            ),
+                          ]),
                       child: Material(
                         borderRadius: BorderRadius.circular(10.0),
-                      //  elevation: 5.0,
+                        //  elevation: 5.0,
                         shadowColor: Color.fromRGBO(152, 214, 217, 1),
                         child: TextField(
                           controller: username,
@@ -111,21 +111,21 @@ class LoginForm extends StatelessWidget {
                             )),
                     Container(
                       decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withAlpha(70),
-                    blurRadius: 6.0,
-                    spreadRadius: 7.0,
-                    offset: Offset(
-                      0.0,
-                      3.0,
-                    ),
-                  ),
-                ]),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withAlpha(70),
+                              blurRadius: 6.0,
+                              spreadRadius: 7.0,
+                              offset: Offset(
+                                0.0,
+                                3.0,
+                              ),
+                            ),
+                          ]),
                       child: Material(
                         borderRadius: BorderRadius.circular(10.0),
-                       // elevation: 10.0,
+                        // elevation: 10.0,
                         shadowColor: Color.fromRGBO(152, 214, 217, 1),
                         child: TextField(
                           controller: password,
@@ -171,44 +171,44 @@ class LoginForm extends StatelessWidget {
                           context.bloc<AuthBloc>().add(LoginEvent(
                               prefix: "msi",
                               userType: "student",
-                              password: password.text,
-                              username: username.text));
+                              password: "Test12345",
+                              username: "00414902019"));
                         },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
                         padding: EdgeInsets.all(0.0),
                         child: Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color.fromRGBO(95, 197, 209, 1)
-                                        .withAlpha(60),
-                                    blurRadius: 9.0,
-                                    spreadRadius: 7.0,
-                                    offset: Offset(
-                                      0.0,
-                                      3.0,
-                                    ),
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromRGBO(95, 197, 209, 1)
+                                      .withAlpha(60),
+                                  blurRadius: 9.0,
+                                  spreadRadius: 7.0,
+                                  offset: Offset(
+                                    0.0,
+                                    3.0,
                                   ),
-                                ],
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color.fromRGBO(95, 197, 209, 1),
-                                    Color.fromRGBO(152, 214, 217, 1)
-                                  ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
                                 ),
-                                borderRadius: BorderRadius.circular(10.0)),
-                            constraints: BoxConstraints(
-                                maxWidth: 300.0, minHeight: 50.0),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Login",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
-                            ),
+                              ],
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromRGBO(95, 197, 209, 1),
+                                  Color.fromRGBO(152, 214, 217, 1)
+                                ],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                              borderRadius: BorderRadius.circular(10.0)),
+                          constraints:
+                              BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Login",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white),
                           ),
+                        ),
                       ),
                     ),
                   ],

@@ -67,8 +67,10 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
   Future<List<StudentAssignmentModel>> getStudentAssignments() {
     final studentAssignmentString = _box.get(CACHE_STUDENT_ASSIGNMENTS);
     if (studentAssignmentString != null) {
-      final studentAssignemtModel =
-          StudentAssignmentModel.fromJson(json.decode(studentAssignmentString));
+      final studentAssignemtModel = json
+          .decode(studentAssignmentString)
+          .map<StudentAssignmentModel>(
+              (e) => {StudentAssignmentModel.fromJson(e)}).toList();
 
       return Future.value(studentAssignemtModel);
     }
@@ -80,7 +82,10 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
     final studentAttendanceString = _box.get(CACHE_STUDENT_ATTENDANCE);
     if (studentAttendanceString != null) {
       final studentAttendanceModel =
-          StudentAttendanceModel.fromJson(json.decode(studentAttendanceString));
+          json
+          .decode(studentAttendanceString)
+          .map<StudentAttendanceModel>(
+              (e) => {StudentAttendanceModel.fromJson(e)}).toList();
 
       return Future.value(studentAttendanceModel);
     }

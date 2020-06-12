@@ -7,8 +7,4 @@ abstract class IAuthRepository {
 
   Future<Either<Failure, bool>> signin(
       {String prefix, String userType, String username, String password});
-
-  Future<Either<Failure, bool>> refresh(String refreshtoken);
-
-  Future<Either<Failure, UserTokens>> getTokens();
 }

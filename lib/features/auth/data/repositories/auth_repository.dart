@@ -21,25 +21,6 @@ class AuthRepository implements IAuthRepository {
   AuthRepository(
       this._networkInfo, this._localDataSource, this._remoteDataSource);
 
-  @override
-  Future<Either<Failure, UserTokens>> getTokens() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, bool>> refresh(String refreshtoken) async {
-    if (await _networkInfo.isConnected) {
-      try {
-        final models = await _remoteDataSource.tryRefresh(refreshtoken);
-        await _localDataSource.setLocalTokens(models);
-        return Right(true);
-      } on ServerException {
-        return Left(ServerFailure());
-      }
-    } else {
-      return Left(NetworkFailure());
-    }
-  }
 
   @override
   Future<Either<Failure, bool>> signin(
