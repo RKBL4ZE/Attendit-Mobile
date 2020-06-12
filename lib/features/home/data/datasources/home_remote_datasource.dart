@@ -34,6 +34,13 @@ abstract class IHomeRemoteDataSource {
   /// Throws [ServerException] if no cached data is present.
   ///
   Future<List<StudentAssignmentModel>> getStudentAssignments();
+
+  /// Gets the cached [StudentDetailsModel, StudentAttendanceModel, StudentAssignmentModel] which was gotten the last time
+  /// the user had an internet connection.
+  ///
+  /// Throws [ServerException] if no cached data is present.
+  ///
+  Future<Map<String, dynamic>> getAllDetails();
 }
 
 @Injectable(as: IHomeRemoteDataSource)
@@ -61,8 +68,39 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
       final result = await _client.query(
           query: Gqlquery.studentDetailsQuery); //todo: future change query
       if (result.exception == null) {
-        return StudentDetailsModel.fromJson(
-            result.data["Student"]);
+        return StudentDetailsModel.fromJson(result.data["Student"]);
+      }
+      throw UnauthorizedException();
+    } on UnauthorizedException {
+      throw UnauthorizedException();
+    } on Exception catch (exception) {
+      print(exception);
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> getAllDetails() async {
+    try {
+      final result = await _client.query(
+          query: Gqlquery.studentAllDetailsQuery); //todo: future change query
+      if (result.exception == null) {
+        var allDetails = Map<String, dynamic>();
+        allDetails.putIfAbsent('Student',
+            () => StudentDetailsModel.fromJson(result.data["Student"]));
+        allDetails.putIfAbsent(
+            'StudentAssignments',
+            () => result.data["StudentAssignments"]
+                .map<StudentAssignmentModel>(
+                    (e) => StudentAssignmentModel.fromJson(e))
+                .toList());
+        allDetails.putIfAbsent(
+            'StudentAttendance',
+            () => result.data["StudentAttendance"]
+                .map<StudentAttendanceModel>(
+                    (e) => StudentAttendanceModel.fromJson(e))
+                .toList());
+        return allDetails;
       }
       throw UnauthorizedException();
     } on UnauthorizedException {

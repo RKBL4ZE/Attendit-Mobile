@@ -1,17 +1,22 @@
 part of 'home_bloc.dart';
 
-@immutable
-abstract class HomeState extends Equatable {
-  @override
-  List<Object> get props => [];
-}
+// @immutable
+abstract class HomeState {}
 
 class DetailsLoading extends HomeState {}
 
 class DetailsLoaded extends HomeState {
-  final StudentDetails studentDetails;
+  final Map<String, dynamic> _allDetails;
 
-  DetailsLoaded(this.studentDetails);
+  StudentDetailsModel student;
+  List<StudentAssignmentModel> assignmentsList;
+  List<StudentAttendanceModel> attendanceList;
+
+  DetailsLoaded(this._allDetails) {
+    student = _allDetails['Student'];
+    assignmentsList = _allDetails['StudentAssignments'];
+    attendanceList = _allDetails['StudentAttendance'];
+  }
 }
 
 class DetailsError extends HomeState {
@@ -19,6 +24,6 @@ class DetailsError extends HomeState {
 
   DetailsError({@required this.message});
 
-  @override
-  List<Object> get props => [message];
+  // @override
+  // List<Object> get props => [message];
 }

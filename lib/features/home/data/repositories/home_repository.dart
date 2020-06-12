@@ -50,4 +50,21 @@ class HomeRepository implements IHomeRepository {
     // TODO: implement getStudentDetails
     throw UnimplementedError();
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getAllDetails() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final models = await _remoteDataSource.getAllDetails();
+        // await _localDataSource.cacheStudentDetails(models);
+        return Right(models);
+      } on ServerException {
+        return Left(ServerFailure());
+      } on UnauthorizedException {
+        return Left(UnauthorizedFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
+  }
 }

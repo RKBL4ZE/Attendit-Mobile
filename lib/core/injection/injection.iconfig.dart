@@ -17,6 +17,7 @@ import 'package:Attendit/core/network/graphql_service.dart';
 import 'package:Attendit/features/home/data/datasources/home_remote_datasource.dart';
 import 'package:Attendit/features/home/data/repositories/home_repository.dart';
 import 'package:Attendit/features/home/domain/repositories/i_home_repository.dart';
+import 'package:Attendit/features/home/domain/usecases/get_all_details.dart';
 import 'package:Attendit/features/home/domain/usecases/get_student_details.dart';
 import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
 import 'package:Attendit/features/auth/data/datasources/auth_remote_datasource.dart';
@@ -49,9 +50,12 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<INetworkInfo>(),
         g<IHomeRemoteDataSource>(),
       ));
+  g.registerLazySingleton<GetAllDetails>(
+      () => GetAllDetails(g<IHomeRepository>()));
   g.registerLazySingleton<GetStudentDetails>(
       () => GetStudentDetails(g<IHomeRepository>()));
-  g.registerFactory<HomeBloc>(() => HomeBloc(g<GetStudentDetails>()));
+  g.registerFactory<HomeBloc>(
+      () => HomeBloc(g<GetStudentDetails>(), g<GetAllDetails>()));
   g.registerFactory<IAuthRemoteDataSource>(
       () => AuthRemoteDataSource(g<IGraphQLService>()));
   g.registerFactory<IAuthRepository>(() => AuthRepository(
