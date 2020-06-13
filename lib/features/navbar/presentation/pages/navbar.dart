@@ -1,4 +1,5 @@
 import 'package:Attendit/features/home/presentation/pages/home_page.dart';
+import 'package:Attendit/features/timetable/presentation/pages/timetable_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
@@ -16,7 +17,7 @@ class _NavBarState extends State<NavBar> {
       'title': 'Dashboard',
     },
     {
-      //'page': NewsFeed(),
+      'page': TimeTablePage(),
       'title': 'Time Table',
     },
     {

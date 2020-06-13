@@ -161,6 +161,7 @@ class LoginForm extends StatelessWidget {
                           ),
                     ),
                     Container(
+                      alignment: Alignment.center,
                       height: 50.0,
                       child: RaisedButton(
                         onPressed: () {

@@ -100,6 +100,9 @@ flutter:
     - family: Karala
       fonts:
         - asset: assets/fonts/Karla/Karla-Regular.ttf
+    - family: Rubik
+      fonts:
+        - asset: assets/fonts/Rubik/Rubik-Medium.ttf    
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

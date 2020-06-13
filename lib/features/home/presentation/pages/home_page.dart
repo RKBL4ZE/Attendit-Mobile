@@ -1,13 +1,17 @@
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
+import 'package:Attendit/features/home/presentation/widgets/assignments/assignments.dart';
+import 'package:Attendit/features/home/presentation/widgets/attendance/all_subject_attendance_card.dart';
+import 'package:Attendit/features/home/presentation/widgets/attendance/attendance_bar.dart';
 import 'package:Attendit/features/home/presentation/widgets/student_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,8 @@ class CounterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
-    BlocProvider.of<HomeBloc>(context).add(GetDetailsEvent());
+    final _bloc = BlocProvider.of<HomeBloc>(context);
+    _bloc.add(GetDetailsEvent());
     return SingleChildScrollView(
         child: Container(
       margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
@@ -38,6 +43,7 @@ class CounterWidget extends StatelessWidget {
             final student = state.student;
             print(state);
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 StudentProfileWidget(
                   enrollmentno: student.enrollment,
@@ -46,6 +52,31 @@ class CounterWidget extends StatelessWidget {
                   studentimg: student.profilePicture,
                   studentname: student.name,
                 ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(20, 10, 15, 10),
+                  child: Text(
+                    "Attendance",
+                    style: TextStyle(
+                        // fontFamily: 'Rubik',
+                        fontSize: 25,
+                        color: Color.fromRGBO(46, 96, 102, 1),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                AttendenceBarWidget(),
+                AttendanceCardWidget(allatendancelist: state.attendanceList),
+                Container(
+                  margin: EdgeInsets.fromLTRB(20, 0, 15, 10),
+                  child: Text(
+                    "Assignments",
+                    style: TextStyle(
+                        // fontFamily: 'Rubik',
+                        fontSize: 25,
+                        color: Color.fromRGBO(46, 96, 102, 1),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                AssignmentsWidget(assignments: state.assignmentsList),
               ],
             );
           }

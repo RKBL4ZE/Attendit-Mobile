@@ -26,11 +26,23 @@ class StudentProfileWidget extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(15)),
+              boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withAlpha(70),
+                              blurRadius: 6.0,
+                              spreadRadius: 7.0,
+                              offset: Offset(
+                                0.0,
+                                3.0,
+                              ),
+                            ),
+                          ],
               border: Border.all(
                 
                 color: Colors.white
                 ,
                 width: 5,
+                
                 
               ),
             ),

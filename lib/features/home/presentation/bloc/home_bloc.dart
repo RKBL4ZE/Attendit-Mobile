@@ -1,18 +1,18 @@
 import 'dart:async';
 
-import 'package:Attendit/core/error/failures.dart';
-import 'package:Attendit/core/usecase/usecase.dart';
-import 'package:Attendit/features/home/data/models/student_assigments_model.dart';
-import 'package:Attendit/features/home/data/models/student_attendence_model.dart';
-import 'package:Attendit/features/home/data/models/student_details_model.dart';
-import 'package:Attendit/features/home/domain/entities/student_details.dart';
-import 'package:Attendit/features/home/domain/usecases/get_all_details.dart';
-import 'package:Attendit/features/home/domain/usecases/get_student_details.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../../data/models/student_assigments_model.dart';
+import '../../data/models/student_attendence_model.dart';
+import '../../data/models/student_details_model.dart';
+import '../../domain/usecases/get_all_details.dart';
+import '../../domain/usecases/get_student_details.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -34,7 +34,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if (event is GetDetailsEvent) {
       yield DetailsLoading();
-      // final failureOrStudentDetails = await getStudentDetails(NoParams());
       final failureOrAllDetails = await getAllDetails(NoParams());
       yield* _eitherLoadedOrErrorState(failureOrAllDetails);
     }

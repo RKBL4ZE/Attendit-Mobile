@@ -76,4 +76,43 @@ mixin Gqlquery {
   
   
   ''';
+  static String studentTimeTableQuery = r'''
+  
+    query{
+        StudentTimetable{
+          monday{
+            time
+            subjectName
+            facultyName
+          }
+          tuesday{
+            time
+            subjectName
+            facultyName
+          }
+          wednesday{
+            time
+            subjectName
+            facultyName
+          }
+          thursday{
+            time
+            subjectName
+            facultyName
+          }
+          friday{
+            time
+            subjectName
+            facultyName
+          }
+          saturday{
+            time
+            subjectName
+            facultyName
+          }
+        }
+    }
+
+  ''';
 }
+

@@ -25,14 +25,6 @@ void main() {
       friday: "fri",
       saturday: "sat",
       sunday: "sun"));
-  tTimeTable.add(TimeTable(
-      monday: "Mon",
-      tuesday: "Tuesday",
-      wednesday: "Wednesday",
-      thursday: "Thus",
-      friday: "Fri",
-      saturday: "Sat",
-      sunday: "Sun"));
 
   test('should get student attendance from the repository', () async {
     // arrange
