@@ -64,6 +64,7 @@ mixin Gqlquery {
         marks
         totalMarks
         status
+        dueDate
       }
 
       StudentAttendance {
@@ -114,5 +115,29 @@ mixin Gqlquery {
     }
 
   ''';
+
+
+static String newsFeedQuery = r'''
+
+query{
+  news{
+    id
+    authorName
+    authorAvatar
+    title
+    data
+    isLiked
+    likesCount
+    commentsCount
+    postTime
+  }  
+    }
+
+
+''';
+
+
 }
+
+
 

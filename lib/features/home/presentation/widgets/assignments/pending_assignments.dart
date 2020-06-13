@@ -1,7 +1,8 @@
+import 'package:Attendit/features/home/domain/entities/student_assignment.dart';
 import 'package:flutter/material.dart';
 
 class PendingAssignmentWidget extends StatelessWidget {
-  final List pendingassignment;
+  final List<StudentAssignment> pendingassignment;
 
   PendingAssignmentWidget({
     @required this.pendingassignment,
@@ -146,8 +147,8 @@ class PendingAssignmentWidget extends StatelessWidget {
                                     Expanded(
                                         flex: 5, // 20%
                                         child: Text(
-                                          "dueDate",
-                                          // pendingassignment[index].dueDate,
+                                         // "dueDate",
+                                           pendingassignment[index].dueDate,
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
                                             // fontFamily: 'Rubik',

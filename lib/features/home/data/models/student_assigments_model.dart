@@ -16,6 +16,7 @@ class StudentAssignmentModel extends StudentAssignment {
     @required final num totalMarks,
     @required final String status,
     @required final String classroomId,
+    @required final String dueDate
   }) : super(
             id: id,
             facultyId: facultyId,
@@ -28,7 +29,8 @@ class StudentAssignmentModel extends StudentAssignment {
             status: status,
             marks: marks,
             totalMarks: totalMarks,
-            classroomId: classroomId);
+            classroomId: classroomId,
+            dueDate: dueDate);
 
   factory StudentAssignmentModel.fromJson(Map<String, dynamic> json) {
     return StudentAssignmentModel(
@@ -44,6 +46,7 @@ class StudentAssignmentModel extends StudentAssignment {
       submitFile: json['submitFile'],
       title: json['title'],
       totalMarks: json['totalMarks'],
+      dueDate: json['dueDate'],
     );
   }
 
@@ -61,6 +64,7 @@ class StudentAssignmentModel extends StudentAssignment {
       'submitFile': submitFile,
       'title': title,
       'totalMarks': totalMarks,
+      'dueDate': dueDate,
     };
   }
 }

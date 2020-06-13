@@ -14,9 +14,11 @@ class StudentAssignment extends Equatable {
   final num totalMarks;
   final String status;
   final String classroomId;
+  final String dueDate;
 
   StudentAssignment(
-      {@required this.id,
+      {@required this.dueDate,
+      @required this.id,
       @required this.facultyId,
       @required this.facultyName,
       @required this.marks,
@@ -42,6 +44,7 @@ class StudentAssignment extends Equatable {
         status,
         marks,
         totalMarks,
-        classroomId
+        classroomId,
+        dueDate
       ];
 }
