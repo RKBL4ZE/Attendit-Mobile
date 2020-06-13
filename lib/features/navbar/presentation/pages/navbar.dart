@@ -55,9 +55,10 @@ class _NavBarState extends State<NavBar> {
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(95, 197, 209, 1),
         unselectedItemColor: Color.fromRGBO(168, 181, 198, 1),
         selectedItemColor: Color.fromRGBO(95, 197, 209, 1),
+        // selectedItemColor: Colors.red,
 
         currentIndex: _selectedPageIndex,
 
@@ -65,12 +66,12 @@ class _NavBarState extends State<NavBar> {
         type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
-            //backgroundColor: Colors.red,
+            // backgroundColor: Color.fromRGBO(95, 197, 209, 1),
             icon: Icon(Icons.home),
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            //backgroundColor: Colors.red,
+            // backgroundColor: Colors.blue,
             icon: Icon(Icons.table_chart),
             title: Text('Time Table'),
           ),

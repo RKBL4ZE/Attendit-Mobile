@@ -3,6 +3,7 @@ import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,6 +13,10 @@ import 'features/auth/presentation/pages/login_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection(Environment.prod);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Color.fromRGBO(95, 197, 209, 1),
+      systemNavigationBarIconBrightness: Brightness.light));
   runApp(MyApp());
 }
 
@@ -30,8 +35,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Karala',
         ),
-        routes: {'/': (_) => LoginPage(), 
-        '/navbar': (_) => NavBar(),
+        routes: {
+          '/': (_) => NavBar(),
+          '/navbar': (_) => NavBar(),
         },
       ),
     );

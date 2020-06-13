@@ -34,7 +34,6 @@ class LoginPage extends StatelessWidget {
           if (state is UserLogedIn) {
             BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
             return Center(child: Text("Logged IN"));
-
           }
           if (state is AuthError) {
             return Text(state.message);
