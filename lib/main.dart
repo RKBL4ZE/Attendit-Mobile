@@ -1,13 +1,14 @@
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
-import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import 'core/injection/injection.dart';
 import 'features/auth/presentation/pages/login_page.dart';
+import 'features/timetable/presentation/pages/full_timetable.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         routes: {'/': (_) => LoginPage(), 
         '/navbar': (_) => NavBar(),
-        '/fulltimetablewidget': (_) => FullTimeTableWidget(),
+        '/fulltimetable': (_) => FullTimeTablePage(),
         },
       ),
     );

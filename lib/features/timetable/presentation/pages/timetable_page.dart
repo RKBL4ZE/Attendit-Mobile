@@ -1,6 +1,7 @@
 import 'package:Attendit/core/injection/injection.dart';
+import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
-import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
+
 import 'package:Attendit/features/timetable/presentation/widgets/timetable_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,16 +51,17 @@ class TimeTableWidget extends StatelessWidget {
             }
             if (state is TimetableLoaded) {
               final fulltimetable = state.timetable;
+              //TODO: APPLY NULL CHECKING
               final timetable = state.timetable.toJson()[date];
 
               return SingleChildScrollView(
-                              child: Column(
+                child: Column(
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       // Text(timetable[0].time),
 
                       Container(
-                       margin: new EdgeInsets.fromLTRB(0, 20, 0, 15),
+                        margin: new EdgeInsets.fromLTRB(0, 20, 0, 15),
                         child: Text("Today's Lectures",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -89,10 +91,10 @@ class TimeTableWidget extends StatelessWidget {
                         height: 50.0,
                         child: RaisedButton(
                           onPressed: () {
-                            Navigator.of(context).pushNamed(
-      FullTimeTableWidget.routeName,
-      arguments: [fulltimetable],
-    );
+
+                            // Navigate to Full Timetable
+                            BlocProvider.of<NavigatorBloc>(context).add(NavigateToFullTimetableEvent());
+
                           },
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(80.0)),
@@ -115,8 +117,8 @@ class TimeTableWidget extends StatelessWidget {
                               child: Text(
                                 "View Full Time Table",
                                 textAlign: TextAlign.center,
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 15),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
                               ),
                             ),
                           ),

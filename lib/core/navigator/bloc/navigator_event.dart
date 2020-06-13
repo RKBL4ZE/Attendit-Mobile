@@ -7,3 +7,5 @@ class NavigatorEvent extends Equatable {
 class NavigatorActionPop extends NavigatorEvent {}
 
 class NavigateToHomeEvent extends NavigatorEvent {}
+
+class NavigateToFullTimetableEvent extends NavigatorEvent {}

@@ -23,6 +23,8 @@ class NavigatorBloc extends Bloc<NavigatorEvent, dynamic> {
       navigatorKey.currentState.pop();
     } else if (event is NavigateToHomeEvent) {
       navigatorKey.currentState.pushReplacementNamed('/navbar');
+    } else if(event is NavigateToFullTimetableEvent) {
+      navigatorKey.currentState.pushNamed('/fulltimetable');
     }
   }
 }
