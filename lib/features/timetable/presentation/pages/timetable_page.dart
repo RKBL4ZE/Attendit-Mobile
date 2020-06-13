@@ -37,11 +37,12 @@ class TimeTableWidget extends StatelessWidget {
             final fulltimetable = state.timetable;
 
             final timetable = fulltimetable.toJson()[date];
+            if (timetable == null) {
+              return Center(child: Text('NO CLASSES TODAY'));
+            }
             return Column(
               children: <Widget>[
-                
                 SingleDayTimeTableWidget(timetable),
-                
                 FullTimeTableButton(fulltimetable)
               ],
             );
