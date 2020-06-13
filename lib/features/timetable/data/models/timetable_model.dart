@@ -45,18 +45,24 @@ class TimeTableModel extends TimeTable {
         monday: json['monday']
             .map<TimingModel>((e) => TimingModel.fromJson(e))
             .toList(),
-        tuesday:
-            json['tuesday'].map<TimingModel>((e) => TimingModel.fromJson(e)).toList(),
-        wednesday:
-            json['wednesday'].map<TimingModel>((e) => TimingModel.fromJson(e)).toList(),
-        thursday:
-            json['thursday'].map<TimingModel>((e) => TimingModel.fromJson(e)).toList(),
-        friday: json['friday'].map<TimingModel>((e) => TimingModel.fromJson(e)).toList(),
-        saturday:
-            json['saturday'].map<TimingModel>((e) => TimingModel.fromJson(e)).toList());
+        tuesday: json['tuesday']
+            .map<TimingModel>((e) => TimingModel.fromJson(e))
+            .toList(),
+        wednesday: json['wednesday']
+            .map<TimingModel>((e) => TimingModel.fromJson(e))
+            .toList(),
+        thursday: json['thursday']
+            .map<TimingModel>((e) => TimingModel.fromJson(e))
+            .toList(),
+        friday: json['friday']
+            .map<TimingModel>((e) => TimingModel.fromJson(e))
+            .toList(),
+        saturday: json['saturday']
+            .map<TimingModel>((e) => TimingModel.fromJson(e))
+            .toList());
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, List<TimingModel>> toJson() {
     return {
       "monday": monday,
       "tuesday": tuesday,

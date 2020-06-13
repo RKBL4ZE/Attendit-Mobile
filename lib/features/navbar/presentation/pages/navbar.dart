@@ -3,7 +3,6 @@ import 'package:Attendit/features/timetable/presentation/pages/timetable_page.da
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-
 class NavBar extends StatefulWidget {
   static const routeName = '/navbar';
   @override
@@ -41,20 +40,20 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-            title: Container(
-                alignment: Alignment.center,
-                
-               // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
-                child: Text(_pages[_selectedPageIndex]['title'])),
-            gradient: LinearGradient(colors: [
-              Color.fromRGBO(95, 197, 209, 1),
-              Color.fromRGBO(152, 214, 217, 1)
-            ]),
-          ),
-     // drawer: MainDrawer(),
+        brightness: Brightness.dark,
+        title: Container(
+            alignment: Alignment.center,
+
+            // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
+            child: Text(_pages[_selectedPageIndex]['title'])),
+        gradient: LinearGradient(colors: [
+          Color.fromRGBO(95, 197, 209, 1),
+          Color.fromRGBO(152, 214, 217, 1)
+        ]),
+      ),
+      // drawer: MainDrawer(),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
-
         onTap: _selectPage,
         backgroundColor: Colors.white,
         unselectedItemColor: Color.fromRGBO(168, 181, 198, 1),
@@ -62,8 +61,8 @@ class _NavBarState extends State<NavBar> {
 
         currentIndex: _selectedPageIndex,
 
-       //selectedIconTheme: IconThemeData(size: 20),
-         type: BottomNavigationBarType.shifting,
+        //selectedIconTheme: IconThemeData(size: 20),
+        type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
             //backgroundColor: Colors.red,
@@ -75,13 +74,11 @@ class _NavBarState extends State<NavBar> {
             icon: Icon(Icons.table_chart),
             title: Text('Time Table'),
           ),
-
           BottomNavigationBarItem(
             //backgroundColor: Colors.red,
             icon: Icon(Icons.new_releases),
             title: Text('News Feed'),
           ),
-
           BottomNavigationBarItem(
             //backgroundColor: Colors.red,
             icon: Icon(Icons.more),

@@ -36,7 +36,7 @@ class TimeTableCardWidget extends StatelessWidget {
             margin: new EdgeInsets.fromLTRB(0, 5, 0, 10),
            //padding: const EdgeInsets.all(15),
           child: Card(
-            elevation: 5,
+           // elevation: 5,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
               child: Container(
                 margin: new EdgeInsets.fromLTRB(20, 20, 0, 20),

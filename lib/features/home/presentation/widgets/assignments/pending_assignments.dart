@@ -56,7 +56,7 @@ class PendingAssignmentWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                 elevation: 5,
+                // elevation: 5,
                   margin: EdgeInsets.all(10),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

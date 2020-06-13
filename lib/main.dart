@@ -8,7 +8,6 @@ import 'package:injectable/injectable.dart';
 
 import 'core/injection/injection.dart';
 import 'features/auth/presentation/pages/login_page.dart';
-import 'features/timetable/presentation/pages/full_timetable.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +32,6 @@ class MyApp extends StatelessWidget {
         ),
         routes: {'/': (_) => LoginPage(), 
         '/navbar': (_) => NavBar(),
-        '/fulltimetable': (_) => FullTimeTablePage(),
         },
       ),
     );

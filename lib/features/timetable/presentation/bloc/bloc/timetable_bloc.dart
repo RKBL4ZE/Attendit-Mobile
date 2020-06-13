@@ -34,6 +34,9 @@ class TimetableBloc extends Bloc<TimetableEvent, TimetableState> {
       final failureOrTimeTable = await getTimeTable(NoParams());
       yield* _eitherLoadedOrErrorState(failureOrTimeTable);
     }
+    if (event is GetFullTimeTableEvent) {
+      yield FullTimetableLoaded(event.timetable);
+    }
   }
 
   Stream<TimetableState> _eitherLoadedOrErrorState(
