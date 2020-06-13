@@ -4,7 +4,6 @@ import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/single_day_timetable.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -38,7 +37,17 @@ class TimeTableWidget extends StatelessWidget {
 
             final timetable = fulltimetable.toJson()[date];
             if (timetable == null) {
-              return Center(child: Text('NO CLASSES TODAY'));
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Center(child: Text('NO CLASSES TODAY')),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  FullTimeTableButton(fulltimetable)
+                ],
+              );
             }
             return Column(
               children: <Widget>[
@@ -86,7 +95,7 @@ class FullTimeTableButton extends StatelessWidget {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
-              borderRadius: BorderRadius.circular(15.0)),
+              borderRadius: BorderRadius.circular(10.0)),
           child: Container(
             constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
             alignment: Alignment.center,

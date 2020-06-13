@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
             return LoginForm();
           }
           if (state is LoginLoading) {
-            return Center(child: Text("Lodaing"));
+            return Center(child: Text("Loading"));
           }
           if (state is UserLogedIn) {
             BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());

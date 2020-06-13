@@ -17,14 +17,6 @@ class TimetableLoaded extends TimetableState {
   List<Object> get props => [timetable];
 }
 
-class FullTimetableLoaded extends TimetableState {
-  final TimeTableModel full;
-
-  FullTimetableLoaded(this.full);
-  @override
-  List<Object> get props => [full];
-}
-
 class TimetableError extends TimetableState {
   final String message;
 

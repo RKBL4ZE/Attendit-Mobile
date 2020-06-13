@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-//import '../screens/PropertyDetails_screen.dart';
-//import '../models/AllProperty_model.dart';
 
 class StudentProfileWidget extends StatelessWidget {
   final String enrollmentno;
@@ -12,7 +10,6 @@ class StudentProfileWidget extends StatelessWidget {
       {@required this.enrollmentno,
       @required this.studentname,
       @required this.studentimg,
-      // @required this.tags = "#",
       @required this.othrdetail});
 
   @override
@@ -73,7 +70,7 @@ class StudentProfileWidget extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
                   child: Text(
-                    "#${enrollmentno}",
+                    "#$enrollmentno",
                     style: TextStyle(
                       //fontSize: 25,
                       color: Color.fromRGBO(128, 139, 151, 1),
