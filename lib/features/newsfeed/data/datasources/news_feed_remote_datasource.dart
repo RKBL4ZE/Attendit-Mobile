@@ -29,8 +29,7 @@ class NewsFeedRemoteDataSource implements INewsFeedRemoteDataSource {
       final result = await _client.query(query: Gqlquery.newsFeedQuery);
 
       if (result.exception == null) {
-        return json
-            .decode(result.data["news"])
+        return result.data["news"]
             .map<NewsFeedModel>((e) => NewsFeedModel.fromJson(e))
             .toList();
       }

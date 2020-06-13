@@ -31,6 +31,7 @@ Widget buildNewsFeed(List<NewsFeed> newsFeed) {
 class NewsFeedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<NewsfeedBloc>(context).add(GetNewsfeedEvent());
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
