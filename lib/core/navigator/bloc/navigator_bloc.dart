@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,8 +24,9 @@ class NavigatorBloc extends Bloc<NavigatorEvent, dynamic> {
       navigatorKey.currentState.pop();
     } else if (event is NavigateToHomeEvent) {
       navigatorKey.currentState.pushReplacementNamed('/navbar');
-    } else if(event is NavigateToFullTimetableEvent) {
-      navigatorKey.currentState.pushNamed('/fulltimetable');
+    } else if (event is NavigateToFullTimetableEvent) {
+      navigatorKey.currentState
+          .pushNamed('/fulltimetable', arguments: event.full);
     }
   }
 }

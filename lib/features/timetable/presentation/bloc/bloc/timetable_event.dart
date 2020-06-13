@@ -8,11 +8,3 @@ class GetTimeTableEvent extends TimetableEvent {
   @override
   List<Object> get props => [];
 }
-
-class GetFullTimeTableEvent extends TimetableEvent {
-  final TimeTableModel timetable;
-
-  GetFullTimeTableEvent(this.timetable);
-  @override
-  List<Object> get props => [];
-}

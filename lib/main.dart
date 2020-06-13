@@ -1,6 +1,7 @@
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
+import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,8 +37,9 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Karala',
         ),
         routes: {
-          '/': (_) => NavBar(),
+          '/': (_) => LoginPage(),
           '/navbar': (_) => NavBar(),
+          '/fulltimetable': (_) => FullTimeTablePage()
         },
       ),
     );

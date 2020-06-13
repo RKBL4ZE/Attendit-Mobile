@@ -1,6 +1,7 @@
 import 'package:Attendit/core/injection/injection.dart';
+import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
+import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
-import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/single_day_timetable.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -35,23 +36,67 @@ class TimeTableWidget extends StatelessWidget {
           if (state is TimetableLoaded) {
             final fulltimetable = state.timetable;
 
-            //TODO: APPLY NULL CHECKING
             final timetable = fulltimetable.toJson()[date];
-            return SingleDayTimeTableWidget(timetable, fulltimetable);
-          }
-          if (state is FullTimetableLoaded) {
-            final fulltimetable = state.full;
-            return FullTimeTableWidget(fulltimetable);
+            return Column(
+              children: <Widget>[
+                
+                SingleDayTimeTableWidget(timetable),
+                
+                FullTimeTableButton(fulltimetable)
+              ],
+            );
           }
           if (state is TimetableError) {
             print(state);
             return Center(
               child: Text(state.message),
             );
+          } else {
+            return Text('Initial State');
           }
-          return Center(
-            child: Text('Initial'),
-          );
         }));
+  }
+}
+
+class FullTimeTableButton extends StatelessWidget {
+  final TimeTableModel fulltimetable;
+
+  const FullTimeTableButton(this.fulltimetable);
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      height: 50.0,
+      child: RaisedButton(
+        onPressed: () {
+          // Navigate to Full Timetable
+          BlocProvider.of<NavigatorBloc>(context)
+              .add(NavigateToFullTimetableEvent(fulltimetable));
+        },
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+        padding: EdgeInsets.all(0.0),
+        child: Ink(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(95, 197, 209, 1),
+                  Color.fromRGBO(152, 214, 217, 1)
+                ],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ),
+              borderRadius: BorderRadius.circular(15.0)),
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+            alignment: Alignment.center,
+            child: Text(
+              "View Full Time Table",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white, fontSize: 15),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

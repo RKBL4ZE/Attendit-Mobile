@@ -1,15 +1,11 @@
-
 import 'package:flutter/material.dart';
 
-
-
 class PendingAssignmentWidget extends StatelessWidget {
-  
   final List pendingassignment;
 
-  PendingAssignmentWidget(
-      {@required this.pendingassignment,});
-
+  PendingAssignmentWidget({
+    @required this.pendingassignment,
+  });
 
   Widget pendingbuildContainer(Widget child) {
     return Container(
@@ -19,44 +15,41 @@ class PendingAssignmentWidget extends StatelessWidget {
           // borderRadius: BorderRadius.circular(10),
           ),
       margin: EdgeInsets.all(10),
-      // padding: EdgeInsets.all(10),
-      height: 40 * pendingassignment.length.truncateToDouble(),
+
+      /// padding: EdgeInsets.all(10),
+      height: 45 * pendingassignment.length.truncateToDouble(),
       width: double.infinity,
       child: child,
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
-          decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withAlpha(50),
-                              blurRadius: 6.0,
-                              spreadRadius: 2.0,
-                              offset: Offset(
-                                0.0,
-                                2.0,
-                              ),
-                            ),
-                          ]),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withAlpha(50),
+                    blurRadius: 6.0,
+                    spreadRadius: 2.0,
+                    offset: Offset(
+                      0.0,
+                      2.0,
+                    ),
+                  ),
+                ]),
             margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                // elevation: 5,
+                  // elevation: 5,
                   margin: EdgeInsets.all(10),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +95,6 @@ class PendingAssignmentWidget extends StatelessWidget {
                                 "Due Date",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  
                                   // fontFamily: 'Rubik',
                                   fontSize: 15,
                                   color: Color.fromRGBO(5, 160, 179, 1),
@@ -114,11 +106,11 @@ class PendingAssignmentWidget extends StatelessWidget {
                         ),
                         pendingbuildContainer(
                           ListView.builder(
-                            primary:
-                                false, //physics: const NeverScrollableScrollPhysics()
+                            primary: false,
+                            physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (ctx, index) => Padding(
                                 padding: EdgeInsets.symmetric(
-                                 vertical: 5,
+                                  vertical: 5,
                                   horizontal: 10,
                                 ),
                                 child: Row(
@@ -155,7 +147,7 @@ class PendingAssignmentWidget extends StatelessWidget {
                                         flex: 5, // 20%
                                         child: Text(
                                           "dueDate",
-                                         // pendingassignment[index].dueDate,
+                                          // pendingassignment[index].dueDate,
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
                                             // fontFamily: 'Rubik',

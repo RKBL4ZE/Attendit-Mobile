@@ -10,6 +10,7 @@ class LoginPage extends StatelessWidget {
   static const routeName = '/LoginPage';
   @override
   Widget build(BuildContext context) {
+    
     return BlocProvider<AuthBloc>(
       create: (_) => getIt(),
       child: Scaffold(
