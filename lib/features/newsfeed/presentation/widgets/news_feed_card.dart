@@ -31,6 +31,14 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.newsFeed.isLiked) {
+      color = Colors.red;
+    }
+  }
+
   void makeFavorite() {
     // operations to be performed
     // end of operations to be performed

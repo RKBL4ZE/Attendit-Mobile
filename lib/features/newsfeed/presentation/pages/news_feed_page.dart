@@ -32,33 +32,27 @@ class NewsFeedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<NewsfeedBloc>(context).add(GetNewsfeedEvent());
-    return SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-        child: Column(
-          children: <Widget>[
-            BlocBuilder<NewsfeedBloc, NewsfeedState>(
-                bloc: BlocProvider.of<NewsfeedBloc>(context),
-                builder: (context, state) {
-                  if (state is NewsfeedLoading) {
-                    return Center(
-                      child: Text('Loading'),
-                    );
-                  }
+    return Container(
+      margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      child: BlocBuilder<NewsfeedBloc, NewsfeedState>(
+          bloc: BlocProvider.of<NewsfeedBloc>(context),
+          builder: (context, state) {
+            if (state is NewsfeedLoading) {
+              return Center(
+                child: Text('Loading'),
+              );
+            }
 
-                  if (state is NewsfeedLoaded) {
-                    return buildNewsFeed(state.newsfeed);
-                  }
+            if (state is NewsfeedLoaded) {
+              return buildNewsFeed(state.newsfeed);
+            }
 
-                  if (state is NewsfeedError) {
-                    return Center(
-                      child: Text(state.message),
-                    );
-                  }
-                }),
-          ],
-        ),
-      ),
+            if (state is NewsfeedError) {
+              return Center(
+                child: Text(state.message),
+              );
+            }
+          }),
     );
   }
 }
