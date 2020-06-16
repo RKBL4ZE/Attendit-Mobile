@@ -18,7 +18,7 @@ class PendingAssignmentWidget extends StatelessWidget {
       margin: EdgeInsets.all(10),
 
       /// padding: EdgeInsets.all(10),
-      height: 45 * pendingassignment.length.truncateToDouble(),
+      height: 50 * pendingassignment.length.truncateToDouble(),
       width: double.infinity,
       child: child,
     );
@@ -68,98 +68,100 @@ class PendingAssignmentWidget extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                "TITLE",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  // fontFamily: 'Rubik',
-                                  fontSize: 15,
-                                  color: Color.fromRGBO(5, 160, 179, 1),
-                                  //  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              Text(
-                                "SUBJECTS",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  // fontFamily: 'Rubik',
-                                  fontSize: 15,
-                                  color: Color.fromRGBO(5, 160, 179, 1),
-                                  //  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              Text(
-                                "Due Date",
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  // fontFamily: 'Rubik',
-                                  fontSize: 15,
-                                  color: Color.fromRGBO(5, 160, 179, 1),
-                                  //  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ],
+                           margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                            child: Table(
+                                // border: TableBorder.all(),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      Text(
+                                        "TITLE",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          // fontFamily: 'Rubik',
+
+                                          fontSize: 15,
+                                          color: Color.fromRGBO(5, 160, 179, 1),
+                                          //  fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Text(
+                                        "SUBJECTS",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          // fontFamily: 'Rubik',
+                                          fontSize: 15,
+                                          color: Color.fromRGBO(5, 160, 179, 1),
+                                          //  fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Text(
+                                        "Due Date",
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          // fontFamily: 'Rubik',
+                                          fontSize: 15,
+                                          color: Color.fromRGBO(5, 160, 179, 1),
+                                          //  fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ]),
                           ),
-                        ),
                         pendingbuildContainer(
                           ListView.builder(
                             primary: false,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (ctx, index) => Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 5,
-                                  horizontal: 10,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Expanded(
-                                        flex: 5, // 20%
-                                        child: Text(
-                                          pendingassignment[index].title,
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            // fontFamily: 'Rubik',
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(
-                                                128, 139, 151, 1),
-                                            //  fontWeight: FontWeight.bold
-                                          ),
-                                        )),
-                                    Expanded(
-                                        flex: 5, // 60%
-                                        child: Text(
-                                          pendingassignment[index].subjectName,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            // fontFamily: 'Rubik',
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(
-                                                128, 139, 151, 1),
-                                            //  fontWeight: FontWeight.bold
-                                          ),
-                                        )),
-                                    Expanded(
-                                        flex: 5, // 20%
-                                        child: Text(
-                                         // "dueDate",
-                                           pendingassignment[index].dueDate,
-                                          textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                            // fontFamily: 'Rubik',
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(
-                                                128, 139, 151, 1),
-                                            //  fontWeight: FontWeight.bold
-                                          ),
-                                        )),
-                                  ],
-                                )),
+                            itemBuilder: (ctx, index) => Container(
+                              height: 40,
+                              
+                              child: Table(
+                                defaultVerticalAlignment: TableCellVerticalAlignment.top,
+                                
+                                //  border: TableBorder.all(),
+                                 defaultColumnWidth: FixedColumnWidth(10.0),
+                                children: [
+                                  TableRow(
+                                    
+                                    children: [
+                                      Text(
+                                       pendingassignment[index].title,
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          // fontFamily: 'Rubik',
+                                          fontSize: 15,
+                                          color: Color.fromRGBO(
+                                              128, 139, 151, 1),
+                                          //  fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Text(
+                                        pendingassignment[index].subjectName,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          // fontFamily: 'Rubik',
+                                          fontSize: 15,
+                                          color: Color.fromRGBO(
+                                              128, 139, 151, 1),
+                                          //  fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Text(
+                                        pendingassignment[index].dueDate,
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          // fontFamily: 'Rubik',
+                                          fontSize: 15,
+                                          color: Color.fromRGBO(
+                                              128, 139, 151, 1),
+                                          //  fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ]),
+                            ),
                             itemCount: pendingassignment.length,
                           ),
                         ),

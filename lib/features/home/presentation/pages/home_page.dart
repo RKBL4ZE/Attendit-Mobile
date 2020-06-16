@@ -17,12 +17,12 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<HomeBloc>(
       create: (_) => getIt(),
-      child: CounterWidget(),
+      child: HomeWidget(),
     );
   }
 }
 
-class CounterWidget extends StatelessWidget {
+class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
@@ -42,9 +42,10 @@ class CounterWidget extends StatelessWidget {
           if (state is DetailsLoaded) {
             final student = state.student;
             print(state);
-            return Column(
+            return  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                
                 StudentProfileWidget(
                   enrollmentno: student.enrollment,
                   othrdetail:

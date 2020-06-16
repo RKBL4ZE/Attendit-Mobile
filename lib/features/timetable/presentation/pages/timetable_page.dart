@@ -2,11 +2,13 @@ import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
+import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/single_day_timetable.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
 
 class TimeTablePage extends StatelessWidget {
   @override
@@ -49,11 +51,13 @@ class TimeTableWidget extends StatelessWidget {
                 ],
               );
             }
-            return Column(
-              children: <Widget>[
-                SingleDayTimeTableWidget(timetable),
-                FullTimeTableButton(fulltimetable)
-              ],
+            return SingleChildScrollView(
+                          child: Column(
+                children: <Widget>[
+                  SingleDayTimeTableWidget(timetable),
+                  FullTimeTableButton(fulltimetable)
+                ],
+              ),
             );
           }
           if (state is TimetableError) {
@@ -74,13 +78,14 @@ class FullTimeTableButton extends StatelessWidget {
   const FullTimeTableButton(this.fulltimetable);
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
       alignment: Alignment.bottomCenter,
       height: 50.0,
       child: RaisedButton(
         onPressed: () {
+           pushNewScreen(context, screen: FullTimeTablePage(fulltimetable: fulltimetable,));
           // Navigate to Full Timetable
-          BlocProvider.of<NavigatorBloc>(context)
-              .add(NavigateToFullTimetableEvent(fulltimetable));
+          
         },
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
