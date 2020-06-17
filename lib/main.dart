@@ -33,7 +33,10 @@ class MyApp extends StatelessWidget {
 
         //title: 'Flutter Demo',
         theme: ThemeData(
+          
+          splashColor: Color.fromRGBO(247, 145, 86, 1),
           primarySwatch: Colors.blue,
+          accentColor: Color.fromRGBO(247, 145, 86, 1),
           fontFamily: 'Karala',
         ),
         routes: {

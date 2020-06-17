@@ -1,7 +1,8 @@
-import 'package:Attendit/features/exams/presentation/externals/widget/marksbysub_card.dart';
-import 'package:Attendit/features/exams/presentation/externals/widget/semesterselector.dart';
-import 'package:Attendit/features/exams/presentation/externals/widget/studentnamecard.dart';
-import 'package:Attendit/features/exams/presentation/externals/widget/sub_bar.dart';
+import 'package:Attendit/features/result/presentation/externals/widget/marksbysub_card.dart';
+import 'package:Attendit/features/result/presentation/internals/widget/semesterselector.dart';
+
+import 'package:Attendit/features/result/presentation/internals/widget/studentnamecard.dart';
+import 'package:Attendit/features/result/presentation/internals/widget/sub_bar.dart';
 
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,8 @@ import 'package:flutter/material.dart';
 //import '../dummy_data.dart';
 //import '../widgets/AllProperty_widget.dart';
 
-class ExternalPage extends StatelessWidget {
-  static const routeName = '/InternalSCREEN';
+class InternalPage extends StatelessWidget {
+ // static const routeName = '/InternalSCREEN';
   @override
   Widget build(BuildContext context) {
     // final prop = Dummy_AllPropertys.toList();
@@ -24,10 +25,9 @@ class ExternalPage extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
           child: Column(
             children: <Widget>[
-              
               Container(
               margin: new EdgeInsets.fromLTRB(0, 20, 0, 15),
-              child: Text("Student External Report",
+              child: Text("Student Internal Report",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       // fontFamily: 'Rubik',
@@ -38,10 +38,10 @@ class ExternalPage extends StatelessWidget {
                       //fontWeight: FontWeight.bold
                       )),
             ),
+              SizedBox(height: 20,),
+              SemSelect(),
               StudentNameCard(),
               TotalMarksBarWidget(),
-              SemSelect(),
-              SizedBox(height: 20,),
               MarksBySub(),MarksBySub(),MarksBySub(),
             ],
           ),

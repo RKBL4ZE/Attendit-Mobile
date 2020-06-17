@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:flutter/material.dart';
 
 class StudentProfileWidget extends StatelessWidget {
@@ -62,7 +63,7 @@ class StudentProfileWidget extends StatelessWidget {
                     studentname,
                     style: TextStyle(
                         fontSize: 25,
-                        color: Color.fromRGBO(46, 96, 102, 1),
+                        color: Styles.headingfontcolor,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

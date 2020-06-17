@@ -21,7 +21,6 @@ class AuthRepository implements IAuthRepository {
   AuthRepository(
       this._networkInfo, this._localDataSource, this._remoteDataSource);
 
-
   @override
   Future<Either<Failure, bool>> signin(
       {String prefix,
@@ -44,6 +43,16 @@ class AuthRepository implements IAuthRepository {
       }
     } else {
       return Left(NetworkFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> checkSession() async {
+    final result = await _localDataSource.getLocalTokens();
+    if (result == false) {
+      return Left(UnauthorizedFailure());
+    } else {
+      return Right(true);
     }
   }
 }

@@ -31,7 +31,7 @@ AttendenceBarWidget(
                 Stack(
                   alignment: Alignment.center,
               children: <Widget>[CircularPercentIndicator(
-                  linearGradient: LinearGradient(colors: [Color.fromRGBO(95, 197, 209, 1),Colors.greenAccent]),
+                  linearGradient: LinearGradient(colors: [Color.fromRGBO(247, 145, 86, 1),Color.fromRGBO(245, 102, 116, 1)]),
                   circularStrokeCap: CircularStrokeCap.round,
                   arcType: ArcType.HALF,
                   arcBackgroundColor: Colors.white,
@@ -45,7 +45,7 @@ AttendenceBarWidget(
                   center: new Text("60%",style: TextStyle(
                             // fontFamily: 'Rubik',
                             fontSize: 40,
-                            color: Color.fromRGBO(95, 197, 209, 1),
+                            color: Color.fromRGBO(245, 102, 116, 1),
                               fontWeight: FontWeight.bold
                           ),),
                   //progressColor: Color.fromRGBO(95, 197, 209, 1),

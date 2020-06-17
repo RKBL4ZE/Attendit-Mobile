@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/features/home/presentation/pages/home_page.dart';
 import 'package:Attendit/features/menu/presentation/pages/menu_page.dart';
 import 'package:Attendit/features/navbar/presentation/pages/sidedrawer.dart';
@@ -60,7 +61,7 @@ int pageIndex=0;
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
         title: ("Home"),
-        activeColor: Colors.blue,
+        activeColor: Color.fromRGBO(247, 145, 86, 1),
         inactiveColor: Colors.grey,
         isTranslucent: false,
       ),
@@ -97,16 +98,11 @@ int pageIndex=0;
           return <Widget>[
             SliverAppBar(
               title: Text(_pages[pageIndex]['title']),
-              floating: true,
+              floating: false,
               pinned: true,
               flexibleSpace: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromRGBO(95, 197, 209, 1),
-                      Color.fromRGBO(152, 214, 217, 1)
-                    ],
-                  ),
+                  gradient: Styles.colorGradientTheme,
                 ),
               ),
             ),

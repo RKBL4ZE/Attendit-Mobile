@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,6 +10,7 @@ class LoginForm extends StatelessWidget {
   //static const routeName = '/LoginPage';
   @override
   Widget build(BuildContext context) {
+    //  context.bloc<AuthBloc>().add(CheckSessionEvent());
     return BlocBuilder(
       bloc: BlocProvider.of<AuthBloc>(context),
       builder: (context, state) => Container(
@@ -192,14 +194,7 @@ class LoginForm extends StatelessWidget {
                                   ),
                                 ),
                               ],
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromRGBO(95, 197, 209, 1),
-                                  Color.fromRGBO(152, 214, 217, 1)
-                                ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
+                              gradient: Styles.colorGradientTheme,
                               borderRadius: BorderRadius.circular(10.0)),
                           constraints:
                               BoxConstraints(maxWidth: 300.0, minHeight: 50.0),

@@ -1,6 +1,6 @@
-import 'package:Attendit/features/exams/presentation/externals/pages/external.dart';
-import 'package:Attendit/features/exams/presentation/internals/pages/internal.dart';
 import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
+import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
+import 'package:Attendit/features/result/presentation/internals/pages/internal.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
 
@@ -64,58 +64,7 @@ class MenuPage extends StatelessWidget {
                   ),
                 ],
               )),
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromRGBO(95, 197, 209, 1),
-                        blurRadius: 5.0,
-                        spreadRadius: 0.0,
-                        offset: Offset(
-                          0.0,
-                          0.0,
-                        ),
-                      ),
-                    ]),
-                height: 50.0,
-                child: RaisedButton(
-                  onPressed: () {
-                    // Navigator.of(context).pushReplacementNamed(
-                    //   TabsScreen.routeName,
-                    // );
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromRGBO(95, 197, 209, 1),
-                            Color.fromRGBO(152, 214, 217, 1)
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Logout",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              
             ],
           ),
         ));
@@ -204,7 +153,7 @@ Widget profile(var context) {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
                 child: InkWell(
-                  onTap: (){ pushNewScreen(context, screen: EditProfile());},
+                  onTap: (){ },
                                   child: Text(
                     "Edit Profile",
                     style: TextStyle(

@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
@@ -92,14 +93,7 @@ class FullTimeTableButton extends StatelessWidget {
         padding: EdgeInsets.all(0.0),
         child: Ink(
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromRGBO(95, 197, 209, 1),
-                  Color.fromRGBO(152, 214, 217, 1)
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
+              gradient: Styles.colorGradientTheme,
               borderRadius: BorderRadius.circular(10.0)),
           child: Container(
             constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),

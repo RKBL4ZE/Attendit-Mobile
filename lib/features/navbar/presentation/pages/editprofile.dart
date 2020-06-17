@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:flutter/material.dart';
 
 class EditProfile extends StatelessWidget {
@@ -17,14 +18,7 @@ class EditProfile extends StatelessWidget {
                 height: sheight * 0.21,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromRGBO(95, 197, 209, 1),
-                      Color.fromRGBO(152, 214, 217, 1)
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
+                  gradient: Styles.colorGradientTheme,
                   // borderRadius: BorderRadius.circular(15.0)
                 ),
                 child: Stack(
@@ -35,13 +29,28 @@ class EditProfile extends StatelessWidget {
                           child: Positioned(
                         top: 40,
                         //bottom: 20,
-                        left: 40,
-                        child: Text("Profile Details",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'Rubik',
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
+                        left: 20,
+                        child: Row(
+                          children: <Widget>[
+                            InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                )),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("Profile Details",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'Rubik',
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
                       )),
                       Positioned(
                           bottom: -sheight * 0.1,
@@ -234,7 +243,7 @@ Widget bottombutton() {
     decoration:
         BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [
       BoxShadow(
-        color: Color.fromRGBO(95, 197, 209, 1),
+        color: Styles.colorshadow,
         blurRadius: 5.0,
         spreadRadius: 0.0,
         offset: Offset(
@@ -254,14 +263,7 @@ Widget bottombutton() {
       padding: EdgeInsets.all(0.0),
       child: Ink(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromRGBO(95, 197, 209, 1),
-                Color.fromRGBO(152, 214, 217, 1)
-              ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
+            gradient: Styles.colorGradientTheme,
             borderRadius: BorderRadius.circular(10.0)),
         child: Container(
           constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
@@ -286,6 +288,6 @@ Widget text(String text) {
       style: TextStyle(
           fontSize: 15,
           fontFamily: 'Rubik',
-          color: Color.fromRGBO(29, 53, 84, 1),
+          color: Styles.headingfontcolor,
           fontWeight: FontWeight.bold));
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:Attendit/core/error/failures.dart';
+import 'package:Attendit/core/usecase/usecase.dart';
+import 'package:Attendit/features/auth/domain/usecases/check_session.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -22,8 +24,10 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserLogin userLogin;
+  final CheckSession checkSession;
+  
 
-  AuthBloc(this.userLogin);
+  AuthBloc(this.userLogin, this.checkSession);
   @override
   AuthState get initialState => AuthInitial();
 
@@ -39,16 +43,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           username: event.username,
           password: event.password));
       yield* _eitherLoadedOrErrorState(failureOrSucess);
+
+    }
+    if(event is CheckSessionEvent){
+      yield LoginLoading();
+      final failureOrSucess = await checkSession(NoParams());
+      yield* _eitherLoadedOrErrorState(failureOrSucess); 
     }
   }
 
   Stream<AuthState> _eitherLoadedOrErrorState(
     Either<Failure, bool> failureOrSuccess,
   ) async* {
-    yield failureOrSuccess.fold(
+    final res = failureOrSuccess.fold(
       (failure) => AuthError(message: _mapFailureToMessage(failure)),
       (_) => UserLogedIn(),
     );
+    yield res;
   }
 
   String _mapFailureToMessage(Failure failure) {

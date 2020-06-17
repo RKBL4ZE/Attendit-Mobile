@@ -6,6 +6,8 @@ import 'package:injectable/injectable.dart';
 
 abstract class IAuthLocalDataSource {
   Future<void> setLocalTokens(UserTokensModel userTokensModel);
+
+  Future<bool> getLocalTokens();
 }
 
 const CACHED_USER_TOKENS = 'CACHED_USER_TOKENS';
@@ -20,5 +22,16 @@ class AuthLocalDataSource implements IAuthLocalDataSource {
   @override
   Future<void> setLocalTokens(UserTokensModel userTokensModel) {
     return _box.put(CACHED_USER_TOKENS, json.encode(userTokensModel.toJson()));
+  }
+
+  @override
+  Future<bool> getLocalTokens() {
+    final result = _box.get(CACHED_USER_TOKENS);
+
+    if (result == null) {
+      return Future.value(false);
+    } else {
+      return Future.value(true);
+    }
   }
 }

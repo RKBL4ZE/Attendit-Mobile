@@ -36,6 +36,7 @@ import 'package:Attendit/features/auth/domain/repositories/i_auth_repository.dar
 import 'package:Attendit/features/newsfeed/presentation/bloc/newsfeed_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
+import 'package:Attendit/features/auth/domain/usecases/check_session.dart';
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -100,7 +101,10 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerFactory<NewsfeedBloc>(() => NewsfeedBloc(g<GetNewsFeed>()));
   g.registerFactory<TimetableBloc>(() => TimetableBloc(g<GetTimeTable>()));
   g.registerLazySingleton<UserLogin>(() => UserLogin(g<IAuthRepository>()));
-  g.registerFactory<AuthBloc>(() => AuthBloc(g<UserLogin>()));
+  g.registerLazySingleton<CheckSession>(
+      () => CheckSession(g<IAuthRepository>()));
+  g.registerFactory<AuthBloc>(
+      () => AuthBloc(g<UserLogin>(), g<CheckSession>()));
 }
 
 class _$RegisterModule extends RegisterModule {}

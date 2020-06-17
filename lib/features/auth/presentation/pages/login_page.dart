@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import '../bloc/auth_bloc.dart';
-
+import '../../../../config/styles.dart';
 class LoginPage extends StatelessWidget {
   static const routeName = '/LoginPage';
   @override
@@ -20,12 +20,10 @@ class LoginPage extends StatelessWidget {
 
               // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
               child: Text("Attend IT")),
-          gradient: LinearGradient(colors: [
-            Color.fromRGBO(95, 197, 209, 1),
-            Color.fromRGBO(152, 214, 217, 1)
-          ]),
+          gradient: Styles.colorGradientTheme,
         ),
         body: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
+          
           if (state is AuthInitial) {
             return LoginForm();
           }
@@ -37,7 +35,12 @@ class LoginPage extends StatelessWidget {
             return Center(child: Text("Logged IN"));
           }
           if (state is AuthError) {
-            return Text(state.message);
+            return Column(
+              children: <Widget>[
+                Text(state.message),
+                LoginForm()
+              ],
+            );
           }
         }),
       ),

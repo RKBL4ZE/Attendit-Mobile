@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
 import 'package:Attendit/features/home/presentation/widgets/assignments/assignments.dart';
@@ -60,7 +61,7 @@ class HomeWidget extends StatelessWidget {
                     style: TextStyle(
                         // fontFamily: 'Rubik',
                         fontSize: 25,
-                        color: Color.fromRGBO(46, 96, 102, 1),
+                        color: Styles.headingfontcolor,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -73,7 +74,7 @@ class HomeWidget extends StatelessWidget {
                     style: TextStyle(
                         // fontFamily: 'Rubik',
                         fontSize: 25,
-                        color: Color.fromRGBO(46, 96, 102, 1),
+                        color: Styles.headingfontcolor,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

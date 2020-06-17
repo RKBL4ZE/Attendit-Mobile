@@ -21,3 +21,10 @@ class LogoutEvent extends AuthEvent {
   @override
   List<Object> get props => [];
 }
+
+class CheckSessionEvent extends AuthEvent{
+  @override
+ 
+  List<Object> get props => [];
+
+}

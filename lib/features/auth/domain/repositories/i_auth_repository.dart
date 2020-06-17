@@ -7,4 +7,10 @@ abstract class IAuthRepository {
 
   Future<Either<Failure, bool>> signin(
       {String prefix, String userType, String username, String password});
+
+
+
+Future<Either<Failure, bool>> checkSession();
+
 }
+
