@@ -1,4 +1,5 @@
 import 'package:Attendit/features/home/data/models/student_assigments_model.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class CompletedAssignmentWidget extends StatelessWidget {
@@ -107,7 +108,7 @@ class CompletedAssignmentWidget extends StatelessWidget {
                             ListView.builder(
                               itemCount: completedassignment.length,
                               primary: false,
-                                physics: const NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (ctx, index) => Container(
                                 height: 40,
                                 child: Table(
@@ -116,9 +117,11 @@ class CompletedAssignmentWidget extends StatelessWidget {
                                     children: [
                                       TableRow(
                                         children: [
-                                          Text(
+                                          AutoSizeText(
                                             completedassignment[index].title,
                                             textAlign: TextAlign.left,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
                                             style: TextStyle(
                                               // fontFamily: 'Rubik',
                                               fontSize: 15,
@@ -127,9 +130,12 @@ class CompletedAssignmentWidget extends StatelessWidget {
                                               //  fontWeight: FontWeight.bold
                                             ),
                                           ),
-                                          Text(
+                                          AutoSizeText(
                                             completedassignment[index]
                                                 .subjectName,
+                                                overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 2,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               // fontFamily: 'Rubik',

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:Attendit/features/home/data/models/student_attendence_model.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -119,9 +120,12 @@ class AttendanceCardWidget extends StatelessWidget {
                                             child: Container(
                                               child: Column(
                                                 children: <Widget>[
-                                                  Text(
+                                                  AutoSizeText(
                                                     allatendancelist[index]
                                                         .subjectName,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
                                                     textAlign: TextAlign.left,
                                                     style: TextStyle(
                                                       // fontFamily: 'Rubik',

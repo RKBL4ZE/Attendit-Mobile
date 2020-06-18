@@ -27,6 +27,7 @@ class SideDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     //  final double sheight = MediaQuery.of(context).size.height;
     return Drawer(
+      
       child: Container(
         color: Color.fromRGBO(247, 247, 247, 1),
         child: Column(

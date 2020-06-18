@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
 import 'package:Attendit/features/result/presentation/internals/pages/internal.dart';
@@ -11,70 +12,55 @@ class MenuPage extends StatelessWidget {
     final double sheight = MediaQuery.of(context).size.height;
     // final prop = Dummy_AllPropertys.toList();
 
-    return Scaffold(
-        backgroundColor: Color.fromRGBO(247, 247, 247, 1),
-        body: SingleChildScrollView(
-          primary: false,
-                  child: Column(
-            children: <Widget>[
-              Container(
-                height: sheight * 0.3,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromRGBO(95, 197, 209, 1),
-                      Color.fromRGBO(152, 214, 217, 1)
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                  // borderRadius: BorderRadius.circular(15.0)
-                ),
-                child: Container(
-                    margin: EdgeInsets.fromLTRB(30, sheight * 0.08, 20, 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text("Menu",
-                            style: TextStyle(
-                                fontSize: 26,
-                                fontFamily: 'Rubik',
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                        profile(context),
-                      ],
-                    )),
-              ),
-              SingleChildScrollView(
-                  child: Column(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.fromLTRB(30, 30, 10, 10),
-                    child: Column(
-                      children: <Widget>[
-                        menuContent(Icons.score, "Internal Marks",InternalPage(),context),
-                        menuContent(Icons.score, "External Marks",ExternalPage(),context),
-                       // menuContent(Icons.settings, "Settings"),
-                       // menuContent(Icons.contact_phone, "Contact Us"),
-                       // menuContent(Icons.business, "About Us"),
-                      ],
-                    ),
-                  ),
-                ],
-              )),
-              
-            ],
+    return SingleChildScrollView(
+          child: Column(
+        children: <Widget>[
+          Container(
+            height: sheight * 0.2,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: Styles.colorGradientTheme,
+              // borderRadius: BorderRadius.circular(15.0)
+            ),
+            child: Container(
+              margin: EdgeInsets.fromLTRB(30, sheight * 0.08, 20, 20),
+              child: Text("Menu",
+                  style: TextStyle(
+                      fontSize: 26,
+                      fontFamily: 'Rubik',
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+            ),
           ),
-        ));
+          Container(
+            margin: EdgeInsets.fromLTRB(30, 30, 10, 10),
+            child: Column(
+              children: <Widget>[
+                menuContent(
+                    Icons.score, "Internal Marks", InternalPage(), context),
+                menuContent(
+                    Icons.score, "External Marks", ExternalPage(), context),
+                menuContent(
+                    Icons.settings, "Settings", ExternalPage(), context),
+                menuContent(Icons.contact_phone, "Contact Us", ExternalPage(),
+                    context),
+                menuContent(
+                    Icons.business, "About Us", ExternalPage(), context),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
-Widget menuContent(var icon, String string,Widget widget,var context) {
+Widget menuContent(var icon, String string, Widget widget, var context) {
   return InkWell(
-    onTap: (){ pushNewScreen(context, screen: widget);},
-      child: Container(
+    onTap: () {
+      pushNewScreen(context, screen: widget);
+    },
+    child: Container(
       margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: Row(
         children: <Widget>[
@@ -153,8 +139,8 @@ Widget profile(var context) {
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
                 child: InkWell(
-                  onTap: (){ },
-                                  child: Text(
+                  onTap: () {},
+                  child: Text(
                     "Edit Profile",
                     style: TextStyle(
                         //fontSize: 25,

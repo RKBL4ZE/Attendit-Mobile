@@ -65,7 +65,7 @@ class HomeWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                AttendenceBarWidget(),
+                AttendenceBarWidget(attendanceBar: state.attendanceList,),
                 AttendanceCardWidget(allatendancelist: state.attendanceList),
                 Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 15, 10),

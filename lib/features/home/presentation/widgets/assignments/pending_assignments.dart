@@ -1,4 +1,5 @@
 import 'package:Attendit/features/home/domain/entities/student_assignment.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class PendingAssignmentWidget extends StatelessWidget {
@@ -125,9 +126,12 @@ class PendingAssignmentWidget extends StatelessWidget {
                                   TableRow(
                                     
                                     children: [
-                                      Text(
+                                      AutoSizeText(
                                        pendingassignment[index].title,
                                         textAlign: TextAlign.left,
+                                        overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 2,
                                         style: TextStyle(
                                           // fontFamily: 'Rubik',
                                           fontSize: 15,
@@ -136,8 +140,11 @@ class PendingAssignmentWidget extends StatelessWidget {
                                           //  fontWeight: FontWeight.bold
                                         ),
                                       ),
-                                      Text(
+                                      AutoSizeText(
                                         pendingassignment[index].subjectName,
+                                        overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           // fontFamily: 'Rubik',

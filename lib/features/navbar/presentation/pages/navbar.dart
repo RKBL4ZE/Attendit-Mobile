@@ -52,7 +52,7 @@ int pageIndex=0;
     },
     {
       //'page': Chat_screen(),
-      'title': 'More',
+      'title': ' ',
     },
   ];
 
@@ -92,23 +92,19 @@ int pageIndex=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       drawer: SideDrawer(),
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              title: Text(_pages[pageIndex]['title']),
-              floating: false,
-              pinned: true,
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: Styles.colorGradientTheme,
-                ),
-              ),
-            ),
-          ];
-        },
-        body: Center(
+      appBar: GradientAppBar(
+      centerTitle: true,
+        brightness: Brightness.dark,
+        title: Container(
+         //alignment: Alignment.center,
+
+            // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
+            child: Text(_pages[pageIndex]['title'])),
+        gradient: Styles.colorGradientTheme,
+      ),
+      body:  Center(
           child: PersistentTabView(
               controller: _controller,
               screens: _buildScreens(),
@@ -128,7 +124,7 @@ int pageIndex=0;
                   .style6 // Choose the nav bar style with this property
               ),
         ),
-      ),
+      
     );
   }
 }

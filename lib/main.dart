@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
@@ -16,7 +17,7 @@ Future<void> main() async {
   await configureInjection(Environment.prod);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Color.fromRGBO(95, 197, 209, 1),
+      systemNavigationBarColor: Styles.colorshadow,
       systemNavigationBarIconBrightness: Brightness.light));
   runApp(MyApp());
 }
