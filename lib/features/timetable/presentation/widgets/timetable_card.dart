@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TimeTableCardWidget extends StatelessWidget {
   final String time;
@@ -12,9 +13,29 @@ class TimeTableCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     List<String> formattime = time.split('');
-    
+
+    DateFormat dateFormat = new DateFormat.Hm();
+    DateTime now = DateTime.now();
+    DateTime open = dateFormat.parse(
+        "${formattime[0]}${formattime[1]}:${formattime[2]}${formattime[3]}");
+    open = new DateTime(now.year, now.month, now.day, open.hour, open.minute);
+    DateTime close = dateFormat.parse(
+        "${formattime[5]}${formattime[6]}:${formattime[7]}${formattime[8]}");
+    close =
+        new DateTime(now.year, now.month, now.day, close.hour, close.minute);
+
+    Color cardcolor = Colors.white;
+    final currentTime = DateTime.now();
+
+    if (currentTime.isBefore(open) && currentTime.isBefore(close)) {
+      cardcolor = Colors.blue[100].withAlpha(500);
+    } else if (currentTime.isAfter(open) && currentTime.isBefore(close)) {
+      cardcolor = Colors.green[100];
+    } else if (currentTime.isAfter(open) && currentTime.isAfter(close)) {
+      cardcolor = Colors.red[100];
+    }
+
     return InkWell(
       //  onTap: () => selectCategory(context),
       //  splashColor: Theme.of(context).primaryColor,
@@ -39,6 +60,7 @@ class TimeTableCardWidget extends StatelessWidget {
           margin: new EdgeInsets.fromLTRB(0, 5, 0, 10),
           //padding: const EdgeInsets.all(15),
           child: Card(
+              color: cardcolor,
               // elevation: 5,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
@@ -48,7 +70,7 @@ class TimeTableCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "${formattime[0]}${formattime[1]} : ${formattime[2]}${formattime[3]}",
+                      "${formattime[0]}${formattime[1]} : ${formattime[2]}${formattime[3]} - ${formattime[5]}${formattime[6]} : ${formattime[7]}${formattime[8]}",
                       style: TextStyle(
                           // fontFamily: 'Rubik',
                           fontSize: 16,

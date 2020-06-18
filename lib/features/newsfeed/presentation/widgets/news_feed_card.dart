@@ -1,7 +1,7 @@
 import 'package:Attendit/features/newsfeed/domain/entities/news_feed.dart';
 import 'package:flutter/material.dart';
-//import '../screens/PropertyDetails_screen.dart';
-//import '../models/AllProperty_model.dart';
+import 'package:intl/intl.dart';
+
 
 class NewsFeedCard extends StatefulWidget {
   final NewsFeed newsFeed;
@@ -12,6 +12,14 @@ class NewsFeedCard extends StatefulWidget {
   _NewsFeedWIDGETState createState() => _NewsFeedWIDGETState();
 }
 
+String readTimestamp(String timestamp, String type) {
+    var fdate = new DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp));
+    var date = new DateFormat("dd-MM-yyyy").format(fdate);
+    var time = DateFormat("H:m:s").format(fdate);
+    if (type == "date")
+      return date.toString();
+    else if (type == "time") return time.toString();
+  }
 class _NewsFeedWIDGETState extends State<NewsFeedCard> {
   bool commentbar = false;
   Color commentcolor = Colors.grey;
@@ -129,7 +137,7 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
                           child: Text(
-                            widget.newsFeed.postTime.toString(),
+                            readTimestamp(widget.newsFeed.postTime.toString(),"date"),
                             style: TextStyle(
                               //fontSize: 25,
                               color: Color.fromRGBO(128, 139, 151, 1),
