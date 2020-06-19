@@ -14,14 +14,14 @@ class LoginPage extends StatelessWidget {
     return BlocProvider<AuthBloc>(
       create: (_) => getIt(),
       child: Scaffold(
-        appBar: GradientAppBar(
-          title: Container(
-              alignment: Alignment.center,
+        // appBar: GradientAppBar(
+        //   title: Container(
+        //       alignment: Alignment.center,
 
-              // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
-              child: Text("Attend IT")),
-          gradient: Styles.colorGradientTheme,
-        ),
+        //       // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
+        //       child: Text("Attend IT")),
+        //   gradient: Styles.colorGradientTheme,
+        // ),
         body: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
           
           if (state is AuthInitial) {
