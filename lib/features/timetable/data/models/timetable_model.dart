@@ -1,25 +1,68 @@
 import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
 import 'package:meta/meta.dart';
 
-class TimingModel extends Timing {
-  TimingModel(
-      {@required final String time,
-      @required final String subjectName,
-      @required final String facultyName})
-      : super(time, subjectName, facultyName);
+class SubjectModel extends Subject {
+  SubjectModel(
+      {@required final String subjectCode, @required final String subjectName})
+      : super(subjectCode, subjectName);
 
-  factory TimingModel.fromJson(Map<String, dynamic> json) {
-    return TimingModel(
-        time: json['time'],
-        subjectName: json['subjectName'],
-        facultyName: json['facultyName']);
+  factory SubjectModel.fromJson(Map<String, dynamic> json) {
+    return SubjectModel(
+      subjectName: json['subjectName'],
+      subjectCode: json['subjectCode'],
+    );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "time": time,
+      "subjectCode": subjectCode,
       "subjectName": subjectName,
-      "facultyName": facultyName
+    };
+  }
+}
+
+class FacultyModel extends Faculty {
+  FacultyModel({@required final String name}) : super(name);
+
+  factory FacultyModel.fromJson(Map<String, dynamic> json) {
+    return FacultyModel(
+      name: json['name'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "name": name,
+    };
+  }
+}
+
+class TimingModel extends Timing {
+  TimingModel(
+      {@required final String startTime,
+      @required final String endTime,
+      @required final List<FacultyModel> faculty,
+      @required final List<SubjectModel> subject})
+      : super(startTime, endTime, subject, faculty);
+
+  factory TimingModel.fromJson(Map<String, dynamic> json) {
+    return TimingModel(
+        startTime: json['startTime'],
+        endTime: json['endTime'],
+        subject: json['subject']
+            .map<SubjectModel>((e) => SubjectModel.fromJson(e))
+            .toList(),
+        faculty: json['faculty']
+            .map<FacultyModel>((e) => FacultyModel.fromJson(e))
+            .toList());
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "startTime": startTime,
+      "endTime": endTime,
+      "subject": subject,
+      "faculty": faculty,
     };
   }
 }

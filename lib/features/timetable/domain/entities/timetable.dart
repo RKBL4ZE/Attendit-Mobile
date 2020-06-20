@@ -1,12 +1,31 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-abstract class Timing {
-  final String time;
-  final String subjectName;
-  final String facultyName;
 
-  Timing(this.time, this.subjectName, this.facultyName);
+abstract class Subject{
+  final String subjectCode;
+  final String subjectName;
+
+  Subject(this.subjectCode, this.subjectName);
+}
+
+abstract class Faculty{
+  final String name;
+
+  Faculty(this.name);
+}
+
+
+
+abstract class Timing {
+  final String startTime;
+  final String endTime;
+  final List<Subject> subject;
+  final List<Faculty> faculty;
+
+  Timing(this.startTime, this.endTime, this.subject, this.faculty);
+
+ 
 }
 
 class TimeTable extends Equatable {
@@ -31,3 +50,5 @@ class TimeTable extends Equatable {
   List<Object> get props =>
       [monday, tuesday, wednesday, thursday, friday, saturday];
 }
+
+

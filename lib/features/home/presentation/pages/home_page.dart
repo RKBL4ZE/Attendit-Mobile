@@ -50,7 +50,7 @@ class HomeWidget extends StatelessWidget {
                 StudentProfileWidget(
                   enrollmentno: student.enrollment,
                   othrdetail:
-                      "${student.semesterName} Section-${student.section}",
+                      "${student.batch.classroom.course.name} Section-${student.batch.classroom.section}",
                   studentimg: student.profilePicture,
                   studentname: student.name,
                 ),

@@ -1,11 +1,10 @@
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/auth/presentation/widgets/login_form.dart';
+import 'package:Attendit/loaders/color_loader_3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 import '../bloc/auth_bloc.dart';
-import '../../../../config/styles.dart';
 class LoginPage extends StatelessWidget {
   static const routeName = '/LoginPage';
   @override
@@ -28,7 +27,8 @@ class LoginPage extends StatelessWidget {
             return LoginForm();
           }
           if (state is LoginLoading) {
-            return Center(child: Text("Loading"));
+           // return Center(child: Text("Loading"));
+           return Center(child: ColorLoader3());
           }
           if (state is UserLogedIn) {
             BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
             return Column(
               children: <Widget>[
                 Text(state.message),
-                LoginForm()
+               // LoginForm()
               ],
             );
           }

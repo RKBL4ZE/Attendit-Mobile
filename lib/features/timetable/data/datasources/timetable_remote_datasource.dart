@@ -22,7 +22,7 @@ class TimeTableRemoteDatasource implements ITimeTableRemoteDatasource{
       final result = await _client.query(
           query: Gqlquery.studentTimeTableQuery); //todo: future change query
       if (result.exception == null) {
-        return TimeTableModel.fromJson(result.data["StudentTimetable"]);
+        return TimeTableModel.fromJson(result.data["Student"]['batch']['classroom']['timetable']);
       }
       throw UnauthorizedException();
     } on UnauthorizedException {

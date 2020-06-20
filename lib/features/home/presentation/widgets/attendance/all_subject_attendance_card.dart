@@ -21,7 +21,7 @@ class AttendanceCardWidget extends StatelessWidget {
           ),
       margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
       // padding: EdgeInsets.all(10),
-      height: 65 * allatendancelist.length.truncateToDouble(),
+      height: 51 * allatendancelist.length.truncateToDouble(),
       width: double.infinity,
       child: child,
     );
@@ -121,8 +121,8 @@ class AttendanceCardWidget extends StatelessWidget {
                                               child: Column(
                                                 children: <Widget>[
                                                   AutoSizeText(
-                                                    allatendancelist[index]
-                                                        .subjectName,
+                                                    allatendancelist[index].subject.subjectName
+                                                        ,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     maxLines: 1,
@@ -135,6 +135,7 @@ class AttendanceCardWidget extends StatelessWidget {
                                                       //  fontWeight: FontWeight.bold
                                                     ),
                                                   ),
+                                                  SizedBox(height: 6,),
                                                   LinearPercentIndicator(
                                                     animationDuration: 700,
                                                     animation: true,
@@ -176,7 +177,7 @@ class AttendanceCardWidget extends StatelessWidget {
                                             )),
                                       ],
                                     ),
-                                    Divider()
+                                   // Divider()
                                   ],
                                 ),
                               )),

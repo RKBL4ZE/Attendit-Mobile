@@ -30,46 +30,46 @@ mixin Gqlquery {
   static String studentAllDetailsQuery = r'''
   
     query {
-      Student {
-        enrollment
-        name
-        email
+      Student{
         profilePicture
-        mobile
-        gender
-        section
-        session
-        shift
-        parentName
-        parentMobile
-        parentAltMobile
-        parentEmail
-        address
-        semesterId
-        courseId
-        semesterName
-        courseName
-        classroomId
+        name
+        enrollment
+        batch{
+          classroom{
+            semester
+            section
+            course{
+              name
+            }
+          }
+        }
       }
 
-      StudentAssignments {
-        id
-        facultyId
-        classroomId
-        subjectCode
-        subjectName
+      StudentAssignments{
+        _id
         title
+        faculty{
+          name
+        }
+       
         file
         submitFile
+        subject{
+          subjectCode
+          subjectName
+        }
+        status
         marks
         totalMarks
-        status
+        createdAt
         dueDate
       }
 
-      StudentAttendance {
-        subjectCode
-        subjectName
+      StudentAttendance{
+        subject{
+          subjectCode
+          subjectName
+        }
         lecturesAttended
         totalLectures
       }
@@ -80,38 +80,77 @@ mixin Gqlquery {
   static String studentTimeTableQuery = r'''
   
     query{
-        StudentTimetable{
-          monday{
-            time
-            subjectName
-            facultyName
-          }
-          tuesday{
-            time
-            subjectName
-            facultyName
-          }
-          wednesday{
-            time
-            subjectName
-            facultyName
-          }
-          thursday{
-            time
-            subjectName
-            facultyName
-          }
-          friday{
-            time
-            subjectName
-            facultyName
-          }
-          saturday{
-            time
-            subjectName
-            facultyName
+        Student{
+        batch{
+          classroom{
+            timetable{
+              monday{
+                startTime
+                endTime
+                subject{
+                  subjectCode
+                  subjectName
+                }
+              faculty{name}
+              }
+              tuesday{
+                startTime
+                endTime
+                subject{
+                  subjectCode
+                  subjectName
+                }
+              faculty{name}
+              }
+              wednesday{
+                startTime
+                endTime
+                subject{
+                  subjectCode
+                  subjectName
+                }
+              faculty{name}
+              }
+              thursday{
+                startTime
+                endTime
+                subject{
+                  subjectCode
+                  subjectName
+                }
+              faculty{name}
+              }
+              friday{
+                startTime
+                endTime
+                subject{
+                  subjectCode
+                  subjectName
+                }
+              faculty{name}
+              }
+              saturday{
+                startTime
+                endTime
+                subject{
+                  subjectCode
+                  subjectName
+                }
+              faculty{name}
+              }
+              sunday{
+                startTime
+                endTime
+                subject{
+                  subjectCode
+                  subjectName
+                }
+              faculty{name}
+              }
+            }
           }
         }
+      }
     }
 
   ''';

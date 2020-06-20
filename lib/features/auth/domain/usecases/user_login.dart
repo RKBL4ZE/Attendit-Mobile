@@ -15,7 +15,7 @@ class UserLogin implements UseCase<bool, Params> {
   @override
   Future<Either<Failure, bool>> call(Params params) async {
     return await repository.signin(
-        prefix: params.prefix,
+        
         userType: params.userType,
         username: params.username,
         password: params.password);
@@ -23,7 +23,7 @@ class UserLogin implements UseCase<bool, Params> {
 }
 
 class Params extends Equatable {
-  final String prefix;
+  
 
   final String userType;
 
@@ -32,11 +32,11 @@ class Params extends Equatable {
   final String password;
 
   Params(
-      {@required this.prefix,
+      {
       @required this.userType,
       @required this.username,
       @required this.password});
 
   @override
-  List<Object> get props => [prefix, userType, username, password];
+  List<Object> get props => [ userType, username, password];
 }

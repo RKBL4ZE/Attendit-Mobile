@@ -5,6 +5,7 @@ import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/single_day_timetable.dart';
+import 'package:Attendit/loaders/color_loader_3.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,19 +22,23 @@ class TimeTablePage extends StatelessWidget {
   }
 }
 
-String date = DateFormat('EEEE').format(DateTime.now()).toLowerCase();
+
 
 class TimeTableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+   
+    String date = DateFormat('EEEE').format(DateTime.now()).toLowerCase();
+
     BlocProvider.of<TimetableBloc>(context).add(GetTimeTableEvent());
     return (BlocBuilder<TimetableBloc, TimetableState>(
         bloc: BlocProvider.of<TimetableBloc>(context),
         builder: (context, state) {
           if (state is TimetableLoading) {
-            return Center(
-              child: Text('Loading'),
-            );
+            // return Center(
+            //   child: Text('Loading'),
+            // );
+            return Center(child: ColorLoader3());
           }
           if (state is TimetableLoaded) {
             final fulltimetable = state.timetable;

@@ -17,44 +17,51 @@ class MyFloatingActionButton extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
             ),
             context: context,
-            builder: (context) => Container(
-                color: Colors.transparent,
-                height: sheight * 0.4,
-                width: double.infinity,
-                child: Container(
-                    margin: EdgeInsets.fromLTRB(25, 20, 10, 10),
-                    child: Column(
-                    //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        profile(),
-                        textfield(),
-                        Row(
-                          
+            builder: (context) => SingleChildScrollView(
+                          child: Container(
+                    color: Colors.transparent,
+                    height: sheight * 0.4,
+                    width: double.infinity,
+                    child: Container(
+                        margin: EdgeInsets.fromLTRB(25, 20, 10, 10),
+                        child: Column(
+                        //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Text(
-                                "Add Attachments",
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          
-                          Align(
-                              alignment: Alignment.bottomRight,
-                              child:Icon(Icons.send),)
+              profile(),
+              textfield(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "Add Attachments",
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                
+                Container(
+                  margin: EdgeInsets.all(20),
+                  child: Align(
+                    
+                      alignment: Alignment.bottomRight,
+                      child:Icon(Icons.send),),
+                )
 
 
+                ],
+              ),
                           ],
-                        ),
-                      ],
-                    ))));
+                        ))),
+            ));
       },
-      child: Icon(Icons.add),
+      child: Icon(Icons.add,color: Colors.white,),
       backgroundColor: Styles.colorshadow,
     );
   }

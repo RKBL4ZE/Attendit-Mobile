@@ -2,23 +2,34 @@ import 'package:meta/meta.dart';
 
 import '../../domain/entities/student_attendance.dart';
 
+class SubjectModel extends Subject {
+  SubjectModel({@required String subjectCode, @required String subjectName})
+      : super(subjectCode, subjectName);
+
+  factory SubjectModel.fromJson(Map<String, dynamic> json) {
+    return SubjectModel(
+        subjectName: json['subjectName'], subjectCode: json['subjectCode']);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {"subjectName": subjectName, "subjectCode": subjectCode};
+  }
+}
+
 class StudentAttendanceModel extends StudentAttendance {
   StudentAttendanceModel({
-    @required final String subjectCode,
-    @required final String subjectName,
+    @required final SubjectModel subject,
     @required final num lecturesAttended,
     @required final num totalLectures,
   }) : super(
-          subjectCode: subjectCode,
-          subjectName: subjectName,
+          subject: subject,
           lecturesAttended: lecturesAttended,
           totalLectures: totalLectures,
         );
 
   factory StudentAttendanceModel.fromJson(Map<String, dynamic> json) {
     return StudentAttendanceModel(
-      subjectCode: json['subjectCode'],
-      subjectName: json['subjectName'],
+      subject: SubjectModel.fromJson(json['subject']),
       lecturesAttended: json['lecturesAttended'],
       totalLectures: json['totalLectures'],
     );
@@ -26,8 +37,7 @@ class StudentAttendanceModel extends StudentAttendance {
 
   Map<String, dynamic> toJson() {
     return {
-      'subjectCode': subjectCode,
-      'subjectName': subjectName,
+      'subject': subject,
       'lecturesAttended': lecturesAttended,
       'totalLectures': totalLectures,
     };

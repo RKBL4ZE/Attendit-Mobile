@@ -1,27 +1,31 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TimeTableCardWidget extends StatelessWidget {
-  final String time;
-  final String subjectName;
-  final String facultyName;
+  final String startTime;
+  final String endTime;
+  final String subject;
+  final String faculty;
 
   const TimeTableCardWidget(
-      {@required this.time,
-      @required this.subjectName,
-      @required this.facultyName});
+      {@required this.startTime,
+      @required this.endTime,
+      @required this.subject,
+      @required this.faculty});
 
   @override
   Widget build(BuildContext context) {
-    List<String> formattime = time.split('');
+   List<String> startFormattime = startTime.split('');
+   List<String> endFormattime = endTime.split('');
 
     DateFormat dateFormat = new DateFormat.Hm();
     DateTime now = DateTime.now();
     DateTime open = dateFormat.parse(
-        "${formattime[0]}${formattime[1]}:${formattime[2]}${formattime[3]}");
+        "${startFormattime[0]}${startFormattime[1]}:${startFormattime[2]}${startFormattime[3]}");
     open = new DateTime(now.year, now.month, now.day, open.hour, open.minute);
     DateTime close = dateFormat.parse(
-        "${formattime[5]}${formattime[6]}:${formattime[7]}${formattime[8]}");
+        "${endFormattime[0]}${endFormattime[1]}:${endFormattime[2]}${endFormattime[3]}");
     close =
         new DateTime(now.year, now.month, now.day, close.hour, close.minute);
 
@@ -70,7 +74,7 @@ class TimeTableCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "${formattime[0]}${formattime[1]} : ${formattime[2]}${formattime[3]} - ${formattime[5]}${formattime[6]} : ${formattime[7]}${formattime[8]}",
+                      "${startFormattime[0]}${startFormattime[1]} : ${startFormattime[2]}${startFormattime[3]} - ${endFormattime[0]}${endFormattime[1]} : ${endFormattime[2]}${endFormattime[3]}",
                       style: TextStyle(
                           // fontFamily: 'Rubik',
                           fontSize: 16,
@@ -79,8 +83,9 @@ class TimeTableCardWidget extends StatelessWidget {
                     ),
                     Container(
                       margin: new EdgeInsets.fromLTRB(0, 5, 0, 5),
-                      child: Text(
-                        subjectName,
+                      child: AutoSizeText(
+                        subject,
+                        maxLines: 1,
                         style: TextStyle(
                             // fontFamily: 'Rubik',
                             fontSize: 31,
@@ -89,8 +94,9 @@ class TimeTableCardWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Text(
-                      "- ${facultyName}",
+                    AutoSizeText(
+                      "- $faculty",
+                      maxLines: 1,
                       style: TextStyle(
                         // fontFamily: 'Rubik',
                         fontSize: 16,

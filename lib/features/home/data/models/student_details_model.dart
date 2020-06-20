@@ -2,95 +2,85 @@ import 'package:meta/meta.dart';
 
 import '../../domain/entities/student_details.dart';
 
-class StudentDetailsModel extends StudentDetails {
-  StudentDetailsModel({
-    @required final String enrollment,
+class CourseModel extends Course {
+  CourseModel({
     @required final String name,
-    @required final String email,
-    @required final String profilePicture,
-    @required final String mobile,
-    @required final String gender,
-    @required final String section,
-    @required final String session,
-    @required final String shift,
-    @required final String parentName,
-    @required final String parentMobile,
-    @required final String parentAltMobile,
-    @required final String parentEmail,
-    @required final String address,
-    @required final num semesterId,
-    @required final String semesterName,
-    @required final num courseId,
-    @required final String courseName,
-    @required final String classroomId,
-    
-  }) : super(
-          enrollment: enrollment,
-          name: name,
-          email: email,
-          profilePicture: profilePicture,
-          mobile: mobile,
-          gender: gender,
-          section: section,
-          session: session,
-          shift: shift,
-          parentName: parentName,
-          parentMobile: parentMobile,
-          parentAltMobile: parentAltMobile,
-          parentEmail: parentEmail,
-          address: address,
-          semesterId: semesterId,
-          semesterName: semesterName,
-          courseId: courseId,
-          courseName: courseName,
-          classroomId: classroomId,
-        );
+  }) : super(name);
 
-  factory StudentDetailsModel.fromJson(Map<String, dynamic> json) {
-    return StudentDetailsModel(
-      enrollment: json['enrollment'],
+  factory CourseModel.fromJson(Map<String, dynamic> json) {
+    return CourseModel(
       name: json['name'],
-      email: json['email'],
-      profilePicture: json['profilePicture'],
-      mobile: json['mobile'],
-      gender: json['gender'],
-      section: json['section'],
-      session: json['session'],
-      shift: json['shift'],
-      parentName: json['parentName'],
-      parentMobile: json['parentMobile'],
-      parentAltMobile: json['parentAltMobile'],
-      parentEmail: json['parentEmail'],
-      address: json['address'],
-      semesterId: json['semesterId'],
-      semesterName: json['semesterName'],
-      courseId: json['courseId'],
-      courseName: json['courseName'],
-      classroomId: json['classroomId'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
+      "name": name,
+    };
+  }
+}
+
+class ClassroomModel extends Classroom {
+  ClassroomModel(
+      {@required final num semester,
+      @required final String section,
+      @required final CourseModel course})
+      : super(semester, section, course);
+
+  factory ClassroomModel.fromJson(Map<String, dynamic> json) {
+    return ClassroomModel(
+      semester: json['semester'],
+      section: json['section'],
+      course: CourseModel.fromJson(json['course']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {"semester": semester, "section": section, "course": course};
+  }
+}
+
+class BatchModel extends Batch {
+  BatchModel({
+    @required final ClassroomModel classroom,
+  }) : super(classroom);
+
+  factory BatchModel.fromJson(Map<String, dynamic> json) {
+    return BatchModel(
+      classroom: ClassroomModel.fromJson(json['classroom']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "classroom": classroom,
+    };
+  }
+}
+
+class StudentDetailsModel extends StudentDetails {
+  StudentDetailsModel({
+    @required final String profilePicture,
+    @required final String enrollment,
+    @required final String name,
+    @required final BatchModel batch,
+  }) : super(profilePicture:profilePicture,enrollment: enrollment, name: name, batch: batch);
+
+  factory StudentDetailsModel.fromJson(Map<String, dynamic> json) {
+    return StudentDetailsModel(
+      profilePicture: json['profilePicture'],
+      enrollment: json['enrollment'],
+      name: json['name'],
+      batch: BatchModel.fromJson(json['batch']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'profilePicture': profilePicture,
       'enrollment': enrollment,
       'name': name,
-      'email': email,
-      'profilePicture': profilePicture,
-      'mobile': mobile,
-      'gender': gender,
-      'section': section,
-      'session': session,
-      'shift': shift,
-      'parentName': parentName,
-      'parentMobile': parentMobile,
-      'parentAltMobile': parentAltMobile,
-      'parentEmail': parentEmail,
-      'address': address,
-      'semesterId': semesterId,
-      'semesterName': semesterName,
-      'courseId': courseId,
-      'courseName': courseName,
-      'classroomId': classroomId,
+      'batch': batch,
     };
   }
 }

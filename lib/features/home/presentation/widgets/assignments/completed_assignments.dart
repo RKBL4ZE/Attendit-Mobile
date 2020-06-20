@@ -13,7 +13,7 @@ class CompletedAssignmentWidget extends StatelessWidget {
       decoration: BoxDecoration(),
       margin: EdgeInsets.all(10),
       // padding: EdgeInsets.all(10),
-      height: 50 * completedassignment.length.truncateToDouble(),
+      height: 40 * completedassignment.length.truncateToDouble(),
       width: double.infinity,
       child: child,
     );
@@ -132,7 +132,7 @@ class CompletedAssignmentWidget extends StatelessWidget {
                                           ),
                                           AutoSizeText(
                                             completedassignment[index]
-                                                .subjectName,
+                                                .subject.subjectName,
                                                 overflow:
                                                         TextOverflow.ellipsis,
                                                     maxLines: 2,

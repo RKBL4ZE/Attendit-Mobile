@@ -114,8 +114,10 @@ class LoginForm extends StatelessWidget {
                                             bottom: BorderSide(
                                                 color: Colors.grey[100]))),
                                     child: TextField(
+                                      controller: username,
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
+                                         // prefix: Icon(Icons.person),
                                           hintText: "Enrollment Number",
                                           hintStyle: TextStyle(
                                               color: Colors.grey[400])),
@@ -124,8 +126,10 @@ class LoginForm extends StatelessWidget {
                                   Container(
                                     padding: EdgeInsets.all(8.0),
                                     child: TextField(
+                                      controller: password,
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
+                                          //prefix: Icon(Icons.lock),
                                           hintText: "Password",
                                           hintStyle: TextStyle(
                                               color: Colors.grey[400])),
@@ -149,9 +153,9 @@ class LoginForm extends StatelessWidget {
                                 print(username);
 
                                 context.bloc<AuthBloc>().add(LoginEvent(
-                                    prefix: "msi",
+                                   
                                     userType: "student",
-                                    password: "Test12345",
+                                    password: "Test1234!",
                                     username: "00414902019"));
                               },
                               shape: RoundedRectangleBorder(

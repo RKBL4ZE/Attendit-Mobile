@@ -18,14 +18,20 @@ final timings = Set<String>();
 void createTimetableByDay(
     {Map<String, Map<String, String>> form, String day, Timing timing}) {
   if (!timings.contains(timing)) {
-    timings.add(timing.time);
+    timings.add(timing.startTime + timing.endTime);
   }
   form.forEach((key, value) {
+    String subjectName = "";
+    timing.subject
+        .forEach((element) => subjectName += '${element.subjectName}/');
+    subjectName = subjectName.substring(0, subjectName.length - 1);
     if (key == day) {
-      form[day][timing.time] = timing.subjectName;
+      // TO:DO UNSAFE CODE NEED REFACTOR
+
+      form[day][timing.startTime + timing.endTime] = subjectName;
     } else {
-      if (!value.containsKey(timing.time)) {
-        value[timing.time] = "-";
+      if (!value.containsKey(timing.startTime + timing.endTime)) {
+        value[timing.startTime + timing.endTime] = "-";
       }
     }
   });
@@ -53,8 +59,20 @@ List<Widget> _buildTimeRows(
   timings.forEach((element) {
     String time = element.toString();
 
-    String timeformat =
-        "${time.split("")[0]}${time.split("")[1]}:${time.split("")[2]}${time.split("")[3]}${time.split("")[4]}${time.split("")[5]}${time.split("")[6]}:${time.split("")[7]}${time.split("")[8]}";
+    String timeformat = "";
+
+    time.split('').asMap().forEach((key, value) {
+      timeformat += '$value';
+      if (key == 1 || key == 5) {
+        timeformat += ':';
+      }
+      if (key == 3) {
+        timeformat += '-';
+      }
+    });
+
+    // String timeformat =
+    //     "${time.split("")[0]}${time.split("")[1]}:${time.split("")[2]}${time.split("")[3]}${time.split("")[4]}${time.split("")[5]}${time.split("")[6]}:${time.split("")[7]}";
     widgets.add(text(timeformat));
   });
   return widgets;
@@ -166,7 +184,7 @@ Widget text(
       children: <Widget>[
         // Text(""),
         AutoSizeText(
-          text,
+          text == null ? "" : text,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           textAlign: TextAlign.center,

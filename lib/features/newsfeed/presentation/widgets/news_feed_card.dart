@@ -66,11 +66,11 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withAlpha(70),
-            blurRadius: 6.0,
-            spreadRadius: 7.0,
+            blurRadius: 5.0,
+            spreadRadius: 3.0,
             offset: Offset(
               0.0,
-              3.0,
+              0.0,
             ),
           ),
         ],
