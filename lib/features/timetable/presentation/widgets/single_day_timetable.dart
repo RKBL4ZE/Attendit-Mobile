@@ -48,22 +48,22 @@ class SingleDayTimeTableWidget extends StatelessWidget {
                   primary: false,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
-                    String subjectName = "";
-                    String facultyName = "";
+                    // String subjectName = "";
+                    // String facultyName = "";
 
-                    day[index].subject.forEach(
-                        (element) => subjectName += '${element.subjectName}/');
-                    day[index].faculty.forEach(
-                        (element) => facultyName += '${element.name}/');
+                    // day[index].subject.forEach(
+                    //     (element) => subjectName += '${element.subjectName}/');
+                    // day[index].faculty.forEach(
+                    //     (element) => facultyName += '${element.name}/');
 
-                    subjectName = subjectName.substring(0, subjectName.length - 1);
-                    facultyName = facultyName.substring(0, facultyName.length - 1);
+                    // subjectName = subjectName.substring(0, subjectName.length - 1);
+                    // facultyName = facultyName.substring(0, facultyName.length - 1);
 
                     return TimeTableCardWidget(
                       startTime: day[index].startTime,
                       endTime: day[index].endTime,
-                      faculty: subjectName,
-                      subject: facultyName,
+                      subject: day[index].subject.fullName,
+                      faculty: day[index].faculty.name,
                     );
                   },
                   itemCount: day.length,

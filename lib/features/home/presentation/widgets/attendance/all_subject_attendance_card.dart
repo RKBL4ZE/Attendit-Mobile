@@ -121,8 +121,9 @@ class AttendanceCardWidget extends StatelessWidget {
                                               child: Column(
                                                 children: <Widget>[
                                                   AutoSizeText(
-                                                    allatendancelist[index].subject.subjectName
-                                                        ,
+                                                    allatendancelist[index]
+                                                        .subject
+                                                        .subjectName,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     maxLines: 1,
@@ -135,7 +136,9 @@ class AttendanceCardWidget extends StatelessWidget {
                                                       //  fontWeight: FontWeight.bold
                                                     ),
                                                   ),
-                                                  SizedBox(height: 6,),
+                                                  SizedBox(
+                                                    height: 6,
+                                                  ),
                                                   LinearPercentIndicator(
                                                     animationDuration: 700,
                                                     animation: true,
@@ -177,7 +180,7 @@ class AttendanceCardWidget extends StatelessWidget {
                                             )),
                                       ],
                                     ),
-                                   // Divider()
+                                    // Divider()
                                   ],
                                 ),
                               )),

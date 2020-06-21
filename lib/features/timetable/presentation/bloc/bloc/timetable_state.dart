@@ -10,11 +10,11 @@ class TimetableLoading extends TimetableState {
 }
 
 class TimetableLoaded extends TimetableState {
-  final TimeTableModel timetable;
+  final List<Group> group;
 
-  TimetableLoaded(this.timetable);
+  TimetableLoaded(this.group);
   @override
-  List<Object> get props => [timetable];
+  List<Object> get props => [group];
 }
 
 class TimetableError extends TimetableState {

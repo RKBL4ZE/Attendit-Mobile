@@ -21,10 +21,7 @@ void createTimetableByDay(
     timings.add(timing.startTime + timing.endTime);
   }
   form.forEach((key, value) {
-    String subjectName = "";
-    timing.subject
-        .forEach((element) => subjectName += '${element.subjectName}/');
-    subjectName = subjectName.substring(0, subjectName.length - 1);
+    String subjectName = timing.subject.name;
     if (key == day) {
       // TO:DO UNSAFE CODE NEED REFACTOR
 
@@ -73,17 +70,21 @@ List<Widget> _buildTimeRows(
 
     // String timeformat =
     //     "${time.split("")[0]}${time.split("")[1]}:${time.split("")[2]}${time.split("")[3]}${time.split("")[4]}${time.split("")[5]}${time.split("")[6]}:${time.split("")[7]}";
-    widgets.add(text(timeformat));
+    widgets.add(AutoSizeText(
+      timeformat,
+      maxLines: 1,
+    ));
   });
   return widgets;
 }
 
 class FullTimeTablePage extends StatelessWidget {
-  final TimeTableModel fulltimetable;
+  final List<Group> group;
 
-  const FullTimeTablePage({Key key, this.fulltimetable}) : super(key: key);
+  const FullTimeTablePage({Key key, this.group}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final fulltimetable = group[0].timetable;
     // final TimeTableModel full = ModalRoute.of(context).settings.arguments;
     //return Text(fulltimetable.friday[0].facultyName);
     final form = Map<String, Map<String, String>>();
@@ -186,7 +187,7 @@ Widget text(
         AutoSizeText(
           text == null ? "" : text,
           overflow: TextOverflow.ellipsis,
-          maxLines: 1,
+          maxLines: 2,
           textAlign: TextAlign.center,
           style: TextStyle(
             // fontFamily: 'Rubik',

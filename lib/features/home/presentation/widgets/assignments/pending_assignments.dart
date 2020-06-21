@@ -11,14 +11,45 @@ class PendingAssignmentWidget extends StatelessWidget {
     @required this.pendingassignment,
   });
 
-DateTime convertTime(String utctime){
-DateFormat format = new DateFormat("EEE MM ddyyyyHHmm");
-DateTime time = format.parse(utctime);
-time.toLocal();
-  
-  return time;
-}
+  Widget convertTime(String utctime) {
+  //   var format = DateFormat('yyyy-MM-dd').parse(utctime);
+    
+  //  // DateTime time = format.format(utctime);
+  // // time.toLocal();
+var date = DateTime.parse(utctime);
+var dateFormatter = new DateFormat('yyyy-MM-dd');
+String formattedDate = dateFormatter.format(date);
+ 
+    DateFormat dateFormat = new DateFormat('yyyy-MM-dd');
+    DateTime now = DateTime.now();
+    DateTime open = dateFormat.parse(utctime);
+    open = new DateTime(open.year, open.month, open.day-3, open.hour, open.minute);
+    DateTime close = dateFormat.parse(utctime);
+    close =
+        new DateTime(close.year, close.month, close.day, now.hour, now.minute);
 
+    Color cardcolor = Colors.white;
+    final currentTime = DateTime.now();
+
+    if (currentTime.isBefore(open) && currentTime.isBefore(close)) {
+      cardcolor = Colors.blue;
+    } else if (currentTime.isAfter(open) && currentTime.isBefore(close)) {
+      cardcolor = Colors.yellow;
+    } else if (currentTime.isAfter(open) && currentTime.isAfter(close)) {
+      cardcolor = Colors.red;
+    }
+
+    return Text(
+      formattedDate,
+      textAlign: TextAlign.right,
+      style: TextStyle(
+        // fontFamily: 'Rubik',
+        fontSize: 15,
+        color: cardcolor,
+        //  fontWeight: FontWeight.bold
+      ),
+    );
+  }
 
   Widget pendingbuildContainer(Widget child) {
     return Container(
@@ -38,9 +69,6 @@ time.toLocal();
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
@@ -126,9 +154,8 @@ time.toLocal();
                         ),
                         pendingbuildContainer(
                           ListView.builder(
-                            
                             primary: false,
-                           // physics: const NeverScrollableScrollPhysics(),
+                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (ctx, index) => Container(
                               height: 40,
                               // margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -169,17 +196,10 @@ time.toLocal();
                                             //  fontWeight: FontWeight.bold
                                           ),
                                         ),
-                                        Text(
-                                          convertTime(pendingassignment[index].dueDate).toString(),
-                                          textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                            // fontFamily: 'Rubik',
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(
-                                                128, 139, 151, 1),
-                                            //  fontWeight: FontWeight.bold
-                                          ),
-                                        ),
+                                        Container(
+                                            child: convertTime(
+                                                pendingassignment[index]
+                                                    .dueDate)),
                                       ],
                                     ),
                                   ]),

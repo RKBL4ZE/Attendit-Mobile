@@ -16,17 +16,35 @@ abstract class Classroom {
 
 abstract class Batch {
   final Classroom classroom;
+  final String session;
+  final String status;
 
-  Batch(this.classroom);
+  Batch(this.classroom, this.session, this.status);
 }
 
 class StudentDetails extends Equatable {
   final String profilePicture;
   final String enrollment;
   final String name;
+  final String email;
+  final String address;
+  final String gender;
+  final String parentName;
+  final String parentEmail;
+  final String mobile;
+  final String parentMobile;
+  final String parentAltMobile;
   final Batch batch;
 
   StudentDetails({
+    @required this.email,
+    @required this.address,
+    @required this.gender,
+    @required this.parentName,
+    @required this.parentEmail,
+    @required this.mobile,
+    @required this.parentMobile,
+    this.parentAltMobile,
     @required this.profilePicture,
     @required this.enrollment,
     @required this.name,
@@ -34,9 +52,5 @@ class StudentDetails extends Equatable {
   });
 
   @override
-  List<Object> get props => [
-        enrollment,
-        name,
-        batch
-      ];
+  List<Object> get props => [enrollment, name, batch];
 }

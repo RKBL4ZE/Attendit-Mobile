@@ -37,7 +37,7 @@ class TimetableBloc extends Bloc<TimetableEvent, TimetableState> {
   }
 
   Stream<TimetableState> _eitherLoadedOrErrorState(
-    Either<Failure, TimeTable> failureOrTimeTable,
+    Either<Failure, List<Group>> failureOrTimeTable,
   ) async* {
     yield failureOrTimeTable.fold(
       (failure) => TimetableError(message: _mapFailureToMessage(failure)),

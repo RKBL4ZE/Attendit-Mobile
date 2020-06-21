@@ -19,7 +19,7 @@ class TimeTableRepository implements ITimeTableRepository {
   TimeTableRepository(this._remoteDataSource,this._localDataSource, this._networkInfo);
 
   @override
-  Future<Either<Failure, TimeTable>> getTimeTable() async {
+  Future<Either<Failure, List<Group>>> getTimeTable() async {
     if (await _networkInfo.isConnected) {
       try {
         final models = await _remoteDataSource.getTimeTable();

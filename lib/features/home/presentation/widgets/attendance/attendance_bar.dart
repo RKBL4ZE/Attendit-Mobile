@@ -47,7 +47,7 @@ class AttendenceBarWidget extends StatelessWidget {
                       animationDuration: 1000,
                       radius: 170.0,
                       lineWidth: 15.0,
-                      percent: percentage,
+                      percent: percentage.toDouble(),
                       //footer: Text("ve"),
                       center: new Text(
                         "${(percentage * 100).toStringAsFixed(0)}%",

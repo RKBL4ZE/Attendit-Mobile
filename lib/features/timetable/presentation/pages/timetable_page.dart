@@ -2,6 +2,7 @@ import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
+import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/single_day_timetable.dart';
@@ -22,13 +23,10 @@ class TimeTablePage extends StatelessWidget {
   }
 }
 
-
-
 class TimeTableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-   
-    String date = DateFormat('EEEE').format(DateTime.now()).toLowerCase();
+    String currentDay = DateFormat('EEEE').format(DateTime.now()).toLowerCase();
 
     BlocProvider.of<TimetableBloc>(context).add(GetTimeTableEvent());
     return (BlocBuilder<TimetableBloc, TimetableState>(
@@ -41,9 +39,10 @@ class TimeTableWidget extends StatelessWidget {
             return Center(child: ColorLoader3());
           }
           if (state is TimetableLoaded) {
-            final fulltimetable = state.timetable;
+            final group = state.group;
 
-            final timetable = fulltimetable.toJson()[date];
+            final timetable =
+                _currentDayTimetable(currentDay, group, 0); // to be change
             if (timetable == null) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -53,15 +52,15 @@ class TimeTableWidget extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  FullTimeTableButton(fulltimetable)
+                  FullTimeTableButton(group)
                 ],
               );
             }
             return SingleChildScrollView(
-                          child: Column(
+              child: Column(
                 children: <Widget>[
                   SingleDayTimeTableWidget(timetable),
-                  FullTimeTableButton(fulltimetable)
+                  FullTimeTableButton(group)
                 ],
               ),
             );
@@ -79,9 +78,9 @@ class TimeTableWidget extends StatelessWidget {
 }
 
 class FullTimeTableButton extends StatelessWidget {
-  final TimeTableModel fulltimetable;
+  final List<GroupModel> group;
 
-  const FullTimeTableButton(this.fulltimetable);
+  const FullTimeTableButton(this.group);
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
@@ -89,9 +88,11 @@ class FullTimeTableButton extends StatelessWidget {
       height: 50.0,
       child: RaisedButton(
         onPressed: () {
-           pushNewScreen(context, screen: FullTimeTablePage(fulltimetable: fulltimetable,));
+          pushNewScreen(context,
+              screen: FullTimeTablePage(
+                group: group,
+              ));
           // Navigate to Full Timetable
-          
         },
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
@@ -112,5 +113,38 @@ class FullTimeTableButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+List<Timing> _currentDayTimetable(String day, List<Group> group, int index) {
+  switch (day) {
+    case "monday":
+      {
+        return group[index].timetable.monday;
+      }
+    case "tuesday":
+      {
+        return group[index].timetable.tuesday;
+      }
+    case "wednesday":
+      {
+        return group[index].timetable.wednesday;
+      }
+    case "thursday":
+      {
+        return group[index].timetable.thursday;
+      }
+    case "friday":
+      {
+        return group[index].timetable.friday;
+      }
+    case "saturday":
+      {
+        return group[index].timetable.saturday;
+      }
+    // case "sunday":
+    //   {
+    //     return group[index].timetable.sunday;
+    //   }
   }
 }
