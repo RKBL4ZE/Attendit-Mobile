@@ -1,4 +1,5 @@
 import 'package:Attendit/config/styles.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class StudentProfileWidget extends StatelessWidget {
@@ -15,6 +16,7 @@ class StudentProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double swidth = MediaQuery.of(context).size.width;
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
@@ -22,6 +24,8 @@ class StudentProfileWidget extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Container(
+            height: 100,
+            width: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(15)),
               boxShadow: [
@@ -53,14 +57,17 @@ class StudentProfileWidget extends StatelessWidget {
             ),
           ),
           Container(
+            width: swidth * 0.45,
             margin: EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  child: Text(
+                  child: AutoSizeText(
                     studentname,
+                    maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 25,
                         color: Styles.headingfontcolor,
@@ -81,8 +88,10 @@ class StudentProfileWidget extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  child: Text(
+                  child: AutoSizeText(
                     othrdetail,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       //fontSize: 25,
                       color: Color.fromRGBO(128, 139, 151, 1),

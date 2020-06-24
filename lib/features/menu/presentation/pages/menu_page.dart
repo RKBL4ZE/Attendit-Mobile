@@ -18,7 +18,9 @@ class MenuPage extends StatelessWidget {
           Container(
             height: sheight * 0.2,
             width: double.infinity,
+            
             decoration: BoxDecoration(
+              
               gradient: Styles.colorGradientTheme,
               // borderRadius: BorderRadius.circular(15.0)
             ),

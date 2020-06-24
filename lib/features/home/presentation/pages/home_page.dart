@@ -5,6 +5,7 @@ import 'package:Attendit/features/home/presentation/widgets/assignments/assignme
 import 'package:Attendit/features/home/presentation/widgets/attendance/all_subject_attendance_card.dart';
 import 'package:Attendit/features/home/presentation/widgets/attendance/attendance_bar.dart';
 import 'package:Attendit/features/home/presentation/widgets/student_profile.dart';
+import 'package:Attendit/loaders/color_loader_3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -36,9 +37,7 @@ class HomeWidget extends StatelessWidget {
         bloc: BlocProvider.of<HomeBloc>(context),
         builder: (context, state) {
           if (state is DetailsLoading) {
-            return Center(
-              child: Text('Loading'),
-            );
+            return Center(child: ColorLoader3());
           }
           if (state is DetailsLoaded) {
             final student = state.student;
