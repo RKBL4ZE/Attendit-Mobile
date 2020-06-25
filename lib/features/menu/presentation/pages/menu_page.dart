@@ -1,4 +1,5 @@
 import 'package:Attendit/config/styles.dart';
+import 'package:Attendit/features/assignment/presentation/pages/selected_assignment_details.dart';
 import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
 import 'package:Attendit/features/result/presentation/internals/pages/internal.dart';
@@ -43,6 +44,8 @@ class MenuPage extends StatelessWidget {
                 menuContent(
                     Icons.score, "External Marks", ExternalPage(), context),
                 menuContent(
+                    Icons.assignment, "Assignment", SelectedAssignmentDetails(), context),
+                    menuContent(
                     Icons.settings, "Settings", ExternalPage(), context),
                 menuContent(Icons.contact_phone, "Contact Us", ExternalPage(),
                     context),

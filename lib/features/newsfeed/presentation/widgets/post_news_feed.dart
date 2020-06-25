@@ -117,7 +117,7 @@ Widget profile() {
                       color: Color.fromRGBO(29, 53, 84, 1),
                       fontWeight: FontWeight.bold),
                 ),
-              ),
+             ),
 
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 5),

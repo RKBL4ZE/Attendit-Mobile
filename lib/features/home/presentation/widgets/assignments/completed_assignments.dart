@@ -1,6 +1,8 @@
+import 'package:Attendit/features/assignment/presentation/pages/selected_assignment_details.dart';
 import 'package:Attendit/features/home/data/models/student_assigments_model.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
 
 class CompletedAssignmentWidget extends StatelessWidget {
   final List<StudentAssignmentModel> completedassignment;
@@ -109,56 +111,89 @@ class CompletedAssignmentWidget extends StatelessWidget {
                               itemCount: completedassignment.length,
                               primary: false,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (ctx, index) => Container(
-                                height: 40,
-                                child: Table(
-                                    //  border: TableBorder.all(),
-                                    // defaultColumnWidth: FixedColumnWidth(5.0),
-                                    children: [
-                                      TableRow(
-                                        children: [
-                                          AutoSizeText(
-                                            completedassignment[index].title,
-                                            textAlign: TextAlign.left,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 2,
-                                            style: TextStyle(
-                                              // fontFamily: 'Rubik',
-                                              fontSize: 15,
-                                              color: Color.fromRGBO(
-                                                  128, 139, 151, 1),
-                                              //  fontWeight: FontWeight.bold
+                              itemBuilder: (ctx, index) => InkWell(
+                                onTap: () {
+                                  pushNewScreen(context,
+                                      screen: SelectedAssignmentDetails(
+                                        title: completedassignment[index].title,
+                                        status:
+                                            completedassignment[index].status,
+                                        createdAt: completedassignment[index]
+                                            .createdAt,
+                                        dueDate:
+                                            completedassignment[index].dueDate,
+                                        facultyname: completedassignment[index]
+                                            .faculty
+                                            .name,
+                                        id: completedassignment[index].id,
+                                        marks: completedassignment[index]
+                                            .marks
+                                            .toString(),
+                                        totalMarks: completedassignment[index]
+                                            .totalMarks
+                                            .toString(),
+                                        subjectCode: completedassignment[index]
+                                            .subject
+                                            .subjectCode,
+                                        subjectName: completedassignment[index]
+                                            .subject
+                                            .subjectName,
+                                        submitFile: completedassignment[index]
+                                            .submitFile,
+                                      ));
+                                  // Navigate to Full Timetable
+                                },
+                                child: Container(
+                                  height: 40,
+                                  child: Table(
+                                      //  border: TableBorder.all(),
+                                      // defaultColumnWidth: FixedColumnWidth(5.0),
+                                      children: [
+                                        TableRow(
+                                          children: [
+                                            AutoSizeText(
+                                              completedassignment[index].title,
+                                              textAlign: TextAlign.left,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                              style: TextStyle(
+                                                // fontFamily: 'Rubik',
+                                                fontSize: 15,
+                                                color: Color.fromRGBO(
+                                                    128, 139, 151, 1),
+                                                //  fontWeight: FontWeight.bold
+                                              ),
                                             ),
-                                          ),
-                                          AutoSizeText(
-                                            completedassignment[index]
-                                                .subject.subjectName,
-                                                overflow:
-                                                        TextOverflow.ellipsis,
-                                                    maxLines: 2,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              // fontFamily: 'Rubik',
-                                              fontSize: 15,
-                                              color: Color.fromRGBO(
-                                                  128, 139, 151, 1),
-                                              //  fontWeight: FontWeight.bold
+                                            AutoSizeText(
+                                              completedassignment[index]
+                                                  .subject
+                                                  .subjectName,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                // fontFamily: 'Rubik',
+                                                fontSize: 15,
+                                                color: Color.fromRGBO(
+                                                    128, 139, 151, 1),
+                                                //  fontWeight: FontWeight.bold
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            "${completedassignment[index].marks.toString()}/${completedassignment[index].totalMarks.toString()}",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                              // fontFamily: 'Rubik',
-                                              fontSize: 15,
-                                              color: Color.fromRGBO(
-                                                  128, 139, 151, 1),
-                                              //  fontWeight: FontWeight.bold
+                                            Text(
+                                              "${completedassignment[index].marks.toString()}/${completedassignment[index].totalMarks.toString()}",
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                // fontFamily: 'Rubik',
+                                                fontSize: 15,
+                                                color: Color.fromRGBO(
+                                                    128, 139, 151, 1),
+                                                //  fontWeight: FontWeight.bold
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ]),
+                                          ],
+                                        ),
+                                      ]),
+                                ),
                               ),
                             ),
                           ),

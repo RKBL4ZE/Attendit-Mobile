@@ -1,8 +1,10 @@
 import 'package:Attendit/config/styles.dart';
+import 'package:Attendit/features/assignment/presentation/pages/selected_assignment_details.dart';
 import 'package:Attendit/features/home/domain/entities/student_assignment.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
 
 class PendingAssignmentWidget extends StatelessWidget {
   final List<StudentAssignment> pendingassignment;
@@ -12,18 +14,19 @@ class PendingAssignmentWidget extends StatelessWidget {
   });
 
   Widget convertTime(String utctime) {
-  //   var format = DateFormat('yyyy-MM-dd').parse(utctime);
-    
-  //  // DateTime time = format.format(utctime);
-  // // time.toLocal();
-var date = DateTime.parse(utctime);
-var dateFormatter = new DateFormat('yyyy-MM-dd');
-String formattedDate = dateFormatter.format(date);
- 
+    //   var format = DateFormat('yyyy-MM-dd').parse(utctime);
+
+    //  // DateTime time = format.format(utctime);
+    // // time.toLocal();
+    var date = DateTime.parse(utctime);
+    var dateFormatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = dateFormatter.format(date);
+
     DateFormat dateFormat = new DateFormat('yyyy-MM-dd');
     DateTime now = DateTime.now();
     DateTime open = dateFormat.parse(utctime);
-    open = new DateTime(open.year, open.month, open.day-3, open.hour, open.minute);
+    open = new DateTime(
+        open.year, open.month, open.day - 3, open.hour, open.minute);
     DateTime close = dateFormat.parse(utctime);
     close =
         new DateTime(close.year, close.month, close.day, now.hour, now.minute);
@@ -155,54 +158,84 @@ String formattedDate = dateFormatter.format(date);
                         pendingbuildContainer(
                           ListView.builder(
                             primary: false,
-                             physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (ctx, index) => Container(
-                              height: 40,
-                              // margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                              child: Table(
-                                  defaultVerticalAlignment:
-                                      TableCellVerticalAlignment.top,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (ctx, index) => InkWell(
+                              onTap: () {
+                                pushNewScreen(context,
+                                    screen: SelectedAssignmentDetails(
+                                      title: pendingassignment[index].title,
+                                      status: pendingassignment[index].status,
+                                      createdAt:
+                                          pendingassignment[index].createdAt,
+                                      dueDate: pendingassignment[index].dueDate,
+                                      facultyname:
+                                          pendingassignment[index].faculty.name,
+                                      id: pendingassignment[index].id,
+                                      marks: pendingassignment[index]
+                                          .marks
+                                          .toString(),
+                                      totalMarks: pendingassignment[index]
+                                          .totalMarks
+                                          .toString(),
+                                      subjectCode: pendingassignment[index]
+                                          .subject
+                                          .subjectCode,
+                                      subjectName: pendingassignment[index]
+                                          .subject
+                                          .subjectName,
+                                      submitFile:
+                                          pendingassignment[index].submitFile,
+                                    ));
+                                // Navigate to Full Timetable
+                              },
+                              child: Container(
+                                height: 40,
+                                // margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                                child: Table(
+                                    defaultVerticalAlignment:
+                                        TableCellVerticalAlignment.top,
 
-                                  //  border: TableBorder.all(),
-                                  //defaultColumnWidth: FixedColumnWidth(10.0),
-                                  children: [
-                                    TableRow(
-                                      children: [
-                                        AutoSizeText(
-                                          pendingassignment[index].title,
-                                          textAlign: TextAlign.left,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                            // fontFamily: 'Rubik',
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(
-                                                128, 139, 151, 1),
-                                            //  fontWeight: FontWeight.bold
+                                    //  border: TableBorder.all(),
+                                    //defaultColumnWidth: FixedColumnWidth(10.0),
+                                    children: [
+                                      TableRow(
+                                        children: [
+                                          AutoSizeText(
+                                            pendingassignment[index].title,
+                                            textAlign: TextAlign.left,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              // fontFamily: 'Rubik',
+                                              fontSize: 15,
+                                              color: Color.fromRGBO(
+                                                  128, 139, 151, 1),
+                                              //  fontWeight: FontWeight.bold
+                                            ),
                                           ),
-                                        ),
-                                        AutoSizeText(
-                                          pendingassignment[index]
-                                              .subject
-                                              .subjectName,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            // fontFamily: 'Rubik',
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(
-                                                128, 139, 151, 1),
-                                            //  fontWeight: FontWeight.bold
+                                          AutoSizeText(
+                                            pendingassignment[index]
+                                                .subject
+                                                .subjectName,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              // fontFamily: 'Rubik',
+                                              fontSize: 15,
+                                              color: Color.fromRGBO(
+                                                  128, 139, 151, 1),
+                                              //  fontWeight: FontWeight.bold
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                            child: convertTime(
-                                                pendingassignment[index]
-                                                    .dueDate)),
-                                      ],
-                                    ),
-                                  ]),
+                                          Container(
+                                              child: convertTime(
+                                                  pendingassignment[index]
+                                                      .dueDate)),
+                                        ],
+                                      ),
+                                    ]),
+                              ),
                             ),
                             itemCount: pendingassignment.length,
                           ),
