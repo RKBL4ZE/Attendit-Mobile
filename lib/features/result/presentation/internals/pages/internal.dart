@@ -39,7 +39,7 @@ class InternalPage extends StatelessWidget {
                       )),
             ),
               SizedBox(height: 20,),
-              SemSelect(),
+              //SemSelect(),
               StudentNameCard(),
               TotalMarksBarWidget(),
               MarksBySub(),MarksBySub(),MarksBySub(),
