@@ -25,7 +25,8 @@ static const colorGradientTheme = LinearGradient(colors: [
 static const headingfontcolor = Colors.black;
 
 static const colorshadow = Color.fromRGBO(247, 145, 86, 1);
-
+static const colorPrimary = Color.fromRGBO(247, 145, 86, 1);
+static const colorSecondary = Color.fromRGBO(245, 102, 116, 1);
 
 static const divider = Divider(
             color: Color.fromRGBO(245, 102, 116, 1),

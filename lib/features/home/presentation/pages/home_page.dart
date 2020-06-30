@@ -42,10 +42,9 @@ class HomeWidget extends StatelessWidget {
           if (state is DetailsLoaded) {
             final student = state.student;
             print(state);
-            return  Column(
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                
                 StudentProfileWidget(
                   enrollmentno: student.enrollment,
                   othrdetail:
@@ -64,7 +63,9 @@ class HomeWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                AttendenceBarWidget(attendanceBar: state.attendanceList,),
+                AttendenceBarWidget(
+                  attendanceBar: state.attendanceList,
+                ),
                 AttendanceCardWidget(allatendancelist: state.attendanceList),
                 Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 15, 10),

@@ -44,13 +44,13 @@ class MenuPage extends StatelessWidget {
                 menuContent(
                     Icons.score, "External Marks", ExternalPage(), context),
                 menuContent(
-                    Icons.assignment, "Assignment", SelectedAssignmentDetails(), context),
+                    Icons.assignment, "Assignment", Text("soon!!"), context),
                     menuContent(
-                    Icons.settings, "Settings", ExternalPage(), context),
+                    Icons.settings, "Settings", Text("soon!!"), context),
                 menuContent(Icons.contact_phone, "Contact Us", ExternalPage(),
                     context),
                 menuContent(
-                    Icons.business, "About Us", ExternalPage(), context),
+                    Icons.business, "About Us", Text("soon!!"), context),
               ],
             ),
           ),

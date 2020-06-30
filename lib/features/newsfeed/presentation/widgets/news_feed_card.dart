@@ -1,7 +1,7 @@
 import 'package:Attendit/features/newsfeed/domain/entities/news_feed.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:intl/intl.dart';
-
 
 class NewsFeedCard extends StatefulWidget {
   final NewsFeed newsFeed;
@@ -13,13 +13,14 @@ class NewsFeedCard extends StatefulWidget {
 }
 
 String readTimestamp(String timestamp, String type) {
-    var fdate = new DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp));
-    var date = new DateFormat("dd-MM-yyyy").format(fdate);
-    var time = DateFormat("H:m:s").format(fdate);
-    if (type == "date")
-      return date.toString();
-    else if (type == "time") return time.toString();
-  }
+  var fdate = new DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp));
+  var date = new DateFormat("dd-MM-yyyy").format(fdate);
+  var time = DateFormat("H:m:s").format(fdate);
+  if (type == "date")
+    return date.toString();
+  else if (type == "time") return time.toString();
+}
+
 class _NewsFeedWIDGETState extends State<NewsFeedCard> {
   bool commentbar = false;
   Color commentcolor = Colors.grey;
@@ -111,7 +112,7 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                         Radius.circular(100),
                       ),
                       child: Image.network(
-                        widget.newsFeed.authorAvatar,
+                        widget.newsFeed.author.profilePicture,
                         height: 50,
                         width: 50,
                         fit: BoxFit.cover,
@@ -126,9 +127,9 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
                           child: Text(
-                            widget.newsFeed.authorName,
+                            widget.newsFeed.author.name,
                             style: TextStyle(
-                                fontSize: 25,
+                                fontSize: 15,
                                 color: Color.fromRGBO(29, 53, 84, 1),
                                 fontWeight: FontWeight.bold),
                           ),
@@ -137,7 +138,8 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
                           child: Text(
-                            readTimestamp(widget.newsFeed.postTime.toString(),"date"),
+                            readTimestamp(
+                                widget.newsFeed.createdAt.toString(), "date"),
                             style: TextStyle(
                               //fontSize: 25,
                               color: Color.fromRGBO(128, 139, 151, 1),
@@ -154,12 +156,45 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
               ),
             ),
             Container(
+                child: Text(widget.newsFeed.title,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      // fontFamily: 'Rubik',
+                      fontSize: 20,
+                      color: Color.fromRGBO(29, 53, 84, 1),
+                        fontWeight: FontWeight.bold
+                    ))),
+            Container(
+              margin: EdgeInsets.all(10),
+              height: 150,
+              width: double.infinity,
+              child: new Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return new ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
+                    child: Image.network(
+                      widget.newsFeed.images[index],
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                },
+                itemCount: widget.newsFeed.images.length,
+                itemWidth: 200.0,
+                layout: SwiperLayout.STACK,
+              ),
+            ),
+            Container(
               margin: EdgeInsets.fromLTRB(20, 10, 15, 10),
               child: Text(
-                widget.newsFeed.data,
+                widget.newsFeed.text,
                 style: TextStyle(
                   // fontFamily: 'Rubik',
-                  fontSize: 15,
+                  fontSize: 14,
                   color: Color.fromRGBO(29, 53, 84, 1),
                   //  fontWeight: FontWeight.bold
                 ),
@@ -174,7 +209,7 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "${widget.newsFeed.likesCount} Likes. ${widget.newsFeed.commentsCount} Comments",
+                          "${widget.newsFeed.likesCount} Likes. ${widget.newsFeed.likesCount} Comments",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             // fontFamily: 'Rubik',
@@ -268,7 +303,7 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                             Radius.circular(100),
                           ),
                           child: Image.network(
-                            widget.newsFeed.authorAvatar,
+                            widget.newsFeed.author.profilePicture,
                             height: 30,
                             width: 30,
                             fit: BoxFit.cover,

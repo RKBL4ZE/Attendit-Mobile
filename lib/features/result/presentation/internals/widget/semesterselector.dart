@@ -31,7 +31,7 @@ SemSelect(
             indicator: BubbleTabIndicator(
               tabBarIndicatorSize: TabBarIndicatorSize.tab,
               indicatorHeight: 40.0,
-              indicatorColor: Color.fromRGBO(166, 228, 231, 0.4),
+              indicatorColor: Styles.colorPrimary.withAlpha(480)
             ),
             labelStyle: TextStyle(
     fontSize: 16.0,

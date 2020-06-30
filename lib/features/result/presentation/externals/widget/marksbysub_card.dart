@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 //import '../screens/PropertyDetails_screen.dart';
@@ -79,8 +80,8 @@ class _MarksBySubState extends State<MarksBySub> {
                         backgroundColor: Colors.white,
                         startAngle: angle,
                         linearGradient: LinearGradient(colors: [
-                          Color.fromRGBO(95, 197, 209, 1),
-                          Colors.greenAccent
+                          Styles.colorPrimary,
+                          Styles.colorSecondary
                         ]),
                         circularStrokeCap: CircularStrokeCap.round,
                         // arcType: ArcType.FULL,

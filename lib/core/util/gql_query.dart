@@ -189,17 +189,18 @@ static String newsFeedQuery = r'''
 query{
   news{
     id
-    authorName
-    authorAvatar
+    author{
+      name
+      profilePicture
+    }
     title
-    data
+    text
+    images
     isLiked
     likesCount
-    commentsCount
-    postTime
-  }  
-    }
-
+    createdAt
+  }
+}
 
 ''';
 
