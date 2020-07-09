@@ -73,7 +73,7 @@ int pageIndex=0;
         isTranslucent: false,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.new_releases),
+        icon: Icon(Icons.group),
         title: ("News Feed"),
         activeColor: Colors.deepOrange,
         inactiveColor: Colors.grey,

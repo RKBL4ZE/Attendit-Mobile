@@ -17,7 +17,7 @@ abstract class IGraphQLService {
 }
 
 const String ENDPOINT =
-    "http://attenditapi-env-1.eba-dagbus3d.us-east-1.elasticbeanstalk.com/graphql";
+    "https://attenditapi.herokuapp.com/graphql";
 
 // const String ENDPOINT =
 //     "http:///graphql";

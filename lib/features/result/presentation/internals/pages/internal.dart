@@ -1,4 +1,5 @@
-import 'package:Attendit/features/result/presentation/externals/widget/marksbysub_card.dart';
+
+import 'package:Attendit/features/result/presentation/internals/widget/marksbysub_card.dart';
 import 'package:Attendit/features/result/presentation/internals/widget/semesterselector.dart';
 
 import 'package:Attendit/features/result/presentation/internals/widget/studentnamecard.dart';

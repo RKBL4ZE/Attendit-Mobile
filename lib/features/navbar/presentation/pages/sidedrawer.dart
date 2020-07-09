@@ -1,6 +1,7 @@
 import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/features/menu/presentation/pages/menu_page.dart';
 import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
+import 'package:Attendit/features/static_pages/pending.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
 
@@ -68,6 +69,30 @@ class SideDrawer extends StatelessWidget {
           style: TextStyle(fontSize: 18.0, color: Styles.headingfontcolor),
         ),
         leading: Icon(Icons.person,color: Styles.headingfontcolor,),
+                ),
+              ),
+               new Container(
+                child: ListTile(
+                  onTap: () {
+          pushNewScreen(context, screen: Pending());
+        },
+        title: Text(
+          "Note's",
+          style: TextStyle(fontSize: 18.0, color: Styles.headingfontcolor),
+        ),
+        leading: Icon(Icons.speaker_notes,color: Styles.headingfontcolor,),
+                ),
+              ),
+              new Container(
+                child: ListTile(
+                  onTap: () {
+          pushNewScreen(context, screen: Pending());
+        },
+        title: Text(
+          "Question Papers",
+          style: TextStyle(fontSize: 18.0, color: Styles.headingfontcolor),
+        ),
+        leading: Icon(Icons.question_answer,color: Styles.headingfontcolor,),
                 ),
               ),
               new Container(

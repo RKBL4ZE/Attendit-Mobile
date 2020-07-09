@@ -9,7 +9,13 @@ class StudentNameCard extends StatelessWidget {
   final String sclass;
   final String shift;
 
-  const StudentNameCard({Key key, this.name, this.enrollmentno, this.course, this.sclass, this.shift}) : super(key: key);
+  const StudentNameCard(
+      {Key key,
+      this.name="Chrissy Costanza",
+      this.enrollmentno = "0122070319",
+      this.course = "Bca",
+      this.sclass = "Bca 106",
+      this.shift = "Morning"}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

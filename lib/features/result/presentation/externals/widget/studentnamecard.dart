@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 
 class StudentNameCard extends StatelessWidget {
   final String name;
@@ -9,20 +7,26 @@ class StudentNameCard extends StatelessWidget {
   final String sclass;
   final String shift;
 
-  const StudentNameCard({Key key, this.name, this.enrollmentno, this.course, this.sclass, this.shift}) : super(key: key);
+  const StudentNameCard(
+      {Key key,
+      this.name = "Chrissy Costanza",
+      this.enrollmentno = "0122070319",
+      this.course = "Bca",
+      this.sclass = "Bca 106",
+      this.shift = "Morning"})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final num flex1 = 5;
-final num flex2 = 5;
-final double fontsize = 16;
-final double spacing = 10;
-
+    final num flex2 = 5;
+    final double fontsize = 16;
+    final double spacing = 10;
 
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
-          decoration: BoxDecoration(
+            decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
@@ -35,13 +39,13 @@ final double spacing = 10;
                     ),
                   ),
                 ]),
-          width: double.infinity,
+            width: double.infinity,
             margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-             // elevation: 5,
+              // elevation: 5,
               margin: EdgeInsets.all(10),
               child: Container(
                 margin: EdgeInsets.fromLTRB(15, 10, 0, 10),
@@ -54,28 +58,26 @@ final double spacing = 10;
                           children: <Widget>[
                             Expanded(
                               flex: flex1,
-                                                        child: Text(
+                              child: Text(
                                 "Name",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Expanded(flex: flex2,
-                                                        child: Text(
+                            Expanded(
+                              flex: flex2,
+                              child: Text(
                                 ":   ${name}",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            
                           ],
                         ),
                       ),
@@ -85,29 +87,26 @@ final double spacing = 10;
                           children: <Widget>[
                             Expanded(
                               flex: flex1,
-                                                        child: Text(
+                              child: Text(
                                 "Enrollment Number",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                   fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Expanded(flex: flex2,
-                                                        child: Text(
+                            Expanded(
+                              flex: flex2,
+                              child: Text(
                                 ":   ${enrollmentno}",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            
-                            
                           ],
                         ),
                       ),
@@ -117,28 +116,26 @@ final double spacing = 10;
                           children: <Widget>[
                             Expanded(
                               flex: flex1,
-                                                        child: Text(
+                              child: Text(
                                 "Course",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Expanded(flex: flex2,
-                                                        child: Text(
+                            Expanded(
+                              flex: flex2,
+                              child: Text(
                                 ":   ${course}",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            
                           ],
                         ),
                       ),
@@ -148,29 +145,26 @@ final double spacing = 10;
                           children: <Widget>[
                             Expanded(
                               flex: flex1,
-                                                        child: Text(
+                              child: Text(
                                 "Class",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                   fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Expanded(flex: flex2,
-                                                        child: Text(
+                            Expanded(
+                              flex: flex2,
+                              child: Text(
                                 ":   ${sclass}",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            
-                            
                           ],
                         ),
                       ),
@@ -180,33 +174,87 @@ final double spacing = 10;
                           children: <Widget>[
                             Expanded(
                               flex: flex1,
-                                                        child: Text(
+                              child: Text(
                                 "Shift",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Expanded(flex: flex2,
-                                                        child: Text(
+                            Expanded(
+                              flex: flex2,
+                              child: Text(
                                 ":   ${shift}",
                                 style: TextStyle(
-                                  // fontFamily: 'Karla',
-                                  fontSize: fontsize,
-                                  color: Color.fromRGBO(46, 96, 102, 1),
-                                    fontWeight: FontWeight.bold
-                                ),
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            
                           ],
                         ),
                       ),
-                      
-                      
+                      Container(
+                        margin: EdgeInsets.all(spacing),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: flex1,
+                              child: Text(
+                                "CGPA",
+                                style: TextStyle(
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Expanded(
+                              flex: flex2,
+                              child: Text(
+                                ":   4.99",
+                                style: TextStyle(
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(spacing),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              flex: flex1,
+                              child: Text(
+                                "SGPA",
+                                style: TextStyle(
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Expanded(
+                              flex: flex2,
+                              child: Text(
+                                ":   6.49",
+                                style: TextStyle(
+                                    // fontFamily: 'Karla',
+                                    fontSize: fontsize,
+                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ]),
               ),
             )));

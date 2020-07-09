@@ -3,6 +3,7 @@ import 'package:Attendit/features/assignment/presentation/pages/selected_assignm
 import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
 import 'package:Attendit/features/result/presentation/internals/pages/internal.dart';
+import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
 
@@ -40,6 +41,8 @@ class MenuPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 menuContent(
+                    Icons.school, "Online Classes", OnlineClassList(), context),
+                menuContent(
                     Icons.score, "Internal Marks", InternalPage(), context),
                 menuContent(
                     Icons.score, "External Marks", ExternalPage(), context),
@@ -47,7 +50,7 @@ class MenuPage extends StatelessWidget {
                     Icons.assignment, "Assignment", Text("soon!!"), context),
                     menuContent(
                     Icons.settings, "Settings", Text("soon!!"), context),
-                menuContent(Icons.contact_phone, "Contact Us", ExternalPage(),
+                menuContent(Icons.contact_phone, "Contact Us", Text("soon!!"),
                     context),
                 menuContent(
                     Icons.business, "About Us", Text("soon!!"), context),

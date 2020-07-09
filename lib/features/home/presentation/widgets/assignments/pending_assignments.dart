@@ -159,83 +159,53 @@ class PendingAssignmentWidget extends StatelessWidget {
                           ListView.builder(
                             primary: false,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (ctx, index) => InkWell(
-                              onTap: () {
-                                pushNewScreen(context,
-                                    screen: SelectedAssignmentDetails(
-                                      title: pendingassignment[index].title,
-                                      status: pendingassignment[index].status,
-                                      createdAt:
-                                          pendingassignment[index].createdAt,
-                                      dueDate: pendingassignment[index].dueDate,
-                                      facultyname:
-                                          pendingassignment[index].faculty.name,
-                                      id: pendingassignment[index].id,
-                                      marks: pendingassignment[index]
-                                          .marks
-                                          .toString(),
-                                      totalMarks: pendingassignment[index]
-                                          .totalMarks
-                                          .toString(),
-                                      subjectCode: pendingassignment[index]
-                                          .subject
-                                          .subjectCode,
-                                      subjectName: pendingassignment[index]
-                                          .subject
-                                          .subjectName,
-                                      submitFile:
-                                          pendingassignment[index].submitFile,
-                                    ));
-                                // Navigate to Full Timetable
-                              },
-                              child: Container(
-                                height: 40,
-                                // margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                                child: Table(
-                                    defaultVerticalAlignment:
-                                        TableCellVerticalAlignment.top,
+                            itemBuilder: (ctx, index) => Container(
+                              height: 40,
+                              // margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                              child: Table(
+                                  defaultVerticalAlignment:
+                                      TableCellVerticalAlignment.top,
 
-                                    //  border: TableBorder.all(),
-                                    //defaultColumnWidth: FixedColumnWidth(10.0),
-                                    children: [
-                                      TableRow(
-                                        children: [
-                                          AutoSizeText(
-                                            pendingassignment[index].title,
-                                            textAlign: TextAlign.left,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            style: TextStyle(
-                                              // fontFamily: 'Rubik',
-                                              fontSize: 15,
-                                              color: Color.fromRGBO(
-                                                  128, 139, 151, 1),
-                                              //  fontWeight: FontWeight.bold
-                                            ),
+                                  //  border: TableBorder.all(),
+                                  //defaultColumnWidth: FixedColumnWidth(10.0),
+                                  children: [
+                                    TableRow(
+                                      children: [
+                                        AutoSizeText(
+                                          pendingassignment[index].title,
+                                          textAlign: TextAlign.left,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            // fontFamily: 'Rubik',
+                                            fontSize: 15,
+                                            color: Color.fromRGBO(
+                                                128, 139, 151, 1),
+                                            //  fontWeight: FontWeight.bold
                                           ),
-                                          AutoSizeText(
-                                            pendingassignment[index]
-                                                .subject
-                                                .subjectName,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              // fontFamily: 'Rubik',
-                                              fontSize: 15,
-                                              color: Color.fromRGBO(
-                                                  128, 139, 151, 1),
-                                              //  fontWeight: FontWeight.bold
-                                            ),
+                                        ),
+                                        AutoSizeText(
+                                          pendingassignment[index]
+                                              .subject
+                                              .subjectName,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            // fontFamily: 'Rubik',
+                                            fontSize: 15,
+                                            color: Color.fromRGBO(
+                                                128, 139, 151, 1),
+                                            //  fontWeight: FontWeight.bold
                                           ),
-                                          Container(
-                                              child: convertTime(
-                                                  pendingassignment[index]
-                                                      .dueDate)),
-                                        ],
-                                      ),
-                                    ]),
-                              ),
+                                        ),
+                                        Container(
+                                            child: convertTime(
+                                                pendingassignment[index]
+                                                    .dueDate)),
+                                      ],
+                                    ),
+                                  ]),
                             ),
                             itemCount: pendingassignment.length,
                           ),

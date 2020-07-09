@@ -62,7 +62,7 @@ class SingleDayTimeTableWidget extends StatelessWidget {
                     return TimeTableCardWidget(
                       startTime: day[index].startTime,
                       endTime: day[index].endTime,
-                      subject: day[index].subject.fullName,
+                      subject: day[index].subject.name,
                       faculty: day[index].faculty.name,
                     );
                   },

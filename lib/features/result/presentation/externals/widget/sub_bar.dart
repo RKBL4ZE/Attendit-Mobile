@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -18,7 +19,7 @@ TotalMarksBarWidget(
   Widget build(BuildContext context) {
     final double radius=120;
     final double angle= 0; 
-    final double footersize = 30; 
+    final double footersize = 20; 
     final Color footercolor = Color.fromRGBO(95, 197, 209, 1);
     final double insidefont = 30;
 
@@ -32,7 +33,7 @@ TotalMarksBarWidget(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 CircularPercentIndicator(
-                  footer: Text("SGPA",style: TextStyle(
+                  footer: Text("Percentage",style: TextStyle(
                               // fontFamily: 'Rubik',
                               fontSize: footersize,
                               color: footercolor,
@@ -71,7 +72,9 @@ TotalMarksBarWidget(
                     radius: radius,
                     lineWidth: 15.0,
                     percent: 1,
-                    footer:  Text("CGPA",style: TextStyle(
+                    footer:  AutoSizeText("% with Credits",
+                  
+                    style: TextStyle(
                               // fontFamily: 'Rubik',
                               fontSize: footersize,
                               color: Color.fromRGBO(95, 197, 209, 1),
