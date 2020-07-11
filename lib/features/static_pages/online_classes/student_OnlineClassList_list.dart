@@ -9,61 +9,62 @@ class OnlineClassList extends StatelessWidget {
   const OnlineClassList({Key key, this.assignmnettitle = ""}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        margin: new EdgeInsets.fromLTRB(20, 0, 10, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              margin: new EdgeInsets.fromLTRB(0, 20, 0, 15),
-              child: Text("Class List",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      // fontFamily: 'Rubik',
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          margin: new EdgeInsets.fromLTRB(20, 0, 10, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: new EdgeInsets.fromLTRB(0, 20, 0, 15),
+                child: Text("Class List",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        // fontFamily: 'Rubik',
 
-                      fontSize: 25,
-                      fontFamily: 'Rubik',
-                      color: Color.fromRGBO(46, 96, 102, 1),
-                      fontWeight: FontWeight.bold)),
-            ),
-            ClassNameCard(
-              classname: "Algorithm in C",
-              time: "08:00-09:00",
-              fullAssignmentName: "AI",
-              topic: "Game Theory",
-              fName:"Neetu Anand",
-              
-            ),
-            ClassNameCard(
-              classname: "Maths",
-              time: "10:00-11:00",
-              fullAssignmentName: "AI",
-              topic: "Recursion",
-              fName:"Ravindra Kajal",
-            ),
-            ClassNameCard(
-              classname: "Data Management",
-              time: "12:00-13:00",
-              fullAssignmentName: "AI",
-              topic: "Principles of Management",
-              fName:"Vinita Tomar",
-            ),
-            ClassNameCard(
-              classname: "Data Structure",
-              time: "14:00-15:00",
-              fullAssignmentName: "AI",
-              topic: "Motion in 2D",
-              fName:"Suraj Pal Chauhan",
-            ),
-            ClassNameCard(
-              classname: "Cyber Ethics.",
-              time: "15:00-15:30",
-              fullAssignmentName: "AI",
-              topic: "Internet Etiquette",
-              fName:"Neetu Anand",
-            ),
-          ],
+                        fontSize: 25,
+                        fontFamily: 'Rubik',
+                        color: Color.fromRGBO(46, 96, 102, 1),
+                        fontWeight: FontWeight.bold)),
+              ),
+              ClassNameCard(
+                classname: "Algorithm in C",
+                time: "08:00-09:00",
+                fullAssignmentName: "AI",
+                topic: "Game Theory",
+                fName: "Neetu Anand",
+              ),
+              ClassNameCard(
+                classname: "Maths",
+                time: "10:00-11:00",
+                fullAssignmentName: "AI",
+                topic: "Recursion",
+                fName: "Ravindra Kajal",
+              ),
+              ClassNameCard(
+                classname: "Data Management",
+                time: "12:00-13:00",
+                fullAssignmentName: "AI",
+                topic: "Principles of Management",
+                fName: "Vinita Tomar",
+              ),
+              ClassNameCard(
+                classname: "Data Structure",
+                time: "14:00-15:00",
+                fullAssignmentName: "AI",
+                topic: "Motion in 2D",
+                fName: "Suraj Pal Chauhan",
+              ),
+              ClassNameCard(
+                classname: "Cyber Ethics.",
+                time: "15:00-15:30",
+                fullAssignmentName: "AI",
+                topic: "Internet Etiquette",
+                fName: "Neetu Anand",
+              ),
+            ],
+          ),
         ),
       ),
     )
@@ -80,7 +81,12 @@ class ClassNameCard extends StatelessWidget {
   final String fName;
 
   const ClassNameCard(
-      {Key key, this.classname, this.time, this.fullAssignmentName,this.topic,this.fName})
+      {Key key,
+      this.classname,
+      this.time,
+      this.fullAssignmentName,
+      this.topic,
+      this.fName})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -92,7 +98,6 @@ class ClassNameCard extends StatelessWidget {
               fullAssignmentName: time,
               fName: fName,
               topic: topic,
-            
             ));
       },
       child: Container(

@@ -126,52 +126,54 @@ class FullTimeTablePage extends StatelessWidget {
       turns = 4;
     }
 
-    return RotatedBox(
-        quarterTurns: turns,
-        child: Center(
-          child: SingleChildScrollView(
-            child: Container(
-              // width: double.infinity,
-              // height: double.infinity,
-              margin: EdgeInsets.all(10),
-              child: Table(
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                border: TableBorder.all(),
-                children: [
-                  TableRow(children: [Text(""), ..._buildTimeRows(form)]),
-                  TableRow(children: [
-                    colortext("MONDAY"),
-                    ..._buildDayRows(form, MONDAY)
-                  ]),
-                  TableRow(children: [
-                    colortext("TUESDAY"),
-                    ..._buildDayRows(form, TUESDAY)
-                  ]),
-                  TableRow(children: [
-                    colortext("WEDNESDAY"),
-                    ..._buildDayRows(form, WEDNESDAY)
-                  ]),
-                  TableRow(children: [
-                    colortext("THURSDAY"),
-                    ..._buildDayRows(form, THURSDAY)
-                  ]),
-                  TableRow(children: [
-                    colortext("FRIDAY"),
-                    ..._buildDayRows(form, FRIDAY)
-                  ]),
-                  TableRow(children: [
-                    colortext("SATURDAY"),
-                    ..._buildDayRows(form, SATURDAY)
-                  ]),
-                  TableRow(children: [
-                    colortext("SUNDAY"),
-                    ..._buildDayRows(form, SUNDAY)
-                  ]),
-                ],
+    return Scaffold(
+      body: RotatedBox(
+          quarterTurns: turns,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Container(
+                // width: double.infinity,
+                // height: double.infinity,
+                margin: EdgeInsets.all(10),
+                child: Table(
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  border: TableBorder.all(),
+                  children: [
+                    TableRow(children: [Text(""), ..._buildTimeRows(form)]),
+                    TableRow(children: [
+                      colortext("MONDAY"),
+                      ..._buildDayRows(form, MONDAY)
+                    ]),
+                    TableRow(children: [
+                      colortext("TUESDAY"),
+                      ..._buildDayRows(form, TUESDAY)
+                    ]),
+                    TableRow(children: [
+                      colortext("WEDNESDAY"),
+                      ..._buildDayRows(form, WEDNESDAY)
+                    ]),
+                    TableRow(children: [
+                      colortext("THURSDAY"),
+                      ..._buildDayRows(form, THURSDAY)
+                    ]),
+                    TableRow(children: [
+                      colortext("FRIDAY"),
+                      ..._buildDayRows(form, FRIDAY)
+                    ]),
+                    TableRow(children: [
+                      colortext("SATURDAY"),
+                      ..._buildDayRows(form, SATURDAY)
+                    ]),
+                    TableRow(children: [
+                      colortext("SUNDAY"),
+                      ..._buildDayRows(form, SUNDAY)
+                    ]),
+                  ],
+                ),
               ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }
 

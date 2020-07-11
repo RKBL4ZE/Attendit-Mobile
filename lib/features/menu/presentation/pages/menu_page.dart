@@ -15,14 +15,12 @@ class MenuPage extends StatelessWidget {
     // final prop = Dummy_AllPropertys.toList();
 
     return SingleChildScrollView(
-          child: Column(
+      child: Column(
         children: <Widget>[
           Container(
             height: sheight * 0.2,
             width: double.infinity,
-            
             decoration: BoxDecoration(
-              
               gradient: Styles.colorGradientTheme,
               // borderRadius: BorderRadius.circular(15.0)
             ),
@@ -46,14 +44,12 @@ class MenuPage extends StatelessWidget {
                     Icons.score, "Internal Marks", InternalPage(), context),
                 menuContent(
                     Icons.score, "External Marks", ExternalPage(), context),
-                menuContent(
-                    Icons.assignment, "Assignment", Text("soon!!"), context),
-                    menuContent(
-                    Icons.settings, "Settings", Text("soon!!"), context),
-                menuContent(Icons.contact_phone, "Contact Us", Text("soon!!"),
-                    context),
-                menuContent(
-                    Icons.business, "About Us", Text("soon!!"), context),
+                menuContent(Icons.assignment, "Assignment",
+                    Scaffold(body: Text("soon!!")), context),
+                menuContent(Icons.contact_phone, "Contact Us",
+                    Scaffold(body: Text("soon!!")), context),
+                menuContent(Icons.business, "About Us",
+                    Scaffold(body: Text("soon!!")), context),
               ],
             ),
           ),

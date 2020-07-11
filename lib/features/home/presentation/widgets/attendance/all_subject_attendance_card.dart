@@ -69,7 +69,7 @@ class AttendanceCardWidget extends StatelessWidget {
                     ),
                   ),
                 ]),
-            margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[

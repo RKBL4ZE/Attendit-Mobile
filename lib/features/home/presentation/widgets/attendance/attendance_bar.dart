@@ -27,7 +27,7 @@ class AttendenceBarWidget extends StatelessWidget {
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
-            margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+           // margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
