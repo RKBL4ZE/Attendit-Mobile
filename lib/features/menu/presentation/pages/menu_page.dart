@@ -5,7 +5,7 @@ import 'package:Attendit/features/result/presentation/externals/pages/external.d
 import 'package:Attendit/features/result/presentation/internals/pages/internal.dart';
 import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class MenuPage extends StatelessWidget {
   static const routeName = '/InternalSCREEN';
