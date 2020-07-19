@@ -1,12 +1,13 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/features/newsfeed/domain/entities/news_feed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:intl/intl.dart';
 
 class NewsFeedCard extends StatefulWidget {
-  final NewsFeed newsFeed;
-
   NewsFeedCard({@required this.newsFeed});
+
+  final NewsFeed newsFeed;
 
   @override
   _NewsFeedWIDGETState createState() => _NewsFeedWIDGETState();
@@ -22,9 +23,17 @@ String readTimestamp(String timestamp, String type) {
 }
 
 class _NewsFeedWIDGETState extends State<NewsFeedCard> {
+  Color color = Colors.grey;
   bool commentbar = false;
   Color commentcolor = Colors.grey;
-  Color color = Colors.grey;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.newsFeed.isLiked) {
+      color = Colors.red;
+    }
+  }
 
   void showcommentbar() {
     // operations to be performed
@@ -38,14 +47,6 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
         commentcolor = Colors.blue;
       }
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.newsFeed.isLiked) {
-      color = Colors.red;
-    }
   }
 
   void makeFavorite() {
@@ -64,42 +65,21 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withAlpha(70),
-            blurRadius: 5.0,
-            spreadRadius: 3.0,
-            offset: Offset(
-              0.0,
-              0.0,
-            ),
-          ),
-        ],
+        boxShadow: [CardStyle.boxShadow],
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
-      margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
+      //margin: EdgeInsets.fromLTRB(10, 20, 10, 10),
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
         child: Column(
           children: <Widget>[
             Container(
               child: Row(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.fromLTRB(15, 10, 10, 10),
+                    margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
                     decoration: BoxDecoration(
                       boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withAlpha(70),
-                          blurRadius: 6.0,
-                          spreadRadius: 7.0,
-                          offset: Offset(
-                            0.0,
-                            3.0,
-                          ),
-                        ),
+                        CardStyle.boxShadow,
                       ],
                       borderRadius: BorderRadius.all(Radius.circular(50)),
                       border: Border.all(
@@ -159,11 +139,10 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                 child: Text(widget.newsFeed.title,
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                      // fontFamily: 'Rubik',
-                      fontSize: 20,
-                      color: Color.fromRGBO(29, 53, 84, 1),
-                        fontWeight: FontWeight.bold
-                    ))),
+                        // fontFamily: 'Rubik',
+                        fontSize: 20,
+                        color: Color.fromRGBO(29, 53, 84, 1),
+                        fontWeight: FontWeight.bold))),
             Container(
               margin: EdgeInsets.all(10),
               height: 150,
@@ -211,12 +190,7 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                         Text(
                           "${widget.newsFeed.likesCount} Likes. ${widget.newsFeed.likesCount} Comments",
                           textAlign: TextAlign.left,
-                          style: TextStyle(
-                            // fontFamily: 'Rubik',
-                            fontSize: 15,
-                            color: Color.fromRGBO(128, 139, 151, 1),
-                            //  fontWeight: FontWeight.bold
-                          ),
+                          style: CardStyle.textStyle,
                         ),
                       ],
                     ),
@@ -259,17 +233,7 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                 margin: EdgeInsets.fromLTRB(17, 0, 17, 25),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withAlpha(70),
-                        blurRadius: 6.0,
-                        spreadRadius: 4.0,
-                        offset: Offset(
-                          0.0,
-                          3.0,
-                        ),
-                      ),
-                    ]),
+                    boxShadow: [CardStyle.boxShadow]),
                 child: Material(
                   borderRadius: BorderRadius.circular(10.0),
                   //  elevation: 5.0,
@@ -281,17 +245,7 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                       prefixIcon: Container(
                         margin: EdgeInsets.fromLTRB(7, 7, 10, 7),
                         decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withAlpha(70),
-                              blurRadius: 6.0,
-                              spreadRadius: 4.0,
-                              offset: Offset(
-                                0.0,
-                                3.0,
-                              ),
-                            ),
-                          ],
+                          boxShadow: [CardStyle.boxShadow],
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                           border: Border.all(
                             color: Colors.white70,

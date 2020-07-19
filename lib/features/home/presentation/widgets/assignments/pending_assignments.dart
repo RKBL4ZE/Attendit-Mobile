@@ -1,5 +1,4 @@
 import 'package:Attendit/config/styles.dart';
-import 'package:Attendit/features/assignment/presentation/pages/selected_assignment_details.dart';
 import 'package:Attendit/features/home/domain/entities/student_assignment.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -34,22 +33,17 @@ class PendingAssignmentWidget extends StatelessWidget {
     final currentTime = DateTime.now();
 
     if (currentTime.isBefore(open) && currentTime.isBefore(close)) {
-      cardcolor = Colors.blue;
+      cardcolor = GraphStyle.high;
     } else if (currentTime.isAfter(open) && currentTime.isBefore(close)) {
-      cardcolor = Colors.yellow;
+      cardcolor = GraphStyle.mid;
     } else if (currentTime.isAfter(open) && currentTime.isAfter(close)) {
-      cardcolor = Colors.red;
+      cardcolor = GraphStyle.low;
     }
 
     return Text(
       formattedDate,
       textAlign: TextAlign.right,
-      style: TextStyle(
-        // fontFamily: 'Rubik',
-        fontSize: 15,
-        color: cardcolor,
-        //  fontWeight: FontWeight.bold
-      ),
+      style: CardStyle.subHeadingStyle,
     );
   }
 
@@ -74,29 +68,14 @@ class PendingAssignmentWidget extends StatelessWidget {
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withAlpha(50),
-                    blurRadius: 6.0,
-                    spreadRadius: 2.0,
-                    offset: Offset(
-                      0.0,
-                      2.0,
-                    ),
-                  ),
-                ]),
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            decoration: BoxDecoration(boxShadow: [CardStyle.boxShadow]),
+            //margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
                   // elevation: 5,
-                  margin: EdgeInsets.all(10),
+                  // margin: EdgeInsets.all(10),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -104,12 +83,7 @@ class PendingAssignmentWidget extends StatelessWidget {
                           margin: EdgeInsets.all(15),
                           child: Text(
                             "Pending Assignments",
-                            style: TextStyle(
-                              // fontFamily: 'Rubik',
-                              fontSize: 20,
-                              color: Color.fromRGBO(46, 96, 102, 1),
-                              //  fontWeight: FontWeight.bold
-                            ),
+                            style: CardStyle.headingStyle,
                           ),
                         ),
                         Container(
