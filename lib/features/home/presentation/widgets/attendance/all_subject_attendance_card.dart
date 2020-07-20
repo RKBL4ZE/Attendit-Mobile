@@ -117,7 +117,7 @@ class AttendanceCardWidget extends StatelessWidget {
                                                   LinearPercentIndicator(
                                                     animationDuration: 700,
                                                     animation: true,
-                                                    width: width * .74,
+                                                   // width: width * .74,
                                                     lineHeight: 7.0,
                                                     percent: allatendancelist[
                                                                 index]

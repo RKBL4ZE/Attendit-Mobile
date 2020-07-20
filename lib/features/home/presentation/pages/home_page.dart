@@ -29,69 +29,70 @@ class HomeWidget extends StatelessWidget {
     //
     final _bloc = BlocProvider.of<HomeBloc>(context);
     _bloc.add(GetDetailsEvent());
-    return SingleChildScrollView(
-        child: Container(
+    return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: BlocBuilder<HomeBloc, HomeState>(
-        bloc: BlocProvider.of<HomeBloc>(context),
-        builder: (context, state) {
-          if (state is DetailsLoading) {
-            return Center(child: ColorLoader3());
-          }
-          if (state is DetailsLoaded) {
-            final student = state.student;
-            print(state);
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                StudentProfileWidget(
-                  enrollmentno: student.enrollment,
-                  othrdetail:
-                      "${student.batch.classroom.course.name} Section-${student.batch.classroom.section}",
-                  studentimg: student.profilePicture,
-                  studentname: student.name,
+    bloc: BlocProvider.of<HomeBloc>(context),
+    builder: (context, state) {
+      if (state is DetailsLoading) {
+        return Center(child: ColorLoader3());
+      }
+      if (state is DetailsLoaded) {
+        final student = state.student;
+        print(state);
+        return SingleChildScrollView(
+                  child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              StudentProfileWidget(
+                enrollmentno: student.enrollment,
+                othrdetail:
+                    "${student.batch.classroom.course.name} Section-${student.batch.classroom.section}",
+                studentimg: student.profilePicture,
+                studentname: student.name,
+              ),
+              /* Container(
+                margin: EdgeInsets.fromLTRB(20, 10, 15, 10),
+                child: Text(
+                  "Attendance",
+                  style: TextStyle(
+                      // fontFamily: 'Rubik',
+                      fontSize: 25,
+                      color: Styles.headingfontcolor,
+                      fontWeight: FontWeight.bold),
                 ),
-                /* Container(
-                  margin: EdgeInsets.fromLTRB(20, 10, 15, 10),
-                  child: Text(
-                    "Attendance",
-                    style: TextStyle(
-                        // fontFamily: 'Rubik',
-                        fontSize: 25,
-                        color: Styles.headingfontcolor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ), */
-                AttendenceBarWidget(
-                  attendanceBar: state.attendanceList,
+              ), */
+              AttendenceBarWidget(
+                attendanceBar: state.attendanceList,
+              ),
+              AttendanceCardWidget(allatendancelist: state.attendanceList),
+             /*  Container(
+                margin: EdgeInsets.fromLTRB(20, 0, 15, 10),
+                child: Text(
+                  "Assignments",
+                  style: TextStyle(
+                      // fontFamily: 'Rubik',
+                      fontSize: 25,
+                      color: Styles.headingfontcolor,
+                      fontWeight: FontWeight.bold),
                 ),
-                AttendanceCardWidget(allatendancelist: state.attendanceList),
-               /*  Container(
-                  margin: EdgeInsets.fromLTRB(20, 0, 15, 10),
-                  child: Text(
-                    "Assignments",
-                    style: TextStyle(
-                        // fontFamily: 'Rubik',
-                        fontSize: 25,
-                        color: Styles.headingfontcolor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ), */
-                AssignmentsWidget(assignments: state.assignmentsList),
-              ],
-            );
-          }
-          if (state is DetailsError) {
-            print(state);
-            return Center(
-              child: Text(state.message),
-            );
-          }
-          return Center(
-            child: Text('Initial'),
-          );
-        },
+              ), */
+              AssignmentsWidget(assignments: state.assignmentsList),
+            ],
+          ),
+        );
+      }
+      if (state is DetailsError) {
+        print(state);
+        return Center(
+          child: Text(state.message),
+        );
+      }
+      return Center(
+        child: Text('Initial'),
+      );
+    },
       ),
-    ));
+    );
   }
 }

@@ -39,7 +39,7 @@ class _NavBarState extends State<NavBar> {
   final List<Map<String, Object>> _pages = [
     {
       // 'page': MyHomePage(),
-      'title': 'Dashboard',
+      'title': 'AttendIt',
     },
     {
       //'page': TimeTablePage(),
@@ -92,12 +92,14 @@ class _NavBarState extends State<NavBar> {
     return Scaffold(
       drawer: SideDrawer(),
       appBar: AppBar(
-        title: Text(
-          (_pages[pageIndex]['title']),
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
+        title: pageIndex == 0 || pageIndex == _pages.length - 1
+            ? Icon(Icons.arrow_upward)
+            : Text(
+                (_pages[pageIndex]['title']),
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
         centerTitle: true,
