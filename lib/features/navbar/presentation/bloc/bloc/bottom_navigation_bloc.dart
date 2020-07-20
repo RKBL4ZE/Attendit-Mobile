@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import 'bottom_navigation_event.dart';
 import 'bottom_navigation_state.dart';
 
+@injectable
 class BottomNavigationBloc
     extends Bloc<BottomNavigationEvent, BottomNavigationState> {
   int currentIndex = 0;

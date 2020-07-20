@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+import 'package:Attendit/features/navbar/presentation/bloc/bloc/bottom_navigation_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:Attendit/core/injection/register_module.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
@@ -49,6 +50,7 @@ import 'package:get_it/get_it.dart';
 
 Future<void> $initGetIt(GetIt g, {String environment}) async {
   final registerModule = _$RegisterModule();
+  g.registerFactory<BottomNavigationBloc>(() => BottomNavigationBloc());
   final box = await registerModule.openBox;
   g.registerLazySingleton<Box<dynamic>>(() => box);
   g.registerLazySingleton<DataConnectionChecker>(

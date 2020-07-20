@@ -1,10 +1,13 @@
 import 'package:Attendit/config/styles.dart';
+import 'package:Attendit/core/injection/injection.dart';
+import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
 import 'package:Attendit/features/home/presentation/pages/home_page.dart';
 import 'package:Attendit/features/menu/presentation/pages/menu_page.dart';
 import 'package:Attendit/features/navbar/presentation/pages/sidedrawer.dart';
 import 'package:Attendit/features/newsfeed/presentation/pages/news_feed_page.dart';
 import 'package:Attendit/features/timetable/presentation/pages/timetable_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
@@ -117,44 +120,47 @@ class _NavBarState extends State<NavBar> {
         ),
        // gradient: Styles.colorGradientTheme,
       ), */
-      body: PersistentTabView(
-          stateManagement: false,
-          controller: _controller,
-          screens: _buildScreens(),
-          items:
-              _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
-          confineInSafeArea: true,
-          // backgroundColor: Colors.white,
-          hideNavigationBarWhenKeyboardShows: true,
-          resizeToAvoidBottomInset:
-              true, // This needs to be true if you want to move up the screen when keyboard appears.
-          handleAndroidBackButtonPress: true,
-          hideNavigationBar: hideNav,
-          /******  not working or screen push method is different********/
-          screenTransitionAnimation: ScreenTransitionAnimation(
-            // Screen transition animation on change of selected tab.
-            animateTabTransition: true,
-            curve: Curves.ease,
-            duration: Duration(milliseconds: 300),
-          ),
-          itemAnimationProperties: ItemAnimationProperties(
-            duration: Duration(milliseconds: 300),
-            curve: Curves.ease,
-          ),
-          onItemSelected: (index) {
-            setState(() {
-              if (index == 3) {
-                elevation = 0;
-              } else {
-                elevation = 5;
-              }
-              pageIndex = index;
-            }); // This is required to update the nav bar if Android back button is pressed
-          },
-          itemCount: 4,
-          navBarStyle:
-              NavBarStyle.style13 // Choose the nav bar style with this property
-          ),
+      body: MultiBlocProvider(
+        providers: [BlocProvider<HomeBloc>(create: (_) => getIt())],
+        child: PersistentTabView(
+            stateManagement: false,
+            controller: _controller,
+            screens: _buildScreens(),
+            items:
+                _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
+            confineInSafeArea: true,
+            // backgroundColor: Colors.white,
+            hideNavigationBarWhenKeyboardShows: true,
+            resizeToAvoidBottomInset:
+                true, // This needs to be true if you want to move up the screen when keyboard appears.
+            handleAndroidBackButtonPress: true,
+            hideNavigationBar: hideNav,
+            /******  not working or screen push method is different********/
+            screenTransitionAnimation: ScreenTransitionAnimation(
+              // Screen transition animation on change of selected tab.
+              animateTabTransition: true,
+              curve: Curves.ease,
+              duration: Duration(milliseconds: 300),
+            ),
+            itemAnimationProperties: ItemAnimationProperties(
+              duration: Duration(milliseconds: 300),
+              curve: Curves.ease,
+            ),
+            onItemSelected: (index) {
+              setState(() {
+                if (index == 3) {
+                  elevation = 0;
+                } else {
+                  elevation = 5;
+                }
+                pageIndex = index;
+              }); // This is required to update the nav bar if Android back button is pressed
+            },
+            itemCount: 4,
+            navBarStyle: NavBarStyle
+                .style13 // Choose the nav bar style with this property
+            ),
+      ),
     );
   }
 }

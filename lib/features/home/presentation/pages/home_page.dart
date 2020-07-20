@@ -1,5 +1,3 @@
-import 'package:Attendit/config/styles.dart';
-import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
 import 'package:Attendit/features/home/presentation/widgets/assignments/assignments.dart';
 import 'package:Attendit/features/home/presentation/widgets/attendance/all_subject_attendance_card.dart';
@@ -10,48 +8,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-      create: (_) => getIt(),
-      child: HomeWidget(),
-    );
-  }
-}
-
-class HomeWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    //
-    final _bloc = BlocProvider.of<HomeBloc>(context);
-    _bloc.add(GetDetailsEvent());
+    BlocProvider.of<HomeBloc>(context).add(GetDetailsEvent());
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: BlocBuilder<HomeBloc, HomeState>(
-    bloc: BlocProvider.of<HomeBloc>(context),
-    builder: (context, state) {
-      if (state is DetailsLoading) {
-        return Center(child: ColorLoader3());
-      }
-      if (state is DetailsLoaded) {
-        final student = state.student;
-        print(state);
-        return SingleChildScrollView(
-                  child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              StudentProfileWidget(
-                enrollmentno: student.enrollment,
-                othrdetail:
-                    "${student.batch.classroom.course.name} Section-${student.batch.classroom.section}",
-                studentimg: student.profilePicture,
-                studentname: student.name,
-              ),
-              /* Container(
+        bloc: BlocProvider.of<HomeBloc>(context),
+        builder: (context, state) {
+          if (state is DetailsLoading) {
+            return Center(child: ColorLoader3());
+          }
+          if (state is DetailsLoaded) {
+            final student = state.student;
+            print(state);
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  StudentProfileWidget(
+                    enrollmentno: student.enrollment,
+                    othrdetail:
+                        "${student.batch.classroom.course.name} Section-${student.batch.classroom.section}",
+                    studentimg: student.profilePicture,
+                    studentname: student.name,
+                  ),
+                  /* Container(
                 margin: EdgeInsets.fromLTRB(20, 10, 15, 10),
                 child: Text(
                   "Attendance",
@@ -62,11 +44,11 @@ class HomeWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ), */
-              AttendenceBarWidget(
-                attendanceBar: state.attendanceList,
-              ),
-              AttendanceCardWidget(allatendancelist: state.attendanceList),
-             /*  Container(
+                  AttendenceBarWidget(
+                    attendanceBar: state.attendanceList,
+                  ),
+                  AttendanceCardWidget(allatendancelist: state.attendanceList),
+                  /*  Container(
                 margin: EdgeInsets.fromLTRB(20, 0, 15, 10),
                 child: Text(
                   "Assignments",
@@ -77,21 +59,21 @@ class HomeWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ), */
-              AssignmentsWidget(assignments: state.assignmentsList),
-            ],
-          ),
-        );
-      }
-      if (state is DetailsError) {
-        print(state);
-        return Center(
-          child: Text(state.message),
-        );
-      }
-      return Center(
-        child: Text('Initial'),
-      );
-    },
+                  AssignmentsWidget(assignments: state.assignmentsList),
+                ],
+              ),
+            );
+          }
+          if (state is DetailsError) {
+            print(state);
+            return Center(
+              child: Text(state.message),
+            );
+          }
+          return Center(
+            child: Text('Initial'),
+          );
+        },
       ),
     );
   }
