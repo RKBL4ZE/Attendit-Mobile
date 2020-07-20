@@ -3,6 +3,7 @@ import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
 import 'package:Attendit/features/result/presentation/internals/pages/internal.dart';
 import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';
+import 'package:Attendit/features/welcome_screen/presentation/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -48,7 +49,7 @@ class MenuPage extends StatelessWidget {
                 menuContent(Icons.contact_phone, "Contact Us",
                     Scaffold(body: Text("soon!!")), context),
                 menuContent(Icons.business, "About Us",
-                    Scaffold(body: Text("soon!!")), context),
+                    Scaffold(body: WelcomeScreen()), context),
               ],
             ),
           ),
