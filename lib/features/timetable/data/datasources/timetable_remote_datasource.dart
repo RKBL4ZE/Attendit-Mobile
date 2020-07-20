@@ -2,7 +2,7 @@ import 'package:Attendit/core/error/exceptions.dart';
 import 'package:Attendit/core/network/graphql_service.dart';
 import 'package:Attendit/core/util/gql_query.dart';
 import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
-import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
+
 import 'package:injectable/injectable.dart';
 
 abstract class ITimeTableRemoteDatasource {

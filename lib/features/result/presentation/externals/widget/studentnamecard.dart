@@ -70,7 +70,7 @@ class StudentNameCard extends StatelessWidget {
                             Expanded(
                               flex: flex2,
                               child: Text(
-                                ":   ${name}",
+                                ":   $name",
                                 style: TextStyle(
                                     // fontFamily: 'Karla',
                                     fontSize: fontsize,
@@ -99,7 +99,7 @@ class StudentNameCard extends StatelessWidget {
                             Expanded(
                               flex: flex2,
                               child: Text(
-                                ":   ${enrollmentno}",
+                                ":   $enrollmentno",
                                 style: TextStyle(
                                     // fontFamily: 'Karla',
                                     fontSize: fontsize,
@@ -128,7 +128,7 @@ class StudentNameCard extends StatelessWidget {
                             Expanded(
                               flex: flex2,
                               child: Text(
-                                ":   ${course}",
+                                ":   $course",
                                 style: TextStyle(
                                     // fontFamily: 'Karla',
                                     fontSize: fontsize,
@@ -157,7 +157,7 @@ class StudentNameCard extends StatelessWidget {
                             Expanded(
                               flex: flex2,
                               child: Text(
-                                ":   ${sclass}",
+                                ":   $sclass",
                                 style: TextStyle(
                                     // fontFamily: 'Karla',
                                     fontSize: fontsize,
@@ -186,7 +186,7 @@ class StudentNameCard extends StatelessWidget {
                             Expanded(
                               flex: flex2,
                               child: Text(
-                                ":   ${shift}",
+                                ":   $shift",
                                 style: TextStyle(
                                     // fontFamily: 'Karla',
                                     fontSize: fontsize,

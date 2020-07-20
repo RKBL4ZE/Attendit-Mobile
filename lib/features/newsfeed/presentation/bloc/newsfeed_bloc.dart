@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:Attendit/core/error/failures.dart';
 import 'package:Attendit/core/usecase/usecase.dart';
-import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
+
 import 'package:Attendit/features/newsfeed/domain/entities/news_feed.dart';
 import 'package:Attendit/features/newsfeed/domain/usecases/get_news_feed.dart';
 import 'package:bloc/bloc.dart';

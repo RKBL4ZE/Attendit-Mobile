@@ -205,6 +205,33 @@ query{
 ''';
 
 
+static String studentAssignmentQuery = r'''
+
+query{
+  StudentAssignments{
+        _id
+        title
+        faculty{
+          name
+        }
+       
+        file
+        submitFile
+        subject{
+          subjectCode
+          subjectName
+        }
+        status
+        marks
+        totalMarks
+        createdAt
+        dueDate
+      }
+}
+
+''';
+
+
 }
 
 

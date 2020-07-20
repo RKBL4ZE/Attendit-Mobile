@@ -10,14 +10,19 @@ import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class IGraphQLService {
-  Future<QueryResult> query({String query, Map<String, dynamic> variables});
-  Future<QueryResult> mutate({String mutation, Map<String, dynamic> variables});
+  Future<QueryResult> query(
+      {String query,
+      Map<String, dynamic> variables,
+      FetchPolicy fetchPolicy = FetchPolicy.cacheFirst});
+  Future<QueryResult> mutate({
+    String mutation,
+    Map<String, dynamic> variables,
+  });
   Future<QueryResult> mutateNoAuth(
       {String mutation, Map<String, dynamic> variables});
 }
 
-const String ENDPOINT =
-    "https://attenditapi.herokuapp.com/graphql";
+const String ENDPOINT = "https://attenditapi.herokuapp.com/graphql";
 
 // const String ENDPOINT =
 //     "http:///graphql";
@@ -53,9 +58,14 @@ class GraphQLService implements IGraphQLService {
   }
 
   @override
-  Future<QueryResult> query({String query, Map<String, dynamic> variables}) {
-    return _client
-        .query(QueryOptions(documentNode: gql(query), variables: variables));
+  Future<QueryResult> query(
+      {String query,
+      Map<String, dynamic> variables,
+      FetchPolicy fetchPolicy = FetchPolicy.cacheFirst}) {
+    return _client.query(QueryOptions(
+        documentNode: gql(query),
+        variables: variables,
+        fetchPolicy: fetchPolicy));
   }
 
   @override

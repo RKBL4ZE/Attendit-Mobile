@@ -1,4 +1,4 @@
-import 'package:Attendit/config/styles.dart';
+
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/features/newsfeed/domain/entities/news_feed.dart';
 import 'package:Attendit/features/newsfeed/presentation/bloc/newsfeed_bloc.dart';

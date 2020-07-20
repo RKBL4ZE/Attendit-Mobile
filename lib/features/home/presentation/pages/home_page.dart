@@ -8,7 +8,6 @@ import 'package:Attendit/features/home/presentation/widgets/student_profile.dart
 import 'package:Attendit/loaders/color_loader_3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({

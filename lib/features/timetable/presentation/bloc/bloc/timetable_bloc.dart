@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:Attendit/core/error/failures.dart';
 import 'package:Attendit/core/usecase/usecase.dart';
-import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
+
 import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
 import 'package:Attendit/features/timetable/domain/usecases/get_timetable.dart';
 import 'package:bloc/bloc.dart';

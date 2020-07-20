@@ -1,6 +1,6 @@
 import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/injection/injection.dart';
-import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
+
 import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';

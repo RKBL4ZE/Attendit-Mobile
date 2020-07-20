@@ -1,6 +1,5 @@
 import 'package:Attendit/config/styles.dart';
-import 'package:Attendit/features/assignment/presentation/pages/selected_assignment_details.dart';
-import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
+
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
 import 'package:Attendit/features/result/presentation/internals/pages/internal.dart';
 import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';

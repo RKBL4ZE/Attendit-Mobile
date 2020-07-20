@@ -1,10 +1,10 @@
 import 'package:Attendit/config/styles.dart';
-import 'package:Attendit/features/assignment/presentation/pages/selected_assignment_details.dart';
+
 import 'package:Attendit/features/home/domain/entities/student_assignment.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
+
 
 class PendingAssignmentWidget extends StatelessWidget {
   final List<StudentAssignment> pendingassignment;

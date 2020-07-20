@@ -1,5 +1,5 @@
 import 'package:Attendit/config/styles.dart';
-import 'package:Attendit/features/menu/presentation/pages/menu_page.dart';
+
 import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
 import 'package:Attendit/features/static_pages/pending.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:Attendit/core/error/exceptions.dart';
 import 'package:Attendit/core/network/graphql_service.dart';

@@ -105,31 +105,29 @@ double elevation = 5 ;
             child: Text(_pages[pageIndex]['title'])),
         gradient: Styles.colorGradientTheme,
       ),
-      body:  Center(
-          child: PersistentTabView(
-              controller: _controller,
-              screens: _buildScreens(),
-              items:
-                  _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
-              confineInSafeArea: true,
-              backgroundColor: Colors.white,
-              handleAndroidBackButtonPress: true,
-              onItemSelected: (index) {
-                setState(
-                    () {
+      body:  PersistentTabView(
+          controller: _controller,
+          screens: _buildScreens(),
+          items:
+              _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
+          confineInSafeArea: true,
+          backgroundColor: Colors.white,
+          handleAndroidBackButtonPress: true,
+          onItemSelected: (index) {
+            setState(
+                () {
 
-                      if(index==3){elevation=0;}
-                      else {elevation = 5;}
-                      
-                      pageIndex= index;
-                      
-                    }); // This is required to update the nav bar if Android back button is pressed
-              },
-              itemCount: 4,
-              navBarStyle: NavBarStyle
-                  .style6 // Choose the nav bar style with this property
-              ),
-        ),
+                  if(index==3){elevation=0;}
+                  else {elevation = 5;}
+                  
+                  pageIndex= index;
+                  
+                }); // This is required to update the nav bar if Android back button is pressed
+          },
+          itemCount: 4,
+          navBarStyle: NavBarStyle
+              .style6 // Choose the nav bar style with this property
+          ),
       
     );
   }
