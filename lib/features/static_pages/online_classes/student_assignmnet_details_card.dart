@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 final double radius = 70;
@@ -14,10 +13,13 @@ class StudentAssignmentDetails extends StatefulWidget {
   final String studentName;
   final String topic;
   final String fName;
-  
 
   const StudentAssignmentDetails(
-      {Key key, this.fullAssignmentName, this.studentName,this.topic,this.fName})
+      {Key key,
+      this.fullAssignmentName,
+      this.studentName,
+      this.topic,
+      this.fName})
       : super(key: key);
   @override
   _StudentAssignmentDetailsState createState() =>
@@ -51,38 +53,38 @@ class _StudentAssignmentDetailsState extends State<StudentAssignmentDetails> {
     });
   }
 
+  Widget menuContent(var icon, String string, Widget widget, var context) {
+    return InkWell(
+      onTap: () {
+        //  pushNewScreen(context, screen: widget);
+      },
+      child: Container(
+        margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
+        child: Row(
+          children: <Widget>[
+            Icon(
+              icon,
+              color: Colors.red,
+              //color: Color.fromRGBO(128, 139, 151, 1),
+              size: 20.0,
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Text(string,
+                style: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'Rubik',
+                    color: Color.fromRGBO(128, 139, 151, 1),
+                    fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget menuContent(var icon, String string, Widget widget, var context) {
-      return InkWell(
-        onTap: () {
-          //  pushNewScreen(context, screen: widget);
-        },
-        child: Container(
-          margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
-          child: Row(
-            children: <Widget>[
-              Icon(
-                icon,
-                color: Colors.red,
-                //color: Color.fromRGBO(128, 139, 151, 1),
-                size: 20.0,
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              Text(string,
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: 'Rubik',
-                      color: Color.fromRGBO(128, 139, 151, 1),
-                      fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
-      );
-    }
-
     return InkWell(
         onTap: () => chanebar(),
         child: Container(
@@ -154,17 +156,16 @@ class _StudentAssignmentDetailsState extends State<StudentAssignmentDetails> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        
+
                         Container(
                           margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
                           child: Text(
                             " * ${widget.topic}",
                             style: TextStyle(
-                              fontFamily: 'Karla',
-                              fontSize: 20,
-                              color: Color.fromRGBO(46, 96, 102, 1),
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontFamily: 'Karla',
+                                fontSize: 20,
+                                color: Color.fromRGBO(46, 96, 102, 1),
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
@@ -175,7 +176,7 @@ class _StudentAssignmentDetailsState extends State<StudentAssignmentDetails> {
                               fontFamily: 'Karla',
                               fontSize: 17,
                               color: Color.fromRGBO(46, 96, 102, 1),
-                               // fontWeight: FontWeight.bold
+                              // fontWeight: FontWeight.bold
                             ),
                           ),
                         ),
@@ -303,11 +304,8 @@ class _StudentAssignmentDetailsState extends State<StudentAssignmentDetails> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
-                                    
-                                    
                                     Row(
                                       children: <Widget>[
-                                        
                                         SizedBox(
                                           width: 8,
                                         ),
@@ -361,7 +359,9 @@ class _StudentAssignmentDetailsState extends State<StudentAssignmentDetails> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 12,)
+                                    SizedBox(
+                                      height: 12,
+                                    )
                                   ],
                                 ),
                         ),

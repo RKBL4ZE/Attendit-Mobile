@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import '../entities/student_assignment.dart';
 import '../../../../core/error/failures.dart';
 
 abstract class IAssignmentRepository {

@@ -43,7 +43,8 @@ class AssignmentRepository implements IAssignmentRepository {
   Future<Either<Failure, bool>> submitAssignment({String id, File file}) async {
     if (await _networkInfo.isConnected) {
       try {
-       final result = await _remoteDataSource.submitAssignment(
+      // final result = 
+       await _remoteDataSource.submitAssignment(
           id: id,
           file: file,
         );
