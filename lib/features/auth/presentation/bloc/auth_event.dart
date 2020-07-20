@@ -6,15 +6,14 @@ abstract class AuthEvent extends Equatable {
 }
 
 class LoginEvent extends AuthEvent {
-  final String prefix;
   final String userType;
   final String username;
   final String password;
 
-  LoginEvent({this.prefix, this.userType, this.username, this.password});
+  LoginEvent({this.userType, this.username, this.password});
 
   @override
-  List<Object> get props => [prefix, userType, username, password];
+  List<Object> get props => [userType, username, password];
 }
 
 class LogoutEvent extends AuthEvent {
@@ -22,9 +21,7 @@ class LogoutEvent extends AuthEvent {
   List<Object> get props => [];
 }
 
-class CheckSessionEvent extends AuthEvent{
+class CheckSessionEvent extends AuthEvent {
   @override
- 
   List<Object> get props => [];
-
 }
