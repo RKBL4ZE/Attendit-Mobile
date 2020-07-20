@@ -17,7 +17,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     //  context.bloc<AuthBloc>().add(CheckSessionEvent());
     return Scaffold(
-      backgroundColor: Colors.white,
+      
       body: BlocBuilder(
           bloc: BlocProvider.of<AuthBloc>(context),
           builder: (context, state) => SingleChildScrollView(
