@@ -94,7 +94,7 @@ class _MarksBySubState extends State<MarksBySub> {
                         percent: (barpercent / 100).toDouble(),
                         //footer: Text("ve"),
                         center: new Text(
-                          "${barpercent}%",
+                          "$barpercent%",
                           style: TextStyle(
                               // fontFamily: 'Rubik',
                               fontSize: insidefont,

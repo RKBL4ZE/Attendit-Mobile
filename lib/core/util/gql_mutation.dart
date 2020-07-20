@@ -24,4 +24,13 @@ mixin Gqlmutation {
     }
 
   ''';
+
+  static String submitAssignmentMutation = '''
+
+    mutation SubmitAssignmentMut ( \$id: String!, \$file: Upload!) {
+      SubmitAssignment( id: \$id, file: \$file) 
+      
+    }
+
+  ''';
 }

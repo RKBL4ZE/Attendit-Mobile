@@ -1,3 +1,4 @@
+import 'package:Attendit/features/assignment/presentation/pages/assignment_details.dart';
 import 'package:Attendit/features/home/data/models/student_assigments_model.dart';
 import 'package:Attendit/features/home/presentation/widgets/assignments/completed_assignments.dart';
 import 'package:Attendit/features/home/presentation/widgets/assignments/pending_assignments.dart';
@@ -26,12 +27,14 @@ class AssignmentsWidget extends StatelessWidget {
       children: <Widget>[
         InkWell(
             onTap: () {
-              pushNewScreen(context, screen: CompletedAssignment());
+              pushNewScreen(context,
+                  screen: AssignmentPage(assignmentStatus: "COMPLETED"));
             },
             child: CompletedAssignmentWidget(completedassignment: completed)),
         InkWell(
             onTap: () {
-              pushNewScreen(context, screen: PendingAssignment());
+              pushNewScreen(context,
+                  screen: AssignmentPage(assignmentStatus: "PENDING"));
             },
             child: PendingAssignmentWidget(pendingassignment: pending)),
       ],

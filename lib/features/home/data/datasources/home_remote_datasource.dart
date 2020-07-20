@@ -1,16 +1,17 @@
-import 'dart:convert';
+
 
 import 'package:Attendit/core/network/graphql_service.dart';
 import 'package:Attendit/features/home/data/models/student_assigments_model.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/exceptions.dart';
-import '../../../../core/util/gql_mutation.dart';
+
 import '../../../../core/util/gql_query.dart';
-import '../../../../core/util/gql_query.dart';
+
 import '../models/student_attendence_model.dart';
-import '../models/student_attendence_model.dart';
+
 import '../models/student_details_model.dart';
 
 abstract class IHomeRemoteDataSource {
@@ -83,7 +84,7 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
   Future<Map<String, dynamic>> getAllDetails() async {
     try {
       final result = await _client.query(
-          query: Gqlquery.studentAllDetailsQuery); //todo: future change query
+          query: Gqlquery.studentAllDetailsQuery,); //todo: future change query
       if (result.exception == null) {
         var allDetails = Map<String, dynamic>();
         allDetails.putIfAbsent('Student',

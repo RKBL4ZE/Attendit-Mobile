@@ -7,6 +7,7 @@
 import 'package:hive/hive.dart';
 import 'package:Attendit/core/injection/register_module.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:Attendit/features/assignment/data/datasources/assignment_local_datasource.dart';
 import 'package:Attendit/features/auth/data/datasources/auth_local_datasource.dart';
 import 'package:Attendit/features/home/data/datasources/home_local_datasource.dart';
 import 'package:Attendit/core/network/network_info.dart';
@@ -30,13 +31,19 @@ import 'package:Attendit/features/newsfeed/domain/usecases/get_news_feed.dart';
 import 'package:Attendit/features/home/domain/usecases/get_student_details.dart';
 import 'package:Attendit/features/timetable/domain/usecases/get_timetable.dart';
 import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
+import 'package:Attendit/features/assignment/data/datasources/assignment_remote_datasource.dart';
+import 'package:Attendit/features/assignment/data/repositories/assignment_repository.dart';
+import 'package:Attendit/features/assignment/domain/repositories/i_assignment_repository.dart';
 import 'package:Attendit/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:Attendit/features/auth/data/repositories/auth_repository.dart';
 import 'package:Attendit/features/auth/domain/repositories/i_auth_repository.dart';
 import 'package:Attendit/features/newsfeed/presentation/bloc/newsfeed_bloc.dart';
+import 'package:Attendit/features/assignment/domain/usecases/submit_assignment.dart';
+import 'package:Attendit/features/assignment/presentation/bloc/assignment_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
 import 'package:Attendit/features/auth/domain/usecases/check_session.dart';
+import 'package:Attendit/features/assignment/domain/usecases/get_student_assignment.dart';
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -46,6 +53,8 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerLazySingleton<Box<dynamic>>(() => box);
   g.registerLazySingleton<DataConnectionChecker>(
       () => registerModule.connectionChecker);
+  g.registerFactory<IAssignmentLocalDataSource>(
+      () => AssignmentLocalDataSource(g<Box<dynamic>>()));
   g.registerFactory<IAuthLocalDataSource>(
       () => AuthLocalDataSource(g<Box<dynamic>>()));
   g.registerFactory<IHomeLocalDataSource>(
@@ -91,6 +100,13 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => GetTimeTable(g<ITimeTableRepository>()));
   g.registerFactory<HomeBloc>(
       () => HomeBloc(g<GetStudentDetails>(), g<GetAllDetails>()));
+  g.registerFactory<IAssignmentRemoteDataSource>(
+      () => AssignmentRemoteDataSource(g<IGraphQLService>()));
+  g.registerFactory<IAssignmentRepository>(() => AssignmentRepository(
+        g<IAssignmentLocalDataSource>(),
+        g<INetworkInfo>(),
+        g<IAssignmentRemoteDataSource>(),
+      ));
   g.registerFactory<IAuthRemoteDataSource>(
       () => AuthRemoteDataSource(g<IGraphQLService>()));
   g.registerFactory<IAuthRepository>(() => AuthRepository(
@@ -99,10 +115,18 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<IAuthRemoteDataSource>(),
       ));
   g.registerFactory<NewsfeedBloc>(() => NewsfeedBloc(g<GetNewsFeed>()));
+  g.registerLazySingleton<SubmitAssignment>(
+      () => SubmitAssignment(g<IAssignmentRepository>()));
+  g.registerFactory<SubmitAssignmentBloc>(
+      () => SubmitAssignmentBloc(g<SubmitAssignment>()));
   g.registerFactory<TimetableBloc>(() => TimetableBloc(g<GetTimeTable>()));
   g.registerLazySingleton<UserLogin>(() => UserLogin(g<IAuthRepository>()));
   g.registerLazySingleton<CheckSession>(
       () => CheckSession(g<IAuthRepository>()));
+  g.registerLazySingleton<GetAssignmentDetails>(
+      () => GetAssignmentDetails(g<IAssignmentRepository>()));
+  g.registerFactory<AssignmentBloc>(
+      () => AssignmentBloc(g<GetAssignmentDetails>(), g<SubmitAssignment>()));
   g.registerFactory<AuthBloc>(
       () => AuthBloc(g<UserLogin>(), g<CheckSession>()));
 }

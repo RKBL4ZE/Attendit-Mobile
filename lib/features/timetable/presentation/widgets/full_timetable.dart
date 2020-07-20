@@ -1,5 +1,5 @@
 import 'package:Attendit/config/styles.dart';
-import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
+
 import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
