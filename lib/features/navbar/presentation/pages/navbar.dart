@@ -6,10 +6,8 @@ import 'package:Attendit/features/newsfeed/presentation/pages/news_feed_page.dar
 import 'package:Attendit/features/timetable/presentation/pages/timetable_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'package:persistent_bottom_nav_bar/models/persisten-bottom-nav-item.widget.dart';
-import 'package:persistent_bottom_nav_bar/models/persistent-bottom-nav-bar-styles.widget.dart';
-import 'package:persistent_bottom_nav_bar/models/persistent-nav-bar-scaffold.widget.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class NavBar extends StatefulWidget {
   static const routeName = '/navbar';
@@ -36,10 +34,11 @@ class _NavBarState extends State<NavBar> {
       MenuPage(),
     ];
   }
-int pageIndex=0;
- final List<Map<String, Object>> _pages = [
+
+  int pageIndex = 0;
+  final List<Map<String, Object>> _pages = [
     {
-     // 'page': MyHomePage(),
+      // 'page': MyHomePage(),
       'title': 'Dashboard',
     },
     {
@@ -47,7 +46,7 @@ int pageIndex=0;
       'title': 'Time Table',
     },
     {
-     // 'page': NewsFeedPage(),
+      // 'page': NewsFeedPage(),
       'title': 'News Feed',
     },
     {
@@ -59,76 +58,91 @@ int pageIndex=0;
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
+        //istranslucent is moved to NavBarDecoration
+        icon: Icon(OMIcons.home),
         title: ("Home"),
-        activeColor: Color.fromRGBO(247, 145, 86, 1),
-        inactiveColor: Colors.grey,
-        isTranslucent: false,
+        activeColor: NavbarStyle.active,
+        inactiveColor: NavbarStyle.inactive,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.table_chart),
+        icon: Icon(OMIcons.schedule),
         title: ("Time Table"),
-        activeColor: Colors.teal,
-        inactiveColor: Colors.grey,
-        isTranslucent: false,
+        activeColor: NavbarStyle.active,
+        inactiveColor: NavbarStyle.inactive,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.group),
+        icon: Icon(OMIcons.people),
         title: ("News Feed"),
-        activeColor: Colors.deepOrange,
-        inactiveColor: Colors.grey,
-        isTranslucent: false,
+        activeColor: NavbarStyle.active,
+        inactiveColor: NavbarStyle.inactive,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.more),
+        icon: Icon(OMIcons.more),
         title: ("More"),
-        activeColor: Colors.indigo,
-        inactiveColor: Colors.grey,
-        isTranslucent: false,
+        activeColor: NavbarStyle.active,
+        inactiveColor: NavbarStyle.inactive,
       ),
     ];
   }
-double elevation = 5 ;
+
+  double elevation = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       drawer: SideDrawer(),
       appBar: GradientAppBar(
-        elevation: elevation,
-      centerTitle: true,
-        brightness: Brightness.dark,
+        elevation: 2,
+        centerTitle: true,
         title: Container(
-         //alignment: Alignment.center,
-
-            // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
-            child: Text(_pages[pageIndex]['title'])),
+          //alignment: Alignment.center,
+          // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
+          child: Text(
+            (_pages[pageIndex]['title']),
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
         gradient: Styles.colorGradientTheme,
       ),
-      body:  PersistentTabView(
-          controller: _controller,
-          screens: _buildScreens(),
-          items:
-              _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
-          confineInSafeArea: true,
-          backgroundColor: Colors.white,
-          handleAndroidBackButtonPress: true,
-          onItemSelected: (index) {
-            setState(
-                () {
-
-                  if(index==3){elevation=0;}
-                  else {elevation = 5;}
-                  
-                  pageIndex= index;
-                  
-                }); // This is required to update the nav bar if Android back button is pressed
-          },
-          itemCount: 4,
-          navBarStyle: NavBarStyle
-              .style6 // Choose the nav bar style with this property
-          ),
-      
+      body: Center(
+        child: PersistentTabView(
+            stateManagement: true,
+            controller: _controller,
+            screens: _buildScreens(),
+            items:
+                _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
+            confineInSafeArea: true,
+            // backgroundColor: Colors.white,
+            hideNavigationBarWhenKeyboardShows: true,
+            resizeToAvoidBottomInset:
+                true, // This needs to be true if you want to move up the screen when keyboard appears.
+            handleAndroidBackButtonPress: true,
+            hideNavigationBar: false,
+            /******  not working or screen push method is different********/
+            screenTransitionAnimation: ScreenTransitionAnimation(
+              // Screen transition animation on change of selected tab.
+              animateTabTransition: true,
+              curve: Curves.ease,
+              duration: Duration(milliseconds: 300),
+            ),
+            itemAnimationProperties: ItemAnimationProperties(
+              duration: Duration(milliseconds: 300),
+              curve: Curves.ease,
+            ),
+            onItemSelected: (index) {
+              setState(() {
+                if (index == 3) {
+                  elevation = 0;
+                } else {
+                  elevation = 5;
+                }
+                pageIndex = index;
+              }); // This is required to update the nav bar if Android back button is pressed
+            },
+            itemCount: 4,
+            navBarStyle: NavBarStyle
+                .style13 // Choose the nav bar style with this property
+            ),
+      ),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
@@ -11,6 +10,7 @@ import 'package:injectable/injectable.dart';
 
 import 'core/injection/injection.dart';
 import 'features/auth/presentation/pages/login_page.dart';
+import 'config/styles.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,8 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       systemNavigationBarColor: Styles.colorshadow,
-      systemNavigationBarIconBrightness: Brightness.light));
+      systemNavigationBarIconBrightness: Brightness.light
+      ));
   runApp(MyApp());
 }
 
@@ -31,14 +32,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: _navigatorKey,
         debugShowCheckedModeBanner: false,
-
-        //title: 'Flutter Demo',
-        theme: ThemeData(
-          
-          splashColor: Color.fromRGBO(247, 145, 86, 1),
-          primarySwatch: Colors.blue,
-          accentColor: Color.fromRGBO(247, 145, 86, 1),
-          fontFamily: 'Karala',
+        title: 'AttendIt Student',
+        theme: ThemeData.light().copyWith(
+          primaryColor: PrimaryStyle.primary,
+          accentColor: PrimaryStyle.accent,
+          //textTheme:TextTheme(headline6: TextStyle(color: Colors.black) ),
+          splashColor: PrimaryStyle.splash,
+          primaryColorBrightness: Brightness.light,
+          //accentColor: Color.fromRGBO(255, 255, 255, 1),
+          //fontFamily: 'Karala',
         ),
         routes: {
           '/': (_) => LoginPage(),

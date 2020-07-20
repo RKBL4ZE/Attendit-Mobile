@@ -6,7 +6,7 @@ import 'package:Attendit/features/static_pages/completed_assignment.dart';
 import 'package:Attendit/features/static_pages/pending_assignment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class AssignmentsWidget extends StatelessWidget {
   final List<StudentAssignmentModel> assignments;

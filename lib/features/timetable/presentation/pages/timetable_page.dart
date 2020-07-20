@@ -11,7 +11,7 @@ import 'package:Attendit/loaders/color_loader_3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class TimeTablePage extends StatelessWidget {
   @override

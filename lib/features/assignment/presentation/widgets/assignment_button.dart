@@ -31,7 +31,7 @@ class _AssignmentButtonState extends State<AssignmentButton> {
                       .bloc<SubmitAssignmentBloc>()
                       .add(SubmitAssignmentEvent(
                         id: widget.id,
-                        file: widget.file,
+                        file: widget.file
                       ));
                   setState(() {});
                 },
