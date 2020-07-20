@@ -1,7 +1,7 @@
 import 'package:Attendit/features/static_pages/online_classes/student_assignment_details.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.widget.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class OnlineClassList extends StatelessWidget {
   final String assignmnettitle;
