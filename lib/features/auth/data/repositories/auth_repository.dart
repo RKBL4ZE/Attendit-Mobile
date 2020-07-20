@@ -35,6 +35,7 @@ class AuthRepository implements IAuthRepository {
             username: username,
             password: password);
         await _localDataSource.setLocalTokens(models);
+        await _localDataSource.setFirstTime();
         return Right(true);
       } on ServerException {
         return Left(ServerFailure());
@@ -54,5 +55,15 @@ class AuthRepository implements IAuthRepository {
     } else {
       return Right(true);
     }
+  }
+
+  @override
+  Future<bool> checkFirstTime() async {
+    return await _localDataSource.getFirstTime();
+  }
+
+  @override
+  Future<void> removeFirstTime() async {
+    return await _localDataSource.setFirstTime();
   }
 }

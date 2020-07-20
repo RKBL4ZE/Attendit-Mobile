@@ -1,5 +1,6 @@
-import 'package:Attendit/core/injection/injection.dart';
+import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/auth/presentation/widgets/login_form.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/auth_bloc.dart';
@@ -8,39 +9,70 @@ class LoginPage extends StatelessWidget {
   static const routeName = '/LoginPage';
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthBloc>(
-      create: (_) => getIt(),
-      child: Scaffold(
-        // appBar: GradientAppBar(
-        //   title: Container(
-        //       alignment: Alignment.center,
+    BlocProvider.of<AuthBloc>(context).add(CheckSessionEvent());
+    return Scaffold(
+      // appBar: GradientAppBar(
+      //   title: Container(
+      //       alignment: Alignment.center,
 
-        //       // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
-        //       child: Text("Attend IT")),
-        //   gradient: Styles.colorGradientTheme,
-        // ),
-        body: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
-          if (state is AuthInitial ||
-              state is LoginLoading ||
-              state is UserLogedIn) {
-            return LoginForm(state: state);
+      //       // margin: new EdgeInsets.fromLTRB(0, 38, 0, 0),
+      //       child: Text("Attend IT")),
+      //   gradient: Styles.colorGradientTheme,
+      // ),
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is UserLogedIn) {
+            BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
           }
-          // if (state is LoginLoading) {
-          //  // return Center(child: Text("Loading"));
-          //  return Center(child: ColorLoader3());
-          // }
-          // if (state is UserLogedIn ) {
-          //   BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
-          //   return Center(child: Text("Logged IN"));
-          // }
+
+          if (state is AuthWelcome) {
+            BuildContext dialogContext;
+            showDialog(
+                context: context,
+                builder: (context) {
+                  dialogContext = context;
+                  return CupertinoAlertDialog(
+                    title: new Text("Alert"),
+                    content: new Text(
+                        "Write the code to navigate to welcome page here this is just a dialog to show the demo"),
+                    actions: <Widget>[
+                      CupertinoDialogAction(
+                        child: Text('OK'),
+                        onPressed: () {
+                          Navigator.pop(dialogContext);
+                        },
+                      )
+                    ],
+                  );
+                });
+          }
+
           if (state is AuthError) {
-            return Column(
-              children: <Widget>[
-                Text(state.message),
-                // LoginForm()
-              ],
-            );
+            BuildContext dialogContext;
+            showDialog(
+                context: context,
+                builder: (context) {
+                  dialogContext = context;
+                  return CupertinoAlertDialog(
+                    title: new Text("Alert"),
+                    content: new Text("You have been logged out."),
+                    actions: <Widget>[
+                      CupertinoDialogAction(
+                        child: Text('OK'),
+                        onPressed: () {
+                          Navigator.pop(dialogContext);
+                        },
+                      )
+                    ],
+                  );
+                });
           }
+        },
+        child: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
+          if (state is AuthError ||
+              state is AuthInitial ||
+              state is LoginLoading) return LoginForm(state: state);
+          return Container();
         }),
       ),
     );

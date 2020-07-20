@@ -1,4 +1,5 @@
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
+import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
@@ -17,9 +18,8 @@ Future<void> main() async {
   await configureInjection(Environment.prod);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      //systemNavigationBarColor: Styles.colorshadow,
-      systemNavigationBarIconBrightness: Brightness.light
-      ));
+      systemNavigationBarColor: Styles.colorshadow,
+      systemNavigationBarIconBrightness: Brightness.light));
   runApp(MyApp());
 }
 
@@ -27,8 +27,12 @@ class MyApp extends StatelessWidget {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<NavigatorBloc>(
-      create: (_) => NavigatorBloc(navigatorKey: _navigatorKey),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NavigatorBloc>(
+            create: (_) => NavigatorBloc(navigatorKey: _navigatorKey)),
+        BlocProvider<AuthBloc>(create: (_) => getIt())
+      ],
       child: MaterialApp(
         navigatorKey: _navigatorKey,
         debugShowCheckedModeBanner: false,

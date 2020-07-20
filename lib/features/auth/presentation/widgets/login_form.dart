@@ -15,9 +15,7 @@ class LoginForm extends StatelessWidget {
   //static const routeName = '/LoginPage';
   @override
   Widget build(BuildContext context) {
-    //  context.bloc<AuthBloc>().add(CheckSessionEvent());
     return Scaffold(
-      
       body: BlocBuilder(
           bloc: BlocProvider.of<AuthBloc>(context),
           builder: (context, state) => SingleChildScrollView(

@@ -4,11 +4,9 @@ import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:injectable/injectable.dart';
 
 part 'navigator_event.dart';
 
-@injectable
 class NavigatorBloc extends Bloc<NavigatorEvent, dynamic> {
   final GlobalKey<NavigatorState> navigatorKey;
   NavigatorBloc({this.navigatorKey});

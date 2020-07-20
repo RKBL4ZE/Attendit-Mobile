@@ -14,9 +14,6 @@ import 'package:Attendit/features/home/data/datasources/home_local_datasource.da
 import 'package:Attendit/core/network/network_info.dart';
 import 'package:Attendit/features/newsfeed/data/datasources/news_feed_local_datasource.dart';
 import 'package:Attendit/features/timetable/data/datasources/timetable_local_datasource.dart';
-import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/navigator.dart';
 import 'package:Attendit/core/network/graphql_service.dart';
 import 'package:Attendit/features/home/data/datasources/home_remote_datasource.dart';
 import 'package:Attendit/features/home/data/repositories/home_repository.dart';
@@ -43,6 +40,7 @@ import 'package:Attendit/features/assignment/domain/usecases/submit_assignment.d
 import 'package:Attendit/features/assignment/presentation/bloc/assignment_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
+import 'package:Attendit/features/auth/domain/usecases/check_first_time.dart';
 import 'package:Attendit/features/auth/domain/usecases/check_session.dart';
 import 'package:Attendit/features/assignment/domain/usecases/get_student_assignment.dart';
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
@@ -67,8 +65,6 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => NewsFeedLocalDataSource(g<Box<dynamic>>()));
   g.registerFactory<ITimeTableLocalDataSource>(
       () => TimeTableLocalDataSource(g<Box<dynamic>>()));
-  g.registerFactory<NavigatorBloc>(
-      () => NavigatorBloc(navigatorKey: g<GlobalKey<NavigatorState>>()));
   g.registerFactory<IGraphQLService>(
       () => GraphQLService(g<Box<dynamic>>(), g<INetworkInfo>()));
   g.registerFactory<IHomeRemoteDataSource>(
@@ -123,14 +119,19 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => SubmitAssignmentBloc(g<SubmitAssignment>()));
   g.registerFactory<TimetableBloc>(() => TimetableBloc(g<GetTimeTable>()));
   g.registerLazySingleton<UserLogin>(() => UserLogin(g<IAuthRepository>()));
+  g.registerLazySingleton<CheckFirstTime>(
+      () => CheckFirstTime(g<IAuthRepository>()));
   g.registerLazySingleton<CheckSession>(
       () => CheckSession(g<IAuthRepository>()));
   g.registerLazySingleton<GetAssignmentDetails>(
       () => GetAssignmentDetails(g<IAssignmentRepository>()));
   g.registerFactory<AssignmentBloc>(
       () => AssignmentBloc(g<GetAssignmentDetails>(), g<SubmitAssignment>()));
-  g.registerFactory<AuthBloc>(
-      () => AuthBloc(g<UserLogin>(), g<CheckSession>()));
+  g.registerFactory<AuthBloc>(() => AuthBloc(
+        g<UserLogin>(),
+        g<CheckSession>(),
+        g<CheckFirstTime>(),
+      ));
 }
 
 class _$RegisterModule extends RegisterModule {}

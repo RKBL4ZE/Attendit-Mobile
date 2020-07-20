@@ -6,11 +6,11 @@ abstract class IAuthRepository {
   UserTokens userTokens;
 
   Future<Either<Failure, bool>> signin(
-      { String userType, String username, String password});
+      {String userType, String username, String password});
 
+  Future<Either<Failure, bool>> checkSession();
 
+  Future<bool> checkFirstTime();
 
-Future<Either<Failure, bool>> checkSession();
-
+  Future<void> removeFirstTime();
 }
-
