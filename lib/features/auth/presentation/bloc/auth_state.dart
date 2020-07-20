@@ -12,6 +12,8 @@ class AuthInitial extends AuthState {}
 
 class LoginLoading extends AuthState {}
 
+class AuthWelcomeSuccess extends AuthState {}
+
 class UserLogedIn extends AuthState {}
 
 class AuthError extends AuthState {

@@ -1,5 +1,6 @@
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/auth/presentation/widgets/login_form.dart';
+import 'package:Attendit/features/welcome_screen/presentation/welcome_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,29 +25,6 @@ class LoginPage extends StatelessWidget {
           if (state is UserLogedIn) {
             BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
           }
-
-          if (state is AuthWelcome) {
-            BuildContext dialogContext;
-            showDialog(
-                context: context,
-                builder: (context) {
-                  dialogContext = context;
-                  return CupertinoAlertDialog(
-                    title: new Text("Alert"),
-                    content: new Text(
-                        "Write the code to navigate to welcome page here this is just a dialog to show the demo"),
-                    actions: <Widget>[
-                      CupertinoDialogAction(
-                        child: Text('OK'),
-                        onPressed: () {
-                          Navigator.pop(dialogContext);
-                        },
-                      )
-                    ],
-                  );
-                });
-          }
-
           if (state is AuthError) {
             BuildContext dialogContext;
             showDialog(
@@ -71,7 +49,9 @@ class LoginPage extends StatelessWidget {
         child: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
           if (state is AuthError ||
               state is AuthInitial ||
-              state is LoginLoading) return LoginForm(state: state);
+              state is LoginLoading ||
+              state is AuthWelcomeSuccess) return LoginForm(state: state);
+          if (state is AuthWelcome) return WelcomeScreen();
           return Container();
         }),
       ),

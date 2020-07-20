@@ -1,5 +1,8 @@
+import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:Attendit/features/auth/presentation/pages/login_page.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'delayed_animation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -94,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 ),
                 DelayedAnimation(
                   child: Text(
-                    "Journaling  companion",
+                    "companion",
                     style: TextStyle(fontSize: 20.0, color: color),
                   ),
                   delay: delayedAmount + 3000,
@@ -154,6 +157,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   void _onTapDown(TapDownDetails details) {
     _controller.forward();
+    BlocProvider.of<AuthBloc>(context).add(InitialEvent());
+    /* Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LoginPage())); */
   }
 
   void _onTapUp(TapUpDetails details) {

@@ -96,16 +96,11 @@ class _NavBarState extends State<NavBar> {
       drawer: SideDrawer(),
       appBar: AppBar(
         title: pageIndex == 0 || pageIndex == _pages.length - 1
-            ? Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: SvgPicture.asset(
-                    'assets/images/logo.svg',
-                    height: 50,
-                  ),
-                ),
-              )
+            ? SvgPicture.asset(
+              'assets/images/logo.svg',
+              color: Colors.black,
+              height: 50,
+            )
             : Text(
                 (_pages[pageIndex]['title']),
                 style: TextStyle(

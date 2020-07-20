@@ -52,6 +52,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield* _eitherLoadedOrErrorState(failureOrSucess);
       }
     }
+    if (event is InitialEvent) {
+      yield AuthWelcomeSuccess();
+    }
   }
 
   Stream<AuthState> _eitherLoadedOrErrorState(
