@@ -66,4 +66,9 @@ class AuthRepository implements IAuthRepository {
   Future<void> removeFirstTime() async {
     return await _localDataSource.setFirstTime();
   }
+
+  @override
+  Future<void> logout() async {
+    return await _localDataSource.removeLocalTokens();
+  }
 }

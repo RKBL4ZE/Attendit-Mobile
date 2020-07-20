@@ -25,6 +25,8 @@ class NavigatorBloc extends Bloc<NavigatorEvent, dynamic> {
     } else if (event is NavigateToFullTimetableEvent) {
       navigatorKey.currentState
           .pushNamed('/fulltimetable', arguments: event.full);
-    }
+    } else if (event is NavigatetoLoginEvent) {
+		navigatorKey.currentState.pushReplacementNamed('/');
+	}
   }
 }

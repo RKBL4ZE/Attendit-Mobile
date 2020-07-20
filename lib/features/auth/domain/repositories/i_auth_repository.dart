@@ -13,4 +13,6 @@ abstract class IAuthRepository {
   Future<bool> checkFirstTime();
 
   Future<void> removeFirstTime();
+
+  Future<void> logout();
 }

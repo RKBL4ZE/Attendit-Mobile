@@ -1,7 +1,10 @@
 import 'package:Attendit/config/styles.dart';
+import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
+import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
 import 'package:Attendit/features/static_pages/pending.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class SideDrawer extends StatelessWidget {
@@ -123,6 +126,11 @@ class SideDrawer extends StatelessWidget {
                 child: new Container(
                   //  alignment: Alignment.bottomCenter,
                   child: ListTile(
+					  onTap: () {
+						  print('Logout Presses');
+						  BlocProvider.of<AuthBloc>(context).add(LogoutEvent());
+						  BlocProvider.of<NavigatorBloc>(context).add(NavigatetoLoginEvent());
+					  },
                     title: Text(
                       "Logout",
                       style: TextStyle(

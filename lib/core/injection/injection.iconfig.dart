@@ -40,6 +40,7 @@ import 'package:Attendit/features/assignment/domain/usecases/submit_assignment.d
 import 'package:Attendit/features/assignment/presentation/bloc/assignment_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
+import 'package:Attendit/features/auth/domain/usecases/user_logout.dart';
 import 'package:Attendit/features/auth/domain/usecases/check_first_time.dart';
 import 'package:Attendit/features/auth/domain/usecases/check_session.dart';
 import 'package:Attendit/features/assignment/domain/usecases/get_student_assignment.dart';
@@ -119,6 +120,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => SubmitAssignmentBloc(g<SubmitAssignment>()));
   g.registerFactory<TimetableBloc>(() => TimetableBloc(g<GetTimeTable>()));
   g.registerLazySingleton<UserLogin>(() => UserLogin(g<IAuthRepository>()));
+  g.registerLazySingleton<UserLogout>(() => UserLogout(g<IAuthRepository>()));
   g.registerLazySingleton<CheckFirstTime>(
       () => CheckFirstTime(g<IAuthRepository>()));
   g.registerLazySingleton<CheckSession>(
@@ -131,6 +133,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<UserLogin>(),
         g<CheckSession>(),
         g<CheckFirstTime>(),
+        g<UserLogout>(),
       ));
 }
 

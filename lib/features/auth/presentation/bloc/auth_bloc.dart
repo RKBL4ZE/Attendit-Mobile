@@ -5,6 +5,7 @@ import 'package:Attendit/core/usecase/usecase.dart';
 import 'package:Attendit/features/auth/domain/usecases/check_first_time.dart';
 import 'package:Attendit/features/auth/domain/usecases/check_session.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
+import 'package:Attendit/features/auth/domain/usecases/user_logout.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -22,10 +23,11 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserLogin userLogin;
+  final UserLogout userLogout;
   final CheckSession checkSession;
   final CheckFirstTime checkFirstTime;
 
-  AuthBloc(this.userLogin, this.checkSession, this.checkFirstTime);
+  AuthBloc(this.userLogin, this.checkSession, this.checkFirstTime, this.userLogout);
   @override
   AuthState get initialState => AuthInitial();
 
@@ -55,6 +57,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (event is InitialEvent) {
       yield AuthWelcomeSuccess();
     }
+	if (event is LogoutEvent) {
+		await userLogout(NoParams());
+	}
   }
 
   Stream<AuthState> _eitherLoadedOrErrorState(

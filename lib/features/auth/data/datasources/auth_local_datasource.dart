@@ -9,9 +9,14 @@ abstract class IAuthLocalDataSource {
 
   Future<bool> getLocalTokens();
 
+  Future<void> removeLocalTokens();
+
   Future<bool> getFirstTime();
 
   Future<void> setFirstTime();
+
+  
+
 }
 
 const CACHED_USER_TOKENS = 'CACHED_USER_TOKENS';
@@ -55,5 +60,11 @@ class AuthLocalDataSource implements IAuthLocalDataSource {
   Future<void> setFirstTime() {
     _box.put(FIRST_TIME_STRING, FIRST_TIME_STRING);
     return Future.value();
+  }
+
+  @override
+  Future<void> removeLocalTokens() {
+    _box.delete(CACHED_USER_TOKENS);
+	return Future.value();
   }
 }
