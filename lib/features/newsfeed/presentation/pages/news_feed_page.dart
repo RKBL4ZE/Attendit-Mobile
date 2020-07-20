@@ -1,10 +1,9 @@
-
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/features/newsfeed/domain/entities/news_feed.dart';
 import 'package:Attendit/features/newsfeed/presentation/bloc/newsfeed_bloc.dart';
 import 'package:Attendit/features/newsfeed/presentation/widgets/news_feed_card.dart';
 import 'package:Attendit/features/newsfeed/presentation/widgets/post_news_feed.dart';
-import 'package:Attendit/loaders/color_loader_3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,9 +40,7 @@ class NewsFeedWidget extends StatelessWidget {
           bloc: BlocProvider.of<NewsfeedBloc>(context),
           builder: (context, state) {
             if (state is NewsfeedLoading) {
-              return Center(
-                child: ColorLoader3(),
-              );
+              return loaderWidget;
             }
 
             if (state is NewsfeedLoaded) {
@@ -51,7 +48,7 @@ class NewsFeedWidget extends StatelessWidget {
               return Container(
                   child: Scaffold(
                 body: buildNewsFeed(state.newsfeed),
-                floatingActionButton: MyFloatingActionButton(sheight:sheight),
+                floatingActionButton: MyFloatingActionButton(sheight: sheight),
               ));
             }
 
@@ -64,4 +61,3 @@ class NewsFeedWidget extends StatelessWidget {
     );
   }
 }
-

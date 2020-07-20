@@ -1,9 +1,9 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
 import 'package:Attendit/features/home/presentation/widgets/assignments/assignments.dart';
 import 'package:Attendit/features/home/presentation/widgets/attendance/all_subject_attendance_card.dart';
 import 'package:Attendit/features/home/presentation/widgets/attendance/attendance_bar.dart';
 import 'package:Attendit/features/home/presentation/widgets/student_profile.dart';
-import 'package:Attendit/loaders/color_loader_3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +17,7 @@ class MyHomePage extends StatelessWidget {
         bloc: BlocProvider.of<HomeBloc>(context),
         builder: (context, state) {
           if (state is DetailsLoading) {
-            return Center(child: ColorLoader3());
+            return loaderWidget;
           }
           if (state is DetailsLoaded) {
             final student = state.student;

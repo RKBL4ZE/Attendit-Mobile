@@ -1,3 +1,4 @@
+import 'package:Attendit/loaders/color_loader_4.dart';
 import 'package:flutter/material.dart';
 
 class Styles {
@@ -89,3 +90,5 @@ class CardStyle {
     ), */
   );
 }
+
+Widget loaderWidget=ColorLoader4();

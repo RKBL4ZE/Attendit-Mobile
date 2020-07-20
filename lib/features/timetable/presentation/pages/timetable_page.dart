@@ -32,10 +32,7 @@ class TimeTableWidget extends StatelessWidget {
         bloc: BlocProvider.of<TimetableBloc>(context),
         builder: (context, state) {
           if (state is TimetableLoading) {
-            // return Center(
-            //   child: Text('Loading'),
-            // );
-            return Center(child: ColorLoader3());
+            return loaderWidget;
           }
           if (state is TimetableLoaded) {
             final group = state.group;

@@ -8,7 +8,7 @@ import 'package:Attendit/features/newsfeed/presentation/pages/news_feed_page.dar
 import 'package:Attendit/features/timetable/presentation/pages/timetable_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
@@ -96,7 +96,16 @@ class _NavBarState extends State<NavBar> {
       drawer: SideDrawer(),
       appBar: AppBar(
         title: pageIndex == 0 || pageIndex == _pages.length - 1
-            ? Icon(Icons.arrow_upward)
+            ? Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: SvgPicture.asset(
+                    'assets/images/logo.svg',
+                    height: 50,
+                  ),
+                ),
+              )
             : Text(
                 (_pages[pageIndex]['title']),
                 style: TextStyle(
