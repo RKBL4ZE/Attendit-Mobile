@@ -142,6 +142,11 @@ List<Timing> _currentDayTimetable(String day, List<Group> group, int index) {
       {
         return group[index].timetable.saturday;
       }
+      default:
+      {
+        return group[index].timetable.monday;
+      }
+      /* sunday kya kare nakuri chod de????? */
     // case "sunday":
     //   {
     //     return group[index].timetable.sunday;
