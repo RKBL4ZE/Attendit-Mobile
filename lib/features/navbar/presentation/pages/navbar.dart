@@ -97,10 +97,10 @@ class _NavBarState extends State<NavBar> {
       appBar: AppBar(
         title: pageIndex == 0 || pageIndex == _pages.length - 1
             ? SvgPicture.asset(
-              'assets/images/logo.svg',
-              color: Colors.black,
-              height: 50,
-            )
+                'assets/images/logo.svg',
+                color: Colors.black,
+                height: 50,
+              )
             : Text(
                 (_pages[pageIndex]['title']),
                 style: TextStyle(
@@ -127,7 +127,7 @@ class _NavBarState extends State<NavBar> {
       body: MultiBlocProvider(
         providers: [BlocProvider<HomeBloc>(create: (_) => getIt())],
         child: PersistentTabView(
-            stateManagement: false,
+            stateManagement: true,
             controller: _controller,
             screens: _buildScreens(),
             items:
@@ -138,8 +138,8 @@ class _NavBarState extends State<NavBar> {
             resizeToAvoidBottomInset:
                 true, // This needs to be true if you want to move up the screen when keyboard appears.
             handleAndroidBackButtonPress: true,
-            hideNavigationBar: hideNav,
-            /******  not working or screen push method is different********/
+            // hideNavigationBar: hideNav,
+            // /******  not working or screen push method is different********/
             screenTransitionAnimation: ScreenTransitionAnimation(
               // Screen transition animation on change of selected tab.
               animateTabTransition: true,
