@@ -31,7 +31,7 @@ class HomeWidget extends StatelessWidget {
     _bloc.add(GetDetailsEvent());
     return SingleChildScrollView(
         child: Container(
-      margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: BlocBuilder<HomeBloc, HomeState>(
         bloc: BlocProvider.of<HomeBloc>(context),
         builder: (context, state) {
@@ -51,7 +51,7 @@ class HomeWidget extends StatelessWidget {
                   studentimg: student.profilePicture,
                   studentname: student.name,
                 ),
-                Container(
+                /* Container(
                   margin: EdgeInsets.fromLTRB(20, 10, 15, 10),
                   child: Text(
                     "Attendance",
@@ -61,12 +61,12 @@ class HomeWidget extends StatelessWidget {
                         color: Styles.headingfontcolor,
                         fontWeight: FontWeight.bold),
                   ),
-                ),
+                ), */
                 AttendenceBarWidget(
                   attendanceBar: state.attendanceList,
                 ),
                 AttendanceCardWidget(allatendancelist: state.attendanceList),
-                Container(
+               /*  Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 15, 10),
                   child: Text(
                     "Assignments",
@@ -76,7 +76,7 @@ class HomeWidget extends StatelessWidget {
                         color: Styles.headingfontcolor,
                         fontWeight: FontWeight.bold),
                   ),
-                ),
+                ), */
                 AssignmentsWidget(assignments: state.assignmentsList),
               ],
             );
