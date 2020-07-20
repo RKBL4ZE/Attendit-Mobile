@@ -20,7 +20,7 @@ class StudentProfileWidget extends StatelessWidget {
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
-      margin: EdgeInsets.fromLTRB(15, 30, 15, 10),
+      margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
       child: Row(
         children: <Widget>[
           Container(
@@ -30,19 +30,19 @@ class StudentProfileWidget extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(15)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withAlpha(70),
-                  blurRadius: 6.0,
-                  spreadRadius: 7.0,
+                  color: Colors.grey.withAlpha(40),
+                  blurRadius: 1.0,
+                  spreadRadius: 1.0,
                   offset: Offset(
                     0.0,
                     3.0,
                   ),
                 ),
               ],
-              border: Border.all(
+              /* border: Border.all(
                 color: Colors.white,
                 width: 5,
-              ),
+              ), */
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.all(

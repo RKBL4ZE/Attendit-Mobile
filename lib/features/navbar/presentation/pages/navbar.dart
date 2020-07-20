@@ -86,11 +86,23 @@ class _NavBarState extends State<NavBar> {
   }
 
   double elevation = 2;
+  bool hideNav = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideDrawer(),
-      appBar: GradientAppBar(
+      appBar: AppBar(
+        title: Text(
+          (_pages[pageIndex]['title']),
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+      ),
+      /* appBar: GradientAppBar(
         elevation: 2,
         centerTitle: true,
         title: Container(
@@ -101,48 +113,46 @@ class _NavBarState extends State<NavBar> {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        gradient: Styles.colorGradientTheme,
-      ),
-      body: Center(
-        child: PersistentTabView(
-            stateManagement: true,
-            controller: _controller,
-            screens: _buildScreens(),
-            items:
-                _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
-            confineInSafeArea: true,
-            // backgroundColor: Colors.white,
-            hideNavigationBarWhenKeyboardShows: true,
-            resizeToAvoidBottomInset:
-                true, // This needs to be true if you want to move up the screen when keyboard appears.
-            handleAndroidBackButtonPress: true,
-            hideNavigationBar: false,
-            /******  not working or screen push method is different********/
-            screenTransitionAnimation: ScreenTransitionAnimation(
-              // Screen transition animation on change of selected tab.
-              animateTabTransition: true,
-              curve: Curves.ease,
-              duration: Duration(milliseconds: 300),
-            ),
-            itemAnimationProperties: ItemAnimationProperties(
-              duration: Duration(milliseconds: 300),
-              curve: Curves.ease,
-            ),
-            onItemSelected: (index) {
-              setState(() {
-                if (index == 3) {
-                  elevation = 0;
-                } else {
-                  elevation = 5;
-                }
-                pageIndex = index;
-              }); // This is required to update the nav bar if Android back button is pressed
-            },
-            itemCount: 4,
-            navBarStyle: NavBarStyle
-                .style13 // Choose the nav bar style with this property
-            ),
-      ),
+       // gradient: Styles.colorGradientTheme,
+      ), */
+      body: PersistentTabView(
+          stateManagement: false,
+          controller: _controller,
+          screens: _buildScreens(),
+          items:
+              _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
+          confineInSafeArea: true,
+          // backgroundColor: Colors.white,
+          hideNavigationBarWhenKeyboardShows: true,
+          resizeToAvoidBottomInset:
+              true, // This needs to be true if you want to move up the screen when keyboard appears.
+          handleAndroidBackButtonPress: true,
+          hideNavigationBar: hideNav,
+          /******  not working or screen push method is different********/
+          screenTransitionAnimation: ScreenTransitionAnimation(
+            // Screen transition animation on change of selected tab.
+            animateTabTransition: true,
+            curve: Curves.ease,
+            duration: Duration(milliseconds: 300),
+          ),
+          itemAnimationProperties: ItemAnimationProperties(
+            duration: Duration(milliseconds: 300),
+            curve: Curves.ease,
+          ),
+          onItemSelected: (index) {
+            setState(() {
+              if (index == 3) {
+                elevation = 0;
+              } else {
+                elevation = 5;
+              }
+              pageIndex = index;
+            }); // This is required to update the nav bar if Android back button is pressed
+          },
+          itemCount: 4,
+          navBarStyle:
+              NavBarStyle.style13 // Choose the nav bar style with this property
+          ),
     );
   }
 }
