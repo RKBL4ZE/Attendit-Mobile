@@ -42,28 +42,31 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           body: Center(
             child: Column(
               children: <Widget>[
-                AvatarGlow(
-                  endRadius: 90,
-                  duration: Duration(seconds: 2),
-                  glowColor: Colors.white24,
-                  repeat: true,
-                  repeatPauseDuration: Duration(seconds: 2),
-                  startDelay: Duration(seconds: 1),
-                  child: Material(
-                      elevation: 8.0,
-                      shape: CircleBorder(),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey[100],
-                        child: Padding(
-                          padding: const EdgeInsets.all(17.0),
-                          child: SvgPicture.asset(
-                            'assets/images/logo.svg',
-                            // height: 70,
-                            // width: 70,
+                Expanded(
+                  flex: 3,
+                  child: AvatarGlow(
+                    endRadius: 90,
+                    duration: Duration(seconds: 2),
+                    glowColor: Colors.white24,
+                    repeat: true,
+                    repeatPauseDuration: Duration(seconds: 2),
+                    startDelay: Duration(seconds: 1),
+                    child: Material(
+                        elevation: 8.0,
+                        shape: CircleBorder(),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey[100],
+                          child: Padding(
+                            padding: const EdgeInsets.all(17.0),
+                            child: SvgPicture.asset(
+                              'assets/images/logo.svg',
+                              // height: 70,
+                              // width: 70,
+                            ),
                           ),
-                        ),
-                        radius: 60.0,
-                      )),
+                          radius: 60.0,
+                        )),
+                  ),
                 ),
                 DelayedAnimation(
                   child: Text(
@@ -102,9 +105,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                   delay: delayedAmount + 3000,
                 ),
-                SizedBox(
-                  height: 150.0,
-                ),
+                
                 DelayedAnimation(
                   child: GestureDetector(
                     onTapDown: _onTapDown,
@@ -116,6 +117,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                   delay: delayedAmount + 4000,
                 ),
+                
               ],
             ),
           )
@@ -137,6 +139,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   }
 
   Widget get _animatedButtonUI => Container(
+	  margin: EdgeInsets.fromLTRB(0, 150, 0, 150),
         height: 60,
         width: 270,
         decoration: BoxDecoration(
