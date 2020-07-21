@@ -40,32 +40,36 @@ class PendingAssignmentWidget extends StatelessWidget {
       cardcolor = GraphStyle.low;
     }
 
-    return Text(
+    return AutoSizeText(
       formattedDate,
+      overflow: CardStyle.overflow,
+      maxLines: CardStyle.maxLines,
+      minFontSize: CardStyle.minFontSize,
+      maxFontSize: CardStyle.maxFontSize,
       textAlign: TextAlign.right,
       style: CardStyle.subHeadingStyle,
     );
   }
 
-  Widget pendingbuildContainer(Widget child) {
-    return Container(
-      decoration: BoxDecoration(
-          // color: Colors.white,
-          // border: Border.all(color: Colors.grey),
-          // borderRadius: BorderRadius.circular(10),
-          ),
-      margin: EdgeInsets.all(10),
+//   Widget pendingbuildContainer(Widget child) {
+//     return Container(
+//       decoration: BoxDecoration(
+//           // color: Colors.white,
+//           // border: Border.all(color: Colors.grey),
+//           // borderRadius: BorderRadius.circular(10),
+//           ),
+//       margin: EdgeInsets.all(10),
 
-      /// padding: EdgeInsets.all(10),
-      height: 40 * pendingassignment.length.truncateToDouble(),
-      width: double.infinity,
-      child: child,
-    );
-  }
+//       /// padding: EdgeInsets.all(10),
+//       height: 40 * pendingassignment.length.truncateToDouble(),
+//       width: double.infinity,
+//       child: child,
+//     );
+//   }
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return pendingassignment.length!=0?InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
             decoration: BoxDecoration(boxShadow: [CardStyle.boxShadow]),
@@ -89,7 +93,7 @@ class PendingAssignmentWidget extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Table(
-                              // border: TableBorder.all(),
+                              columnWidths: CardStyle.tablecolumnWidths,
                               children: [
                                 TableRow(
                                   children: [
@@ -106,7 +110,7 @@ class PendingAssignmentWidget extends StatelessWidget {
                                     ),
                                     Text(
                                       "SUBJECTS",
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.left,
                                       style: TextStyle(
                                         // fontFamily: 'Rubik',
                                         fontSize: 15,
@@ -128,64 +132,71 @@ class PendingAssignmentWidget extends StatelessWidget {
                                 ),
                               ]),
                         ),
-                        pendingbuildContainer(
-                          ListView.builder(
-                            primary: false,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (ctx, index) => Container(
-                              height: 40,
-                              // margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                              child: Table(
-                                  defaultVerticalAlignment:
-                                      TableCellVerticalAlignment.top,
-
-                                  //  border: TableBorder.all(),
-                                  //defaultColumnWidth: FixedColumnWidth(10.0),
-                                  children: [
-                                    TableRow(
-                                      children: [
-                                        AutoSizeText(
-                                          pendingassignment[index].title,
-                                          textAlign: TextAlign.left,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                            // fontFamily: 'Rubik',
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(
-                                                128, 139, 151, 1),
-                                            //  fontWeight: FontWeight.bold
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                          child: ConstrainedBox(
+                            constraints:
+                                BoxConstraints(maxHeight: double.infinity),
+                            child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (ctx, index) => Container(
+                                // height: 40,
+                                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                child: Table(
+                                    defaultVerticalAlignment:
+                                        TableCellVerticalAlignment.top,
+                                    columnWidths: CardStyle.tablecolumnWidths,
+                                    children: [
+                                      TableRow(
+                                        children: [
+                                          AutoSizeText(
+                                            pendingassignment[index].title,
+                                            textAlign: TextAlign.left,
+                                            overflow: CardStyle.overflow,
+                                            maxLines: CardStyle.maxLines,
+                                            minFontSize: CardStyle.minFontSize,
+                                            maxFontSize: CardStyle.maxFontSize,
+                                            style: TextStyle(
+                                              // fontFamily: 'Rubik',
+                                              fontSize: 15,
+                                              color: Color.fromRGBO(
+                                                  128, 139, 151, 1),
+                                              //  fontWeight: FontWeight.bold
+                                            ),
                                           ),
-                                        ),
-                                        AutoSizeText(
-                                          pendingassignment[index]
-                                              .subject
-                                              .subjectName,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            // fontFamily: 'Rubik',
-                                            fontSize: 15,
-                                            color: Color.fromRGBO(
-                                                128, 139, 151, 1),
-                                            //  fontWeight: FontWeight.bold
+                                          AutoSizeText(
+                                            pendingassignment[index]
+                                                .subject
+                                                .subjectName,
+                                            overflow: CardStyle.overflow,
+                                            maxLines: CardStyle.maxLines,
+                                            minFontSize: CardStyle.minFontSize,
+                                            maxFontSize: CardStyle.maxFontSize,
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                              // fontFamily: 'Rubik',
+                                              fontSize: 15,
+                                              color: Color.fromRGBO(
+                                                  128, 139, 151, 1),
+                                              //  fontWeight: FontWeight.bold
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                            child: convertTime(
-                                                pendingassignment[index]
-                                                    .dueDate)),
-                                      ],
-                                    ),
-                                  ]),
+                                          Container(
+                                              child: convertTime(
+                                                  pendingassignment[index]
+                                                      .dueDate)),
+                                        ],
+                                      ),
+                                    ]),
+                              ),
+                              itemCount: pendingassignment.length,
                             ),
-                            itemCount: pendingassignment.length,
                           ),
                         ),
                       ]),
                 ),
               ],
-            )));
+            ))):Container();
   }
 }
