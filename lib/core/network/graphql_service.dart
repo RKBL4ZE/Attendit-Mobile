@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:Attendit/core/error/exceptions.dart';
+import 'package:Attendit/core/navigator/navigator.service.dart';
 import 'package:Attendit/core/network/network_info.dart';
 import 'package:Attendit/core/util/gql_mutation.dart';
 import 'package:Attendit/features/auth/data/models/user_tokens_model.dart';
@@ -34,11 +35,12 @@ const CACHED_USER_TOKENS = 'CACHED_USER_TOKENS';
 class GraphQLService implements IGraphQLService {
   final Box _box;
   final INetworkInfo _networkInfo;
+  final NavigationService navigationService;
 
   GraphQLClient _client;
   GraphQLClient _clientNoAuth;
 
-  GraphQLService(this._box, this._networkInfo) {
+  GraphQLService(this._box, this._networkInfo, this.navigationService) {
     final HttpLink httpLink = HttpLink(
       uri: ENDPOINT,
     );
@@ -51,7 +53,16 @@ class GraphQLService implements IGraphQLService {
       },
     );
 
-    final Link link = authLink.concat(httpLink);
+    final ErrorLink errorLink = ErrorLink(
+      errorHandler: (error) {
+        if (error.exception.graphqlErrors[0].message == "Unauthorized") {
+			_box.delete(CACHED_USER_TOKENS);
+			navigationService.navigateToReplace('/');
+		}
+      },
+    );
+
+    final Link link = errorLink.concat(authLink.concat(httpLink));
 
     _client = new GraphQLClient(link: link, cache: InMemoryCache());
     _clientNoAuth = new GraphQLClient(link: httpLink, cache: InMemoryCache());
