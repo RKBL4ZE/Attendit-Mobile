@@ -5,7 +5,6 @@ import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/single_day_timetable.dart';
-import 'package:Attendit/loaders/color_loader_3.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,20 +89,18 @@ class FullTimeTableButton extends StatelessWidget {
               ));
           // Navigate to Full Timetable
         },
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+        /* shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)), */
         padding: EdgeInsets.all(0.0),
         child: Ink(
-          decoration: BoxDecoration(
-              gradient: Styles.colorGradientTheme,
-              borderRadius: BorderRadius.circular(10.0)),
+          
           child: Container(
             constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
             alignment: Alignment.center,
             child: Text(
               "View Full Time Table",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 15),
+              
             ),
           ),
         ),

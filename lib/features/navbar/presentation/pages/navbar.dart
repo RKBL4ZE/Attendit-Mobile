@@ -46,7 +46,7 @@ class _NavBarState extends State<NavBar> {
     },
     {
       //'page': TimeTablePage(),
-      'title': 'Time Table',
+      'title': "Today's Lectures",
     },
     {
       // 'page': NewsFeedPage(),
@@ -97,7 +97,7 @@ class _NavBarState extends State<NavBar> {
       appBar: AppBar(
         title: pageIndex == 0 || pageIndex == _pages.length - 1
             ? SvgPicture.asset(
-                'assets/images/logo.svg',
+                'assets/images/logo-black.svg',
                 color: Colors.black,
                 height: 50,
               )
