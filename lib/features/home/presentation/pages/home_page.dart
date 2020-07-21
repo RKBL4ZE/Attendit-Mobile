@@ -10,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<HomeBloc>(context).add(GetDetailsEvent());
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: BlocBuilder<HomeBloc, HomeState>(

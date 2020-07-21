@@ -19,14 +19,15 @@ part 'home_state.dart';
 
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
-const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetStudentDetails getStudentDetails;
   final GetAllDetails getAllDetails;
 
-  HomeBloc(this.getStudentDetails, this.getAllDetails);
+  HomeBloc(this.getStudentDetails, this.getAllDetails) {
+    this.add(GetDetailsEvent());
+  }
   @override
   HomeState get initialState => DetailsLoading();
 
@@ -54,8 +55,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         return SERVER_FAILURE_MESSAGE;
       case CacheFailure:
         return CACHE_FAILURE_MESSAGE;
-      case UnauthorizedFailure:
-        return UNAUTHORIZED_FAILURE_MESSAGE;
       default:
         return 'Unexpected error';
     }
