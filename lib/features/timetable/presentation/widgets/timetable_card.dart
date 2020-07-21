@@ -42,17 +42,10 @@ class TimeTableCardWidget extends StatelessWidget {
     }
 
     return InkWell(
-      //  onTap: () => selectCategory(context),
-      //  splashColor: Theme.of(context).primaryColor,
-      //borderRadius: BorderRadius.circular(20),
       child: Container(
           decoration: BoxDecoration(boxShadow: [LectureCardStyle.boxShadow]),
-          // height: 100,
           width: double.infinity,
-          margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
-          //padding: const EdgeInsets.all(15),
           child: Card(
-              //margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
               color: cardcolor,
               shape: LectureCardStyle.shape,
               child: Container(

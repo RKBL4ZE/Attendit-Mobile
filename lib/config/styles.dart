@@ -77,7 +77,7 @@ class CardStyle {
   );
   static final textStyle = TextStyle(
     fontSize: 15,
-    color: Color.fromRGBO(128, 139, 151, 1),
+    color: Colors.black87,
   );
 
   static final boxShadow = BoxShadow(
@@ -89,6 +89,20 @@ class CardStyle {
       1.0,
     ), */
   );
+
+  static final overflow = TextOverflow.ellipsis;
+
+  static const int maxLines = 1;
+
+  static const double minFontSize = 14;
+
+  static const double maxFontSize = 14;
+
+  static final tablecolumnWidths = {
+    0: FlexColumnWidth(4),
+    1: FlexColumnWidth(4),
+    2: FlexColumnWidth(2),
+  };
 }
 
 class LectureCardStyle {
@@ -97,9 +111,9 @@ class LectureCardStyle {
   static final currentColor = Colors.blue;
   static final afterColor = Colors.red;
   static final textStyle =
-      TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
   static final headingTextStyle =
-      TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold);
   static final subHeadingTextStyle =
       TextStyle(fontSize: 16, color: Colors.white);
   static final shape =

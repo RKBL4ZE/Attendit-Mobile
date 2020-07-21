@@ -77,9 +77,9 @@ class FullTimeTableButton extends StatelessWidget {
   const FullTimeTableButton(this.group);
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
-      alignment: Alignment.bottomCenter,
-      height: 50.0,
+      margin: EdgeInsets.fromLTRB(50, 15, 50, 15),
+      //alignment: Alignment.bottomCenter,
+      height: 45.0,
       child: RaisedButton(
         onPressed: () {
           pushNewScreen(context,
@@ -90,11 +90,10 @@ class FullTimeTableButton extends StatelessWidget {
         },
         /* shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)), */
-        padding: EdgeInsets.all(0.0),
         child: Ink(
           
           child: Container(
-            constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+            //constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
             alignment: Alignment.center,
             child: Text(
               "View Full Time Table",

@@ -163,6 +163,16 @@ class _NavBarState extends State<NavBar> {
       body: MultiBlocProvider(
         providers: [BlocProvider<HomeBloc>(create: (_) => getIt())],
         child: PersistentTabView(
+            decoration: NavBarDecoration(
+                border: Border(
+              top: BorderSide(
+                color: Colors.black87,
+                width: 0.2,
+              ),
+              /* color: Colors.black,
+              width: 0.5,
+              style: BorderStyle.solid, */
+            )),
             stateManagement: true,
             controller: _controller,
             screens: _buildScreens(),
@@ -170,29 +180,22 @@ class _NavBarState extends State<NavBar> {
                 _navBarsItems(), // Redundant here but defined to demonstrate for other than custom style
             confineInSafeArea: true,
             // backgroundColor: Colors.white,
-            hideNavigationBarWhenKeyboardShows: true,
+            //hideNavigationBarWhenKeyboardShows: true,
             resizeToAvoidBottomInset:
                 true, // This needs to be true if you want to move up the screen when keyboard appears.
             handleAndroidBackButtonPress: true,
-            // hideNavigationBar: hideNav,
-            // /******  not working or screen push method is different********/
             screenTransitionAnimation: ScreenTransitionAnimation(
               // Screen transition animation on change of selected tab.
               animateTabTransition: true,
               curve: Curves.ease,
-              duration: Duration(milliseconds: 300),
+              duration: Duration(milliseconds: 150),
             ),
             itemAnimationProperties: ItemAnimationProperties(
-              duration: Duration(milliseconds: 300),
-              curve: Curves.ease,
+              duration: Duration(milliseconds: 150),
+              curve: Curves.bounceIn,
             ),
             onItemSelected: (index) {
               setState(() {
-                if (index == 3) {
-                  elevation = 0;
-                } else {
-                  elevation = 5;
-                }
                 pageIndex = index;
               }); // This is required to update the nav bar if Android back button is pressed
             },

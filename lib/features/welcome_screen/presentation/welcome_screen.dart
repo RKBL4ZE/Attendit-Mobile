@@ -1,6 +1,8 @@
 import 'package:Attendit/config/constant.dart';
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:Attendit/features/auth/presentation/pages/login_page.dart';
+import 'package:Attendit/features/auth/presentation/widgets/login_form.dart';
+import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +35,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final color = Colors.white;
     _scale = 1 - _controller.value;
@@ -45,28 +53,31 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               children: <Widget>[
                 Expanded(
                   flex: 3,
-                  child: AvatarGlow(
-                    endRadius: 90,
-                    duration: Duration(seconds: 2),
-                    glowColor: Colors.white24,
-                    repeat: true,
-                    repeatPauseDuration: Duration(seconds: 2),
-                    startDelay: Duration(seconds: 1),
-                    child: Material(
-                        elevation: 8.0,
-                        shape: CircleBorder(),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.grey[100],
-                          child: Padding(
-                            padding: const EdgeInsets.all(17.0),
-                            child: SvgPicture.asset(
-                              'assets/images/logo.svg',
-                              // height: 70,
-                              // width: 70,
+                  child: Hero(
+                    tag: welcomeScreenHero,
+                    child: AvatarGlow(
+                      endRadius: 90,
+                      duration: Duration(seconds: 2),
+                      glowColor: Colors.white24,
+                      repeat: true,
+                      repeatPauseDuration: Duration(seconds: 2),
+                      startDelay: Duration(seconds: 1),
+                      child: Material(
+                          elevation: 8.0,
+                          shape: CircleBorder(),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.grey[100],
+                            child: Padding(
+                              padding: const EdgeInsets.all(17.0),
+                              child: SvgPicture.asset(
+                                'assets/images/logo.svg',
+                                // height: 70,
+                                // width: 70,
+                              ),
                             ),
-                          ),
-                          radius: 60.0,
-                        )),
+                            radius: 60.0,
+                          )),
+                    ),
                   ),
                 ),
                 DelayedAnimation(
@@ -106,19 +117,43 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                   delay: delayedAmount + 3000,
                 ),
-                DelayedAnimation(
-                  child: GestureDetector(
-                    onTapDown: _onTapDown,
-                    onTapUp: _onTapUp,
-                    child: Hero(tag: welcomeScreenHero,
-										  child: Transform.scale(
-                        scale: _scale,
-                        child: _animatedButtonUI,
+                FlatButton(
+                  onPressed: () {
+                    /* BlocProvider.of<AuthBloc>(context).add(InitialEvent()); */
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginForm()));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(0, 150, 0, 150),
+                    height: 60,
+                    width: 270,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100.0),
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Get Started',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF8185E2),
+                        ),
                       ),
                     ),
                   ),
-                  delay: delayedAmount + 4000,
                 ),
+                /* DelayedAnimation(
+                  child: GestureDetector(
+                    onTapDown: _onTapDown,
+                    onTapUp: _onTapUp,
+                    child: Transform.scale(
+                      scale: _scale,
+                      child: _animatedButtonUI,
+                    ),
+                  ),
+                  delay: delayedAmount + 4000,
+                ), */
               ],
             ),
           )
@@ -149,7 +184,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         ),
         child: Center(
           child: Text(
-            'Get Started',
+            'Get Starasdasdted',
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
@@ -162,7 +197,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   void _onTapDown(TapDownDetails details) {
     _controller.forward();
     BlocProvider.of<AuthBloc>(context).add(InitialEvent());
-    /* Navigator.push(
+    /*  Navigator.push(
         context, MaterialPageRoute(builder: (context) => LoginPage())); */
   }
 

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 Widget buildContainer(Widget child, num length) {
   return Container(
-    
     //margin: EdgeInsets.all(10),
     // padding: EdgeInsets.all(10),
     height: 145 * length.truncateToDouble(),
@@ -26,32 +25,33 @@ class SingleDayTimeTableWidget extends StatelessWidget {
           children: <Widget>[
             // Text(timetable[0].time),
 
-            buildContainer(
-                ListView.builder(
-                  primary: false,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    // String subjectName = "";
-                    // String facultyName = "";
+            ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: double.infinity),
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (ctx, index) {
+                  // String subjectName = "";
+                  // String facultyName = "";
 
-                    // day[index].subject.forEach(
-                    //     (element) => subjectName += '${element.subjectName}/');
-                    // day[index].faculty.forEach(
-                    //     (element) => facultyName += '${element.name}/');
+                  // day[index].subject.forEach(
+                  //     (element) => subjectName += '${element.subjectName}/');
+                  // day[index].faculty.forEach(
+                  //     (element) => facultyName += '${element.name}/');
 
-                    // subjectName = subjectName.substring(0, subjectName.length - 1);
-                    // facultyName = facultyName.substring(0, facultyName.length - 1);
+                  // subjectName = subjectName.substring(0, subjectName.length - 1);
+                  // facultyName = facultyName.substring(0, facultyName.length - 1);
 
-                    return TimeTableCardWidget(
-                      startTime: day[index].startTime,
-                      endTime: day[index].endTime,
-                      subject: day[index].subject.name,
-                      faculty: day[index].faculty.name,
-                    );
-                  },
-                  itemCount: day.length,
-                ),
-                day.length),
+                  return TimeTableCardWidget(
+                    startTime: day[index].startTime,
+                    endTime: day[index].endTime,
+                    subject: day[index].subject.name,
+                    faculty: day[index].faculty.name,
+                  );
+                },
+                itemCount: day.length,
+              ),
+            ),
 
             //FullTimeTableWidget(timetable: fulltimetable),
           ]),
