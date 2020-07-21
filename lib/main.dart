@@ -1,4 +1,5 @@
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
+import 'package:Attendit/core/navigator/navigator.service.dart';
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
@@ -25,17 +26,18 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey();
+  final NavigationService _navservice = getIt<NavigationService>();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<NavigatorBloc>(
-            create: (_) => NavigatorBloc(navigatorKey: _navigatorKey)),
+            create: (_) =>
+                NavigatorBloc(navigatorKey: _navservice.navigatorKey)),
         BlocProvider<AuthBloc>(create: (_) => getIt())
       ],
       child: MaterialApp(
-        navigatorKey: _navigatorKey,
+        navigatorKey: _navservice.navigatorKey,
         debugShowCheckedModeBanner: false,
         title: 'AttendIt Student',
         theme: ThemeData.light().copyWith(

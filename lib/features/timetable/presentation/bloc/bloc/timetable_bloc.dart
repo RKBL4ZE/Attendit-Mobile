@@ -20,9 +20,10 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 @injectable
 class TimetableBloc extends Bloc<TimetableEvent, TimetableState> {
   final GetTimeTable getTimeTable;
-	
-  TimetableBloc(this.getTimeTable);
-  
+
+  TimetableBloc(this.getTimeTable) {
+	  this.add(GetTimeTableEvent());
+  }
   @override
   TimetableState get initialState => TimetableLoading();
 

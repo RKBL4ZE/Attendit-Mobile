@@ -26,7 +26,7 @@ class TimeTableWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     String currentDay = DateFormat('EEEE').format(DateTime.now()).toLowerCase();
 
-    BlocProvider.of<TimetableBloc>(context).add(GetTimeTableEvent());
+    // BlocProvider.of<TimetableBloc>(context).add(GetTimeTableEvent());
     return (BlocBuilder<TimetableBloc, TimetableState>(
         bloc: BlocProvider.of<TimetableBloc>(context),
         builder: (context, state) {
