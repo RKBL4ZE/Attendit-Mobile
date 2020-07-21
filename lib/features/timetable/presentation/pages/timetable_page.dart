@@ -90,11 +90,10 @@ class FullTimeTableButton extends StatelessWidget {
         },
         /* shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)), */
-        padding: EdgeInsets.all(0.0),
         child: Ink(
           
           child: Container(
-            constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+            //constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
             alignment: Alignment.center,
             child: Text(
               "View Full Time Table",

@@ -77,7 +77,7 @@ class CardStyle {
   );
   static final textStyle = TextStyle(
     fontSize: 15,
-    color: Color.fromRGBO(128, 139, 151, 1),
+    color: Colors.black87,
   );
 
   static final boxShadow = BoxShadow(
@@ -97,7 +97,7 @@ class LectureCardStyle {
   static final currentColor = Colors.blue;
   static final afterColor = Colors.red;
   static final textStyle =
-      TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
   static final headingTextStyle =
       TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
   static final subHeadingTextStyle =
