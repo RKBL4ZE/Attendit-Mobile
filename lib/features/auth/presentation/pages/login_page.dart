@@ -10,7 +10,6 @@ class LoginPage extends StatelessWidget {
   static const routeName = '/LoginPage';
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<AuthBloc>(context).add(CheckSessionEvent());
     return Scaffold(
       // appBar: GradientAppBar(
       //   title: Container(
@@ -33,7 +32,7 @@ class LoginPage extends StatelessWidget {
                   dialogContext = context;
                   return CupertinoAlertDialog(
                     title: new Text("Alert"),
-                    content: new Text("You have been logged out."),
+                    content: new Text(state.message),
                     actions: <Widget>[
                       CupertinoDialogAction(
                         child: Text('OK'),
@@ -50,6 +49,7 @@ class LoginPage extends StatelessWidget {
           if (state is AuthError ||
               state is AuthInitial ||
               state is LoginLoading ||
+              state is UserLoggedOut ||
               state is AuthWelcomeSuccess) return LoginForm(state: state);
           if (state is AuthWelcome) return WelcomeScreen();
           return Container();

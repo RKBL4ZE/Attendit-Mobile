@@ -27,7 +27,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CheckSession checkSession;
   final CheckFirstTime checkFirstTime;
 
-  AuthBloc(this.userLogin, this.checkSession, this.checkFirstTime, this.userLogout);
+  AuthBloc(
+      this.userLogin, this.checkSession, this.checkFirstTime, this.userLogout) {
+    this.add(CheckSessionEvent());
+  }
   @override
   AuthState get initialState => AuthInitial();
 
@@ -51,15 +54,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         yield AuthWelcome();
       } else {
         final failureOrSucess = await checkSession(NoParams());
-        yield* _eitherLoadedOrErrorState(failureOrSucess);
+        final res = failureOrSucess.fold((l) => false, (r) => true);
+        if (res) {
+          yield UserLogedIn();
+        } else {
+          yield AuthInitial();
+        }
       }
     }
     if (event is InitialEvent) {
       yield AuthWelcomeSuccess();
     }
-	if (event is LogoutEvent) {
-		await userLogout(NoParams());
-	}
+    if (event is LogoutEvent) {
+      await userLogout(NoParams());
+	  yield UserLoggedOut();
+    }
   }
 
   Stream<AuthState> _eitherLoadedOrErrorState(
