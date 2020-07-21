@@ -91,4 +91,19 @@ class CardStyle {
   );
 }
 
-Widget loaderWidget=ColorLoader4();
+class LectureCardStyle {
+  static final boxShadow = CardStyle.boxShadow;
+  static final beforeColor = Colors.blueGrey[800];
+  static final currentColor = Colors.blue;
+  static final afterColor = Colors.red;
+  static final textStyle =
+      TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
+  static final headingTextStyle =
+      TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold);
+  static final subHeadingTextStyle =
+      TextStyle(fontSize: 16, color: Colors.white);
+  static final shape =
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
+}
+
+Widget loaderWidget = ColorLoader4();

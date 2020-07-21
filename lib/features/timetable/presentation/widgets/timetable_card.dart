@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -16,8 +17,8 @@ class TimeTableCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   List<String> startFormattime = startTime.split('');
-   List<String> endFormattime = endTime.split('');
+    List<String> startFormattime = startTime.split('');
+    List<String> endFormattime = endTime.split('');
 
     DateFormat dateFormat = new DateFormat.Hm();
     DateTime now = DateTime.now();
@@ -33,41 +34,27 @@ class TimeTableCardWidget extends StatelessWidget {
     final currentTime = DateTime.now();
 
     if (currentTime.isBefore(open) && currentTime.isBefore(close)) {
-      cardcolor = Colors.blue[100].withAlpha(500);
+      cardcolor = LectureCardStyle.afterColor;
     } else if (currentTime.isAfter(open) && currentTime.isBefore(close)) {
-      cardcolor = Colors.green[100];
+      cardcolor = LectureCardStyle.currentColor;
     } else if (currentTime.isAfter(open) && currentTime.isAfter(close)) {
-      cardcolor = Colors.red[100];
+      cardcolor = LectureCardStyle.beforeColor;
     }
 
     return InkWell(
       //  onTap: () => selectCategory(context),
       //  splashColor: Theme.of(context).primaryColor,
-      borderRadius: BorderRadius.circular(20),
+      //borderRadius: BorderRadius.circular(20),
       child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withAlpha(70),
-                  blurRadius: 6.0,
-                  spreadRadius: 3.0,
-                  offset: Offset(
-                    0.0,
-                    3.0,
-                  ),
-                ),
-              ]),
-
+          decoration: BoxDecoration(boxShadow: [LectureCardStyle.boxShadow]),
           // height: 100,
           width: double.infinity,
-          margin: new EdgeInsets.fromLTRB(0, 5, 0, 10),
+          margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
           //padding: const EdgeInsets.all(15),
           child: Card(
+              //margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
               color: cardcolor,
-              // elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
+              shape: LectureCardStyle.shape,
               child: Container(
                 margin: new EdgeInsets.fromLTRB(20, 20, 0, 20),
                 child: Column(
@@ -75,33 +62,20 @@ class TimeTableCardWidget extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       "${startFormattime[0]}${startFormattime[1]} : ${startFormattime[2]}${startFormattime[3]} - ${endFormattime[0]}${endFormattime[1]} : ${endFormattime[2]}${endFormattime[3]}",
-                      style: TextStyle(
-                          // fontFamily: 'Rubik',
-                          fontSize: 16,
-                          color: Color.fromRGBO(46, 96, 102, 1),
-                          fontWeight: FontWeight.bold),
+                      style: LectureCardStyle.textStyle,
                     ),
                     Container(
                       margin: new EdgeInsets.fromLTRB(0, 5, 0, 5),
                       child: AutoSizeText(
                         subject,
                         maxLines: 1,
-                        style: TextStyle(
-                            // fontFamily: 'Rubik',
-                            fontSize: 31,
-                            fontFamily: 'Rubik',
-                            color: Color.fromRGBO(46, 96, 102, 1),
-                            fontWeight: FontWeight.bold),
+                        style: LectureCardStyle.headingTextStyle,
                       ),
                     ),
                     AutoSizeText(
                       "- $faculty",
                       maxLines: 1,
-                      style: TextStyle(
-                        // fontFamily: 'Rubik',
-                        fontSize: 16,
-                        color: Color.fromRGBO(46, 96, 102, 1),
-                      ),
+                      style: LectureCardStyle.subHeadingTextStyle,
                     ),
                   ],
                 ),

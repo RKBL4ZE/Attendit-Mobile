@@ -14,6 +14,7 @@ import 'package:Attendit/features/home/data/datasources/home_local_datasource.da
 import 'package:Attendit/core/network/network_info.dart';
 import 'package:Attendit/features/newsfeed/data/datasources/news_feed_local_datasource.dart';
 import 'package:Attendit/features/timetable/data/datasources/timetable_local_datasource.dart';
+import 'package:Attendit/core/navigator/navigator.service.dart';
 import 'package:Attendit/core/network/graphql_service.dart';
 import 'package:Attendit/features/home/data/datasources/home_remote_datasource.dart';
 import 'package:Attendit/features/home/data/repositories/home_repository.dart';
@@ -66,8 +67,12 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => NewsFeedLocalDataSource(g<Box<dynamic>>()));
   g.registerFactory<ITimeTableLocalDataSource>(
       () => TimeTableLocalDataSource(g<Box<dynamic>>()));
-  g.registerFactory<IGraphQLService>(
-      () => GraphQLService(g<Box<dynamic>>(), g<INetworkInfo>()));
+  g.registerLazySingleton<NavigationService>(() => NavigationService());
+  g.registerFactory<IGraphQLService>(() => GraphQLService(
+        g<Box<dynamic>>(),
+        g<INetworkInfo>(),
+        g<NavigationService>(),
+      ));
   g.registerFactory<IHomeRemoteDataSource>(
       () => HomeRemoteDataSource(g<IGraphQLService>()));
   g.registerFactory<IHomeRepository>(() => HomeRepository(
