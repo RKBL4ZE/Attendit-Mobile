@@ -77,9 +77,9 @@ class FullTimeTableButton extends StatelessWidget {
   const FullTimeTableButton(this.group);
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
-      alignment: Alignment.bottomCenter,
-      height: 50.0,
+      margin: EdgeInsets.fromLTRB(50, 15, 50, 15),
+      //alignment: Alignment.bottomCenter,
+      height: 45.0,
       child: RaisedButton(
         onPressed: () {
           pushNewScreen(context,

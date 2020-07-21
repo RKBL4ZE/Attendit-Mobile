@@ -130,8 +130,8 @@ class _NavBarState extends State<NavBar> {
             decoration: NavBarDecoration(
                 border: Border(
               top: BorderSide(
-                color: Colors.red,
-                width: 0.3,
+                color: Colors.black87,
+                width: 0.2,
               ),
               /* color: Colors.black,
               width: 0.5,
@@ -159,14 +159,9 @@ class _NavBarState extends State<NavBar> {
               curve: Curves.bounceIn,
             ),
             onItemSelected: (index) {
-              //   setState(() {
-              //   }); // This is required to update the nav bar if Android back button is pressed
-              if (index == 3) {
-                elevation = 0;
-              } else {
-                elevation = 5;
-              }
-              pageIndex = index;
+              setState(() {
+                pageIndex = index;
+              }); // This is required to update the nav bar if Android back button is pressed
             },
             itemCount: 4,
             navBarStyle: NavBarStyle
