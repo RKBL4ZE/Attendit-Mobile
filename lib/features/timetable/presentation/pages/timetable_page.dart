@@ -61,7 +61,6 @@ class TimeTableWidget extends StatelessWidget {
             );
           }
           if (state is TimetableError) {
-            print(state);
             return Center(
               child: Text(state.message),
             );

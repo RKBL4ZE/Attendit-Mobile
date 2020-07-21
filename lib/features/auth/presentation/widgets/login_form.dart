@@ -20,7 +20,6 @@ class LoginForm extends StatelessWidget {
   //static const routeName = '/LoginPage';
   @override
   Widget build(BuildContext context) {
-    print(state);
     return Scaffold(
       body: BlocBuilder(
           bloc: BlocProvider.of<AuthBloc>(context),

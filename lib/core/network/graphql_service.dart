@@ -49,7 +49,6 @@ class GraphQLService implements IGraphQLService {
     final AuthLink authLink = AuthLink(
       getToken: () async {
         String token = await getFreshToken();
-        print(token);
         return "Bearer $token";
       },
     );

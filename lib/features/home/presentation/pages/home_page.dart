@@ -20,7 +20,6 @@ class MyHomePage extends StatelessWidget {
           }
           if (state is DetailsLoaded) {
             final student = state.student;
-            print(state);
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +63,6 @@ class MyHomePage extends StatelessWidget {
             );
           }
           if (state is DetailsError) {
-            print(state);
             return Center(
               child: Text(state.message),
             );
