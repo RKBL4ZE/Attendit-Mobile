@@ -21,10 +21,11 @@ class _TextLoginState extends State<TextLogin> {
             ),
             Center(
               child: Text(
-                'A world of possibility in an app',
+                'Ved Vofdika',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 30,
                   color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
