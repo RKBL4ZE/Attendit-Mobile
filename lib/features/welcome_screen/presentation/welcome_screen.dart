@@ -1,3 +1,4 @@
+import 'package:Attendit/config/constant.dart';
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:Attendit/features/auth/presentation/pages/login_page.dart';
 import 'package:avatar_glow/avatar_glow.dart';
@@ -105,19 +106,19 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                   delay: delayedAmount + 3000,
                 ),
-                
                 DelayedAnimation(
                   child: GestureDetector(
                     onTapDown: _onTapDown,
                     onTapUp: _onTapUp,
-                    child: Transform.scale(
-                      scale: _scale,
-                      child: _animatedButtonUI,
+                    child: Hero(tag: welcomeScreenHero,
+										  child: Transform.scale(
+                        scale: _scale,
+                        child: _animatedButtonUI,
+                      ),
                     ),
                   ),
                   delay: delayedAmount + 4000,
                 ),
-                
               ],
             ),
           )
@@ -139,7 +140,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   }
 
   Widget get _animatedButtonUI => Container(
-	  margin: EdgeInsets.fromLTRB(0, 150, 0, 150),
+        margin: EdgeInsets.fromLTRB(0, 150, 0, 150),
         height: 60,
         width: 270,
         decoration: BoxDecoration(

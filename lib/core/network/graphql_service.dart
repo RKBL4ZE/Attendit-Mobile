@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:Attendit/config/constant.dart';
 import 'package:Attendit/core/error/exceptions.dart';
 import 'package:Attendit/core/network/network_info.dart';
 import 'package:Attendit/core/util/gql_mutation.dart';
@@ -22,7 +23,7 @@ abstract class IGraphQLService {
       {String mutation, Map<String, dynamic> variables});
 }
 
-const String ENDPOINT = "https://attenditapi.herokuapp.com/graphql";
+const String ENDPOINT = graphQL;
 
 // const String ENDPOINT =
 //     "http:///graphql";

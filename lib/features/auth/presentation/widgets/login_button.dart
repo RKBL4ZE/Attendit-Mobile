@@ -27,65 +27,63 @@ class _LoginButtonState extends State<LoginButton> {
   Widget build(BuildContext context) {
     return BlocBuilder(
         bloc: BlocProvider.of<AuthBloc>(context),
-        builder: (context, state) => Container(
-              alignment: Alignment.center,
-              height: 50.0,
-              child: RaisedButton(
-                onPressed: () {
+        builder: (context, state) => Padding(
+      padding: const EdgeInsets.only(top: 40, right: 50, left: 200),
+      child: Container(
+        alignment: Alignment.bottomRight,
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.blue[300],
+              blurRadius: 10.0, // has the effect of softening the shadow
+              spreadRadius: 1.0, // has the effect of extending the shadow
+              offset: Offset(
+                5.0, // horizontal, move right 10
+                5.0, // vertical, move down 10
+              ),
+            ),
+          ],
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: FlatButton(
+          onPressed: () {
                   context.bloc<AuthBloc>().add(LoginEvent(
                       userType: "student",
                       password: "Test1234!",
                       username: "00414902019"));
                   setState(() {});
                 },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                padding: EdgeInsets.all(0.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Styles.colorshadow,
-                          blurRadius: 9.0,
-                          spreadRadius: 1.0,
-                          offset: Offset(
-                            0.0,
-                            0.0,
-                          ),
-                        ),
-                      ],
-                      gradient: Styles.colorGradientTheme,
-                      borderRadius: BorderRadius.circular(10.0)),
-                  constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                  alignment: Alignment.center,
-                  child: setUpButtonChild(),
-                ),
-              ),
-            ));
+          child: setUpButtonChild(),
+        ),
+      ),
+    ));
   }
 
   Widget setUpButtonChild() {
-    if (widget.state is AuthInitial) {
+    if (widget.state is AuthWelcomeSuccess) {
       return new Text(
         "Login",
         style: TextStyle(
-            fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
+                  color: Colors.lightBlueAccent,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                ),
       );
     } else if (widget.state is LoginLoading) {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlueAccent),
         ),
       );
     } else if (widget.state is UserLogedIn) {
       BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
-      return Icon(Icons.check, color: Colors.white);
+      return Icon(Icons.check, color: Colors.lightBlueAccent);
     } else if (widget.state is AuthError) {
-      return Icon(
-        Icons.clear,
-        color: Colors.white,
-      );
+      return Text("error");
     }
   }
 
