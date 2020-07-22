@@ -84,10 +84,6 @@ class CardStyle {
     color: Colors.grey.withAlpha(10),
     blurRadius: 0.2,
     spreadRadius: 0.5,
-    /*   offset: Offset(
-      0.0,
-      1.0,
-    ), */
   );
 
   static final overflow = TextOverflow.ellipsis;
@@ -140,3 +136,13 @@ class LectureCardStyle {
 
 Widget loaderWidget = ColorLoader4();
 Color fulltimeTablePrimaryColor = Colors.green[50];
+
+class ResultCardStyle {
+  static final headingTextStyle = TextStyle(
+      fontSize: 31, color: Colors.grey[850], fontWeight: FontWeight.w800);
+  static final boxShadow = BoxShadow(
+    color: Color(0xFF000000).withAlpha(25),
+    blurRadius: 10.0,
+    spreadRadius: 0.0,
+  );
+}

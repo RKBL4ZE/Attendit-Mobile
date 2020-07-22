@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:flutter/material.dart';
 
 class StudentNameCard extends StatelessWidget {
@@ -26,27 +27,10 @@ class StudentNameCard extends StatelessWidget {
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xFF000000).withAlpha(25),
-                    blurRadius: 10.0,
-                    spreadRadius: 0.0,
-                    offset: Offset(
-                      0.0,
-                      0.0,
-                    ),
-                  ),
-                ]),
+            decoration: BoxDecoration(boxShadow: [CardStyle.boxShadow]),
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
             child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              // elevation: 5,
-              margin: EdgeInsets.all(10),
               child: Container(
                 margin: EdgeInsets.fromLTRB(15, 10, 0, 10),
                 child: Column(
@@ -61,7 +45,6 @@ class StudentNameCard extends StatelessWidget {
                               child: Text(
                                 "Name",
                                 style: TextStyle(
-                                    // fontFamily: 'Karla',
                                     fontSize: fontsize,
                                     color: Color.fromRGBO(46, 96, 102, 1),
                                     fontWeight: FontWeight.bold),
