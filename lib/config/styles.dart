@@ -121,3 +121,4 @@ class LectureCardStyle {
 }
 
 Widget loaderWidget = ColorLoader4();
+Color fulltimeTablePrimaryColor = Colors.lightBlue[400];

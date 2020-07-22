@@ -152,11 +152,11 @@ class _NavBarState extends State<NavBar> {
               // Screen transition animation on change of selected tab.
               animateTabTransition: true,
               curve: Curves.ease,
-              duration: Duration(milliseconds: 150),
+              duration: Duration(milliseconds: 200),
             ),
             itemAnimationProperties: ItemAnimationProperties(
-              duration: Duration(milliseconds: 150),
-              curve: Curves.bounceIn,
+              duration: Duration(milliseconds: 200),
+              curve: Curves.ease,
             ),
             onItemSelected: (index) {
               setState(() {
