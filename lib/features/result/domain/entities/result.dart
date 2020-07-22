@@ -1,68 +1,124 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-abstract class Internals {
-  final String subjectCode;
-  final String subjectName;
-  final num semesterId;
-  final num marks;
-  final num maxMarks;
+//----subjects
 
-  Internals(this.subjectCode, this.subjectName, this.semesterId, this.marks,
-      this.maxMarks);
+abstract class Minor {
+  final num max;
+  final num earned;
+
+  Minor(this.max, this.earned);
 }
 
-abstract class Externals {
-  final String subjectCode;
-  final String subjectName;
-  final num semesterId;
-  final num internalsMarks;
-  final num externalMarks;
-  final num maxInternalsMarks;
-  final String grade;
+abstract class Major {
+  final num max;
+  final num earned;
 
-  Externals(
-      this.subjectCode,
-      this.subjectName,
-      this.semesterId,
-      this.internalsMarks,
-      this.externalMarks,
-      this.maxInternalsMarks,
-      this.grade);
+  Major(this.max, this.earned);
 }
 
-abstract class Grade {
+abstract class Total {
+  final num max;
+  final num earned;
+
+  Total(this.max, this.earned);
+}
+
+abstract class Subjects {
   final String name;
-  final num percentage;
-  final num semesterId;
-
-  Grade(this.name, this.percentage, this.semesterId);
-}
-
-abstract class Credits {
-  final num semsterId;
+  final Minor minor;
+  final Major major;
+  final Total total;
+  final bool isPassed;
   final num credits;
 
-  Credits(this.semsterId, this.credits);
+  Subjects(this.name, this.minor, this.major, this.total, this.isPassed,
+      this.credits);
 }
 
-class Result extends Equatable {
-  final String enrollment;
-  final String name;
-  final List<Internals> internals;
-  final List<Externals> externals;
-  final List<Grade> grade;
-  final List<Credits> credits;
+//----results
+
+abstract class Exam {
+  final String date;
+  final String regularReappear;
+
+  Exam(this.date, this.regularReappear);
+}
+
+abstract class SemYear {
+  final int num;
+  final String type;
+
+  SemYear(this.num, this.type);
+}
+
+abstract class Result {
+  final Exam exam;
+  final String prepared;
+  final String declared;
+  final SemYear semYear;
+  final num creditsEarned;
+  final List<Subjects> subjects;
+  final String fileId;
+  final num percentage;
+  final num maxMarks;
+  final num totalMarks;
+  final num creditPercentage;
+  final num collegeRank;
+  final num universityRank;
 
   Result(
-      {@required this.enrollment,
-      @required this.name,
-      @required this.internals,
-      @required this.externals,
-      @required this.grade,
-      @required this.credits});
+      this.exam,
+      this.prepared,
+      this.declared,
+      this.semYear,
+      this.creditsEarned,
+      this.subjects,
+      this.fileId,
+      this.percentage,
+      this.maxMarks,
+      this.totalMarks,
+      this.creditPercentage,
+      this.collegeRank,
+      this.universityRank);
+}
 
-  @override
-  List<Object> get props =>
-      [enrollment, name, internals, externals, grade, credits];
+//----Result Data
+abstract class Programme {
+  final String code;
+  final String name;
+
+  Programme(this.code, this.name);
+}
+
+abstract class Institution {
+  final String code;
+  final String name;
+
+  Institution(this.code, this.name);
+}
+
+abstract class ResultData {
+  final String rollNumber;
+  final Programme programme;
+  final Institution institution;
+  final String name;
+  final String batch;
+  final num aggregatePercentage;
+  final num aggregateCreditPercentage;
+  final num maxCredits;
+  final num totalCreditsEarned;
+  final List<Result> results;
+
+  ResultData(
+      this.rollNumber,
+      this.programme,
+      this.institution,
+      this.name,
+      this.batch,
+      this.aggregatePercentage,
+      this.aggregateCreditPercentage,
+      this.maxCredits,
+      this.totalCreditsEarned,
+      this.results);
 }

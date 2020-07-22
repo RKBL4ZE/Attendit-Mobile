@@ -1,159 +1,283 @@
 import 'package:Attendit/features/result/domain/entities/result.dart';
 import 'package:meta/meta.dart';
 
-class InternalsModel extends Internals {
-  InternalsModel(
-      {@required final String subjectCode,
-      @required final String subjectName,
-      @required final num semesterId,
-      @required final num marks,
-      @required final num maxMarks})
-      : super(subjectCode, subjectName, semesterId, marks, maxMarks);
-
-  factory InternalsModel.fromJson(Map<String, dynamic> json) {
-    return InternalsModel(
-        subjectName: json['subjectName'],
-        marks: json['marks'],
-        maxMarks: json['maxMarks'],
-        semesterId: json['semesterId'],
-        subjectCode: json['subjectCode']);
+//----subjects
+class MinorModel extends Minor {
+  MinorModel({num max, num earned}) : super(max, earned);
+  factory MinorModel.fromJson(Map<String, dynamic> json) {
+    return MinorModel(
+      max: json['max'],
+      earned: json['earned'],
+    );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "subjectName": subjectName,
-      "marks": marks,
-      "maxMarks": maxMarks,
-      "semesterId": semesterId,
-      "subjectCode": subjectCode,
+      "max": max,
+      "earned": earned,
     };
   }
 }
 
-class ExternalsModel extends Externals {
-  ExternalsModel(
-      {@required final String subjectCode,
-      @required final String subjectName,
-      @required final num semesterId,
-      @required final num internalsMarks,
-      @required final num externalMarks,
-      @required final num maxInternalsMarks,
-      @required final String grade})
-      : super(subjectCode, subjectName, semesterId, internalsMarks,
-            externalMarks, maxInternalsMarks, grade);
-
-  factory ExternalsModel.fromJson(Map<String, dynamic> json) {
-    return ExternalsModel(
-        subjectCode: json['subjectCode'],
-        subjectName: json['subjectName'],
-        semesterId: json['semesterId'],
-        internalsMarks: json['internalsMarks'],
-        externalMarks: json['externalMarks'],
-        maxInternalsMarks: json['maxInternalsMarks'],
-        grade: json['grade']);
+class MajorModel extends Major {
+  MajorModel({num max, num earned}) : super(max, earned);
+  factory MajorModel.fromJson(Map<String, dynamic> json) {
+    return MajorModel(
+      max: json['max'],
+      earned: json['earned'],
+    );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "subjectCode": subjectCode,
-      "subjectName": subjectName,
-      "semesterId": semesterId,
-      "internalsMarks": internalsMarks,
-      "externalMarks": externalMarks,
-      "maxInternalsMarks": maxInternalsMarks,
-      "grade": grade,
+      "max": max,
+      "earned": earned,
     };
   }
 }
 
-class GradeModel extends Grade {
-  GradeModel(
-      {@required final String name,
-      @required final num percentage,
-      @required final num semesterId})
-      : super(name, percentage, semesterId);
-
-  factory GradeModel.fromJson(Map<String, dynamic> json) {
-    return GradeModel(
-        name: json['name'],
-        percentage: json['percentage'],
-        semesterId: json['semesterId']);
+class TotalModel extends Total {
+  TotalModel({num max, num earned}) : super(max, earned);
+  factory TotalModel.fromJson(Map<String, dynamic> json) {
+    return TotalModel(
+      max: json['max'],
+      earned: json['earned'],
+    );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "name": name,
-      "percentage": percentage,
-      "semesterId": semesterId,
+      "max": max,
+      "earned": earned,
     };
   }
 }
 
-class CreditsModel extends Credits {
-  CreditsModel({@required final num semsterId, @required final num credits})
-      : super(semsterId, credits);
-
-  factory CreditsModel.fromJson(Map<String, dynamic> json) {
-    return CreditsModel(
-      semsterId: json['semsterId'],
+class SubjectsModel extends Subjects {
+  SubjectsModel(
+      {String name,
+      Minor minor,
+      Major major,
+      Total total,
+      bool isPassed,
+      num credits})
+      : super(name, minor, major, total, isPassed, credits);
+  factory SubjectsModel.fromJson(Map<String, dynamic> json) {
+    return SubjectsModel(
+      name: json['name'],
+      minor: MinorModel.fromJson(json['minor']),
+      major: MajorModel.fromJson(json['major']),
+      total: TotalModel.fromJson(json['total']),
+      isPassed: json['isPassed'],
       credits: json['credits'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "semsterId": semsterId,
+      "name": name,
+      "minor": minor,
+      "major": major,
+      "total": total,
+      "isPassed": isPassed,
       "credits": credits,
     };
   }
 }
 
-class ResultModel extends Result {
-  ResultModel({
-    @required final String enrollment,
-    @required final String name,
-    @required final List<Internals> internals,
-    @required final List<Externals> externals,
-    @required final List<Grade> grade,
-    @required final List<Credits> credits,
-  }) : super(
-            enrollment: enrollment,
-            name: name,
-            internals: internals,
-            externals: externals,
-            grade: grade,
-            credits: credits);
-
-
-factory ResultModel.fromJson(Map<String, dynamic> json){
-  return ResultModel(
-    enrollment: json['enrollment'],
-    name: json['name'],
-    internals: json['internals']
-            .map<ResultModel>((e) => ResultModel.fromJson(e))
-            .toList(),
-    externals: json['externals']
-            .map<ResultModel>((e) => ResultModel.fromJson(e))
-            .toList(),
-    grade: json['grade']
-            .map<ResultModel>((e) => ResultModel.fromJson(e))
-            .toList(), 
-    credits: json['credits']
-            .map<ResultModel>((e) => ResultModel.fromJson(e))
-            .toList(),                          
-  );
-}
-
-Map<String,dynamic> toJson() {
-    return {
-      "enrollment": enrollment,
-      "name": name,
-      "internals":internals,
-      "externals":externals,
-      "grade":grade,
-      "credits":credits,
-      
-    };
+//----results
+class ExamModel extends Exam {
+  ExamModel({String date, String regularReappear})
+      : super(date, regularReappear);
+  factory ExamModel.fromJson(Map<String, dynamic> json) {
+    return ExamModel(
+      date: json['date'],
+      regularReappear: json['regularReappear'],
+    );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      "date": date,
+      "regularReappear": regularReappear,
+    };
+  }
+}
+
+class SemYearModel extends SemYear {
+  SemYearModel({int num, String type}) : super(num, type);
+  factory SemYearModel.fromJson(Map<String, dynamic> json) {
+    return SemYearModel(
+      num: json['num'],
+      type: json['type'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "num": num,
+      "type": type,
+    };
+  }
+}
+
+class ResultModel extends Result {
+  ResultModel(
+      {Exam exam,
+      String prepared,
+      String declared,
+      SemYear semYear,
+      num creditsEarned,
+      List<Subjects> subjects,
+      String fileId,
+      num percentage,
+      num maxMarks,
+      num totalMarks,
+      num creditPercentage,
+      num collegeRank,
+      num universityRank})
+      : super(
+            exam,
+            prepared,
+            declared,
+            semYear,
+            creditsEarned,
+            subjects,
+            fileId,
+            percentage,
+            maxMarks,
+            totalMarks,
+            creditPercentage,
+            collegeRank,
+            universityRank);
+
+  factory ResultModel.fromJson(Map<String, dynamic> json) {
+    return ResultModel(
+      exam: json['exam'],
+      prepared: json['prepared'],
+      declared: json['declared'],
+      semYear: SemYearModel.fromJson(json['semYear']),
+      creditsEarned: json['creditsEarned'],
+      subjects: json['subjects']
+          .map<SubjectsModel>((e) => SubjectsModel.fromJson(e))
+          .toList(),
+      fileId: json['fileId'],
+      percentage: json['percentage'],
+      maxMarks: json['maxMarks'],
+      totalMarks: json['totalMarks'],
+      creditPercentage: json['creditPercentage'],
+      collegeRank: json['collegeRank'],
+      universityRank: json['universityRank'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "exam": exam,
+      "prepared": prepared,
+      "declared": declared,
+      "semYear": semYear,
+      "creditsEarned": creditsEarned,
+      "subjects": subjects,
+      "fileId": fileId,
+      "percentage": percentage,
+      "maxMarks": maxMarks,
+      "totalMarks": totalMarks,
+      "creditPercentage": creditPercentage,
+      "collegeRank": collegeRank,
+      "universityRank": universityRank,
+    };
+  }
+}
+
+//----Result Data
+class ProgrammeModel extends Programme {
+  ProgrammeModel({String code, String name}) : super(code, name);
+  factory ProgrammeModel.fromJson(Map<String, dynamic> json) {
+    return ProgrammeModel(
+      code: json['code'],
+      name: json['name'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "code": code,
+      "name": name,
+    };
+  }
+}
+
+class InstitutionModel extends Institution {
+  InstitutionModel({String code, String name}) : super(code, name);
+  factory InstitutionModel.fromJson(Map<String, dynamic> json) {
+    return InstitutionModel(
+      code: json['code'],
+      name: json['name'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "code": code,
+      "name": name,
+    };
+  }
+}
+
+class ResultDataModel extends ResultData {
+  ResultDataModel(
+      {String rollNumber,
+      Programme programme,
+      Institution institution,
+      String name,
+      String batch,
+      num aggregatePercentage,
+      num aggregateCreditPercentage,
+      num maxCredits,
+      num totalCreditsEarned,
+      List<Result> results})
+      : super(
+            rollNumber,
+            programme,
+            institution,
+            name,
+            batch,
+            aggregatePercentage,
+            aggregateCreditPercentage,
+            maxCredits,
+            totalCreditsEarned,
+            results);
+
+  factory ResultDataModel.fromJson(Map<String, dynamic> json) {
+    return ResultDataModel(
+      rollNumber: json['rollNumber'],
+      programme: ProgrammeModel.fromJson(json['programme']),
+      institution: InstitutionModel.fromJson(json['institution']),
+      name: json['name'],
+      batch: json['batch'],
+      aggregatePercentage: json['aggregatePercentage'],
+      aggregateCreditPercentage: json['aggregateCreditPercentage'],
+      maxCredits: json['maxCredits'],
+      totalCreditsEarned: json['totalCreditsEarned'],
+      results: json['results']
+          .map<ResultModel>((e) => ResultModel.fromJson(e))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "rollNumber": rollNumber,
+      "programme": programme,
+      "institution": institution,
+      "name": name,
+      "batch": batch,
+      "aggregatePercentage": aggregatePercentage,
+      "aggregateCreditPercentage": aggregateCreditPercentage,
+      "maxCredits": maxCredits,
+      "totalCreditsEarned": totalCreditsEarned,
+      "results": results,
+    };
+  }
 }
