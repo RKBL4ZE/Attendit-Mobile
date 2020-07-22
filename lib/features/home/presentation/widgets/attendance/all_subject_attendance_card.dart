@@ -15,23 +15,23 @@ class AttendanceCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //double width = MediaQuery.of(context).size.width;
    //double height = MediaQuery.of(context).size.height;
-    Color percolor(num percolor) {
-      if (percolor < 0.6) {
+   Color percolor(num percentage) {
+      if (percentage < 0.75) {
         return GraphStyle.low;
-      } else if (percolor >= 0.6 && percolor <= 0.75) {
+      } else if (percentage >= 0.75 && percentage <= 0.80) {
         return GraphStyle.mid;
-      } else if (percolor > 0.75) {
+      } else if (percentage > 0.80) {
         return GraphStyle.high;
       }
       return Colors.white30;
     }
 
     Color percolorshadow(num percolor) {
-      if (percolor < 0.6) {
+      if (percolor < 0.75) {
         return GraphStyle.lowAccent;
-      } else if (percolor >= 0.6 && percolor <= 0.75) {
+      } else if (percolor >= 0.75 && percolor <= 0.80) {
         return GraphStyle.midAccent;
-      } else if (percolor > 0.75) {
+      } else if (percolor > 0.80) {
         return GraphStyle.highAccent;
       }
       return Colors.white30;

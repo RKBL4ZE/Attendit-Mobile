@@ -47,14 +47,13 @@ class PrimaryStyle {
   static final primary = Colors.blueGrey[900];
   static const accent = Colors.grey;
   static const splash = Colors.blue;
-  static const graph = Colors.cyan;
 }
 
 class GraphStyle {
   static final text = Colors.blueGrey[900];
   static final primary = Colors.blueGrey[900];
-  static final low = Colors.red;
-  static final lowAccent = Colors.red[100];
+  static final low = Colors.blueGrey[900];
+  static final lowAccent = Colors.blueGrey[50];
   static final mid = Colors.lightBlue;
   static final midAccent = Colors.lightBlue[100];
   static final high = Colors.green;
@@ -138,4 +137,4 @@ class LectureCardStyle {
 }
 
 Widget loaderWidget = ColorLoader4();
-Color fulltimeTablePrimaryColor = Colors.lightBlue[400];
+Color fulltimeTablePrimaryColor = Colors.green[50];
