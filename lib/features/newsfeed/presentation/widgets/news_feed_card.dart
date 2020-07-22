@@ -19,7 +19,10 @@ String readTimestamp(String timestamp, String type) {
   var time = DateFormat("H:m:s").format(fdate);
   if (type == "date")
     return date.toString();
-  else if (type == "time") return time.toString();
+  else if (type == "time")
+    return time.toString();
+  else
+    return "";
 }
 
 class _NewsFeedWIDGETState extends State<NewsFeedCard> {
@@ -76,7 +79,7 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
               child: Row(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    margin: NewsFeedCardStyle.profileMargin,
                     decoration: BoxDecoration(
                       boxShadow: [
                         CardStyle.boxShadow,
@@ -89,34 +92,28 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(100),
+                        Radius.circular(50),
                       ),
                       child: Image.network(
                         widget.newsFeed.author.profilePicture,
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit.cover,
+                        height: NewsFeedCardStyle.profileImageHeight,
+                        width: NewsFeedCardStyle.profileImageWidth,
+                        fit: NewsFeedCardStyle.profileImageFit,
                       ),
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(5, 0, 0, 4),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
                           child: Text(
                             widget.newsFeed.author.name,
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: Color.fromRGBO(29, 53, 84, 1),
-                                fontWeight: FontWeight.bold),
+                            style: NewsFeedCardStyle.profileTextStyle,
                           ),
                         ),
 
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
                           child: Text(
                             readTimestamp(
                                 widget.newsFeed.createdAt.toString(), "date"),
@@ -136,47 +133,45 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
               ),
             ),
             Container(
-                child: Text(widget.newsFeed.title,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        // fontFamily: 'Rubik',
-                        fontSize: 20,
-                        color: Color.fromRGBO(29, 53, 84, 1),
-                        fontWeight: FontWeight.bold))),
-            Container(
-              margin: EdgeInsets.all(10),
-              height: 150,
-              width: double.infinity,
+              constraints: BoxConstraints(maxHeight: 400),
+              // width: double.infinity,
               child: new Swiper(
                 itemBuilder: (BuildContext context, int index) {
-                  return new ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                    child: Image.network(
-                      widget.newsFeed.images[index],
-                      fit: BoxFit.cover,
-                    ),
+                  return Image.network(
+                    widget.newsFeed.images[index],
+                    fit: BoxFit.fill,
                   );
                 },
                 itemCount: widget.newsFeed.images.length,
-                itemWidth: 200.0,
-                layout: SwiperLayout.STACK,
+                autoplay: true,
+                autoplayDisableOnInteraction: true,
+                //control: new SwiperControl(),
+                pagination: new SwiperPagination(
+                    //alignment: Alignment.bottomCenter,
+                    //margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    //builder: SwiperPagination.dots,
+                    ),
+                layout: SwiperLayout.DEFAULT,
+                /* viewportFraction: 1,
+                scale: 1, */
+                 itemWidth: 400,
+                itemHeight: 400,
+                //TODO:ADD full image view on tap below
+                //onTap: (){},
               ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(20, 10, 15, 10),
+              margin: NewsFeedCardStyle.titleMargin,
+              child: Text(
+                widget.newsFeed.title,
+                style: NewsFeedCardStyle.titleTextStyle,
+              ),
+            ),
+            Container(
+              margin: NewsFeedCardStyle.textMargin,
               child: Text(
                 widget.newsFeed.text,
-                style: TextStyle(
-                  // fontFamily: 'Rubik',
-                  fontSize: 14,
-                  color: Color.fromRGBO(29, 53, 84, 1),
-                  //  fontWeight: FontWeight.bold
-                ),
+                style: NewsFeedCardStyle.textStyle,
               ),
             ),
             Container(

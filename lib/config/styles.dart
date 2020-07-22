@@ -105,6 +105,23 @@ class CardStyle {
   };
 }
 
+class NewsFeedCardStyle {
+  static const double profileImageHeight = 30;
+  static const double profileImageWidth = 30;
+  static const profileImageFit = BoxFit.cover;
+  static const profileMargin = EdgeInsets.fromLTRB(7, 7, 7, 7);
+  static const profileTextStyle =
+      TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w400);
+  static const titleTextStyle =
+      TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600);
+  static const titleMargin = EdgeInsets.fromLTRB(0, 7, 0, 0);
+  static const textStyle = TextStyle(
+    fontSize: 14,
+    color: Color.fromRGBO(29, 53, 84, 1),
+  );
+  static const textMargin = EdgeInsets.fromLTRB(20, 10, 15, 10);
+}
+
 class LectureCardStyle {
   static final boxShadow = CardStyle.boxShadow;
   static final beforeColor = Colors.blueGrey[800];
