@@ -55,62 +55,66 @@ class MenuPage extends StatelessWidget {
     //   ),
     // );
 
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Padding(
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+			
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
               child: Container(
-                constraints: BoxConstraints(minHeight: 400),
+                constraints: BoxConstraints(minHeight: 300, maxHeight: 300),
                 //height: 175,
                 width: double.infinity,
                 decoration: BoxDecoration(boxShadow: [CardStyle.boxShadow]),
-                child:
-                    Expanded(child: Card(child: Center(child: Text("reju")))),
+                child: Card(child: Center(child: Text("reju"))),
               ),
             ),
-          ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                menuContent(IconsService.onlineClasses, "Online Classes",
-                    OnlineClassList(), context),
-                SizedBox(
-                  width: 10,
-                ),
-                menuContent(IconsService.exteralMarks, "External Marks",
-                    ExternalPage(), context),
-              ],
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        menuContent(IconsService.onlineClasses,
+                            "Online Classes", OnlineClassList(), context),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        menuContent(IconsService.exteralMarks, "External Marks",
+                            ExternalPage(), context),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        menuContent(IconsService.assignment, "Assignment",
+                            Scaffold(body: Text("soon!!")), context),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        menuContent(IconsService.contactUs, "Contact Us",
+                            Scaffold(body: Text("soon!!")), context),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      menuContent(IconsService.aboutUs, "About Us",
+                          Scaffold(body: WelcomeScreen()), context),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          // menuContent(IconsService., "Internal Marks", InternalPage(), context),
-
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                menuContent(IconsService.assignment, "Assignment",
-                    Scaffold(body: Text("soon!!")), context),
-                SizedBox(
-                  width: 10,
-                ),
-                menuContent(IconsService.contactUs, "Contact Us",
-                    Scaffold(body: Text("soon!!")), context),
-              ],
-            ),
-          ),
-
-          Row(
-            children: <Widget>[
-              menuContent(IconsService.aboutUs, "About Us",
-                  Scaffold(body: WelcomeScreen()), context),
-            ],
-          ),
-        ],
+            // menuContent(IconsService., "Internal Marks", InternalPage(), context),
+          ],
+        ),
       ),
     );
   }

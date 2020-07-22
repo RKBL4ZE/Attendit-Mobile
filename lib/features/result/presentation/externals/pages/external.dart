@@ -21,7 +21,7 @@ class ExternalPage extends StatelessWidget {
         body: SingleChildScrollView(
          
             child: Container(
-          margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+         // margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
           child: Column(
             children: <Widget>[
               
