@@ -53,11 +53,9 @@ class _NavBarState extends State<NavBar> {
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
-        // TODO optional
       },
       onResume: (Map<String, dynamic> message) async {
         print("onResume: $message");
-        // TODO optional
       },
     );
 

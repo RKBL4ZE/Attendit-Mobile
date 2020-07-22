@@ -107,10 +107,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerFactory<IAssignmentRemoteDataSource>(
       () => AssignmentRemoteDataSource(g<IGraphQLService>()));
   g.registerFactory<IAssignmentRepository>(() => AssignmentRepository(
-        g<IAssignmentLocalDataSource>(),
-        g<INetworkInfo>(),
-        g<IAssignmentRemoteDataSource>(),
-      ));
+      g<INetworkInfo>(), g<IAssignmentRemoteDataSource>()));
   g.registerFactory<IAuthRemoteDataSource>(
       () => AuthRemoteDataSource(g<IGraphQLService>()));
   g.registerFactory<IAuthRepository>(() => AuthRepository(

@@ -41,22 +41,19 @@ class NewsFeedWidget extends StatelessWidget {
           builder: (context, state) {
             if (state is NewsfeedLoading) {
               return loaderWidget;
-            }
-
-            if (state is NewsfeedLoaded) {
+            } else if (state is NewsfeedLoaded) {
               final double sheight = MediaQuery.of(context).size.height;
               return Container(
                   child: Scaffold(
                 body: buildNewsFeed(state.newsfeed),
                floatingActionButton: MyFloatingActionButton(sheight: sheight),
               ));
-            }
-
-            if (state is NewsfeedError) {
+            } else if (state is NewsfeedError) {
               return Center(
                 child: Text(state.message),
               );
-            }
+            } else
+              return Container();
           }),
     );
   }

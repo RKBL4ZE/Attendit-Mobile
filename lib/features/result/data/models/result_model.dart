@@ -1,5 +1,4 @@
 import 'package:Attendit/features/result/domain/entities/result.dart';
-import 'package:meta/meta.dart';
 
 //----subjects
 class MinorModel extends Minor {

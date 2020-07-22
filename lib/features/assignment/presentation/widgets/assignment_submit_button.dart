@@ -11,11 +11,12 @@ class AssignmentSubmitButton extends StatelessWidget {
   final String id;
   final File file;
 
-  const AssignmentSubmitButton({Key key,@required this.id,@required this.file}) : super(key: key);
+  const AssignmentSubmitButton(
+      {Key key, @required this.id, @required this.file})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
     return BlocProvider<SubmitAssignmentBloc>(
       create: (_) => getIt(),
       child: BlocBuilder<SubmitAssignmentBloc, SubmitAssignmentState>(
@@ -24,9 +25,8 @@ class AssignmentSubmitButton extends StatelessWidget {
             state is SubmitAssignmentUploading ||
             state is SubmitAssignmentUploaded) {
           return AssignmentButton(state: state, id: id, file: file);
-          
         }
-        
+
         if (state is SubmitAssignmentError) {
           return Column(
             children: <Widget>[
@@ -35,6 +35,7 @@ class AssignmentSubmitButton extends StatelessWidget {
             ],
           );
         }
+        return Container();
       }),
     );
   }

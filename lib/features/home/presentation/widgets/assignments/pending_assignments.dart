@@ -48,7 +48,7 @@ class PendingAssignmentWidget extends StatelessWidget {
       maxFontSize: CardStyle.maxFontSize,
       textAlign: TextAlign.right,
       style: TextStyle(
-        color: cardcolor, //TODO :TO be get from style.dart
+        color: cardcolor,
         //decoration: TextDecoration.underline,
         //decorationColor: Colors.red,
         //decorationStyle: TextDecorationStyle.wavy,

@@ -1,4 +1,3 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
@@ -45,39 +44,39 @@ class _AssignmentCardState extends State<AssignmentCard> {
     });
   }
 
+  Widget menuContent(var icon, String string, Widget widget, var context) {
+    return InkWell(
+      onTap: () {
+        //  pushNewScreen(context, screen: widget);
+      },
+      child: Container(
+        margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
+        child: Row(
+          children: <Widget>[
+            Icon(
+              icon,
+              color: Colors.red,
+              //color: Color.fromRGBO(128, 139, 151, 1),
+              size: 20.0,
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Text(string,
+                style: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'Rubik',
+                    color: Color.fromRGBO(128, 139, 151, 1),
+                    fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget menuContent(var icon, String string, Widget widget, var context) {
-      return InkWell(
-        onTap: () {
-          //  pushNewScreen(context, screen: widget);
-        },
-        child: Container(
-          margin: EdgeInsets.fromLTRB(0, 7, 0, 7),
-          child: Row(
-            children: <Widget>[
-              Icon(
-                icon,
-                color: Colors.red,
-                //color: Color.fromRGBO(128, 139, 151, 1),
-                size: 20.0,
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              Text(string,
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: 'Rubik',
-                      color: Color.fromRGBO(128, 139, 151, 1),
-                      fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
-      );
-    }
-
-    if (bar == true) {
+    if (bar) {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(
@@ -117,7 +116,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                   ],
                 ),
               )));
-    } else if (bar == false) {
+    } else {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(

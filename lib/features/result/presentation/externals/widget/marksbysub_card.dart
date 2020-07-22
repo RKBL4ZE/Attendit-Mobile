@@ -33,7 +33,7 @@ class _MarksBySubState extends State<MarksBySub> {
 
   @override
   Widget build(BuildContext context) {
-    if (bar == true) {
+    if (bar) {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(
@@ -107,7 +107,7 @@ class _MarksBySubState extends State<MarksBySub> {
                   ],
                 ),
               )));
-    } else if (bar == false) {
+    } else {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(

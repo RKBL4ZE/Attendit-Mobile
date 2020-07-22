@@ -30,8 +30,6 @@ class AssignmentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
-    final _bloc = BlocProvider.of<AssignmentBloc>(context);
-    _bloc.add(GetDetailsEvent());
     return Container(
       margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
       child: BlocBuilder<AssignmentBloc, AssignmentState>(

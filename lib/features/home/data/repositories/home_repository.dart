@@ -24,7 +24,6 @@ class HomeRepository implements IHomeRepository {
   @override
   Future<Either<Failure, List<StudentAttendance>>>
       getStudentAttendance() async {
-    // TODO: implement StudentAttendance
     throw UnimplementedError();
   }
 
@@ -47,7 +46,6 @@ class HomeRepository implements IHomeRepository {
 
   @override
   Future<Either<Failure, List<StudentAssignment>>> getStudentAssignments() {
-    // TODO: implement getStudentDetails
     throw UnimplementedError();
   }
 

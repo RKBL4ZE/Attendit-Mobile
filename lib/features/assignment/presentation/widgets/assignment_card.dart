@@ -312,5 +312,6 @@ class _AssignmentCardState extends State<AssignmentCard> {
                 ),
               )));
     }
+	return Container();
   }
 }
