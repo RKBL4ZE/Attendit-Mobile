@@ -24,10 +24,16 @@ class DetailsError extends AssignmentState {
   // List<Object> get props => [message];
 }
 
-abstract class SubmitAssignmentState{}
+abstract class SubmitAssignmentState {}
+
 class SubmitAssignmentInitial extends SubmitAssignmentState {}
+
 class SubmitAssignmentUploading extends SubmitAssignmentState {}
-class SubmitAssignmentUploaded extends SubmitAssignmentState{}
-class SubmitAssignmentError extends SubmitAssignmentState{}
 
+class SubmitAssignmentUploaded extends SubmitAssignmentState {}
 
+class SubmitAssignmentError extends SubmitAssignmentState {
+  final String message;
+
+  SubmitAssignmentError({this.message});
+}

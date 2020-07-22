@@ -5,7 +5,7 @@ abstract class AssignmentEvent extends Equatable {
   const AssignmentEvent();
 }
 
-class GetDetailsEvent extends AssignmentEvent {
+class GetAssignmentDetailsEvent extends AssignmentEvent {
   @override
   List<Object> get props => [];
 }

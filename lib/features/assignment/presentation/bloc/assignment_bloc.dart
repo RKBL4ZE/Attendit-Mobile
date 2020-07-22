@@ -31,7 +31,7 @@ class AssignmentBloc extends Bloc<AssignmentEvent, AssignmentState> {
 
   @override
   Stream<AssignmentState> mapEventToState(AssignmentEvent event) async* {
-    if (event is GetDetailsEvent) {
+    if (event is GetAssignmentDetailsEvent) {
       yield DetailsLoading();
       final failureOrAllDetails = await getAssignmentDetails(NoParams());
 
@@ -67,7 +67,9 @@ class SubmitAssignmentBloc
     extends Bloc<AssignmentEvent, SubmitAssignmentState> {
   final SubmitAssignment submitAssignment;
 
-  SubmitAssignmentBloc(this.submitAssignment);
+  SubmitAssignmentBloc(this.submitAssignment) {
+	  this.add(GetAssignmentDetailsEvent());
+  }
   @override
   SubmitAssignmentState get initialState => SubmitAssignmentInitial();
 
@@ -86,7 +88,9 @@ class SubmitAssignmentBloc
   Stream<SubmitAssignmentState> _eitherLoadedOrErrorState(
     Either<Failure, bool> failureOrSubmitAssignment,
   ) async* {
-    yield failureOrSubmitAssignment.fold((failure) => SubmitAssignmentError(),
+    yield failureOrSubmitAssignment.fold(
+        (failure) =>
+            SubmitAssignmentError(message: _mapFailureToMessage(failure)),
         (details) => SubmitAssignmentUploaded());
   }
 

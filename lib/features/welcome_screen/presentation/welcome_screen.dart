@@ -1,11 +1,7 @@
 import 'package:Attendit/config/constant.dart';
-import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:Attendit/features/auth/presentation/pages/login_page.dart';
 import 'package:Attendit/features/auth/presentation/widgets/login_form.dart';
-import 'package:Attendit/features/navbar/presentation/pages/editprofile.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'delayed_animation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -14,36 +10,12 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen>
-    with SingleTickerProviderStateMixin {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   final int delayedAmount = 500;
-  double _scale;
-  AnimationController _controller;
-  @override
-  void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(
-        milliseconds: 200,
-      ),
-      lowerBound: 0.0,
-      upperBound: 0.1,
-    )..addListener(() {
-        setState(() {});
-      });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final color = Colors.white;
-    _scale = 1 - _controller.value;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -172,36 +144,5 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           // ),
           ),
     );
-  }
-
-  Widget get _animatedButtonUI => Container(
-        margin: EdgeInsets.fromLTRB(0, 150, 0, 150),
-        height: 60,
-        width: 270,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100.0),
-          color: Colors.white,
-        ),
-        child: Center(
-          child: Text(
-            'Get Starasdasdted',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF8185E2),
-            ),
-          ),
-        ),
-      );
-
-  void _onTapDown(TapDownDetails details) {
-    _controller.forward();
-    BlocProvider.of<AuthBloc>(context).add(InitialEvent());
-    /*  Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LoginPage())); */
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    _controller.reverse();
   }
 }

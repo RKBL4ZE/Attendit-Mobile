@@ -84,5 +84,6 @@ class _AssignmentButtonState extends State<AssignmentButton> {
         color: Colors.white,
       );
     }
+	return Container();
   }
 }

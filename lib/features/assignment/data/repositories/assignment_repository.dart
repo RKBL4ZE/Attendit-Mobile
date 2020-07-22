@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:Attendit/core/error/exceptions.dart';
 import 'package:Attendit/core/network/network_info.dart';
-import 'package:Attendit/features/assignment/data/datasources/assignment_local_datasource.dart';
 import 'package:Attendit/features/assignment/data/datasources/assignment_remote_datasource.dart';
 
 import 'package:Attendit/features/assignment/domain/repositories/i_assignment_repository.dart';
@@ -15,12 +14,12 @@ import '../../../../core/error/failures.dart';
 @Injectable(as: IAssignmentRepository)
 @lazySingleton
 class AssignmentRepository implements IAssignmentRepository {
-  final IAssignmentLocalDataSource _localDataSource;
+//   final IAssignmentLocalDataSource _localDataSource;
   final INetworkInfo _networkInfo;
   final IAssignmentRemoteDataSource _remoteDataSource;
 
   AssignmentRepository(
-      this._localDataSource, this._networkInfo, this._remoteDataSource);
+      this._networkInfo, this._remoteDataSource);
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> getStudentAssignments() async {

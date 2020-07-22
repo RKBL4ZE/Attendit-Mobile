@@ -1,5 +1,4 @@
 import 'package:Attendit/features/result/domain/entities/result.dart';
-import 'package:meta/meta.dart';
 
 //----subjects
 class MinorModel extends Minor {
@@ -7,7 +6,7 @@ class MinorModel extends Minor {
   factory MinorModel.fromJson(Map<String, dynamic> json) {
     return MinorModel(
       max: json['max'],
-      earned: json['earned'],
+      earned: json['earned'] == '-' ? null : json['earned'],
     );
   }
 
@@ -24,7 +23,7 @@ class MajorModel extends Major {
   factory MajorModel.fromJson(Map<String, dynamic> json) {
     return MajorModel(
       max: json['max'],
-      earned: json['earned'],
+      earned: json['earned'] == '-' ? null : json['earned'],
     );
   }
 
@@ -153,7 +152,7 @@ class ResultModel extends Result {
 
   factory ResultModel.fromJson(Map<String, dynamic> json) {
     return ResultModel(
-      exam: json['exam'],
+      exam: ExamModel.fromJson(json['exam']),
       prepared: json['prepared'],
       declared: json['declared'],
       semYear: SemYearModel.fromJson(json['semYear']),

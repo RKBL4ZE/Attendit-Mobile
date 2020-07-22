@@ -3,7 +3,6 @@ import 'package:Attendit/features/newsfeed/domain/entities/news_feed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:intl/intl.dart';
-import 'package:Attendit/config/styles.dart';
 
 class NewsFeedCard extends StatefulWidget {
   NewsFeedCard({@required this.newsFeed});

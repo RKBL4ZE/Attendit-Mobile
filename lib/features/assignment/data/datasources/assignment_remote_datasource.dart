@@ -28,8 +28,7 @@ class AssignmentRemoteDataSource implements IAssignmentRemoteDataSource {
     try {
       final result = await _client.query(
           query: Gqlquery.studentAssignmentQuery,
-          fetchPolicy: FetchPolicy.networkOnly
-          ); //todo: future change query
+          fetchPolicy: FetchPolicy.networkOnly); //todo: future change query
       if (result.exception == null) {
         var assignmentDetails = Map<String, dynamic>();
 
@@ -58,10 +57,8 @@ class AssignmentRemoteDataSource implements IAssignmentRemoteDataSource {
           .mutate(mutation: Gqlmutation.submitAssignmentMutation, variables: {
         "id": id,
         "file": file,
-
-      }
-      );
-      if(result.exception==null){
+      });
+      if (result.exception == null) {
         return result.data["SubmitAssignment"];
       }
       // if (result.exception == null) {

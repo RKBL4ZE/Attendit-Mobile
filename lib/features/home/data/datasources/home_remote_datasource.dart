@@ -1,8 +1,5 @@
-
-
 import 'package:Attendit/core/network/graphql_service.dart';
 import 'package:Attendit/features/home/data/models/student_assigments_model.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'package:injectable/injectable.dart';
 
@@ -53,13 +50,11 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
 
   @override
   Future<List<StudentAssignmentModel>> getStudentAssignments() {
-    // TODO: implement getStudentAssignments
     throw UnimplementedError();
   }
 
   @override
   Future<List<StudentAttendanceModel>> getStudentAttendance() {
-    // TODO: implement getStudentAttendance
     throw UnimplementedError();
   }
 
@@ -84,7 +79,8 @@ class HomeRemoteDataSource implements IHomeRemoteDataSource {
   Future<Map<String, dynamic>> getAllDetails() async {
     try {
       final result = await _client.query(
-          query: Gqlquery.studentAllDetailsQuery,); //todo: future change query
+        query: Gqlquery.studentAllDetailsQuery,
+      ); //todo: future change query
       if (result.exception == null) {
         var allDetails = Map<String, dynamic>();
         allDetails.putIfAbsent('Student',

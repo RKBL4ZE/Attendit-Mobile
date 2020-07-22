@@ -13,7 +13,7 @@ class MenuPage extends StatelessWidget {
   static const routeName = '/InternalSCREEN';
   @override
   Widget build(BuildContext context) {
-    final double sheight = MediaQuery.of(context).size.height;
+    // final double sheight = MediaQuery.of(context).size.height;
     // final prop = Dummy_AllPropertys.toList();
 
     // return SingleChildScrollView(
