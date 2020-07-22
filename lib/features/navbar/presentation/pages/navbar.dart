@@ -6,6 +6,7 @@ import 'package:Attendit/features/menu/presentation/pages/menu_page.dart';
 import 'package:Attendit/features/navbar/presentation/pages/sidedrawer.dart';
 import 'package:Attendit/features/newsfeed/presentation/pages/news_feed_page.dart';
 import 'package:Attendit/features/timetable/presentation/pages/timetable_page.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,6 +28,41 @@ class _NavBarState extends State<NavBar> {
   void initState() {
     super.initState();
     _controller = PersistentTabController(initialIndex: 0);
+    final fbm = FirebaseMessaging();
+    print(fbm);
+    fbm.requestNotificationPermissions();
+
+    fbm.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: ListTile(
+              title: Text(message['notification']['title']),
+              subtitle: Text(message['notification']['body']),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          ),
+        );
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+        // TODO optional
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+        // TODO optional
+      },
+    );
+
+    // For testing purposes print the Firebase Messaging token
+    fbm.getToken().then((value) => print(value));
   }
 
   List<Widget> _buildScreens() {
@@ -152,11 +188,11 @@ class _NavBarState extends State<NavBar> {
               // Screen transition animation on change of selected tab.
               animateTabTransition: true,
               curve: Curves.ease,
-              duration: Duration(milliseconds: 150),
+              duration: Duration(milliseconds: 200),
             ),
             itemAnimationProperties: ItemAnimationProperties(
-              duration: Duration(milliseconds: 150),
-              curve: Curves.bounceIn,
+              duration: Duration(milliseconds: 200),
+              curve: Curves.ease,
             ),
             onItemSelected: (index) {
               setState(() {

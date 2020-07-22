@@ -1,4 +1,4 @@
-import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
+
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

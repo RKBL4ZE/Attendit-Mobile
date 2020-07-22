@@ -4,7 +4,7 @@ import 'package:Attendit/features/assignment/data/models/student_assigments_mode
 import 'package:Attendit/features/assignment/presentation/bloc/assignment_bloc.dart';
 import 'package:Attendit/features/assignment/presentation/widgets/assignment_list_widget.dart';
 
-import 'package:Attendit/loaders/color_loader_3.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

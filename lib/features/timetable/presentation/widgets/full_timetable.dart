@@ -39,7 +39,7 @@ List<Widget> _buildDayRows(Map<String, Map<String, String>> form, String day) {
   final widgets = List<Widget>();
   Color colorshadow = Colors.transparent;
   if (day.toLowerCase() == date.toLowerCase()) {
-    colorshadow = Styles.colorshadow;
+    colorshadow = fulltimeTablePrimaryColor;
   }
   timings.forEach((element) {
     widgets.add(Container(color: colorshadow, child: text(form[day][element])));
@@ -209,7 +209,7 @@ Widget colortext(String text) {
   String date = DateFormat('EEEE').format(DateTime.now());
   Color colorshadow = Colors.transparent;
   if (text.toLowerCase() == date.toLowerCase()) {
-    colorshadow = Styles.colorshadow;
+    colorshadow = fulltimeTablePrimaryColor;
   }
   return Container(
     color: colorshadow,

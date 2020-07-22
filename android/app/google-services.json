@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "946191869164",
+    "firebase_url": "https://attendit-88a94.firebaseio.com",
+    "project_id": "attendit-88a94",
+    "storage_bucket": "attendit-88a94.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946191869164:android:bb0d361955e5d7812731c9",
+        "android_client_info": {
+          "package_name": "com.example.Attendit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946191869164-i4ad7oj0a24up4ooer1svkf2dvc64mrr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPZxy6h6priggypgM1LXA3gPv_ora0vfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946191869164-i4ad7oj0a24up4ooer1svkf2dvc64mrr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
