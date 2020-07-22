@@ -48,7 +48,7 @@ class NewsFeedWidget extends StatelessWidget {
               return Container(
                   child: Scaffold(
                 body: buildNewsFeed(state.newsfeed),
-                floatingActionButton: MyFloatingActionButton(sheight: sheight),
+               floatingActionButton: MyFloatingActionButton(sheight: sheight),
               ));
             }
 

@@ -47,6 +47,7 @@ class PrimaryStyle {
   static final primary = Colors.blueGrey[900];
   static const accent = Colors.grey;
   static const splash = Colors.blue;
+  static const padding = EdgeInsets.all(7);
 }
 
 class GraphStyle {
@@ -126,6 +127,7 @@ class LectureCardStyle {
   static final beforeColor = Colors.blueGrey[800];
   static final currentColor = Colors.blue;
   static final afterColor = Colors.red;
+  static final buttonColor = Colors.blueGrey[800];
   static final textStyle =
       TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
   static final headingTextStyle =

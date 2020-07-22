@@ -52,6 +52,7 @@ class TimeTableWidget extends StatelessWidget {
               );
             }
             return SingleChildScrollView(
+              padding: PrimaryStyle.padding,
               child: Column(
                 children: <Widget>[
                   SingleDayTimeTableWidget(timetable),
@@ -77,10 +78,12 @@ class FullTimeTableButton extends StatelessWidget {
   const FullTimeTableButton(this.group);
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(50, 15, 50, 15),
+      margin: EdgeInsets.fromLTRB(70, 15, 70, 15),
       //alignment: Alignment.bottomCenter,
       height: 45.0,
       child: RaisedButton(
+        shape: LectureCardStyle.shape,
+        color: LectureCardStyle.buttonColor,
         onPressed: () {
           pushNewScreen(context,
               screen: FullTimeTablePage(
@@ -90,16 +93,13 @@ class FullTimeTableButton extends StatelessWidget {
         },
         /* shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)), */
-        child: Ink(
-          
-          child: Container(
-            //constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-            alignment: Alignment.center,
-            child: Text(
-              "View Full Time Table",
-              textAlign: TextAlign.center,
-              
-            ),
+        child: Container(
+          //constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+          alignment: Alignment.center,
+          child: Text(
+            "View Full Time Table",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),
@@ -133,11 +133,11 @@ List<Timing> _currentDayTimetable(String day, List<Group> group, int index) {
       {
         return group[index].timetable.saturday;
       }
-      default:
+    default:
       {
         return group[index].timetable.monday;
       }
-      /* sunday kya kare nakuri chod de????? */
+    /* sunday kya kare nakuri chod de????? */
     // case "sunday":
     //   {
     //     return group[index].timetable.sunday;
