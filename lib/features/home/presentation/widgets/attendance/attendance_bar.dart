@@ -1,5 +1,3 @@
-
-
 import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/features/home/data/models/student_attendence_model.dart';
 import 'package:flutter/material.dart';
@@ -24,27 +22,7 @@ class AttendenceBarWidget extends StatelessWidget {
       attendanceget = attendanceget + attendanceBar[i].lecturesAttended;
       percentage = attendanceget / totalattendance;
     }
-	Color percolor(num percentage) {
-      if (percentage < 0.6) {
-        return GraphStyle.low;
-      } else if (percentage >= 0.6 && percentage <= 0.75) {
-        return GraphStyle.mid;
-      } else if (percentage > 0.75) {
-        return GraphStyle.high;
-      }
-      return Colors.white30;
-    }
 
-	Color percolorshadow(num percentage) {
-      if (percentage < 0.6) {
-        return GraphStyle.lowAccent;
-      } else if (percentage >= 0.6 && percentage <= 0.75) {
-        return GraphStyle.midAccent;
-      } else if (percentage > 0.75) {
-        return GraphStyle.highAccent;
-      }
-      return Colors.white30;
-    }
     return InkWell(
         //  onTap: () => selectProperty(context),
         child: Container(
@@ -61,8 +39,8 @@ class AttendenceBarWidget extends StatelessWidget {
               arcBackgroundColor: Colors.grey[100],
               animation: true,
               backgroundColor: Colors.transparent,
-              progressColor: percolor(percentage),
-			  
+              progressColor: PrimaryStyle.primary,
+
               animationDuration: 1000,
               radius: 170.0,
               lineWidth: 15.0,
@@ -70,11 +48,7 @@ class AttendenceBarWidget extends StatelessWidget {
               //footer: Text("ve"),
               center: new Text(
                 "${(percentage * 100).toStringAsFixed(0)}%",
-                style: TextStyle(
-                    // fontFamily: 'Rubik',
-                    fontSize: 40,
-                    color: percolor(percentage),
-                    fontWeight: FontWeight.bold),
+                style: CardStyle.headingStyle.copyWith(fontSize: 38),
               ),
               //progressColor: Color.fromRGBO(95, 197, 209, 1),
             ),

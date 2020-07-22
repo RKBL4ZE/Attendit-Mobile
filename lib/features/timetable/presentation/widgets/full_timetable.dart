@@ -23,7 +23,7 @@ void createTimetableByDay(
   form.forEach((key, value) {
     String subjectName = timing.subject.name;
     if (key == day) {
-      // TO:DO UNSAFE CODE NEED REFACTOR
+      //TODO: UNSAFE CODE NEED REFACTOR
 
       form[day][timing.startTime + timing.endTime] = subjectName;
     } else {
