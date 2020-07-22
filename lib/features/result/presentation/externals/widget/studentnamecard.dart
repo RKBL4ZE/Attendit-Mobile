@@ -5,26 +5,28 @@ class StudentNameCard extends StatelessWidget {
   final String name;
   final String enrollmentno;
   final String course;
-  final String sclass;
-  final String shift;
+  //final String sclass;
+  //final String shift;
+  final String cgpa;
+  final String sgpa;
 
   const StudentNameCard(
       {Key key,
-      this.name = "Chrissy Costanza",
-      this.enrollmentno = "0122070319",
-      this.course = "Bca",
-      this.sclass = "Bca 106",
-      this.shift = "Morning"})
+      this.name,
+      this.enrollmentno,
+      this.course,
+     // this.sclass,
+     // this.shift,
+      this.cgpa,
+      this.sgpa})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            boxShadow: [CardStyle.boxShadow]),
+            boxShadow: [ResultCardStyle.boxShadow]),
         width: double.infinity,
         // margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
         child: Card(
@@ -41,10 +43,10 @@ class StudentNameCard extends StatelessWidget {
                   cardDetail(head: "Name", ans: name),
                   cardDetail(head: "Enrollment Number", ans: enrollmentno),
                   cardDetail(head: "Course", ans: course),
-                  cardDetail(head: "Class", ans: sclass),
-                  cardDetail(head: "Shift", ans: shift),
-                  cardDetail(head: "CGPA", ans: "4.99"),
-                  cardDetail(head: "SGPA", ans: "6.49"),
+                  
+                  
+                  cardDetail(head: "CGPA", ans: cgpa),
+                  cardDetail(head: "SGPA", ans: sgpa),
                 ]),
           ),
         ));
@@ -52,13 +54,12 @@ class StudentNameCard extends StatelessWidget {
 }
 
 Widget cardDetail({String head, String ans}) {
-	final num flex1 = 5;
-    final num flex2 = 5;
-    final double fontsize = 16;
-    final double spacing = 6;
+  final num flex1 = 5;
+  final num flex2 = 5;
+  final double fontsize = 16;
+  final double spacing = 6;
   return Container(
-
-     margin: EdgeInsets.all(spacing),
+    margin: EdgeInsets.all(spacing),
     child: Row(
       children: <Widget>[
         Expanded(
@@ -79,7 +80,7 @@ Widget cardDetail({String head, String ans}) {
             style: TextStyle(
                 // fontFamily: 'Karla',
                 fontSize: fontsize,
-                color: Colors.grey[700],
+                color: ResultCardStyle.subheadingColor,
                 fontWeight: FontWeight.bold),
           ),
         ),

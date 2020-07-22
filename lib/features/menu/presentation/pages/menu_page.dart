@@ -2,6 +2,7 @@ import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/icons/icons_service.dart';
 
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
+import 'package:Attendit/features/result/presentation/externals/widget/rank_list_card.dart';
 import 'package:Attendit/features/result/presentation/internals/pages/internal.dart';
 import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';
 import 'package:Attendit/features/welcome_screen/presentation/welcome_screen.dart';
@@ -59,7 +60,6 @@ class MenuPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
-			
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
@@ -105,8 +105,17 @@ class MenuPage extends StatelessWidget {
                   ),
                   Row(
                     children: <Widget>[
-                      menuContent(IconsService.aboutUs, "About Us",
-                          Scaffold(body: WelcomeScreen()), context),
+                      menuContent(
+                          IconsService.aboutUs,
+                          "About Us",
+                          Scaffold(
+                              body: RankListCard(
+                            clgName: "MSI",
+                            rank: 1,
+                            percentage: "92.5",
+                            studentName: "Reju",
+                          )),
+                          context),
                     ],
                   ),
                 ],

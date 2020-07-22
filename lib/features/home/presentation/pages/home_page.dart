@@ -11,7 +11,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: BlocBuilder<HomeBloc, HomeState>(
         bloc: BlocProvider.of<HomeBloc>(context),
         builder: (context, state) {
@@ -21,6 +20,7 @@ class MyHomePage extends StatelessWidget {
           if (state is DetailsLoaded) {
             final student = state.student;
             return SingleChildScrollView(
+              padding: PrimaryStyle.padding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[

@@ -2,15 +2,7 @@ import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/timetable_card.dart';
 import 'package:flutter/material.dart';
 
-Widget buildContainer(Widget child, num length) {
-  return Container(
-    //margin: EdgeInsets.all(10),
-    // padding: EdgeInsets.all(10),
-    height: 145 * length.truncateToDouble(),
-    width: double.infinity,
-    child: child,
-  );
-}
+
 
 class SingleDayTimeTableWidget extends StatelessWidget {
   final List<TimingModel> day;

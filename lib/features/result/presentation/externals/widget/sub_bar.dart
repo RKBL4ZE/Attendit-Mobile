@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class TotalMarksBarWidget extends StatelessWidget {
-  final List attendanceBar;
-  //final attendence = DUMMY_subdetailsatten.toList();
+  final num percentage;
+  final num percentageWithCredits;
 
-  TotalMarksBarWidget({
-    /*@required*/ this.attendanceBar,
-  });
+  const TotalMarksBarWidget(
+      {Key key, this.percentage=0, this.percentageWithCredits=0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +45,10 @@ class TotalMarksBarWidget extends StatelessWidget {
                   animationDuration: 1000,
                   radius: radius,
                   lineWidth: 15.0,
-                  percent: 0.6,
+                  percent: percentage.toDouble()/100,
                   //footer: Text("ve"),
                   center: new Text(
-                    "60%",
+                    "$percentage%",
                     style: TextStyle(
                         // fontFamily: 'Rubik',
                         fontSize: insidefont,
@@ -71,7 +71,7 @@ class TotalMarksBarWidget extends StatelessWidget {
                   animationDuration: 1000,
                   radius: radius,
                   lineWidth: 15.0,
-                  percent: 1,
+                  percent: percentageWithCredits.toDouble()/100,
                   footer: AutoSizeText(
                     "% with Credits",
                     style: TextStyle(
@@ -81,7 +81,7 @@ class TotalMarksBarWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   center: new Text(
-                    "60%",
+                    "$percentageWithCredits%",
                     style: TextStyle(
                         // fontFamily: 'Rubik',
                         fontSize: insidefont,

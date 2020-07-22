@@ -9,10 +9,31 @@ final double angle = 0;
 final double insidefont = 20;
 final Color footercolor = Color.fromRGBO(95, 197, 209, 1);
 final Color textColor = Color.fromRGBO(29, 53, 84, 0.9);
-final int barpercent = 90;
+
 final double containerheight = 105;
 
 class MarksBySub extends StatefulWidget {
+  final String subname;
+  final String subNameCode;
+  final num internalMarksEarn;
+  final num internalMarksMax;
+  final num externalMarksEarn;
+  final num externalMarksMax;
+  final num totalMarksEarn;
+  final num totalMarksMax;
+
+  const MarksBySub(
+      {Key key,
+      this.subname,
+      this.subNameCode,
+      this.internalMarksEarn,
+      this.internalMarksMax,
+      this.externalMarksEarn,
+      this.externalMarksMax,
+      this.totalMarksEarn,
+      this.totalMarksMax})
+      : super(key: key);
+
   @override
   _MarksBySubState createState() => _MarksBySubState();
 }
@@ -33,17 +54,17 @@ class _MarksBySubState extends State<MarksBySub> {
 
   @override
   Widget build(BuildContext context) {
-    if (bar == true) {
+    if (bar) {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(
               height: containerheight,
               width: double.infinity,
-              margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+              //margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Card(
                 color: Color.fromRGBO(225, 239, 240, 1),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,7 +75,7 @@ class _MarksBySubState extends State<MarksBySub> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              "BCA 302",
+                              widget.subNameCode,
                               style: TextStyle(
                                   fontFamily: 'Rubik',
                                   fontSize: 15,
@@ -65,7 +86,7 @@ class _MarksBySubState extends State<MarksBySub> {
                               height: 5,
                             ),
                             Text(
-                              "DWDM",
+                              widget.subname,
                               style: TextStyle(
                                   fontFamily: 'Rubik',
                                   fontSize: 20,
@@ -79,10 +100,7 @@ class _MarksBySubState extends State<MarksBySub> {
                       child: CircularPercentIndicator(
                         backgroundColor: Colors.white,
                         startAngle: angle,
-                        linearGradient: LinearGradient(colors: [
-                          Styles.colorPrimary,
-                          Styles.colorSecondary
-                        ]),
+                        progressColor: ResultCardStyle.percentageBarColor,
                         circularStrokeCap: CircularStrokeCap.round,
                         // arcType: ArcType.FULL,
                         // arcBackgroundColor: Colors.white,
@@ -91,14 +109,15 @@ class _MarksBySubState extends State<MarksBySub> {
                         animationDuration: 1000,
                         radius: radius,
                         lineWidth: 7.0,
-                        percent: (barpercent / 100).toDouble(),
+                        percent: (widget.totalMarksEarn / widget.totalMarksMax)
+                            .toDouble(),
                         //footer: Text("ve"),
                         center: new Text(
-                          "$barpercent%",
+                          "${((widget.totalMarksEarn / widget.totalMarksMax) * 100).toString().split(".")[0]}%",
                           style: TextStyle(
                               // fontFamily: 'Rubik',
                               fontSize: insidefont,
-                              color: footercolor,
+                              color: ResultCardStyle.percentageBarColor,
                               fontWeight: FontWeight.bold),
                         ),
                         //progressColor: Color.fromRGBO(95, 197, 209, 1),
@@ -107,7 +126,7 @@ class _MarksBySubState extends State<MarksBySub> {
                   ],
                 ),
               )));
-    } else if (bar == false) {
+    } else {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(
@@ -126,12 +145,12 @@ class _MarksBySubState extends State<MarksBySub> {
                   ]),
               height: containerheight,
               width: double.infinity,
-              margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+              // margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Card(
                 borderOnForeground: true,
                 color: Color.fromRGBO(225, 239, 240, 1),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Container(
                   margin: EdgeInsets.fromLTRB(20, 15, 20, 5),
@@ -139,7 +158,7 @@ class _MarksBySubState extends State<MarksBySub> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Data Warehouse And Data Mining",
+                        widget.subname,
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             fontFamily: 'Karla',
@@ -159,7 +178,7 @@ class _MarksBySubState extends State<MarksBySub> {
                               Container(
                                 margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
                                 child: Text(
-                                  "Internal : 25/25",
+                                  "Internal : ${widget.internalMarksEarn}/${widget.internalMarksMax}",
                                   style: TextStyle(
                                     fontFamily: 'Karla',
                                     fontSize: 16,
@@ -171,7 +190,7 @@ class _MarksBySubState extends State<MarksBySub> {
                               Container(
                                 margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
                                 child: Text(
-                                  "External : 55/75",
+                                  "External : ${widget.externalMarksEarn}/${widget.externalMarksMax}",
                                   style: TextStyle(
                                     fontFamily: 'Karla',
                                     fontSize: 16,
@@ -183,7 +202,7 @@ class _MarksBySubState extends State<MarksBySub> {
                             ],
                           ),
                           Text(
-                            "Total : 80/100",
+                            "Total : ${widget.totalMarksEarn}/${widget.totalMarksMax}",
                             style: TextStyle(
                                 fontFamily: 'Karla',
                                 fontSize: 16,

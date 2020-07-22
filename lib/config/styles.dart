@@ -47,6 +47,7 @@ class PrimaryStyle {
   static final primary = Colors.blueGrey[900];
   static const accent = Colors.grey;
   static const splash = Colors.blue;
+  static const padding = EdgeInsets.all(7);
 }
 
 class GraphStyle {
@@ -83,10 +84,6 @@ class CardStyle {
     color: Colors.grey.withAlpha(10),
     blurRadius: 0.2,
     spreadRadius: 0.5,
-    /*   offset: Offset(
-      0.0,
-      1.0,
-    ), */
   );
 
   static final overflow = TextOverflow.ellipsis;
@@ -126,6 +123,7 @@ class LectureCardStyle {
   static final beforeColor = Colors.blueGrey[800];
   static final currentColor = Colors.blue;
   static final afterColor = Colors.red;
+  static final buttonColor = Colors.blueGrey[800];
   static final textStyle =
       TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
   static final headingTextStyle =
@@ -138,3 +136,16 @@ class LectureCardStyle {
 
 Widget loaderWidget = ColorLoader4();
 Color fulltimeTablePrimaryColor = Colors.green[50];
+
+class ResultCardStyle {
+  static final percentageBarColor = Colors.blueGrey[900];
+  static final selectedColor = Colors.grey[300];
+  static final subheadingColor = Colors.grey[700];
+  static final headingTextStyle = TextStyle(
+      fontSize: 31, color: Colors.grey[850], fontWeight: FontWeight.w800);
+  static final boxShadow = BoxShadow(
+    color: Color(0xFF000000).withAlpha(25),
+    blurRadius: 10.0,
+    spreadRadius: 0.0,
+  );
+}

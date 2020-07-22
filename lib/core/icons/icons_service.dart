@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:koukicons/about.dart';
 import 'package:koukicons/assistant.dart';
 import 'package:koukicons/compose.dart';
+import 'package:koukicons/favourite2.dart';
 import 'package:koukicons/graduationCap.dart';
 import 'package:koukicons/note.dart';
 
@@ -27,5 +29,18 @@ class IconsService {
   static final aboutUs = KoukiconsAbout(
     height: height,
     width: width,
+  );
+
+  static final rank1 = KoukiconsFavourite2(
+      height: height, width: width, color: Color.fromRGBO(255, 215, 0, 1));
+  static final rank2 = KoukiconsFavourite2(
+    height: height,
+    width: width,
+    color: Color.fromRGBO(192, 192, 192, 1),
+  );
+  static final rank3 = KoukiconsFavourite2(
+    height: height,
+    width: width,
+    color: Color.fromRGBO(205, 127, 50, 1),
   );
 }
