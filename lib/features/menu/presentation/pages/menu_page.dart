@@ -55,65 +55,62 @@ class MenuPage extends StatelessWidget {
     //   ),
     // );
 
-    return SingleChildScrollView(
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+              child: Container(
+                constraints: BoxConstraints(minHeight: 400),
+                //height: 175,
+                width: double.infinity,
+                decoration: BoxDecoration(boxShadow: [CardStyle.boxShadow]),
+                child:
+                    Expanded(child: Card(child: Center(child: Text("reju")))),
+              ),
+            ),
+          ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                menuContent(IconsService.onlineClasses, "Online Classes",
+                    OnlineClassList(), context),
+                SizedBox(
+                  width: 10,
+                ),
+                menuContent(IconsService.exteralMarks, "External Marks",
+                    ExternalPage(), context),
+              ],
+            ),
+          ),
+          // menuContent(IconsService., "Internal Marks", InternalPage(), context),
+
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                menuContent(IconsService.assignment, "Assignment",
+                    Scaffold(body: Text("soon!!")), context),
+                SizedBox(
+                  width: 10,
+                ),
+                menuContent(IconsService.contactUs, "Contact Us",
+                    Scaffold(body: Text("soon!!")), context),
+              ],
+            ),
+          ),
+
+          Row(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                child: Container(
-                    height: 175,
-                    width: double.infinity,
-                    child: Container(
-                      decoration:
-                          BoxDecoration(boxShadow: [CardStyle.boxShadow]),
-                      child: Expanded(
-                          child: Card(child: Center(child: Text("reju")))),
-                    )),
-              ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    menuContent(IconsService.onlineClasses, "Online Classes",
-                        OnlineClassList(), context),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    menuContent(IconsService.exteralMarks, "External Marks",
-                        ExternalPage(), context),
-                  ],
-                ),
-              ),
-              // menuContent(IconsService., "Internal Marks", InternalPage(), context),
-
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    menuContent(IconsService.assignment, "Assignment",
-                        Scaffold(body: Text("soon!!")), context),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    menuContent(IconsService.contactUs, "Contact Us",
-                        Scaffold(body: Text("soon!!")), context),
-                  ],
-                ),
-              ),
-
-              Row(
-                children: <Widget>[
-                  menuContent(IconsService.aboutUs, "About Us",
-                      Scaffold(body: WelcomeScreen()), context),
-                ],
-              ),
+              menuContent(IconsService.aboutUs, "About Us",
+                  Scaffold(body: WelcomeScreen()), context),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

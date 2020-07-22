@@ -3,6 +3,7 @@ import 'package:Attendit/features/newsfeed/domain/entities/news_feed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:intl/intl.dart';
+import 'package:Attendit/config/styles.dart';
 
 class NewsFeedCard extends StatefulWidget {
   NewsFeedCard({@required this.newsFeed});
@@ -139,7 +140,10 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                 itemBuilder: (BuildContext context, int index) {
                   return Image.network(
                     widget.newsFeed.images[index],
-                    fit: BoxFit.fill,
+                    loadingBuilder: (context, child, progress) {
+                      return progress == null ? child : loaderWidget;
+                    },
+                    fit: BoxFit.contain,
                   );
                 },
                 itemCount: widget.newsFeed.images.length,
@@ -147,14 +151,15 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
                 autoplayDisableOnInteraction: true,
                 //control: new SwiperControl(),
                 pagination: new SwiperPagination(
+
                     //alignment: Alignment.bottomCenter,
-                    //margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    //margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
                     //builder: SwiperPagination.dots,
                     ),
                 layout: SwiperLayout.DEFAULT,
                 /* viewportFraction: 1,
                 scale: 1, */
-                 itemWidth: 400,
+                itemWidth: 400,
                 itemHeight: 400,
                 //TODO:ADD full image view on tap below
                 //onTap: (){},
