@@ -13,8 +13,13 @@ import 'package:Attendit/features/auth/data/datasources/auth_local_datasource.da
 import 'package:Attendit/features/home/data/datasources/home_local_datasource.dart';
 import 'package:Attendit/core/network/network_info.dart';
 import 'package:Attendit/features/newsfeed/data/datasources/news_feed_local_datasource.dart';
+import 'package:Attendit/features/result/data/datasources/result_remote_datasource.dart';
+import 'package:Attendit/features/result/data/repositories/result_repository.dart';
+import 'package:Attendit/features/result/domain/repositories/i_result_repository.dart';
 import 'package:Attendit/features/timetable/data/datasources/timetable_local_datasource.dart';
 import 'package:Attendit/core/navigator/navigator.service.dart';
+import 'package:Attendit/features/result/domain/usecases/get_rank_list.dart';
+import 'package:Attendit/features/result/domain/usecases/get_result.dart';
 import 'package:Attendit/core/network/graphql_service.dart';
 import 'package:Attendit/features/home/data/datasources/home_remote_datasource.dart';
 import 'package:Attendit/features/home/data/repositories/home_repository.dart';
@@ -25,6 +30,7 @@ import 'package:Attendit/features/newsfeed/domain/repositories/i_news_feed_repos
 import 'package:Attendit/features/timetable/data/datasources/timetable_remote_datasource.dart';
 import 'package:Attendit/features/timetable/data/repositories/timetable_repository.dart';
 import 'package:Attendit/features/timetable/domain/repositories/i_timetable_repository.dart';
+import 'package:Attendit/features/result/presentation/bloc/result_bloc.dart';
 import 'package:Attendit/features/home/domain/usecases/get_all_details.dart';
 import 'package:Attendit/features/newsfeed/domain/usecases/get_news_feed.dart';
 import 'package:Attendit/features/home/domain/usecases/get_student_details.dart';
@@ -65,9 +71,15 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => NetworkInfo(g<DataConnectionChecker>()));
   g.registerFactory<INewsFeedLocalDataSource>(
       () => NewsFeedLocalDataSource(g<Box<dynamic>>()));
+  g.registerFactory<IResultRemoteDataSource>(() => ResultRemoteDataSource());
+  g.registerFactory<IResultRepository>(
+      () => ResultRepository(g<INetworkInfo>(), g<IResultRemoteDataSource>()));
   g.registerFactory<ITimeTableLocalDataSource>(
       () => TimeTableLocalDataSource(g<Box<dynamic>>()));
   g.registerLazySingleton<NavigationService>(() => NavigationService());
+  g.registerLazySingleton<GetRankList>(
+      () => GetRankList(g<IResultRepository>()));
+  g.registerLazySingleton<GetResult>(() => GetResult(g<IResultRepository>()));
   g.registerFactory<IGraphQLService>(() => GraphQLService(
         g<Box<dynamic>>(),
         g<INetworkInfo>(),
@@ -94,6 +106,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<ITimeTableLocalDataSource>(),
         g<INetworkInfo>(),
       ));
+  g.registerFactory<ResultBloc>(() => ResultBloc(g<GetResult>()));
   g.registerLazySingleton<GetAllDetails>(
       () => GetAllDetails(g<IHomeRepository>()));
   g.registerLazySingleton<GetNewsFeed>(
