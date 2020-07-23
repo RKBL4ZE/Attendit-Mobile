@@ -5,7 +5,6 @@ import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,9 +19,9 @@ Future<void> main() async {
   await configureInjection(Environment.prod);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-     systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark
-      ));
+	  ));
   runApp(MyApp());
 }
 

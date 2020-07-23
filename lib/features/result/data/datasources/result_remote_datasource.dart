@@ -39,10 +39,9 @@ class ResultRemoteDataSource implements IResultRemoteDataSource {
         'Content-Type': 'application/json',
       });
       if (response.statusCode == 200) {
-		  final Map<String, dynamic> ret = json.decode(response.body);
-		  print(ret);
-        final val =  ResultDataModel.fromJson(ret['data']);
-		return val;
+        final Map<String, dynamic> ret = json.decode(response.body);
+        final val = ResultDataModel.fromJson(ret['data']);
+        return val;
       } else {
         throw ServerException();
       }
@@ -66,9 +65,9 @@ class ResultRemoteDataSource implements IResultRemoteDataSource {
             'Content-Type': 'application/json',
           });
       if (response.statusCode == 200) {
-        return json
-            .decode(response.body)
-            .map<List<RankModel>>((e) => RankModel.fromJson(e))
+        final Map<String, dynamic> ret = json.decode(response.body);
+        return ret['data']
+            .map<RankModel>((e) => RankModel.fromJson(e))
             .toList();
       } else {
         throw ServerException();
