@@ -1,6 +1,6 @@
 part of 'rank_bloc.dart';
 
-abstract class RankEvent {}
+abstract class RankEvent extends Equatable {}
 
 class GetRankListEvent extends RankEvent {
   final String rankType;
@@ -17,6 +17,8 @@ class GetRankListEvent extends RankEvent {
       this.institutionCode,
       this.limit,
       this.offset});
-}
 
-class InitialEvent extends RankEvent {}
+  @override
+  List<Object> get props =>
+      [rankType, takenFrom, batch, institutionCode, limit, offset];
+}

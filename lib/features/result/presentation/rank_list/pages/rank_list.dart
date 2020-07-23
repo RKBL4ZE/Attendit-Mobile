@@ -17,17 +17,29 @@ class RankList extends StatelessWidget {
   }
 }
 
-class RankListPage extends StatelessWidget {
+class RankListPage extends StatefulWidget {
   final RankBloc bloc;
   final ResultData data;
 
-  RankListPage(this.bloc, this.data) {
+  RankListPage(this.bloc, this.data);
+
+  @override
+  _RankListPageState createState() => _RankListPageState(bloc, data);
+}
+
+class _RankListPageState extends State<RankListPage> {
+  final RankBloc bloc;
+  final ResultData data;
+  final _scrollController = ScrollController();
+  final _scrollThreshold = 400.0;
+
+  _RankListPageState(this.bloc, this.data) {
+    _scrollController.addListener(_onScroll);
     bloc.add(GetRankListEvent(
-        takenFrom: data.results[0].fileId,
-        batch: data.batch,
-        institutionCode: data.institution.code,
-        limit: 50,
-        offset: 0));
+      takenFrom: data.results[0].fileId,
+      batch: data.batch,
+      institutionCode: data.institution.code,
+    ));
   }
 
   @override
@@ -50,6 +62,8 @@ class RankListPage extends StatelessWidget {
                     final ranks =
                         switchState.isTapped ? state.uRankList : state.rankList;
                     return SingleChildScrollView(
+                      controller: _scrollController,
+                      physics: ScrollPhysics(),
                       child: Column(
                         children: <Widget>[
                           Padding(
@@ -86,6 +100,7 @@ class RankListPage extends StatelessWidget {
                               },
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
+                              //   primary: false,
                             ),
                           ),
                         ],
@@ -102,5 +117,24 @@ class RankListPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+    if (maxScroll - currentScroll <= _scrollThreshold) {
+      print('Scroll Detected');
+      bloc.add(GetRankListEvent(
+        takenFrom: data.results[0].fileId,
+        batch: data.batch,
+        institutionCode: data.institution.code,
+      ));
+    }
   }
 }
