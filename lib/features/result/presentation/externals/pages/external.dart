@@ -40,7 +40,7 @@ class ExternalWidget extends StatelessWidget {
     return BlocBuilder<ResultBloc, ResultState>(
       builder: (context, state) {
         if (state is ResultLoading)
-          return Text('Loading');
+          return loaderWidget;
         else if (state is ResultLoaded) {
           final data = state.resultData;
           int totalSem = 0;
@@ -50,7 +50,7 @@ class ExternalWidget extends StatelessWidget {
               totalSem++;
               subjects[element.semYear.num] = element.subjects;
             }
-            ;
+            
           });
           return SingleChildScrollView(
             child: Container(

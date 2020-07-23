@@ -46,36 +46,55 @@ class TotalMarksBarWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   CircularPercentIndicator(
-                    footer: Text(
-                      "Percentage",
-                      style: TextStyle(
-                          // fontFamily: 'Rubik',
-                          fontSize: footersize,
-                          color: GraphStyle.primary,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    startAngle: angle,
-                    progressColor: GraphStyle.primary,
-                    circularStrokeCap: CircularStrokeCap.round,
-                    // arcType: ArcType.FULL,
-                    // arcBackgroundColor: Colors.white,
-                    animation: true,
-                    backgroundColor: Colors.transparent,
-                    animationDuration: 1000,
-                    radius: radius,
-                    lineWidth: 15.0,
-                    percent: scores[i].percentage.toDouble() / 100,
-                    //footer: Text("ve"),
-                    center: new Text(
-                      "${scores[i].percentage}%",
-                      style: TextStyle(
-                          // fontFamily: 'Rubik',
-                          fontSize: insidefont,
-                          color: GraphStyle.primary,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    //progressColor: Color.fromRGBO(95, 197, 209, 1),
-                  ),
+                      footer: Text(
+                        "Percentage",
+                        style: TextStyle(
+                            // fontFamily: 'Rubik',
+                            fontSize: footersize,
+                            color: GraphStyle.primary,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      startAngle: angle,
+                      progressColor: GraphStyle.primary,
+                      circularStrokeCap: CircularStrokeCap.round,
+                      // arcType: ArcType.FULL,
+                      // arcBackgroundColor: Colors.white,
+                      animation: true,
+                      backgroundColor: Colors.transparent,
+                      animationDuration: 1000,
+                      radius: radius,
+                      lineWidth: 15.0,
+                      percent: scores[i].percentage.toDouble() / 100,
+                      //footer: Text("ve"),
+                      center: RichText(
+                        text: TextSpan(
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                              text:
+                                  '${scores[i].percentage.toString().split(".")[0]}',
+                              style: TextStyle(
+                                  // fontFamily: 'Rubik',
+                                  fontSize: insidefont,
+                                  color: GraphStyle.primary,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                                text:
+                                    '.${scores[i].percentage.toString().split(".")[1]}%'),
+                          ],
+                        ),
+                      )
+                      //  Text(
+                      //   "${scores[i].percentage}%",
+                      //     style: TextStyle(
+                      //         // fontFamily: 'Rubik',
+                      //         fontSize: insidefont,
+                      //         color: GraphStyle.primary,
+                      //         fontWeight: FontWeight.bold),
+                      //   ),
+                      //progressColor: Color.fromRGBO(95, 197, 209, 1),
+                      ),
                   SizedBox(
                     width: 10,
                   ),
@@ -99,13 +118,24 @@ class TotalMarksBarWidget extends StatelessWidget {
                           color: GraphStyle.primary,
                           fontWeight: FontWeight.bold),
                     ),
-                    center: new Text(
-                      "${scores[i].creditPercentage}%",
-                      style: TextStyle(
-                          // fontFamily: 'Rubik',
-                          fontSize: insidefont,
-                          color: GraphStyle.primary,
-                          fontWeight: FontWeight.bold),
+                    center: RichText(
+                      text: TextSpan(
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(
+                            text:
+                                '${scores[i].creditPercentage.toString().split(".")[0]}',
+                            style: TextStyle(
+                                // fontFamily: 'Rubik',
+                                fontSize: insidefont,
+                                color: GraphStyle.primary,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                              text:
+                                  '.${scores[i].creditPercentage.toString().split(".")[1]}%'),
+                        ],
+                      ),
                     ),
                     //progressColor: Color.fromRGBO(95, 197, 209, 1),
                   ),

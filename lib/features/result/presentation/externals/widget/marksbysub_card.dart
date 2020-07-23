@@ -58,78 +58,75 @@ class _MarksBySubState extends State<MarksBySub> {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(
-              height: containerheight,
-              width: double.infinity,
-              //margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
-              child: Card(
-                color: Color.fromRGBO(225, 239, 240, 1),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                        margin: EdgeInsets.fromLTRB(20, 10, 5, 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              widget.subNameCode,
-                              style: TextStyle(
-                                  fontFamily: 'Rubik',
-                                  fontSize: 15,
-                                  color: textColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              widget.subname,
-                              style: TextStyle(
-                                  fontFamily: 'Rubik',
-                                  fontSize: 20,
-                                  color: textColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        )),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      child: CircularPercentIndicator(
-                        backgroundColor: Colors.white,
-                        startAngle: angle,
-                        progressColor: ResultCardStyle.percentageBarColor,
-                        circularStrokeCap: CircularStrokeCap.round,
-                        // arcType: ArcType.FULL,
-                        // arcBackgroundColor: Colors.white,
-                        animation: true,
-                        //backgroundColor: Colors.transparent,
-                        animationDuration: 1000,
-                        radius: radius,
-                        lineWidth: 7.0,
-                        percent: (widget.totalMarksEarn / widget.totalMarksMax)
-                            .toDouble(),
-                        //footer: Text("ve"),
-                        center: new Text(
-                          "${((widget.totalMarksEarn / widget.totalMarksMax) * 100).toString().split(".")[0]}%",
-                          style: TextStyle(
-                              // fontFamily: 'Rubik',
-                              fontSize: insidefont,
-                              color: ResultCardStyle.percentageBarColor,
-                              fontWeight: FontWeight.bold),
+            constraints: BoxConstraints(minHeight: containerheight),
+            //height: containerheight,
+            width: double.infinity,
+            //margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+            child: Card(
+              color: Color.fromRGBO(225, 239, 240, 1),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Table(
+                  defaultVerticalAlignment: TableCellVerticalAlignment.top,
+                  columnWidths: {
+                    0: FlexColumnWidth(4),
+                    1: FlexColumnWidth(2),
+                  },
+                  children: [
+                    TableRow(
+						
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
+                          child: Text(
+                            widget.subNameCode,
+                            style: TextStyle(
+                                fontFamily: 'Rubik',
+                                fontSize: 15,
+                                color: textColor,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        //progressColor: Color.fromRGBO(95, 197, 209, 1),
-                      ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: CircularPercentIndicator(
+                            backgroundColor: Colors.white,
+                            startAngle: angle,
+                            progressColor: ResultCardStyle.percentageBarColor,
+                            circularStrokeCap: CircularStrokeCap.round,
+                            // arcType: ArcType.FULL,
+                            // arcBackgroundColor: Colors.white,
+                            animation: true,
+                            //backgroundColor: Colors.transparent,
+                            animationDuration: 1000,
+                            radius: radius,
+                            lineWidth: 7.0,
+                            percent:
+                                (widget.totalMarksEarn / widget.totalMarksMax)
+                                    .toDouble(),
+                            //footer: Text("ve"),
+                            center: new Text(
+                              "${((widget.totalMarksEarn / widget.totalMarksMax) * 100).toString().split(".")[0]}%",
+                              style: TextStyle(
+                                  // fontFamily: 'Rubik',
+                                  fontSize: insidefont,
+                                  color: ResultCardStyle.percentageBarColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            //progressColor: Color.fromRGBO(95, 197, 209, 1),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              )));
+                  ]),
+            ),
+          ));
     } else {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(
+			  constraints: BoxConstraints(minHeight: containerheight),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(13),
                   boxShadow: [
@@ -143,7 +140,7 @@ class _MarksBySubState extends State<MarksBySub> {
                       ),
                     ),
                   ]),
-              height: containerheight,
+             // height: containerheight,
               width: double.infinity,
               // margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Card(

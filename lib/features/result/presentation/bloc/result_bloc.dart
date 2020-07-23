@@ -34,6 +34,7 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
     ResultEvent event,
   ) async* {
     if (event is GetResultEvent) {
+      yield ResultLoading();
       final failureOrEnrollment = await getEnrollment(NoParams());
       final enrollment = failureOrEnrollment.fold((l) => null, (r) => r);
 
