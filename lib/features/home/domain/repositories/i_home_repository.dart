@@ -12,4 +12,6 @@ abstract class IHomeRepository {
   Future<Either<Failure, List<StudentAssignment>>> getStudentAssignments();
 
   Future<Either<Failure, Map<String, dynamic>>> getAllDetails();
+
+  Future<Either<Failure, String>> getEnrollment();
 }

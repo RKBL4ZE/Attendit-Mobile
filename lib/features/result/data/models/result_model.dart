@@ -2,11 +2,11 @@ import 'package:Attendit/features/result/domain/entities/result.dart';
 
 //----subjects
 class MinorModel extends Minor {
-  MinorModel({num max, num earned}) : super(max, earned);
+  MinorModel({num max, String earned}) : super(max, earned);
   factory MinorModel.fromJson(Map<String, dynamic> json) {
     return MinorModel(
       max: json['max'],
-      earned: json['earned'] == '-' ? null : json['earned'],
+      earned: json['earned'].toString(),
     );
   }
 
@@ -19,11 +19,11 @@ class MinorModel extends Minor {
 }
 
 class MajorModel extends Major {
-  MajorModel({num max, num earned}) : super(max, earned);
+  MajorModel({num max, String earned}) : super(max, earned);
   factory MajorModel.fromJson(Map<String, dynamic> json) {
     return MajorModel(
       max: json['max'],
-      earned: json['earned'] == '-' ? null : json['earned'],
+      earned: json['earned'].toString(),
     );
   }
 
@@ -36,11 +36,11 @@ class MajorModel extends Major {
 }
 
 class TotalModel extends Total {
-  TotalModel({num max, num earned}) : super(max, earned);
+  TotalModel({num max, String earned}) : super(max, earned);
   factory TotalModel.fromJson(Map<String, dynamic> json) {
     return TotalModel(
       max: json['max'],
-      earned: json['earned'],
+      earned: json['earned'].toString(),
     );
   }
 

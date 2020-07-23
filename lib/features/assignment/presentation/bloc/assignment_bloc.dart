@@ -25,7 +25,9 @@ class AssignmentBloc extends Bloc<AssignmentEvent, AssignmentState> {
   final SubmitAssignment submitAssignment;
   final GetAssignmentDetails getAssignmentDetails;
 
-  AssignmentBloc(this.getAssignmentDetails, this.submitAssignment);
+  AssignmentBloc(this.getAssignmentDetails, this.submitAssignment) {
+	  this.add(GetAssignmentDetailsEvent());
+  }
   @override
   AssignmentState get initialState => DetailsLoading();
 

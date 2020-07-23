@@ -54,7 +54,9 @@ class HomeRepository implements IHomeRepository {
     if (await _networkInfo.isConnected) {
       try {
         final models = await _remoteDataSource.getAllDetails();
-        // await _localDataSource.cacheStudentDetails(models);
+        await _localDataSource.cacheAllDetails(models);
+        final StudentDetails student = models['Student'];
+        await _localDataSource.cacheEnrollment(student.enrollment);
         return Right(models);
       } on ServerException {
         return Left(ServerFailure());
@@ -64,5 +66,10 @@ class HomeRepository implements IHomeRepository {
     } else {
       return Left(NetworkFailure());
     }
+  }
+
+  @override
+  Future<Either<Failure, String>> getEnrollment() async {
+    return Right(await _localDataSource.getEnrollment());
   }
 }

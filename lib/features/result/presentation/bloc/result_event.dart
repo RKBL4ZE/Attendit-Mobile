@@ -5,9 +5,6 @@ abstract class ResultEvent extends Equatable {
 }
 
 class GetResultEvent extends ResultEvent {
-  final String enrollment;
-
-  GetResultEvent(this.enrollment);
   @override
-  List<Object> get props => [enrollment];
+  List<Object> get props => [];
 }

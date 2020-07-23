@@ -18,6 +18,7 @@ import 'package:Attendit/features/result/data/repositories/result_repository.dar
 import 'package:Attendit/features/result/domain/repositories/i_result_repository.dart';
 import 'package:Attendit/features/timetable/data/datasources/timetable_local_datasource.dart';
 import 'package:Attendit/core/navigator/navigator.service.dart';
+import 'package:Attendit/features/result/presentation/bloc/sem_bloc.dart';
 import 'package:Attendit/features/result/domain/usecases/get_rank_list.dart';
 import 'package:Attendit/features/result/domain/usecases/get_result.dart';
 import 'package:Attendit/core/network/graphql_service.dart';
@@ -30,8 +31,8 @@ import 'package:Attendit/features/newsfeed/domain/repositories/i_news_feed_repos
 import 'package:Attendit/features/timetable/data/datasources/timetable_remote_datasource.dart';
 import 'package:Attendit/features/timetable/data/repositories/timetable_repository.dart';
 import 'package:Attendit/features/timetable/domain/repositories/i_timetable_repository.dart';
-import 'package:Attendit/features/result/presentation/bloc/result_bloc.dart';
 import 'package:Attendit/features/home/domain/usecases/get_all_details.dart';
+import 'package:Attendit/features/home/domain/usecases/get_enrollment.dart';
 import 'package:Attendit/features/newsfeed/domain/usecases/get_news_feed.dart';
 import 'package:Attendit/features/home/domain/usecases/get_student_details.dart';
 import 'package:Attendit/features/timetable/domain/usecases/get_timetable.dart';
@@ -43,6 +44,7 @@ import 'package:Attendit/features/auth/data/datasources/auth_remote_datasource.d
 import 'package:Attendit/features/auth/data/repositories/auth_repository.dart';
 import 'package:Attendit/features/auth/domain/repositories/i_auth_repository.dart';
 import 'package:Attendit/features/newsfeed/presentation/bloc/newsfeed_bloc.dart';
+import 'package:Attendit/features/result/presentation/bloc/result_bloc.dart';
 import 'package:Attendit/features/assignment/domain/usecases/submit_assignment.dart';
 import 'package:Attendit/features/assignment/presentation/bloc/assignment_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
@@ -77,6 +79,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerFactory<ITimeTableLocalDataSource>(
       () => TimeTableLocalDataSource(g<Box<dynamic>>()));
   g.registerLazySingleton<NavigationService>(() => NavigationService());
+  g.registerFactory<SemBloc>(() => SemBloc());
   g.registerLazySingleton<GetRankList>(
       () => GetRankList(g<IResultRepository>()));
   g.registerLazySingleton<GetResult>(() => GetResult(g<IResultRepository>()));
@@ -106,9 +109,10 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<ITimeTableLocalDataSource>(),
         g<INetworkInfo>(),
       ));
-  g.registerFactory<ResultBloc>(() => ResultBloc(g<GetResult>()));
   g.registerLazySingleton<GetAllDetails>(
       () => GetAllDetails(g<IHomeRepository>()));
+  g.registerLazySingleton<GetEnrollment>(
+      () => GetEnrollment(g<IHomeRepository>()));
   g.registerLazySingleton<GetNewsFeed>(
       () => GetNewsFeed(g<INewsFeedRepository>()));
   g.registerLazySingleton<GetStudentDetails>(
@@ -129,6 +133,8 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<IAuthRemoteDataSource>(),
       ));
   g.registerFactory<NewsfeedBloc>(() => NewsfeedBloc(g<GetNewsFeed>()));
+  g.registerFactory<ResultBloc>(
+      () => ResultBloc(g<GetResult>(), g<GetEnrollment>()));
   g.registerLazySingleton<SubmitAssignment>(
       () => SubmitAssignment(g<IAssignmentRepository>()));
   g.registerFactory<SubmitAssignmentBloc>(

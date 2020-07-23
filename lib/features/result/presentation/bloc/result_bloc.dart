@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:Attendit/features/home/domain/usecases/get_enrollment.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../../../core/usecase/usecase.dart';
 import '../../domain/entities/result.dart';
 import '../../domain/usecases/get_result.dart';
 
@@ -19,9 +21,10 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 @injectable
 class ResultBloc extends Bloc<ResultEvent, ResultState> {
   final GetResult getResult;
+  final GetEnrollment getEnrollment;
 
-  ResultBloc(this.getResult) {
-    this.add(GetResultEvent('00414902019'));
+  ResultBloc(this.getResult, this.getEnrollment) {
+    this.add(GetResultEvent());
   }
 
   @override
@@ -31,8 +34,10 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
     ResultEvent event,
   ) async* {
     if (event is GetResultEvent) {
-      final failureOrResult =
-          await getResult(Params(enrollment: event.enrollment));
+      final failureOrEnrollment = await getEnrollment(NoParams());
+      final enrollment = failureOrEnrollment.fold((l) => null, (r) => r);
+
+      final failureOrResult = await getResult(Params(enrollment: enrollment));
       yield* _eitherLoadedOrErrorState(failureOrResult);
     }
   }

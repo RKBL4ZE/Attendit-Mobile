@@ -2,21 +2,21 @@
 
 abstract class Minor {
   final num max;
-  final num earned;
+  final String earned;
 
   Minor(this.max, this.earned);
 }
 
 abstract class Major {
   final num max;
-  final num earned;
+  final String earned;
 
   Major(this.max, this.earned);
 }
 
 abstract class Total {
   final num max;
-  final num earned;
+  final String earned;
 
   Total(this.max, this.earned);
 }
