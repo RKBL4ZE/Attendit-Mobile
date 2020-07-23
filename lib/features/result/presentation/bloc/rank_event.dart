@@ -17,12 +17,6 @@ class GetRankListEvent extends RankEvent {
       this.institutionCode,
       this.limit,
       this.offset});
-  @override
-  List<Object> get props =>
-      [rankType, takenFrom, batch, institutionCode, limit, offset];
 }
 
-class InitialEvent extends RankEvent {
-  @override
-  List<Object> get props => [];
-}
+class InitialEvent extends RankEvent {}

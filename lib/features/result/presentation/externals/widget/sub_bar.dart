@@ -143,7 +143,8 @@ class TotalMarksBarWidget extends StatelessWidget {
               ),
             ),
           );
-        }
+        } else
+          return Container();
       },
     );
   }

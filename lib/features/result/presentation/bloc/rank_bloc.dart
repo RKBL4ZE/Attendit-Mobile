@@ -5,7 +5,7 @@ import 'package:Attendit/features/result/domain/entities/rank.dart';
 import 'package:Attendit/features/result/domain/usecases/get_rank_list.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
+
 import 'package:injectable/injectable.dart';
 
 part 'rank_event.dart';
