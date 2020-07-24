@@ -2,7 +2,7 @@ import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/icons/icons_service.dart';
 
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
-import 'package:Attendit/features/result/presentation/externals/widget/rank_list_card.dart';
+import 'package:Attendit/features/result/presentation/rank_list/widget/rank_list_card.dart';
 
 import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';
 

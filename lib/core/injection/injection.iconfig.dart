@@ -19,6 +19,7 @@ import 'package:Attendit/features/result/domain/repositories/i_result_repository
 import 'package:Attendit/features/timetable/data/datasources/timetable_local_datasource.dart';
 import 'package:Attendit/core/navigator/navigator.service.dart';
 import 'package:Attendit/features/result/presentation/bloc/sem_bloc.dart';
+import 'package:Attendit/features/result/presentation/bloc/switch_bloc.dart';
 import 'package:Attendit/features/result/domain/usecases/get_rank_list.dart';
 import 'package:Attendit/features/result/domain/usecases/get_result.dart';
 import 'package:Attendit/core/network/graphql_service.dart';
@@ -31,6 +32,7 @@ import 'package:Attendit/features/newsfeed/domain/repositories/i_news_feed_repos
 import 'package:Attendit/features/timetable/data/datasources/timetable_remote_datasource.dart';
 import 'package:Attendit/features/timetable/data/repositories/timetable_repository.dart';
 import 'package:Attendit/features/timetable/domain/repositories/i_timetable_repository.dart';
+import 'package:Attendit/features/result/presentation/bloc/rank_bloc.dart';
 import 'package:Attendit/features/home/domain/usecases/get_all_details.dart';
 import 'package:Attendit/features/home/domain/usecases/get_enrollment.dart';
 import 'package:Attendit/features/newsfeed/domain/usecases/get_news_feed.dart';
@@ -80,6 +82,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => TimeTableLocalDataSource(g<Box<dynamic>>()));
   g.registerLazySingleton<NavigationService>(() => NavigationService());
   g.registerFactory<SemBloc>(() => SemBloc());
+  g.registerFactory<SwitchBloc>(() => SwitchBloc());
   g.registerLazySingleton<GetRankList>(
       () => GetRankList(g<IResultRepository>()));
   g.registerLazySingleton<GetResult>(() => GetResult(g<IResultRepository>()));
@@ -109,6 +112,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<ITimeTableLocalDataSource>(),
         g<INetworkInfo>(),
       ));
+  g.registerFactory<RankBloc>(() => RankBloc(g<GetRankList>()));
   g.registerLazySingleton<GetAllDetails>(
       () => GetAllDetails(g<IHomeRepository>()));
   g.registerLazySingleton<GetEnrollment>(

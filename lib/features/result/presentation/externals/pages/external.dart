@@ -1,11 +1,14 @@
+import 'package:Attendit/features/result/presentation/bloc/rank_bloc.dart';
 import 'package:Attendit/features/result/presentation/bloc/result_bloc.dart';
 import 'package:Attendit/features/result/presentation/bloc/sem_bloc.dart';
-import 'package:Attendit/features/result/presentation/externals/widget/marksbysub_card.dart';
+import 'package:Attendit/features/result/presentation/bloc/switch_bloc.dart';
 import 'package:Attendit/features/result/presentation/externals/widget/semesterselector.dart';
 import 'package:Attendit/features/result/presentation/externals/widget/studentnamecard.dart';
 import 'package:Attendit/features/result/presentation/externals/widget/sub_bar.dart';
 import 'package:Attendit/features/result/presentation/externals/widget/subject_marks_list.dart';
+import 'package:Attendit/features/result/presentation/rank_list/pages/rank_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../../../../../config/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +53,6 @@ class ExternalWidget extends StatelessWidget {
               totalSem++;
               subjects[element.semYear.num] = element.subjects;
             }
-            
           });
           return SingleChildScrollView(
             child: Container(
@@ -88,6 +90,43 @@ class ExternalWidget extends StatelessWidget {
                         return Container();
                       }
                     },
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(70, 15, 70, 15),
+                    //alignment: Alignment.bottomCenter,
+                    height: 45.0,
+                    child: RaisedButton(
+                      shape: LectureCardStyle.shape,
+                      color: LectureCardStyle.buttonColor,
+                      onPressed: () {
+                        pushNewScreen(context,
+                            screen: MultiBlocProvider(
+                              child: RankList(
+                                data: data,
+                                key: UniqueKey(),
+                              ),
+                              providers: [
+                                BlocProvider<RankBloc>(
+                                  create: (_) => getIt(),
+                                ),
+                                BlocProvider<SwitchBloc>(
+                                  create: (_) => getIt(),
+                                ),
+                              ],
+                            ));
+                      },
+                      /* shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)), */
+                      child: Container(
+                        //constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "View Ranks",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

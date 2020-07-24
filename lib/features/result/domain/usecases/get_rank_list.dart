@@ -20,7 +20,8 @@ class GetRankList implements UseCase<List<Rank>, Params> {
         batch: params.batch,
         institutionCode: params.institutionCode,
         limit: params.limit,
-        offset: params.offset);
+        offset: params.offset
+		);
   }
 }
 
