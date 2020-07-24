@@ -121,8 +121,8 @@ class NewsFeedCardStyle {
 class LectureCardStyle {
   static final boxShadow = CardStyle.boxShadow;
   static final beforeColor = Colors.blueGrey[800];
-  static final currentColor = Colors.blue;
-  static final afterColor = Colors.red;
+  static final currentColor = Colors.green;
+  static final afterColor = Colors.blue;
   static final buttonColor = Colors.blueGrey[800];
   static final textStyle =
       TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
@@ -143,9 +143,5 @@ class ResultCardStyle {
   static final subheadingColor = Colors.grey[700];
   static final headingTextStyle = TextStyle(
       fontSize: 31, color: Colors.grey[850], fontWeight: FontWeight.w800);
-  static final boxShadow = BoxShadow(
-    color: Color(0xFF000000).withAlpha(25),
-    blurRadius: 10.0,
-    spreadRadius: 0.0,
-  );
+  static final boxShadow = CardStyle.boxShadow;
 }
