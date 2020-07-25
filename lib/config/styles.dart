@@ -149,11 +149,7 @@ class ResultCardStyle {
   static final subheadingColor = Colors.grey[700];
   static final headingTextStyle = TextStyle(
       fontSize: 31, color: Colors.grey[850], fontWeight: FontWeight.w800);
-  static final boxShadow = BoxShadow(
-    color: Color(0xFF000000).withAlpha(25),
-    blurRadius: 10.0,
-    spreadRadius: 0.0,
-  );
+  static final boxShadow = CardStyle.boxShadow;
 }
 
 class AssignmentStyle {
