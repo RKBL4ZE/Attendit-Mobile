@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:Attendit/config/styles.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -48,14 +49,14 @@ class _AssignmentFilePickerState extends State<AssignmentFilePicker> {
                 child: Center(
                   child: Text('Add Attachments',
                       style: TextStyle(
-                        color: Color.fromRGBO(95, 197, 209, 1),
+                        color: AssignmentStyle.txtHeadingColor,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       )),
                 ),
               ),
               borderSide: BorderSide(
-                  color: Color.fromRGBO(95, 197, 209, 1),
+                  color: AssignmentStyle.txtHeadingColor,
                   style: BorderStyle.solid,
                   width: 1.5),
 

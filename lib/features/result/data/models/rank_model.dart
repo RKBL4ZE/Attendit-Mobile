@@ -9,9 +9,11 @@ class RankModel extends Rank {
       String name,
       num marks,
       Institution institution,
+      String rollNumber,
       num collegeRank,
       num universityRank})
-      : super(id, name, marks, institution, collegeRank, universityRank);
+      : super(id, name, marks, institution, collegeRank, universityRank,
+            rollNumber);
 
   factory RankModel.fromJson(Map<String, dynamic> json) {
     return RankModel(
@@ -19,6 +21,7 @@ class RankModel extends Rank {
         name: json['name'],
         marks: json['marks'],
         institution: InstitutionModel.fromJson(json['institution']),
+        rollNumber: json['rollNumber'],
         collegeRank: json['collegeRank'],
         universityRank: json['universityRank']);
   }

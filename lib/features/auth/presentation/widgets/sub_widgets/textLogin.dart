@@ -21,7 +21,7 @@ class _TextLoginState extends State<TextLogin> {
             ),
             Center(
               child: Text(
-                'Ved Vofdika',
+                'Attendit',
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.white,

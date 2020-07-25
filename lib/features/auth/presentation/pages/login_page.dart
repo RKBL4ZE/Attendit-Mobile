@@ -1,3 +1,4 @@
+import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/auth/presentation/widgets/login_form.dart';
 import 'package:Attendit/features/welcome_screen/presentation/welcome_screen.dart';
@@ -25,34 +26,28 @@ class LoginPage extends StatelessWidget {
             BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
           }
           if (state is AuthError) {
-            BuildContext dialogContext;
-            showDialog(
-                context: context,
-                builder: (context) {
-                  dialogContext = context;
-                  return CupertinoAlertDialog(
-                    title: new Text("Alert"),
-                    content: new Text(state.message),
-                    actions: <Widget>[
-                      CupertinoDialogAction(
-                        child: Text('OK'),
-                        onPressed: () {
-                          Navigator.pop(dialogContext);
-                        },
-                      )
-                    ],
-                  );
-                });
+            final snackBar = SnackBar(
+              content: Text(state.message),
+              action: SnackBarAction(
+                label: 'Ok',
+                onPressed: () {
+                  // Some code to undo the change.
+                },
+              ),
+            );
+
+            // Find the Scaffold in the widget tree and use
+            // it to show a SnackBar.
+            Scaffold.of(context).showSnackBar(snackBar);
           }
         },
         child: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
-          if (state is AuthError ||
-              state is AuthInitial ||
-              state is LoginLoading ||
-              state is UserLoggedOut ||
-              state is AuthWelcomeSuccess) return LoginForm(state: state);
-          if (state is AuthWelcome) return WelcomeScreen();
-          return Container();
+          if (state is AuthWelcome)
+            return WelcomeScreen();
+          else if (state is UserLogedIn) {
+            return loaderWidget; //for short loading during loged in
+          } else
+            return LoginForm(state: state);
         }),
       ),
     );

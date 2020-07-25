@@ -39,7 +39,8 @@ class AttendenceBarWidget extends StatelessWidget {
               arcBackgroundColor: Colors.grey[100],
               animation: true,
               backgroundColor: Colors.transparent,
-              progressColor: PrimaryStyle.primary,
+              // progressColor: PrimaryStyle.primary,
+              linearGradient: GraphStyle.linearGradient,
 
               animationDuration: 1000,
               radius: 170.0,

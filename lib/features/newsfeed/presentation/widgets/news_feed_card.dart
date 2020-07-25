@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:intl/intl.dart';
 
+import 'image_dialoge.dart';
+
 class NewsFeedCard extends StatefulWidget {
   NewsFeedCard({@required this.newsFeed});
 
@@ -137,12 +139,22 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
               // width: double.infinity,
               child: new Swiper(
                 itemBuilder: (BuildContext context, int index) {
-                  return Image.network(
-                    widget.newsFeed.images[index],
-                    loadingBuilder: (context, child, progress) {
-                      return progress == null ? child : loaderWidget;
+                  return InkWell(
+                    onTap: () async {
+                      await showDialog(
+                          context: context,
+                          builder: (_) => ImageDialog(
+                                imgurl: widget.newsFeed.images[index],
+                                context: context,
+                              ));
                     },
-                    fit: BoxFit.contain,
+                    child: Image.network(
+                      widget.newsFeed.images[index],
+                      loadingBuilder: (context, child, progress) {
+                        return progress == null ? child : loaderWidget;
+                      },
+                      fit: BoxFit.contain,
+                    ),
                   );
                 },
                 itemCount: widget.newsFeed.images.length,

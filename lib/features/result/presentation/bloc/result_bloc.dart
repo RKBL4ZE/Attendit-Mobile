@@ -23,9 +23,7 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
   final GetResult getResult;
   final GetEnrollment getEnrollment;
 
-  ResultBloc(this.getResult, this.getEnrollment) {
-    this.add(GetResultEvent());
-  }
+  ResultBloc(this.getResult, this.getEnrollment);
 
   @override
   ResultState get initialState => ResultInitial();
@@ -35,8 +33,13 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
   ) async* {
     if (event is GetResultEvent) {
       yield ResultLoading();
-      final failureOrEnrollment = await getEnrollment(NoParams());
-      final enrollment = failureOrEnrollment.fold((l) => null, (r) => r);
+      String enrollment;
+      if (event.enrollment != null) {
+        enrollment = event.enrollment;
+      } else {
+        final failureOrEnrollment = await getEnrollment(NoParams());
+        enrollment = failureOrEnrollment.fold((l) => null, (r) => r);
+      }
 
       final failureOrResult = await getResult(Params(enrollment: enrollment));
       yield* _eitherLoadedOrErrorState(failureOrResult);

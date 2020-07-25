@@ -23,42 +23,29 @@ class _AssignmentButtonState extends State<AssignmentButton> {
     return BlocBuilder(
         bloc: BlocProvider.of<SubmitAssignmentBloc>(context),
         builder: (context, state) => Container(
-              alignment: Alignment.center,
-              height: 50.0,
+            alignment: Alignment.center,
+            height: 50.0,
+            child: Container(
+              //margin: EdgeInsets.fromLTRB(70, 15, 70, 15),
+              //alignment: Alignment.bottomCenter,
+              height: 45.0,
               child: RaisedButton(
+                shape: LectureCardStyle.shape,
+                color: LectureCardStyle.buttonColor,
                 onPressed: () {
-                  context
-                      .bloc<SubmitAssignmentBloc>()
-                      .add(SubmitAssignmentEvent(
-                        id: widget.id,
-                        file: widget.file
-                      ));
+                  context.bloc<SubmitAssignmentBloc>().add(
+                      SubmitAssignmentEvent(id: widget.id, file: widget.file));
                   setState(() {});
                 },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                padding: EdgeInsets.all(0.0),
+                /* shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)), */
                 child: Container(
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Styles.colorshadow,
-                          blurRadius: 9.0,
-                          spreadRadius: 1.0,
-                          offset: Offset(
-                            0.0,
-                            0.0,
-                          ),
-                        ),
-                      ],
-                      gradient: Styles.colorGradientTheme,
-                      borderRadius: BorderRadius.circular(10.0)),
-                  constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                  //constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                   alignment: Alignment.center,
                   child: setUpButtonChild(),
                 ),
               ),
-            ));
+            )));
   }
 
   Widget setUpButtonChild() {
@@ -69,11 +56,8 @@ class _AssignmentButtonState extends State<AssignmentButton> {
             fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
       );
     } else if (widget.state is SubmitAssignmentUploading) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-        ),
+      return CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       );
     } else if (widget.state is SubmitAssignmentUploaded) {
       // BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
@@ -84,6 +68,6 @@ class _AssignmentButtonState extends State<AssignmentButton> {
         color: Colors.white,
       );
     }
-	return Container();
+    return Container();
   }
 }

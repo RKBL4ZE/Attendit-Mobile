@@ -19,9 +19,8 @@ Future<void> main() async {
   await configureInjection(Environment.prod);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.white,
-      systemNavigationBarIconBrightness: Brightness.dark
-	  ));
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark));
   runApp(MyApp());
 }
 

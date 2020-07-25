@@ -8,7 +8,7 @@ final double radius = 70;
 final double angle = 0;
 final double insidefont = 20;
 final Color footercolor = Color.fromRGBO(95, 197, 209, 1);
-final Color textColor = Color.fromRGBO(29, 53, 84, 0.9);
+final Color textColor = Colors.black;
 
 final double containerheight = 105;
 
@@ -52,6 +52,28 @@ class _MarksBySubState extends State<MarksBySub> {
     });
   }
 
+  Color percolor(num percentage) {
+    if (percentage < 0.75) {
+      return GraphStyle.low;
+    } else if (percentage >= 0.75 && percentage <= 0.80) {
+      return GraphStyle.mid;
+    } else if (percentage > 0.80) {
+      return GraphStyle.high;
+    }
+    return Colors.white30;
+  }
+
+  Color percolorshadow(num percolor) {
+    if (percolor < 0.75) {
+      return GraphStyle.lowAccent;
+    } else if (percolor >= 0.75 && percolor <= 0.80) {
+      return GraphStyle.midAccent;
+    } else if (percolor > 0.80) {
+      return GraphStyle.highAccent;
+    }
+    return Colors.white30;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (bar) {
@@ -63,9 +85,9 @@ class _MarksBySubState extends State<MarksBySub> {
             width: double.infinity,
             //margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
             child: Card(
-              color: Color.fromRGBO(225, 239, 240, 1),
+              color: ResultCardStyle.subbarColor,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(5),
               ),
               child: Table(
                   defaultVerticalAlignment: TableCellVerticalAlignment.top,
@@ -75,7 +97,6 @@ class _MarksBySubState extends State<MarksBySub> {
                   },
                   children: [
                     TableRow(
-						
                       children: [
                         Padding(
                           padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
@@ -91,9 +112,13 @@ class _MarksBySubState extends State<MarksBySub> {
                         Container(
                           margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
                           child: CircularPercentIndicator(
-                            backgroundColor: Colors.white,
+                            backgroundColor: percolorshadow(
+                                (widget.totalMarksEarn / widget.totalMarksMax)
+                                    .toDouble()),
                             startAngle: angle,
-                            progressColor: ResultCardStyle.percentageBarColor,
+                            progressColor: percolor(
+                                (widget.totalMarksEarn / widget.totalMarksMax)
+                                    .toDouble()),
                             circularStrokeCap: CircularStrokeCap.round,
                             // arcType: ArcType.FULL,
                             // arcBackgroundColor: Colors.white,
@@ -111,7 +136,7 @@ class _MarksBySubState extends State<MarksBySub> {
                               style: TextStyle(
                                   // fontFamily: 'Rubik',
                                   fontSize: insidefont,
-                                  color: ResultCardStyle.percentageBarColor,
+                                  color: textColor,
                                   fontWeight: FontWeight.bold),
                             ),
                             //progressColor: Color.fromRGBO(95, 197, 209, 1),
@@ -126,28 +151,18 @@ class _MarksBySubState extends State<MarksBySub> {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(
-			  constraints: BoxConstraints(minHeight: containerheight),
+              constraints: BoxConstraints(minHeight: containerheight),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(95, 197, 209, 1),
-                      blurRadius: 5.0,
-                      spreadRadius: 0.0,
-                      offset: Offset(
-                        0.0,
-                        0.0,
-                      ),
-                    ),
-                  ]),
-             // height: containerheight,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [ResultCardStyle.boxShadow]),
+              // height: containerheight,
               width: double.infinity,
               // margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
               child: Card(
                 borderOnForeground: true,
-                color: Color.fromRGBO(225, 239, 240, 1),
+                color: ResultCardStyle.subbarSelectedColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 child: Container(
                   margin: EdgeInsets.fromLTRB(20, 15, 20, 5),
@@ -179,7 +194,7 @@ class _MarksBySubState extends State<MarksBySub> {
                                   style: TextStyle(
                                     fontFamily: 'Karla',
                                     fontSize: 16,
-                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    color: textColor,
                                     //  fontWeight: FontWeight.bold
                                   ),
                                 ),
@@ -191,7 +206,7 @@ class _MarksBySubState extends State<MarksBySub> {
                                   style: TextStyle(
                                     fontFamily: 'Karla',
                                     fontSize: 16,
-                                    color: Color.fromRGBO(46, 96, 102, 1),
+                                    color: textColor,
                                     // fontWeight: FontWeight.bold
                                   ),
                                 ),
@@ -203,7 +218,7 @@ class _MarksBySubState extends State<MarksBySub> {
                             style: TextStyle(
                                 fontFamily: 'Karla',
                                 fontSize: 16,
-                                color: Color.fromRGBO(5, 160, 179, 1),
+                                color: textColor,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],

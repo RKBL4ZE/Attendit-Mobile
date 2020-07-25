@@ -10,18 +10,12 @@ import 'sub_widgets/textLogin.dart';
 import 'sub_widgets/verticalText.dart';
 
 class LoginForm extends StatelessWidget {
-/* 	 @override
-  void dispose() {
-    password.dispose();
-    super.dispose();
-  } */
   final AuthState state;
-  /* final password = TextEditingController();
-  final username = TextEditingController(); */
+  final passwordController = TextEditingController();
+  final usernameController = TextEditingController();
 
   LoginForm({Key key, this.state}) : super(key: key);
-  
-  //static const routeName = '/LoginPage';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,25 +28,23 @@ class LoginForm extends StatelessWidget {
                       end: Alignment.bottomLeft,
                       colors: [Colors.blueGrey[800], Colors.blueGrey[900]]),
                 ),
-                child: ListView(
+                child: Column(
                   children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Row(children: <Widget>[
-                          VerticalText(),
-                          TextLogin(),
-                        ]),
-                        Inputusername(),
-                        PasswordInput(),
-                        Hero(
-                          tag: welcomeScreenHero,
-                          child: LoginButton(
-                            state: state,
-                          ),
-                        )
-                        //  FirstTime(),
-                      ],
-                    ),
+                    Row(children: <Widget>[
+                      VerticalText(),
+                      TextLogin(),
+                    ]),
+                    Inputusername(usernameController),
+                    PasswordInput(passwordController),
+                    Hero(
+                      tag: welcomeScreenHero,
+                      child: LoginButton(
+                        state: state,
+                        passwordController: passwordController,
+                        usernameController: usernameController,
+                      ),
+                    )
+                    //  FirstTime(),
                   ],
                 ),
               )),

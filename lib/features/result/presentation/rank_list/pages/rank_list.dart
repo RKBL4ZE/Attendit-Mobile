@@ -3,6 +3,7 @@ import 'package:Attendit/features/result/domain/entities/result.dart';
 import 'package:Attendit/features/result/presentation/bloc/rank_bloc.dart';
 import 'package:Attendit/features/result/presentation/bloc/switch_bloc.dart';
 import 'package:Attendit/features/result/presentation/rank_list/widget/rank_list_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -87,9 +88,19 @@ class _RankListPageState extends State<RankListPage> {
                             constraints:
                                 BoxConstraints(maxHeight: double.infinity),
                             child: ListView.builder(
-                              itemCount: ranks.length,
+                              itemCount: ranks.length + 1,
                               itemBuilder: (context, index) {
+                                if (index == ranks.length) {
+                                  return Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CupertinoActivityIndicator(
+                                          radius: 15, animating: true),
+                                    ),
+                                  );
+                                }
                                 return RankListCard(
+                                  rollNumber: ranks[index].rollNumber,
                                   clgName: ranks[index].institution.name,
                                   studentName: ranks[index].name,
                                   rank: switchState.isTapped

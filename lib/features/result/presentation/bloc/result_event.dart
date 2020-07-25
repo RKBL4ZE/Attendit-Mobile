@@ -1,10 +1,9 @@
 part of 'result_bloc.dart';
 
-abstract class ResultEvent extends Equatable {
-  const ResultEvent();
-}
+abstract class ResultEvent {}
 
 class GetResultEvent extends ResultEvent {
-  @override
-  List<Object> get props => [];
+  final String enrollment;
+
+  GetResultEvent({this.enrollment});
 }

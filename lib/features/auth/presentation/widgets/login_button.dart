@@ -1,9 +1,11 @@
-
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginButton extends StatefulWidget {
+  final TextEditingController usernameController;
+  final TextEditingController passwordController;
+
   final AuthState state;
   // final String password;
   // final String username;
@@ -12,6 +14,8 @@ class LoginButton extends StatefulWidget {
 
   const LoginButton({
     @required this.state,
+    this.usernameController,
+    this.passwordController,
     //@required this.password,
     // @required this.username,
     // @required this.onPressed,
@@ -22,8 +26,6 @@ class LoginButton extends StatefulWidget {
 }
 
 class _LoginButtonState extends State<LoginButton> {
- 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
@@ -52,12 +54,17 @@ class _LoginButtonState extends State<LoginButton> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    context.bloc<AuthBloc>().add(LoginEvent(
-                        userType: "student",
-                        password: "Test1234!",
-                        username: "00414902019"));
-                    /* setState(() {}
-					); */
+                    if (widget.usernameController.text.length < 11 ||
+                        widget.passwordController.text.length < 8) {
+                      context
+                          .bloc<AuthBloc>()
+                          .add(ErrorEvent('Please enter valid credentials'));
+                    } else {
+                      context.bloc<AuthBloc>().add(LoginEvent(
+                          userType: "student",
+                          password: widget.passwordController.text,
+                          username: widget.usernameController.text));
+                    }
                   },
                   child: setUpButtonChild(),
                 ),
@@ -66,13 +73,16 @@ class _LoginButtonState extends State<LoginButton> {
   }
 
   Widget setUpButtonChild() {
-    if (widget.state is AuthWelcomeSuccess) {
+    if (widget.state is AuthWelcomeSuccess ||
+        widget.state is AuthInitial ||
+        widget.state is AuthError ||
+        widget.state is UserLoggedOut) {
       return new Text(
         "Login",
         style: TextStyle(
           color: Colors.lightBlueAccent,
-          /* fontSize: 14,
-          fontWeight: FontWeight.w700, */
+          // fontSize: 14,
+          //fontWeight: FontWeight.w700,
         ),
       );
     } else if (widget.state is LoginLoading) {
@@ -82,13 +92,14 @@ class _LoginButtonState extends State<LoginButton> {
           valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlueAccent),
         ),
       );
-    } /* else if (widget.state is UserLogedIn) {
-      BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
+    } else if (widget.state is UserLogedIn) {
+      //BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
       return Icon(Icons.check, color: Colors.lightBlueAccent);
-    } */
-    else if (widget.state is AuthError) {
-      return Text("error");
-    } else
+    }
+    // else if (widget.state is AuthError) {
+    //   return Text("error");
+    // }
+    else
       return Container();
   }
 

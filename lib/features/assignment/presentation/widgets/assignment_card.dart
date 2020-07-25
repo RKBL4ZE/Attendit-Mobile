@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:Attendit/config/styles.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -119,7 +120,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
           child: Card(
             // color: Color.fromRGBO(225, 239, 240, 1),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Container(
                 height: 80,
@@ -172,7 +173,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
           onTap: () => chanebar(),
           child: Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(13),
+                  borderRadius: BorderRadius.circular(5),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withAlpha(60),
@@ -191,7 +192,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                 borderOnForeground: true,
                 //color: Color.fromRGBO(225, 239, 240, 1),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 child: Container(
                   margin: EdgeInsets.fromLTRB(20, 15, 20, 5),
@@ -204,7 +205,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                         style: TextStyle(
                             fontFamily: 'Karla',
                             fontSize: 19,
-                            color: textColor,
+                            color: AssignmentStyle.txtHeadingColor,
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -232,7 +233,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                           style: TextStyle(
                               fontFamily: 'Karla',
                               fontSize: 17,
-                              color: Color.fromRGBO(95, 197, 209, 1),
+                              color: AssignmentStyle.txtHeadingColor,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -259,14 +260,14 @@ class _AssignmentCardState extends State<AssignmentCard> {
                                             fontFamily: 'Karla',
                                             fontSize: 17,
                                             color:
-                                                Color.fromRGBO(95, 197, 209, 1),
+                                                AssignmentStyle.txtHeadingColor,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                     AssignmentFile(
                                       file: widget.submitFile,
                                     ),
-                                    Text("Submitted"),
+                                    // Text("Submitted"),
                                   ],
                                 )
                               : Column(
@@ -289,8 +290,8 @@ class _AssignmentCardState extends State<AssignmentCard> {
                                           style: TextStyle(
                                               fontFamily: 'Karla',
                                               fontSize: 14,
-                                              color: Color.fromRGBO(
-                                                  95, 197, 209, 1),
+                                              color: AssignmentStyle
+                                                  .txtHeadingColor,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],
@@ -304,7 +305,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                                             id: widget.id,
                                             file: userFile,
                                           )
-                                        : Text("data"),
+                                        : Container(),
                                   ],
                                 )),
                     ],
@@ -312,6 +313,6 @@ class _AssignmentCardState extends State<AssignmentCard> {
                 ),
               )));
     }
-	return Container();
+    return Container();
   }
 }

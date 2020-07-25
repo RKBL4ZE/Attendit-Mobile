@@ -13,5 +13,6 @@ abstract class IResultRepository {
       String batch,
       String institutionCode,
       num limit,
+      String rollNumber,
       num offset});
 }

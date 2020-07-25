@@ -2,9 +2,10 @@ import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/icons/icons_service.dart';
 
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
-import 'package:Attendit/features/result/presentation/rank_list/widget/rank_list_card.dart';
 
 import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';
+
+import 'package:Attendit/features/virtual_id_card/presentation/widgets/virtual_id_card1.dart';
 
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -62,16 +63,17 @@ class MenuPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-              child: Container(
-                constraints: BoxConstraints(minHeight: 300, maxHeight: 300),
-                //height: 175,
-                width: double.infinity,
-                decoration: BoxDecoration(boxShadow: [CardStyle.boxShadow]),
-                child: Card(child: Center(child: Text("reju"))),
-              ),
-            ),
+            VirtualIdCard(),
+            // Padding(
+            //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+            //   child: Container(
+            //     constraints: BoxConstraints(minHeight: 300, maxHeight: 300),
+            //     //height: 175,
+            //     width: double.infinity,
+            //     decoration: BoxDecoration(boxShadow: [CardStyle.boxShadow]),
+            //     child: Card(child: Center(child: Text("reju"))),
+            //   ),
+            // ),
             Container(
               child: Column(
                 children: <Widget>[
@@ -105,17 +107,8 @@ class MenuPage extends StatelessWidget {
                   ),
                   Row(
                     children: <Widget>[
-                      menuContent(
-                          IconsService.aboutUs,
-                          "About Us",
-                          Scaffold(
-                              body: RankListCard(
-                            clgName: "MSI",
-                            rank: 1,
-                            percentage: "92.5",
-                            studentName: "Reju",
-                          )),
-                          context),
+                      menuContent(IconsService.aboutUs, "About Us",
+                          Scaffold(body: Text("soon!!")), context),
                     ],
                   ),
                 ],

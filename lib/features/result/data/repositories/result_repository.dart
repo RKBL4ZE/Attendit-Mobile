@@ -41,6 +41,7 @@ class ResultRepository implements IResultRepository {
       String takenFrom,
       String batch,
       String institutionCode,
+      String rollNumber,
       num limit,
       num offset}) async {
     if (await _networkInfo.isConnected) {

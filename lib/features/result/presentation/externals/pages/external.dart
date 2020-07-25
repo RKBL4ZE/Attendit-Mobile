@@ -20,6 +20,9 @@ import '../../../domain/entities/result.dart';
 //import '../widgets/AllProperty_widget.dart';
 
 class ExternalPage extends StatelessWidget {
+  final String enrollment;
+
+  const ExternalPage({this.enrollment});
   // static const routeName = '/InternalSCREEN';
   @override
   Widget build(BuildContext context) {
@@ -31,13 +34,37 @@ class ExternalPage extends StatelessWidget {
           BlocProvider<ResultBloc>(create: (_) => getIt()),
           BlocProvider<SemBloc>(create: (_) => getIt())
         ],
-        child: ExternalWidget(),
+        child: ExternalPageWidget(
+          enrollment: enrollment,
+        ),
       ),
     );
   }
 }
 
+class ExternalPageWidget extends StatelessWidget {
+  final String enrollment;
+
+  const ExternalPageWidget({this.enrollment});
+  @override
+  Widget build(BuildContext context) {
+    return ExternalWidget(
+      enrollment: enrollment,
+      bloc: BlocProvider.of<ResultBloc>(context),
+    );
+  }
+}
+
 class ExternalWidget extends StatelessWidget {
+  final String enrollment;
+  final ResultBloc bloc;
+
+  ExternalWidget({
+    this.enrollment,
+    this.bloc,
+  }) {
+    bloc.add(GetResultEvent(enrollment: enrollment));
+  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ResultBloc, ResultState>(

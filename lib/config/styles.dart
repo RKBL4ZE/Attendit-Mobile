@@ -53,12 +53,16 @@ class PrimaryStyle {
 class GraphStyle {
   static final text = Colors.blueGrey[900];
   static final primary = Colors.blueGrey[900];
-  static final low = Colors.blueGrey[900];
-  static final lowAccent = Colors.blueGrey[50];
+  static final low = Colors.red[400];
+  static final lowAccent = Colors.red[50];
   static final mid = Colors.lightBlue;
   static final midAccent = Colors.lightBlue[100];
   static final high = Colors.green;
   static final highAccent = Colors.lightGreen[100];
+  static final linearGradient = LinearGradient(colors: [
+    Color.fromRGBO(247, 145, 86, 1),
+    Color.fromRGBO(245, 102, 116, 1)
+  ]);
 }
 
 class CardStyle {
@@ -121,8 +125,8 @@ class NewsFeedCardStyle {
 class LectureCardStyle {
   static final boxShadow = CardStyle.boxShadow;
   static final beforeColor = Colors.blueGrey[800];
-  static final currentColor = Colors.blue;
-  static final afterColor = Colors.red;
+  static final currentColor = Colors.green;
+  static final afterColor = Colors.blue[700];
   static final buttonColor = Colors.blueGrey[800];
   static final textStyle =
       TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold);
@@ -138,6 +142,8 @@ Widget loaderWidget = ColorLoader4();
 Color fulltimeTablePrimaryColor = Colors.green[50];
 
 class ResultCardStyle {
+  static final subbarColor = Colors.white54;
+  static final subbarSelectedColor = Colors.grey;
   static final percentageBarColor = Colors.blueGrey[900];
   static final selectedColor = Colors.grey[300];
   static final subheadingColor = Colors.grey[700];
@@ -148,4 +154,9 @@ class ResultCardStyle {
     blurRadius: 10.0,
     spreadRadius: 0.0,
   );
+}
+
+class AssignmentStyle {
+  static final txtHeadingColor = Color.fromRGBO(29, 53, 84, 0.9);
+  static final fileHeadingColor = Color.fromRGBO(128, 139, 151, 1);
 }

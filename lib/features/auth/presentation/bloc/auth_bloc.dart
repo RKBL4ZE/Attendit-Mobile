@@ -8,7 +8,6 @@ import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_logout.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -67,7 +66,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
     if (event is LogoutEvent) {
       await userLogout(NoParams());
-	  yield UserLoggedOut();
+      yield UserLoggedOut();
+    }
+    if (event is ErrorEvent) {
+      yield AuthError(message: event.message);
     }
   }
 
