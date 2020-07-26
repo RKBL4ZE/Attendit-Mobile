@@ -40,7 +40,7 @@ class _RankListPageState extends State<RankListPage> {
   _RankListPageState(this.bloc, this.data, this.semester) {
     _scrollController.addListener(_onScroll);
     bloc.add(GetRankListEvent(
-      takenFrom: data.results[semester].fileId,
+      takenFrom: data.results[semester - 1].fileId,
       batch: data.batch,
       institutionCode: data.institution.code,
     ));

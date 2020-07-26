@@ -67,6 +67,8 @@ class ExternalWidget extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
+    // ignore: close_sinks
+    final semBloc = BlocProvider.of<SemBloc>(context);
     return BlocBuilder<ResultBloc, ResultState>(
       builder: (context, state) {
         if (state is ResultLoading)
@@ -129,14 +131,15 @@ class ExternalWidget extends StatelessWidget {
                         pushNewScreen(context,
                             screen: MultiBlocProvider(
                               child: BlocBuilder<SemBloc, SemState>(
+                                  bloc: semBloc,
                                   builder: (context, state) {
-                                final SemTapped currentState = state;
-                                return RankList(
-                                  semester: currentState.sem,
-                                  data: data,
-                                  key: UniqueKey(),
-                                );
-                              }),
+                                    final SemTapped currentState = state;
+                                    return RankList(
+                                      semester: currentState.sem,
+                                      data: data,
+                                      key: UniqueKey(),
+                                    );
+                                  }),
                               providers: [
                                 BlocProvider<RankBloc>(
                                   create: (_) => getIt(),
