@@ -1,8 +1,27 @@
 import 'package:Attendit/config/styles.dart';
+import 'package:Attendit/features/profile/presentation/widgets/image_dialoge.dart';
 import 'package:flutter/material.dart';
 
 class EditProfile extends StatelessWidget {
-  static const routeName = '/InternalSCREEN';
+  final String profileURL;
+  final String name;
+  final String enrollmentNo;
+  final String course;
+  final String semester;
+  final String section;
+  final String mobileNo;
+  final String email;
+
+  const EditProfile(
+      {this.profileURL,
+      this.name,
+      this.enrollmentNo,
+      this.course,
+      this.semester,
+      this.section,
+      this.mobileNo,
+      this.email});
+
   @override
   Widget build(BuildContext context) {
     final double sheight = MediaQuery.of(context).size.height;
@@ -18,9 +37,12 @@ class EditProfile extends StatelessWidget {
                 height: sheight * 0.21,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  gradient: Styles.colorGradientTheme,
-                  // borderRadius: BorderRadius.circular(15.0)
-                ),
+                    image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                    profileURL,
+                  ),
+                )),
                 child: Stack(
                     overflow: Overflow.visible,
                     alignment: Alignment.center,
@@ -30,32 +52,19 @@ class EditProfile extends StatelessWidget {
                         top: 40,
                         //bottom: 20,
                         left: 20,
-                        child: Row(
-                          children: <Widget>[
-                            InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.white,
-                                )),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text("Profile Details",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: 'Rubik',
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_back,
+                              color: Colors.black,
+                            )),
                       )),
                       Positioned(
                           bottom: -sheight * 0.1,
                           //right: 10,
-                          child: profile(context)),
+                          child: profile(context, profileURL)),
                     ]),
               ),
               Container(
@@ -74,7 +83,7 @@ class EditProfile extends StatelessWidget {
                             // controller: title,
                             decoration: InputDecoration(
                               //Add th Hint text here.
-                              hintText: "Terry Ross",
+                              hintText: name,
                             ),
                           ),
                         ],
@@ -90,7 +99,7 @@ class EditProfile extends StatelessWidget {
                             // controller: title,
                             decoration: InputDecoration(
                               //Add th Hint text here.
-                              hintText: "08914902017",
+                              hintText: enrollmentNo,
                             ),
                           ),
                         ],
@@ -111,7 +120,7 @@ class EditProfile extends StatelessWidget {
                                   // controller: title,
                                   decoration: InputDecoration(
                                     //Add th Hint text here.
-                                    hintText: "BCA",
+                                    hintText: course,
                                   ),
                                 ),
                               ],
@@ -130,7 +139,7 @@ class EditProfile extends StatelessWidget {
                                   // controller: title,
                                   decoration: InputDecoration(
                                     //Add th Hint text here.
-                                    hintText: "6",
+                                    hintText: semester,
                                   ),
                                 ),
                               ],
@@ -149,7 +158,7 @@ class EditProfile extends StatelessWidget {
                                   // controller: title,
                                   decoration: InputDecoration(
                                     //Add th Hint text here.
-                                    hintText: "A",
+                                    hintText: section,
                                   ),
                                 ),
                               ],
@@ -168,7 +177,7 @@ class EditProfile extends StatelessWidget {
                             // controller: title,
                             decoration: InputDecoration(
                               //Add th Hint text here.
-                              hintText: "9899576827",
+                              hintText: mobileNo,
                             ),
                           ),
                         ],
@@ -184,7 +193,7 @@ class EditProfile extends StatelessWidget {
                             // controller: title,
                             decoration: InputDecoration(
                               //Add th Hint text here.
-                              hintText: "terryross@gmail.com",
+                              hintText: email,
                             ),
                           ),
                         ],
@@ -200,37 +209,47 @@ class EditProfile extends StatelessWidget {
   }
 }
 
-Widget profile(var context) {
+Widget profile(var context, String profileURL) {
   final double sheight = MediaQuery.of(context).size.height;
-  return Container(
-    margin: EdgeInsets.fromLTRB(0, 10, 10, 10),
-    decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withAlpha(70),
-          blurRadius: 6.0,
-          spreadRadius: 7.0,
-          offset: Offset(
-            0.0,
-            3.0,
+  return InkWell(
+    onTap: () async {
+      await showDialog(
+          context: context,
+          builder: (_) => ImageDialog(
+                imgurl: profileURL,
+                context: context,
+              ));
+    },
+    child: Container(
+      margin: EdgeInsets.fromLTRB(0, 10, 10, 10),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withAlpha(70),
+            blurRadius: 6.0,
+            spreadRadius: 7.0,
+            offset: Offset(
+              0.0,
+              3.0,
+            ),
           ),
+        ],
+        borderRadius: BorderRadius.all(Radius.circular(100)),
+        border: Border.all(
+          color: Colors.white70,
+          width: 3,
         ),
-      ],
-      borderRadius: BorderRadius.all(Radius.circular(100)),
-      border: Border.all(
-        color: Colors.white70,
-        width: 3,
       ),
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.all(
-        Radius.circular(100),
-      ),
-      child: Image.network(
-        "https://img1.kpopmap.com/2016/11/twice-tzuyu-pretty-side-profile-kpop-girl-group-idols.jpg",
-        height: sheight * 0.2,
-        width: sheight * 0.2,
-        fit: BoxFit.cover,
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(
+          Radius.circular(100),
+        ),
+        child: Image.network(
+          profileURL,
+          height: sheight * 0.2,
+          width: sheight * 0.2,
+          fit: BoxFit.cover,
+        ),
       ),
     ),
   );
@@ -238,45 +257,28 @@ Widget profile(var context) {
 
 Widget bottombutton() {
   return Container(
-    margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
-    //alignment: ,
-    decoration:
-        BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [
-      BoxShadow(
-        color: Styles.colorshadow,
-        blurRadius: 5.0,
-        spreadRadius: 0.0,
-        offset: Offset(
-          0.0,
-          0.0,
-        ),
-      ),
-    ]),
-    height: 50.0,
+    margin: EdgeInsets.fromLTRB(70, 15, 70, 15),
+    //alignment: Alignment.bottomCenter,
+    height: 45.0,
     child: RaisedButton(
+      shape: LectureCardStyle.shape,
+      color: LectureCardStyle.buttonColor,
       onPressed: () {
-        // Navigator.of(context).pushReplacementNamed(
-        //   TabsScreen.routeName,
-        // );
+        // pushNewScreen(context,
+        //     screen: FullTimeTablePage(
+        //       group: group,
+        //     ));
+        // Navigate to Full Timetable
       },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-      padding: EdgeInsets.all(0.0),
-      child: Ink(
-        decoration: BoxDecoration(
-            gradient: Styles.colorGradientTheme,
-            borderRadius: BorderRadius.circular(10.0)),
-        child: Container(
-          constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-          alignment: Alignment.center,
-          child: Text(
-            "Request Changes",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: 20,
-            ),
-          ),
+      /* shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)), */
+      child: Container(
+        //constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+        alignment: Alignment.center,
+        child: Text(
+          "Request Changes",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white),
         ),
       ),
     ),

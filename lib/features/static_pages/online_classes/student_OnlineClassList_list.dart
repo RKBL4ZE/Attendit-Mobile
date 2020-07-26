@@ -18,7 +18,7 @@ class OnlineClassList extends StatelessWidget {
             children: <Widget>[
               Container(
                 margin: new EdgeInsets.fromLTRB(0, 20, 0, 15),
-                child: Text("Class List",
+                child: Text("Subjects",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         // fontFamily: 'Rubik',

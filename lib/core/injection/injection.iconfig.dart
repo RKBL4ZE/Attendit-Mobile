@@ -46,12 +46,14 @@ import 'package:Attendit/features/auth/data/datasources/auth_remote_datasource.d
 import 'package:Attendit/features/auth/data/repositories/auth_repository.dart';
 import 'package:Attendit/features/auth/domain/repositories/i_auth_repository.dart';
 import 'package:Attendit/features/newsfeed/presentation/bloc/newsfeed_bloc.dart';
+import 'package:Attendit/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:Attendit/features/result/presentation/bloc/result_bloc.dart';
 import 'package:Attendit/features/assignment/domain/usecases/submit_assignment.dart';
 import 'package:Attendit/features/assignment/presentation/bloc/assignment_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_logout.dart';
+import 'package:Attendit/features/virtual_id_card/presentation/bloc/virtualidcard_bloc.dart';
 import 'package:Attendit/features/auth/domain/usecases/check_first_time.dart';
 import 'package:Attendit/features/auth/domain/usecases/check_session.dart';
 import 'package:Attendit/features/assignment/domain/usecases/get_student_assignment.dart';
@@ -137,6 +139,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<IAuthRemoteDataSource>(),
       ));
   g.registerFactory<NewsfeedBloc>(() => NewsfeedBloc(g<GetNewsFeed>()));
+  g.registerFactory<ProfileBloc>(() => ProfileBloc(g<GetAllDetails>()));
   g.registerFactory<ResultBloc>(
       () => ResultBloc(g<GetResult>(), g<GetEnrollment>()));
   g.registerLazySingleton<SubmitAssignment>(
@@ -146,6 +149,8 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerFactory<TimetableBloc>(() => TimetableBloc(g<GetTimeTable>()));
   g.registerLazySingleton<UserLogin>(() => UserLogin(g<IAuthRepository>()));
   g.registerLazySingleton<UserLogout>(() => UserLogout(g<IAuthRepository>()));
+  g.registerFactory<VirtualidcardBloc>(
+      () => VirtualidcardBloc(g<GetAllDetails>()));
   g.registerLazySingleton<CheckFirstTime>(
       () => CheckFirstTime(g<IAuthRepository>()));
   g.registerLazySingleton<CheckSession>(

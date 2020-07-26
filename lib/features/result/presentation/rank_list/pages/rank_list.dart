@@ -8,36 +8,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RankList extends StatelessWidget {
+  final int semester;
   final ResultData data;
 
-  const RankList({Key key, this.data}) : super(key: key);
+  const RankList({Key key, this.data, this.semester}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return RankListPage(BlocProvider.of<RankBloc>(context), data);
+    return RankListPage(BlocProvider.of<RankBloc>(context), data, semester);
   }
 }
 
 class RankListPage extends StatefulWidget {
+  final int semester;
   final RankBloc bloc;
   final ResultData data;
 
-  RankListPage(this.bloc, this.data);
+  RankListPage(this.bloc, this.data, this.semester);
 
   @override
-  _RankListPageState createState() => _RankListPageState(bloc, data);
+  _RankListPageState createState() => _RankListPageState(bloc, data, semester);
 }
 
 class _RankListPageState extends State<RankListPage> {
+  final int semester;
   final RankBloc bloc;
   final ResultData data;
   final _scrollController = ScrollController();
   final _scrollThreshold = 400.0;
 
-  _RankListPageState(this.bloc, this.data) {
+  _RankListPageState(this.bloc, this.data, this.semester) {
     _scrollController.addListener(_onScroll);
     bloc.add(GetRankListEvent(
-      takenFrom: data.results[0].fileId,
+      takenFrom: data.results[semester].fileId,
       batch: data.batch,
       institutionCode: data.institution.code,
     ));

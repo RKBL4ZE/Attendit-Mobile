@@ -142,8 +142,8 @@ Widget loaderWidget = ColorLoader4();
 Color fulltimeTablePrimaryColor = Colors.green[50];
 
 class ResultCardStyle {
-  static final subbarColor = Colors.white54;
-  static final subbarSelectedColor = Colors.grey;
+  static final subbarColor = Colors.white70;
+  static final subbarSelectedColor = Colors.white54;
   static final percentageBarColor = Colors.blueGrey[900];
   static final selectedColor = Colors.grey[300];
   static final subheadingColor = Colors.grey[700];

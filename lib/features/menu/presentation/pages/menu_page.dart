@@ -1,13 +1,15 @@
 import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/icons/icons_service.dart';
+import 'package:Attendit/core/injection/injection.dart';
 
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
 
 import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';
-
-import 'package:Attendit/features/virtual_id_card/presentation/widgets/virtual_id_card1.dart';
+import 'package:Attendit/features/virtual_id_card/presentation/bloc/virtualidcard_bloc.dart';
+import 'package:Attendit/features/virtual_id_card/presentation/pages/virtual_id.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class MenuPage extends StatelessWidget {
@@ -63,7 +65,8 @@ class MenuPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            VirtualIdCard(),
+            BlocProvider<VirtualidcardBloc>(
+                create: (_) => getIt(), child: VirtualID()),
             // Padding(
             //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
             //   child: Container(

@@ -98,15 +98,18 @@ class _MarksBySubState extends State<MarksBySub> {
                   children: [
                     TableRow(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
-                          child: Text(
-                            widget.subNameCode,
-                            style: TextStyle(
-                                fontFamily: 'Rubik',
-                                fontSize: 15,
-                                color: textColor,
-                                fontWeight: FontWeight.bold),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 10, 5, 10),
+                            child: Text(
+                              widget.subNameCode,
+                              style: TextStyle(
+                                  fontFamily: 'Rubik',
+                                  fontSize: 15,
+                                  color: textColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                         Container(

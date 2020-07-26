@@ -18,7 +18,7 @@ class SemSelect extends StatelessWidget {
         height: 50.0,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         child: TabBar(
           isScrollable: true,
@@ -37,7 +37,7 @@ class SemSelect extends StatelessWidget {
             ..._getListings(totalSem),
           ],
           onTap: (index) {
-            BlocProvider.of<SemBloc>(context).add(SelectSemEvent(index+1));
+            BlocProvider.of<SemBloc>(context).add(SelectSemEvent(index + 1));
           },
         ),
       ),

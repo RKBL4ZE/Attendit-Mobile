@@ -128,10 +128,15 @@ class ExternalWidget extends StatelessWidget {
                       onPressed: () {
                         pushNewScreen(context,
                             screen: MultiBlocProvider(
-                              child: RankList(
-                                data: data,
-                                key: UniqueKey(),
-                              ),
+                              child: BlocBuilder<SemBloc, SemState>(
+                                  builder: (context, state) {
+                                final SemTapped currentState = state;
+                                return RankList(
+                                  semester: currentState.sem,
+                                  data: data,
+                                  key: UniqueKey(),
+                                );
+                              }),
                               providers: [
                                 BlocProvider<RankBloc>(
                                   create: (_) => getIt(),

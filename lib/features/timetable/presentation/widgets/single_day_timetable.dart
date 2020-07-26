@@ -2,8 +2,6 @@ import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/timetable_card.dart';
 import 'package:flutter/material.dart';
 
-
-
 class SingleDayTimeTableWidget extends StatelessWidget {
   final List<TimingModel> day;
 

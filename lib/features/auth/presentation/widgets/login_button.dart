@@ -28,32 +28,19 @@ class LoginButton extends StatefulWidget {
 class _LoginButtonState extends State<LoginButton> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return BlocBuilder(
         bloc: BlocProvider.of<AuthBloc>(context),
-        builder: (context, state) => Padding(
-              padding: const EdgeInsets.only(top: 40, right: 50, left: 200),
-              child: Container(
-                alignment: Alignment.bottomRight,
-                height: 50,
-                //width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.blue[200],
-                      blurRadius: 5.0, // has the effect of softening the shadow
-                      spreadRadius:
-                          1.0, // has the effect of extending the shadow
-                      /* offset: Offset(
-                        5.0, // horizontal, move right 10
-                        5.0, // vertical, move down 10
-                      ), */
-                    ),
-                  ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
+        builder: (context, state) => Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              width: size.width * 0.8,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(29),
                 child: FlatButton(
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                  color: Colors.purple[700],
                   onPressed: () {
+                    FocusScope.of(context).requestFocus(new FocusNode());
                     if (widget.usernameController.text.length < 11 ||
                         widget.passwordController.text.length < 8) {
                       context
@@ -66,7 +53,7 @@ class _LoginButtonState extends State<LoginButton> {
                           username: widget.usernameController.text));
                     }
                   },
-                  child: setUpButtonChild(),
+                  child: Center(child: setUpButtonChild()),
                 ),
               ),
             ));
@@ -80,17 +67,14 @@ class _LoginButtonState extends State<LoginButton> {
       return new Text(
         "Login",
         style: TextStyle(
-          color: Colors.lightBlueAccent,
-          // fontSize: 14,
+          color: Colors.white,
+          fontSize: 18,
           //fontWeight: FontWeight.w700,
         ),
       );
     } else if (widget.state is LoginLoading) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.lightBlueAccent),
-        ),
+      return CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       );
     } else if (widget.state is UserLogedIn) {
       //BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
