@@ -53,9 +53,9 @@ class _MarksBySubState extends State<MarksBySub> {
   }
 
   Color percolor(num percentage) {
-    if (percentage < 0.75) {
+    if (percentage < 0.60) {
       return GraphStyle.low;
-    } else if (percentage >= 0.75 && percentage <= 0.80) {
+    } else if (percentage >= 0.60 && percentage <= 0.80) {
       return GraphStyle.mid;
     } else if (percentage > 0.80) {
       return GraphStyle.high;
@@ -64,9 +64,9 @@ class _MarksBySubState extends State<MarksBySub> {
   }
 
   Color percolorshadow(num percolor) {
-    if (percolor < 0.75) {
+    if (percolor < 0.60) {
       return GraphStyle.lowAccent;
-    } else if (percolor >= 0.75 && percolor <= 0.80) {
+    } else if (percolor >= 0.60 && percolor <= 0.80) {
       return GraphStyle.midAccent;
     } else if (percolor > 0.80) {
       return GraphStyle.highAccent;

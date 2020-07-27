@@ -68,7 +68,9 @@ class TotalMarksBarWidget extends StatelessWidget {
                     animationDuration: 1000,
                     radius: radius,
                     lineWidth: 15.0,
-                    percent: scores[i].percentage.toDouble() / 100,
+                    percent: scores[i].percentage != null
+                        ? scores[i].percentage / 100
+                        : 0,
                     //footer: Text("ve"),
                     center: formatPercentage(scores[i].percentage, context),
                     //  Text(
@@ -95,7 +97,9 @@ class TotalMarksBarWidget extends StatelessWidget {
                     animationDuration: 1000,
                     radius: radius,
                     lineWidth: 15.0,
-                    percent: scores[i].creditPercentage.toDouble() / 100,
+                    percent: scores[i].creditPercentage != null
+                        ? scores[i].creditPercentage / 100
+                        : 0,
                     footer: AutoSizeText(
                       "% with Credits",
                       style: TextStyle(

@@ -7,6 +7,7 @@ import 'package:Attendit/features/result/presentation/externals/widget/studentna
 import 'package:Attendit/features/result/presentation/externals/widget/sub_bar.dart';
 import 'package:Attendit/features/result/presentation/externals/widget/subject_marks_list.dart';
 import 'package:Attendit/features/result/presentation/rank_list/pages/rank_list.dart';
+import 'package:Attendit/features/result/presentation/externals/widget/sub_widgets/search_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../../../../../config/styles.dart';
@@ -88,22 +89,16 @@ class ExternalWidget extends StatelessWidget {
               padding: PrimaryStyle.padding,
               child: Column(
                 children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: Text(
-                      "Student External Report",
-                      textAlign: TextAlign.center,
-                      style: ResultCardStyle.headingTextStyle,
-                    ),
-                  ),
+                  SerachBar(),
                   StudentNameCard(
                       name: data.name,
                       enrollmentno: data.rollNumber,
-                      course: 'BCA',
+                      course: data.programme.name,
                       // sclass: "Bca 106",
                       // shift: "Morning",
-                      cgpa: "4.99",
-                      sgpa: "6.49"),
+                      aggregatepercentage: data.aggregatePercentage.toString(),
+                      aggregateCreditPercentage:
+                          data.aggregateCreditPercentage.toString()),
                   TotalMarksBarWidget(state.resultData),
                   SemSelect(totalSem: totalSem),
                   SizedBox(

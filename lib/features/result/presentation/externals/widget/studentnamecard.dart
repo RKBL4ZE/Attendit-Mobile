@@ -7,18 +7,18 @@ class StudentNameCard extends StatelessWidget {
   final String course;
   //final String sclass;
   //final String shift;
-  final String cgpa;
-  final String sgpa;
+  final String aggregatepercentage;
+  final String aggregateCreditPercentage;
 
   const StudentNameCard(
       {Key key,
       this.name,
       this.enrollmentno,
       this.course,
-     // this.sclass,
-     // this.shift,
-      this.cgpa,
-      this.sgpa})
+      // this.sclass,
+      // this.shift,
+      this.aggregatepercentage,
+      this.aggregateCreditPercentage})
       : super(key: key);
 
   @override
@@ -43,10 +43,11 @@ class StudentNameCard extends StatelessWidget {
                   cardDetail(head: "Name", ans: name),
                   cardDetail(head: "Enrollment Number", ans: enrollmentno),
                   cardDetail(head: "Course", ans: course),
-                  
-                  
-                  cardDetail(head: "CGPA", ans: cgpa),
-                  cardDetail(head: "SGPA", ans: sgpa),
+                  cardDetail(
+                      head: "Aggregate Percentage", ans: aggregatepercentage),
+                  cardDetail(
+                      head: "Aggregate Credit Percentage",
+                      ans: aggregateCreditPercentage),
                 ]),
           ),
         ));

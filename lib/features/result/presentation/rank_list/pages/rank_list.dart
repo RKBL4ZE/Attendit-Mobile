@@ -3,6 +3,7 @@ import 'package:Attendit/features/result/domain/entities/result.dart';
 import 'package:Attendit/features/result/presentation/bloc/rank_bloc.dart';
 import 'package:Attendit/features/result/presentation/bloc/switch_bloc.dart';
 import 'package:Attendit/features/result/presentation/rank_list/widget/rank_list_card.dart';
+import 'package:Attendit/features/result/presentation/externals/widget/sub_widgets/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
