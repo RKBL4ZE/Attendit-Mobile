@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const graphQL = "https://attenditapi.herokuapp.com/graphql";
+const graphQL = "https://api.attendit.in/graphql";
 
 const welcomeScreenHero = "welcomeScreenHero";
 

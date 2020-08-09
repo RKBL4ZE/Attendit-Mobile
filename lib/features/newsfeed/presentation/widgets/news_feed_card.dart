@@ -16,9 +16,9 @@ class NewsFeedCard extends StatefulWidget {
 }
 
 String readTimestamp(String timestamp, String type) {
-  var fdate = new DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp));
-  var date = new DateFormat("dd-MM-yyyy").format(fdate);
-  var time = DateFormat("H:m:s").format(fdate);
+  //var fdate = new DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp));
+  var date = new DateFormat("dd-MM-yyyy").format(DateTime.parse(timestamp));
+  var time = DateFormat("H:m:s").format(DateTime.parse(timestamp));
   if (type == "date")
     return date.toString();
   else if (type == "time")

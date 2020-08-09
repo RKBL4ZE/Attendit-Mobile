@@ -1,12 +1,12 @@
 import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/injection/injection.dart';
+import 'package:Attendit/core/notification/firebase.dart';
 import 'package:Attendit/features/home/presentation/bloc/home_bloc.dart';
 import 'package:Attendit/features/home/presentation/pages/home_page.dart';
 import 'package:Attendit/features/menu/presentation/pages/menu_page.dart';
 import 'package:Attendit/features/navbar/presentation/pages/sidedrawer.dart';
 import 'package:Attendit/features/newsfeed/presentation/pages/news_feed_page.dart';
 import 'package:Attendit/features/timetable/presentation/pages/timetable_page.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,8 +28,7 @@ class _NavBarState extends State<NavBar> {
   void initState() {
     super.initState();
     _controller = PersistentTabController(initialIndex: 0);
-    final fbm = FirebaseMessaging();
-    print(fbm);
+
     fbm.requestNotificationPermissions();
 
     fbm.configure(
@@ -58,9 +57,6 @@ class _NavBarState extends State<NavBar> {
         print("onResume: $message");
       },
     );
-
-    // For testing purposes print the Firebase Messaging token
-    fbm.getToken().then((value) => print(value));
   }
 
   List<Widget> _buildScreens() {

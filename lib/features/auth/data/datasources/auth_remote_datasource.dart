@@ -1,5 +1,6 @@
 import 'package:Attendit/core/error/exceptions.dart';
 import 'package:Attendit/core/network/graphql_service.dart';
+import 'package:Attendit/core/notification/firebase.dart';
 import 'package:Attendit/core/util/gql_mutation.dart';
 import 'package:Attendit/features/auth/data/models/user_tokens_model.dart';
 import 'package:injectable/injectable.dart';
@@ -27,9 +28,12 @@ class AuthRemoteDataSource implements IAuthRemoteDataSource {
       String username,
       String password}) async {
     try {
+      print("device id he ye");
+      String deviceToken = await fbm.getToken();
+      print(deviceToken);
       final result = await _client
           .mutateNoAuth(mutation: Gqlmutation.loginMutation, variables: {
-        "prefix": prefix,
+        "deviceId": deviceToken,
         "userType": userType,
         "username": username,
         "password": password

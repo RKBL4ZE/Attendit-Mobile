@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 abstract class Faculty {
@@ -14,48 +13,49 @@ abstract class Subject {
   Subject(this.subjectCode, this.subjectName);
 }
 
-class StudentAssignment extends Equatable {
+abstract class Assignment {
   final String id;
   final String title;
+  final String description;
   final Faculty faculty;
-
   final String file;
-  final String submitFile;
+  final String fileName;
   final Subject subject;
-  final String status;
-  final num marks;
   final num totalMarks;
   final String createdAt;
   final String dueDate;
 
-  StudentAssignment({
+  Assignment({
     @required this.id,
     @required this.title,
+    @required this.description,
     @required this.faculty,
-
     @required this.file,
-    @required this.submitFile,
+    @required this.fileName,
     @required this.subject,
-    @required this.status,
-    @required this.marks,
     @required this.totalMarks,
     @required this.createdAt,
     @required this.dueDate,
   });
+}
 
-  @override
-  List<Object> get props => [
-        id,
-        title,
-        faculty,
+abstract class StudentAssignment {
+  final String id;
+  final Assignment assignment;
+  final num earnedMarks;
+  final String remarks;
+  final String status;
+  final String submitFile;
+  final String submitFileName;
+  final String submittedDate;
 
-        file,
-        submitFile,
-        subject,
-        status,
-        marks,
-        totalMarks,
-        createdAt,
-        dueDate,
-      ];
+  StudentAssignment(
+      {this.id,
+      this.assignment,
+      this.earnedMarks,
+      this.remarks,
+      this.status,
+      this.submitFile,
+      this.submitFileName,
+      this.submittedDate});
 }

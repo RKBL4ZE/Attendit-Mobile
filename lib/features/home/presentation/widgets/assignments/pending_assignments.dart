@@ -158,7 +158,9 @@ class PendingAssignmentWidget extends StatelessWidget {
                                           TableRow(
                                             children: [
                                               AutoSizeText(
-                                                pendingassignment[index].title,
+                                                pendingassignment[index]
+                                                    .assignment
+                                                    .title,
                                                 textAlign: TextAlign.left,
                                                 overflow: CardStyle.overflow,
                                                 maxLines: CardStyle.maxLines,
@@ -176,6 +178,7 @@ class PendingAssignmentWidget extends StatelessWidget {
                                               ),
                                               AutoSizeText(
                                                 pendingassignment[index]
+                                                    .assignment
                                                     .subject
                                                     .subjectName,
                                                 overflow: CardStyle.overflow,
@@ -196,6 +199,7 @@ class PendingAssignmentWidget extends StatelessWidget {
                                               Container(
                                                   child: convertTime(
                                                       pendingassignment[index]
+                                                          .assignment
                                                           .dueDate)),
                                             ],
                                           ),

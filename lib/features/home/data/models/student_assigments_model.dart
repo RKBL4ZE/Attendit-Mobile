@@ -1,4 +1,3 @@
-
 import 'package:meta/meta.dart';
 
 import '../../domain/entities/student_assignment.dart';
@@ -39,42 +38,39 @@ class SubjectModel extends Subject {
   }
 }
 
-class StudentAssignmentModel extends StudentAssignment {
-  StudentAssignmentModel(
+class AssignmentModel extends Assignment {
+  AssignmentModel(
       {@required final String id,
       @required final String title,
+      @required final String description,
       @required final FacultyModel faculty,
       @required final String file,
-      @required final String submitFile,
+      @required final String fileName,
       @required final SubjectModel subject,
-      @required final String status,
-      @required final num marks,
       @required final num totalMarks,
       @required final String createdAt,
       @required final String dueDate})
       : super(
             id: id,
             title: title,
+            description: description,
             faculty: faculty,
             file: file,
-            submitFile: submitFile,
+            fileName: fileName,
             subject: subject,
-            status: status,
-            marks: marks,
             totalMarks: totalMarks,
             createdAt: createdAt,
             dueDate: dueDate);
 
-  factory StudentAssignmentModel.fromJson(Map<String, dynamic> json) {
-    return StudentAssignmentModel(
-      id: json['_id'],
+  factory AssignmentModel.fromJson(Map<String, dynamic> json) {
+    return AssignmentModel(
+      id: json['id'],
       title: json['title'],
+      description: json['description'],
       faculty: FacultyModel.fromJson(json['faculty']),
       file: json['file'],
-      submitFile: json['submitFile'],
+      fileName: json['fileName'],
       subject: SubjectModel.fromJson(json['subject']),
-      status: json['status'],
-      marks: json['marks'],
       totalMarks: json['totalMarks'],
       createdAt: json['createdAt'],
       dueDate: json['dueDate'],
@@ -83,17 +79,64 @@ class StudentAssignmentModel extends StudentAssignment {
 
   Map<String, dynamic> toJson() {
     return {
-      '_id': id,
+      'id': id,
       'title': title,
+      'description': description,
       'faculty': faculty,
       'file': file,
-      'submitFile': submitFile,
+      'fileName': fileName,
       'subject': subject,
-      'status': status,
-      'marks': marks,
       'totalMarks': totalMarks,
       'createdAt': createdAt,
       'dueDate': dueDate,
+    };
+  }
+}
+
+class StudentAssignmentModel extends StudentAssignment {
+  StudentAssignmentModel({
+    final String id,
+    final Assignment assignment,
+    final num earnedMarks,
+    final String remarks,
+    final String status,
+    final String submitFile,
+    final String submitFileName,
+    final String submittedDate,
+  }) : super(
+          id: id,
+          assignment: assignment,
+          earnedMarks: earnedMarks,
+          remarks: remarks,
+          status: status,
+          submitFile: submitFile,
+          submitFileName: submitFileName,
+          submittedDate: submittedDate,
+        );
+
+  factory StudentAssignmentModel.fromJson(Map<String, dynamic> json) {
+    return StudentAssignmentModel(
+      id: json['id'],
+      assignment: AssignmentModel.fromJson(json['assignment']),
+      earnedMarks: json['earnedMarks'],
+      remarks: json['remarks'],
+      status: json['status'],
+      submitFile: json['submitFile'],
+      submitFileName: json['submitFileName'],
+      submittedDate: json['submittedDate'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'assignment': assignment,
+      'earnedMarks': earnedMarks,
+      'remarks': remarks,
+      'status': status,
+      'submitFile': submitFile,
+      'submitFileName': submitFileName,
+      'submittedDate': submittedDate,
     };
   }
 }

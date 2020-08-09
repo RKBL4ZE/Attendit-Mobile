@@ -13,7 +13,6 @@ abstract class SubjectName {
   final String fullName;
 
   SubjectName(this.name, this.fullName);
-
 }
 
 abstract class Faculty {
@@ -38,7 +37,7 @@ abstract class TimeTable extends Equatable {
   final List<Timing> thursday;
   final List<Timing> friday;
   final List<Timing> saturday;
-  // final List<Timing> sunday;
+  final List<Timing> sunday;
 
   TimeTable({
     @required this.monday,
@@ -47,7 +46,7 @@ abstract class TimeTable extends Equatable {
     @required this.thursday,
     @required this.friday,
     @required this.saturday,
-    // @required this.sunday,
+    @required this.sunday,
   });
 
   @override

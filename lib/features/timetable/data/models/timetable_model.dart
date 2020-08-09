@@ -99,8 +99,7 @@ class TimeTableModel extends TimeTable {
             thursday: thursday,
             friday: friday,
             saturday: saturday,
-            // sunday: sunday
-            );
+            sunday: sunday);
 
   factory TimeTableModel.fromJson(Map<String, dynamic> json) {
     return TimeTableModel(
@@ -122,9 +121,9 @@ class TimeTableModel extends TimeTable {
       saturday: json['saturday']
           .map<TimingModel>((e) => TimingModel.fromJson(e))
           .toList(),
-      // sunday: json['sunday']
-      //     .map<TimingModel>((e) => TimingModel.fromJson(e))
-      //     .toList(),
+      sunday: json['sunday']
+          .map<TimingModel>((e) => TimingModel.fromJson(e))
+          .toList(),
     );
   }
 
@@ -136,7 +135,7 @@ class TimeTableModel extends TimeTable {
       "thursday": thursday,
       "friday": friday,
       "saturday": saturday,
-      // "sunday": sunday,
+      "sunday": sunday,
     };
   }
 }

@@ -57,24 +57,33 @@ mixin Gqlquery {
       }
 
       StudentAssignments{
-        _id
-        title
-        faculty{
-          name
-        }
-       
-        file
-        submitFile
-        subject{
-          subjectCode
-          subjectName
-        }
-        status
-        marks
-        totalMarks
-        createdAt
-        dueDate
+    id
+    assignment{
+      id
+      batch
+      classroom
+      createdAt
+      dueDate
+      faculty{
+        name
       }
+      file
+      fileName
+      subject{
+        subjectCode
+        subjectName
+      }
+      title
+      description
+      totalMarks
+    }
+    earnedMarks
+    remarks
+    status
+    submitFile
+    submitFileName
+    submittedDate
+  }
 
       StudentAttendance{
         subject{
@@ -183,8 +192,7 @@ mixin Gqlquery {
 
   ''';
 
-
-static String newsFeedQuery = r'''
+  static String newsFeedQuery = r'''
 
 query{
   news{
@@ -204,35 +212,38 @@ query{
 
 ''';
 
+  static String studentAssignmentQuery = r'''
 
-static String studentAssignmentQuery = r'''
-
-query{
-  StudentAssignments{
-        _id
-        title
-        faculty{
-          name
-        }
-       
-        file
-        submitFile
-        subject{
-          subjectCode
-          subjectName
-        }
-        status
-        marks
-        totalMarks
-        createdAt
-        dueDate
+query {
+  StudentAssignments {
+    id
+    assignment {
+      id
+      batch
+      classroom
+      createdAt
+      dueDate
+      faculty {
+        name
       }
+      file
+      fileName
+      subject {
+        subjectCode
+        subjectName
+      }
+      title
+      description
+      totalMarks
+    }
+    earnedMarks
+    remarks
+    status
+    submitFile
+    submitFileName
+    submittedDate
+  }
 }
 
 ''';
-
-
 }
-
-
-

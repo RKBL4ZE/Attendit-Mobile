@@ -50,7 +50,7 @@ import 'package:Attendit/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:Attendit/features/result/presentation/bloc/result_bloc.dart';
 import 'package:Attendit/features/assignment/domain/usecases/submit_assignment.dart';
 import 'package:Attendit/features/assignment/presentation/bloc/assignment_bloc.dart';
-import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
+import 'package:Attendit/features/timetable/presentation/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_login.dart';
 import 'package:Attendit/features/auth/domain/usecases/user_logout.dart';
 import 'package:Attendit/features/virtual_id_card/presentation/bloc/virtualidcard_bloc.dart';

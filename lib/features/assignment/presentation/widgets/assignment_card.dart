@@ -19,9 +19,13 @@ final int barpercent = 90;
 class AssignmentCard extends StatefulWidget {
   final String subname;
   final String title;
+  final String description;
   final String id;
   final String subjectCode;
   final String file;
+  final String fileName;
+  final String submitFileName;
+
   final String submitFile;
   final num marks;
   final String createdAt;
@@ -34,9 +38,12 @@ class AssignmentCard extends StatefulWidget {
       {Key key,
       this.subname,
       this.title,
+      this.description,
       this.id,
       this.subjectCode,
       this.file,
+      this.fileName,
+      this.submitFileName,
       this.submitFile,
       this.marks,
       this.createdAt,
@@ -200,7 +207,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       AutoSizeText(
-                        widget.subname,
+                        widget.title,
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             fontFamily: 'Karla',
@@ -208,13 +215,25 @@ class _AssignmentCardState extends State<AssignmentCard> {
                             color: AssignmentStyle.txtHeadingColor,
                             fontWeight: FontWeight.bold),
                       ),
+                      Container(
+                          margin: EdgeInsets.fromLTRB(0, 10, 5, 10),
+                          child: AutoSizeText(
+                            " - ${widget.subname}",
+                            maxLines: 1,
+                            overflow: TextOverflow.fade,
+                            style: TextStyle(
+                                fontFamily: 'Rubik',
+                                fontSize: 12,
+                                color: textColor,
+                                fontWeight: FontWeight.bold),
+                          )),
                       SizedBox(
                         height: 5,
                       ),
                       Container(
                         margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
                         child: Text(
-                          widget.title,
+                          widget.description,
                           style: TextStyle(
                             fontFamily: 'Karla',
                             fontSize: 16,
@@ -238,7 +257,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                         ),
                       ),
                       AssignmentFile(
-                        fileName: "${widget.title} file",
+                        fileName: "${widget.fileName}",
                         file: widget.file,
                       ),
                       // SizedBox(
@@ -265,6 +284,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                                       ),
                                     ),
                                     AssignmentFile(
+                                      fileName: "${widget.submitFileName}",
                                       file: widget.submitFile,
                                     ),
                                     // Text("Submitted"),

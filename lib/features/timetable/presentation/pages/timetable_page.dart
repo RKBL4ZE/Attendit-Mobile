@@ -2,7 +2,7 @@ import 'package:Attendit/config/styles.dart';
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/features/timetable/data/models/timetable_model.dart';
 import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
-import 'package:Attendit/features/timetable/presentation/bloc/bloc/timetable_bloc.dart';
+import 'package:Attendit/features/timetable/presentation/bloc/timetable_bloc.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 import 'package:Attendit/features/timetable/presentation/widgets/single_day_timetable.dart';
 
@@ -38,7 +38,7 @@ class TimeTableWidget extends StatelessWidget {
 
             final timetable =
                 _currentDayTimetable(currentDay, group, 0); // to be change
-            if (timetable == null) {
+            if (timetable.length == 0) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -133,14 +133,15 @@ List<Timing> _currentDayTimetable(String day, List<Group> group, int index) {
       {
         return group[index].timetable.saturday;
       }
+    case "sunday":
+      {
+        return group[index].timetable.sunday;
+      }
     default:
       {
         return group[index].timetable.monday;
       }
     /* sunday kya kare nakuri chod de????? */
-    // case "sunday":
-    //   {
-    //     return group[index].timetable.sunday;
-    //   }
+
   }
 }
