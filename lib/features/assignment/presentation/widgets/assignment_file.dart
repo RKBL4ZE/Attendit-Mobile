@@ -20,6 +20,13 @@ class AssignmentFile extends StatelessWidget {
           //color: Color.fromRGBO(128, 139, 151, 1),
           //size: 20.0,
         );
+      } else if (fileextension == "jpg") {
+        return Icon(
+          Icons.image,
+          color: Colors.red,
+          //color: Color.fromRGBO(128, 139, 151, 1),
+          //size: 20.0,
+        );
       } else {
         return Icon(
           Icons.filter_frames,

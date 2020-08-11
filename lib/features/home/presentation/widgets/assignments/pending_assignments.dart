@@ -17,10 +17,10 @@ class PendingAssignmentWidget extends StatelessWidget {
     //  // DateTime time = format.format(utctime);
     // // time.toLocal();
     var date = DateTime.parse(utctime);
-    var dateFormatter = new DateFormat('yyyy-MM-dd');
+    var dateFormatter = new DateFormat('dd-MM-yyyy');
     String formattedDate = dateFormatter.format(date);
 
-    DateFormat dateFormat = new DateFormat('yyyy-MM-dd');
+    DateFormat dateFormat = new DateFormat('dd-MM-yyyy');
     DateTime now = DateTime.now();
     DateTime open = dateFormat.parse(utctime);
     open = new DateTime(

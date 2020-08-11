@@ -28,7 +28,15 @@ mixin Gqlmutation {
   static String submitAssignmentMutation = '''
 
     mutation SubmitAssignmentMut ( \$id: String!, \$file: Upload!) {
-      SubmitAssignment( id: \$id, file: \$file) 
+      SubmitAssignment( id: \$id, file: \$file) {
+		 	id
+    		earnedMarks
+   			remarks
+    		status
+    		submitFile
+    		submitFileName
+   			submittedDate
+	  }
       
     }
 

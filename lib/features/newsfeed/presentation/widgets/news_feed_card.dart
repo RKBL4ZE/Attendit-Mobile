@@ -137,44 +137,46 @@ class _NewsFeedWIDGETState extends State<NewsFeedCard> {
             Container(
               constraints: BoxConstraints(maxHeight: 400),
               // width: double.infinity,
-              child: new Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: () async {
-                      await showDialog(
-                          context: context,
-                          builder: (_) => ImageDialog(
-                                imgurl: widget.newsFeed.images[index],
+              child: widget.newsFeed.images.length != 0
+                  ? Swiper(
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: () async {
+                            await showDialog(
                                 context: context,
-                              ));
-                    },
-                    child: Image.network(
-                      widget.newsFeed.images[index],
-                      loadingBuilder: (context, child, progress) {
-                        return progress == null ? child : loaderWidget;
+                                builder: (_) => ImageDialog(
+                                      imgurl: widget.newsFeed.images[index],
+                                      context: context,
+                                    ));
+                          },
+                          child: Image.network(
+                            widget.newsFeed.images[index],
+                            loadingBuilder: (context, child, progress) {
+                              return progress == null ? child : loaderWidget;
+                            },
+                            fit: BoxFit.contain,
+                          ),
+                        );
                       },
-                      fit: BoxFit.contain,
-                    ),
-                  );
-                },
-                itemCount: widget.newsFeed.images.length,
-                autoplay: true,
-                autoplayDisableOnInteraction: true,
-                //control: new SwiperControl(),
-                pagination: new SwiperPagination(
+                      itemCount: widget.newsFeed.images.length,
+                      autoplay: true,
+                      autoplayDisableOnInteraction: true,
+                      //control: new SwiperControl(),
+                      pagination: new SwiperPagination(
 
-                    //alignment: Alignment.bottomCenter,
-                    //margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                    //builder: SwiperPagination.dots,
-                    ),
-                layout: SwiperLayout.DEFAULT,
-                /* viewportFraction: 1,
+                          //alignment: Alignment.bottomCenter,
+                          //margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+                          //builder: SwiperPagination.dots,
+                          ),
+                      layout: SwiperLayout.DEFAULT,
+                      /* viewportFraction: 1,
                 scale: 1, */
-                itemWidth: 400,
-                itemHeight: 400,
-                //TODO:ADD full image view on tap below
-                //onTap: (){},
-              ),
+                      itemWidth: 400,
+                      itemHeight: 400,
+                      //TODO:ADD full image view on tap below
+                      //onTap: (){},
+                    )
+                  : Container(),
             ),
             Container(
               margin: NewsFeedCardStyle.titleMargin,
