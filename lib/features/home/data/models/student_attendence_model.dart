@@ -1,20 +1,7 @@
+import 'package:Attendit/features/shared/data/models/subject_model.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/entities/student_attendance.dart';
-
-class SubjectModel extends Subject {
-  SubjectModel({@required String subjectCode, @required String subjectName})
-      : super(subjectCode, subjectName);
-
-  factory SubjectModel.fromJson(Map<String, dynamic> json) {
-    return SubjectModel(
-        subjectName: json['subjectName'], subjectCode: json['subjectCode']);
-  }
-
-  Map<String, dynamic> toJson() {
-    return {"subjectName": subjectName, "subjectCode": subjectCode};
-  }
-}
 
 class StudentAttendanceModel extends StudentAttendance {
   StudentAttendanceModel({

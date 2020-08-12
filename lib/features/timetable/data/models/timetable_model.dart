@@ -1,26 +1,6 @@
 import 'package:Attendit/features/timetable/domain/entities/timetable.dart';
 import 'package:meta/meta.dart';
 
-class SubjectModel extends Subject {
-  SubjectModel(
-      {@required final String subjectCode, @required final String subjectName})
-      : super(subjectCode, subjectName);
-
-  factory SubjectModel.fromJson(Map<String, dynamic> json) {
-    return SubjectModel(
-      subjectName: json['subjectName'],
-      subjectCode: json['subjectCode'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      "subjectCode": subjectCode,
-      "subjectName": subjectName,
-    };
-  }
-}
-
 class SubjectNameModel extends SubjectName {
   SubjectNameModel(
       {@required final String name, @required final String fullName})

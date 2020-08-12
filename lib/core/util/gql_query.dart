@@ -70,8 +70,9 @@ mixin Gqlquery {
       file
       fileName
       subject{
-        subjectCode
-        subjectName
+        code
+		name
+		fullName
       }
       title
       description
@@ -87,8 +88,9 @@ mixin Gqlquery {
 
       StudentAttendance{
         subject{
-          subjectCode
-          subjectName
+          code
+		  name
+		  fullName
         }
         lecturesAttended
         totalLectures
@@ -229,8 +231,9 @@ query {
       file
       fileName
       subject {
-        subjectCode
-        subjectName
+		code
+        name
+		fullName
       }
       title
       description

@@ -28,7 +28,7 @@ class TimeTableWidget extends StatelessWidget {
 
     // BlocProvider.of<TimetableBloc>(context).add(GetTimeTableEvent());
     return (BlocBuilder<TimetableBloc, TimetableState>(
-        bloc: BlocProvider.of<TimetableBloc>(context),
+        cubit: BlocProvider.of<TimetableBloc>(context),
         builder: (context, state) {
           if (state is TimetableLoading) {
             return loaderWidget;

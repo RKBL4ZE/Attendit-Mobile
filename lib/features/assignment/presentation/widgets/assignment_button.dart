@@ -21,7 +21,7 @@ class _AssignmentButtonState extends State<AssignmentButton> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-        bloc: BlocProvider.of<SubmitAssignmentBloc>(context),
+        cubit: BlocProvider.of<SubmitAssignmentBloc>(context),
         builder: (context, state) => Container(
             alignment: Alignment.center,
             height: 50.0,

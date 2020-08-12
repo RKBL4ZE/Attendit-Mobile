@@ -21,11 +21,9 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 class VirtualidcardBloc extends Bloc<VirtualidcardEvent, VirtualidcardState> {
   final GetAllDetails getAllDetails;
 
-  VirtualidcardBloc(this.getAllDetails) {
+  VirtualidcardBloc(this.getAllDetails) : super(VirtualidcardLoading()) {
     this.add(GetVirtualidcardEvent());
   }
-  @override
-  VirtualidcardState get initialState => VirtualidcardLoading();
 
   @override
   Stream<VirtualidcardState> mapEventToState(VirtualidcardEvent event) async* {

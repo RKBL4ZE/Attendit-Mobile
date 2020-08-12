@@ -36,7 +36,7 @@ class NewsFeedWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
       child: BlocBuilder<NewsfeedBloc, NewsfeedState>(
-          bloc: BlocProvider.of<NewsfeedBloc>(context),
+          cubit: BlocProvider.of<NewsfeedBloc>(context),
           builder: (context, state) {
             if (state is NewsfeedLoading) {
               return loaderWidget;

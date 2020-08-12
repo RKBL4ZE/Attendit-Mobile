@@ -126,7 +126,7 @@ class ExternalWidget extends StatelessWidget {
                         pushNewScreen(context,
                             screen: MultiBlocProvider(
                               child: BlocBuilder<SemBloc, SemState>(
-                                  bloc: semBloc,
+                                  cubit: semBloc,
                                   builder: (context, state) {
                                     final SemTapped currentState = state;
                                     return RankList(

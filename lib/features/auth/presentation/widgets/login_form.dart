@@ -21,7 +21,7 @@ class LoginForm extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: BlocBuilder(
-          bloc: BlocProvider.of<AuthBloc>(context),
+          cubit: BlocProvider.of<AuthBloc>(context),
           builder: (context, state) => Background(
                 child: SingleChildScrollView(
                   child: Column(

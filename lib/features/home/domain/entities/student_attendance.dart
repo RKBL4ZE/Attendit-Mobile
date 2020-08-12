@@ -1,12 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-
-abstract class Subject {
-  final String subjectCode;
-  final String subjectName;
-
-  Subject(this.subjectCode, this.subjectName);
-}
+import 'package:Attendit/features/shared/domain/entities/subject.dart';
 
 class StudentAttendance extends Equatable {
   final Subject subject;
@@ -19,6 +13,5 @@ class StudentAttendance extends Equatable {
       @required this.totalLectures});
 
   @override
-  List<Object> get props =>
-      [subject, lecturesAttended, totalLectures];
+  List<Object> get props => [subject, lecturesAttended, totalLectures];
 }

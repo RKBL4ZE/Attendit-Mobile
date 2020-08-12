@@ -30,7 +30,7 @@ class _LoginButtonState extends State<LoginButton> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BlocBuilder(
-        bloc: BlocProvider.of<AuthBloc>(context),
+        cubit: BlocProvider.of<AuthBloc>(context),
         builder: (context, state) => Container(
               margin: EdgeInsets.symmetric(vertical: 10),
               width: size.width * 0.8,

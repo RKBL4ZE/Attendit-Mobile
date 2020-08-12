@@ -23,10 +23,8 @@ class ResultBloc extends Bloc<ResultEvent, ResultState> {
   final GetResult getResult;
   final GetEnrollment getEnrollment;
 
-  ResultBloc(this.getResult, this.getEnrollment);
+  ResultBloc(this.getResult, this.getEnrollment) : super(ResultInitial());
 
-  @override
-  ResultState get initialState => ResultInitial();
   @override
   Stream<ResultState> mapEventToState(
     ResultEvent event,

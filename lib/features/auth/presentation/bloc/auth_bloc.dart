@@ -27,11 +27,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CheckFirstTime checkFirstTime;
 
   AuthBloc(
-      this.userLogin, this.checkSession, this.checkFirstTime, this.userLogout) {
+      this.userLogin, this.checkSession, this.checkFirstTime, this.userLogout)
+      : super(AuthInitial()) {
     this.add(CheckSessionEvent());
   }
-  @override
-  AuthState get initialState => AuthInitial();
 
   @override
   Stream<AuthState> mapEventToState(

@@ -20,10 +20,7 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 class RankBloc extends Bloc<RankEvent, RankState> {
   final GetRankList getRankList;
 
-  RankBloc(this.getRankList);
-
-  @override
-  RankState get initialState => RankInitial();
+  RankBloc(this.getRankList) : super(RankInitial());
 
   @override
   Stream<Transition<RankEvent, RankState>> transformEvents(

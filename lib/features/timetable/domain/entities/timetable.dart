@@ -1,13 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-abstract class Subject {
-  final String subjectCode;
-  final String subjectName;
-
-  Subject(this.subjectCode, this.subjectName);
-}
-
 abstract class SubjectName {
   final String name;
   final String fullName;

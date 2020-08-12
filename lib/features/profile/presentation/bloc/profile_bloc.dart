@@ -21,11 +21,9 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetAllDetails getAllDetails;
 
-  ProfileBloc(this.getAllDetails) {
+  ProfileBloc(this.getAllDetails) : super(ProfileLoading()) {
     this.add(GetProfileEvent());
   }
-  @override
-  ProfileState get initialState => ProfileLoading();
 
   @override
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {

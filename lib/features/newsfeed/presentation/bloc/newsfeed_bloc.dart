@@ -21,9 +21,7 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 class NewsfeedBloc extends Bloc<NewsfeedEvent, NewsfeedState> {
   final GetNewsFeed getNewsFeed;
 
-  NewsfeedBloc(this.getNewsFeed);
-  @override
-  NewsfeedState get initialState => NewsfeedLoading();
+  NewsfeedBloc(this.getNewsFeed) : super(NewsfeedLoading());
 
   @override
   Stream<NewsfeedState> mapEventToState(

@@ -11,8 +11,7 @@ class BottomNavigationBloc
     extends Bloc<BottomNavigationEvent, BottomNavigationState> {
   int currentIndex = 0;
 
-  @override
-  BottomNavigationState get initialState => PageLoading();
+  BottomNavigationBloc() : super(PageLoading());
 
   @override
   Stream<BottomNavigationState> mapEventToState(

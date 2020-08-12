@@ -9,8 +9,7 @@ part 'sem_state.dart';
 
 @injectable
 class SemBloc extends Bloc<SemEvent, SemState> {
-  @override
-  SemState get initialState => SemTapped(1);
+  SemBloc() : super(SemTapped(1));
 
   @override
   Stream<SemState> mapEventToState(

@@ -21,11 +21,9 @@ const String UNAUTHORIZED_FAILURE_MESSAGE = 'Invalid Crendentials';
 class TimetableBloc extends Bloc<TimetableEvent, TimetableState> {
   final GetTimeTable getTimeTable;
 
-  TimetableBloc(this.getTimeTable) {
-	  this.add(GetTimeTableEvent());
+  TimetableBloc(this.getTimeTable) : super(TimetableLoading()) {
+    this.add(GetTimeTableEvent());
   }
-  @override
-  TimetableState get initialState => TimetableLoading();
 
   @override
   Stream<TimetableState> mapEventToState(

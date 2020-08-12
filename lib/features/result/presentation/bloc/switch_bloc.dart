@@ -9,7 +9,7 @@ part 'switch_state.dart';
 
 @injectable
 class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
-  SwitchState get initialState => SwitchTapped(false);
+  SwitchBloc() : super(SwitchTapped(false));
 
   @override
   Stream<SwitchState> mapEventToState(

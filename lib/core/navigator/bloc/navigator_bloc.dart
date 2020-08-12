@@ -9,10 +9,7 @@ part 'navigator_event.dart';
 
 class NavigatorBloc extends Bloc<NavigatorEvent, dynamic> {
   final GlobalKey<NavigatorState> navigatorKey;
-  NavigatorBloc({this.navigatorKey});
-
-  @override
-  dynamic get initialState => 0;
+  NavigatorBloc({this.navigatorKey}) : super(0);
 
   @override
   Stream<NavigatorState> mapEventToState(
@@ -26,7 +23,7 @@ class NavigatorBloc extends Bloc<NavigatorEvent, dynamic> {
       navigatorKey.currentState
           .pushNamed('/fulltimetable', arguments: event.full);
     } else if (event is NavigatetoLoginEvent) {
-		navigatorKey.currentState.pushReplacementNamed('/');
-	}
+      navigatorKey.currentState.pushReplacementNamed('/');
+    }
   }
 }

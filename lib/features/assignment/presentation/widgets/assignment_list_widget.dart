@@ -42,9 +42,8 @@ class AssignmentsListWidget extends StatelessWidget {
                 // height: 40,
                 child: AssignmentCard(
                   id: assignments[index].id,
-                  subname: assignments[index].assignment.subject.subjectName,
-                  subjectCode:
-                      assignments[index].assignment.subject.subjectCode,
+                  subname: assignments[index].assignment.subject.fullName,
+                  subjectCode: assignments[index].assignment.subject.code,
                   title: assignments[index].assignment.title,
                   description: assignments[index].assignment.description,
                   file: assignments[index].assignment.file,

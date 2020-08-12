@@ -25,11 +25,10 @@ class AssignmentBloc extends Bloc<AssignmentEvent, AssignmentState> {
   final SubmitAssignment submitAssignment;
   final GetAssignmentDetails getAssignmentDetails;
 
-  AssignmentBloc(this.getAssignmentDetails, this.submitAssignment) {
-	  this.add(GetAssignmentDetailsEvent());
+  AssignmentBloc(this.getAssignmentDetails, this.submitAssignment)
+      : super(DetailsLoading()) {
+    this.add(GetAssignmentDetailsEvent());
   }
-  @override
-  AssignmentState get initialState => DetailsLoading();
 
   @override
   Stream<AssignmentState> mapEventToState(AssignmentEvent event) async* {
@@ -69,11 +68,10 @@ class SubmitAssignmentBloc
     extends Bloc<AssignmentEvent, SubmitAssignmentState> {
   final SubmitAssignment submitAssignment;
 
-  SubmitAssignmentBloc(this.submitAssignment) {
-	  this.add(GetAssignmentDetailsEvent());
+  SubmitAssignmentBloc(this.submitAssignment)
+      : super(SubmitAssignmentInitial()) {
+    this.add(GetAssignmentDetailsEvent());
   }
-  @override
-  SubmitAssignmentState get initialState => SubmitAssignmentInitial();
 
   @override
   Stream<SubmitAssignmentState> mapEventToState(AssignmentEvent event) async* {

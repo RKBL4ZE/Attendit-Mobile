@@ -1,3 +1,4 @@
+import 'package:Attendit/features/shared/data/models/subject_model.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/entities/student_assignment.dart';
@@ -14,26 +15,6 @@ class FacultyModel extends Faculty {
   Map<String, dynamic> toJson() {
     return {
       "name": name,
-    };
-  }
-}
-
-class SubjectModel extends Subject {
-  SubjectModel(
-      {@required final String subjectCode, @required final String subjectName})
-      : super(subjectCode, subjectName);
-
-  factory SubjectModel.fromJson(Map<String, dynamic> json) {
-    return SubjectModel(
-      subjectCode: json['subjectCode'],
-      subjectName: json['subjectName'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      "subjectCode": subjectCode,
-      "subjectName": subjectName,
     };
   }
 }

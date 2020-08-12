@@ -12,7 +12,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: BlocBuilder<HomeBloc, HomeState>(
-        bloc: BlocProvider.of<HomeBloc>(context),
+        cubit: BlocProvider.of<HomeBloc>(context),
         builder: (context, state) {
           if (state is DetailsLoading) {
             return loaderWidget;

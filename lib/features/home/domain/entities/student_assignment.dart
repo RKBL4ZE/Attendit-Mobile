@@ -1,16 +1,10 @@
 import 'package:meta/meta.dart';
+import 'package:Attendit/features/shared/domain/entities/subject.dart';
 
 abstract class Faculty {
   final String name;
 
   Faculty(this.name);
-}
-
-abstract class Subject {
-  final String subjectCode;
-  final String subjectName;
-
-  Subject(this.subjectCode, this.subjectName);
 }
 
 abstract class Assignment {

@@ -25,11 +25,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetStudentDetails getStudentDetails;
   final GetAllDetails getAllDetails;
 
-  HomeBloc(this.getStudentDetails, this.getAllDetails) {
+  HomeBloc(this.getStudentDetails, this.getAllDetails)
+      : super(DetailsLoading()) {
     this.add(GetDetailsEvent());
   }
-  @override
-  HomeState get initialState => DetailsLoading();
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
