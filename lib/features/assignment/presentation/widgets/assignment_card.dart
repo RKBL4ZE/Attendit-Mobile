@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:Attendit/config/styles.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:intl/intl.dart';
 import 'assignment_file.dart';
 import 'assignment_file_picker.dart';
@@ -121,7 +122,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (bar == true) {
+    if (bar) {
       return InkWell(
           onTap: () => chanebar(),
           child: Card(
@@ -175,7 +176,7 @@ class _AssignmentCardState extends State<AssignmentCard> {
                   // SizedBox(width: 1)
                 )),
           ));
-    } else if (bar == false) {
+    } else if (!bar) {
       return InkWell(
           onTap: () => chanebar(),
           child: Container(
@@ -287,7 +288,60 @@ class _AssignmentCardState extends State<AssignmentCard> {
                                       fileName: "${widget.submitFileName}",
                                       file: widget.submitFile,
                                     ),
-                                    // Text("Submitted"),
+                                    Container(
+                                      margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                      height: 45.0,
+                                      child: RaisedButton(
+                                        shape: LectureCardStyle.shape,
+                                        color: LectureCardStyle.buttonColor,
+                                        onPressed: () {
+                                          YYDialog.init(context);
+                                          YYDialog().build()
+                                            ..width = 300
+                                            ..borderRadius = 4.0
+                                            ..text(
+                                              padding: EdgeInsets.all(25.0),
+                                              alignment: Alignment.center,
+                                              text:
+                                                  "Do you want to unsubmit the ${widget.title}?",
+                                              color: Colors.black,
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.w500,
+                                            )
+                                            ..divider()
+                                            ..doubleButton(
+                                              padding:
+                                                  EdgeInsets.only(top: 10.0),
+                                              gravity: Gravity.center,
+                                              withDivider: true,
+                                              text1: "Yes",
+                                              color1: Colors.redAccent,
+                                              fontSize1: 14.0,
+                                              fontWeight1: FontWeight.bold,
+                                              onTap1: () {
+                                                print("Yes");
+                                              },
+                                              text2: "No",
+                                              color2: Colors.green,
+                                              fontSize2: 14.0,
+                                              fontWeight2: FontWeight.bold,
+                                              onTap2: () {
+                                                print("No");
+                                              },
+                                            )
+                                            ..show();
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "Unsubmit",
+                                            textAlign: TextAlign.center,
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 )
                               : Column(
@@ -334,5 +388,23 @@ class _AssignmentCardState extends State<AssignmentCard> {
               )));
     }
     return Container();
+  }
+
+  Widget makeTextButton(title, Function() function) {
+    return SizedBox(
+      width: 70.0,
+      height: 35.0,
+      child: RaisedButton(
+        padding: EdgeInsets.all(0.0),
+        onPressed: () {
+          function();
+        },
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 12.0),
+        ),
+      ),
+    );
   }
 }

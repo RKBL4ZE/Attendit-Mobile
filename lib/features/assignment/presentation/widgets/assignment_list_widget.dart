@@ -18,17 +18,15 @@ class AssignmentsListWidget extends StatelessWidget {
           Container(
             margin: new EdgeInsets.fromLTRB(0, 20, 0, 15),
             child: Text(
-                assignmentStatus == "COMPLETED"
-                    ? "Completed Assignment"
-                    : "Pending Assignment",
-                //textAlign: TextAlign.left,
-                style: TextStyle(
-                    // fontFamily: 'Rubik',
-
-                    fontSize: 25,
-                    fontFamily: 'Rubik',
-                    color: Color.fromRGBO(46, 96, 102, 1),
-                    fontWeight: FontWeight.bold)),
+              assignmentStatus == "COMPLETED"
+                  ? "Completed Assignment"
+                  : "Pending Assignment",
+              style: TextStyle(
+                fontSize: 25,
+                fontFamily: 'Rubik',
+                color: Colors.black,
+              ),
+            ),
           ),
           ConstrainedBox(
             constraints: BoxConstraints(maxHeight: double.infinity),

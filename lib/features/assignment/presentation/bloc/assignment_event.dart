@@ -26,3 +26,13 @@ class SubmitAssignmentEvent extends AssignmentEvent {
       ];
 }
 
+class UnsubmitAssignmentEvent extends AssignmentEvent {
+  final String id;
+
+  UnsubmitAssignmentEvent(this.id);
+
+  @override
+  List<Object> get props => [
+        id,
+      ];
+}

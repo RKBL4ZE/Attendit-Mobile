@@ -195,7 +195,7 @@ class _NavBarState extends State<NavBar> {
             },
             itemCount: 4,
             navBarStyle: NavBarStyle
-                .style13 // Choose the nav bar style with this property
+                .style6 // Choose the nav bar style with this property
             ),
       ),
     );
