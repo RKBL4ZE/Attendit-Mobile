@@ -20,9 +20,10 @@ jobs:
           channel: "stable"
       - run: flutter pub get
     #   - run: flutter test
-      - run: flutter build apk --split-per-abi
+      - run: flutter build apk --flavor prod --dart-define=APP_SUFFIX=prod --dart-define=API_URL=https://api.attendit.in/ --split-per-abi
+      - run: flutter build apk --flavor dev --split-per-abi
       - name: Push APK to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk"
+          artifacts: "build/app/outputs/apk/prod/release/*.apk,build/app/outputs/apk/dev/release/*.apk"
           token: ${{ secrets.GITHUB_TOKEN }}

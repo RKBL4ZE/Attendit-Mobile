@@ -2,6 +2,7 @@ import 'package:Attendit/core/environment/environment.dart';
 import 'package:Attendit/core/injection/injection.dart';
 import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/auth/presentation/widgets/login_form.dart';
+import 'package:Attendit/features/welcome_screen/presentation/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/auth_bloc.dart';
@@ -24,6 +25,9 @@ class LoginPage extends StatelessWidget {
             Scaffold.of(context).showSnackBar(snackBar);
           }
         }, builder: (context, state) {
+          if (state is AuthWelcome) {
+            return WelcomeScreen();
+          }
           return LoginForm(state: state);
         }),
       ),

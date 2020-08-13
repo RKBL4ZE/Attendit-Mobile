@@ -112,28 +112,27 @@ class SideDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            new Container(
-              child: ListTile(
-                title: Text(
-                  "Settings",
-                  style:
-                      TextStyle(fontSize: 18.0, color: Styles.headingfontcolor),
-                ),
-                leading: Icon(
-                  Icons.settings,
-                  color: Styles.headingfontcolor,
-                ),
-              ),
-            ),
+            // Container(
+            //   child: ListTile(
+            //     title: Text(
+            //       "Settings",
+            //       style:
+            //           TextStyle(fontSize: 18.0, color: Styles.headingfontcolor),
+            //     ),
+            //     leading: Icon(
+            //       Icons.settings,
+            //       color: Styles.headingfontcolor,
+            //     ),
+            //   ),
+            // ),
             // Styles.divider,
             Expanded(
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: new Container(
+                child: Container(
                   //  alignment: Alignment.bottomCenter,
                   child: ListTile(
                     onTap: () {
-                      print('Logout Presses');
                       BlocProvider.of<AuthBloc>(context).add(LogoutEvent());
                       BlocProvider.of<NavigatorBloc>(context)
                           .add(NavigatetoLoginEvent());
