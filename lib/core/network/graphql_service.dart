@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:Attendit/config/constant.dart';
+import 'package:Attendit/core/environment/environment.dart';
 import 'package:Attendit/core/error/exceptions.dart';
 import 'package:Attendit/core/navigator/navigator.service.dart';
 import 'package:Attendit/core/network/network_info.dart';
@@ -24,11 +24,6 @@ abstract class IGraphQLService {
       {String mutation, Map<String, dynamic> variables});
 }
 
-const String ENDPOINT = graphQL;
-
-// const String ENDPOINT =
-//     "http:///graphql";
-
 const CACHED_USER_TOKENS = 'CACHED_USER_TOKENS';
 
 @Injectable(as: IGraphQLService)
@@ -42,6 +37,8 @@ class GraphQLService implements IGraphQLService {
   GraphQLClient _clientNoAuth;
 
   GraphQLService(this._box, this._networkInfo, this.navigationService) {
+    print(EnvironmentConfig.API_URL);
+    const String ENDPOINT = EnvironmentConfig.API_URL;
     final HttpLink httpLink = HttpLink(
       uri: ENDPOINT,
     );
@@ -56,9 +53,9 @@ class GraphQLService implements IGraphQLService {
     final ErrorLink errorLink = ErrorLink(
       errorHandler: (error) {
         if (error.exception.graphqlErrors[0].message == "Unauthorized") {
-			_box.delete(CACHED_USER_TOKENS);
-			navigationService.navigateToReplace('/');
-		}
+          _box.delete(CACHED_USER_TOKENS);
+          navigationService.navigateToReplace('/');
+        }
       },
     );
 
@@ -99,11 +96,8 @@ class GraphQLService implements IGraphQLService {
       final tUserTokensModel =
           UserTokensModel.fromJson(json.decode(userTokenString));
 
-      // print(tUserTokensModel.accesstoken);
-
       final currenTime = DateTime.now().millisecondsSinceEpoch;
       final tokenExpiration = tUserTokensModel.exp;
-      // print(tokenExpiration);
       if ((currenTime / 1000) < (tokenExpiration - 600)) {
         return Future.value(tUserTokensModel.accesstoken);
       } else {

@@ -13,6 +13,8 @@ class AuthWelcomeSuccess extends AuthState {}
 
 class UserLogedIn extends AuthState {}
 
+class UserNewPassword extends AuthState {}
+
 class UserLoggedOut extends AuthState {}
 
 class AuthError extends AuthState {

@@ -60,10 +60,13 @@ class _LoginButtonState extends State<LoginButton> {
   }
 
   Widget setUpButtonChild() {
-    if (widget.state is AuthWelcomeSuccess ||
-        widget.state is AuthInitial ||
-        widget.state is AuthError ||
-        widget.state is UserLoggedOut) {
+    if (widget.state is LoginLoading) {
+      return CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+      );
+    } else if (widget.state is UserLogedIn) {
+      return Icon(Icons.check, color: Colors.lightBlueAccent);
+    } else
       return new Text(
         "Login",
         style: TextStyle(
@@ -72,19 +75,6 @@ class _LoginButtonState extends State<LoginButton> {
           //fontWeight: FontWeight.w700,
         ),
       );
-    } else if (widget.state is LoginLoading) {
-      return CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-      );
-    } else if (widget.state is UserLogedIn) {
-      //BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
-      return Icon(Icons.check, color: Colors.lightBlueAccent);
-    }
-    // else if (widget.state is AuthError) {
-    //   return Text("error");
-    // }
-    else
-      return Container();
   }
 
 //   void animateButton() {

@@ -3,7 +3,6 @@ import 'package:Attendit/core/navigator/navigator.service.dart';
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 
 import 'package:Attendit/features/navbar/presentation/pages/navbar.dart';
-import 'package:Attendit/features/timetable/presentation/widgets/full_timetable.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: _navservice.navigatorKey,
         debugShowCheckedModeBanner: false,
-        title: 'AttendIt Student',
+        title: 'ATTENDIT',
         theme: ThemeData.light().copyWith(
           primaryColor: PrimaryStyle.primary,
           accentColor: PrimaryStyle.accent,
@@ -51,7 +50,6 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (_) => LoginPage(),
           '/navbar': (_) => NavBar(),
-          '/fulltimetable': (_) => FullTimeTablePage()
         },
       ),
     );

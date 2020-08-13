@@ -1,0 +1,40 @@
+{
+    "project_info": {
+        "project_number": "635162624074",
+        "firebase_url": "https://attendit-33967.firebaseio.com",
+        "project_id": "attendit-33967",
+        "storage_bucket": "attendit-33967.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:635162624074:android:b3c842ac64ef4993c526b3",
+                "android_client_info": {
+                    "package_name": "com.attendit.student"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "635162624074-an12umo3kado3ftqh58qqhd3558duqe4.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyA3g-6WKMTlpFbCHJnVOyiXkBncNFPE6D4"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "635162624074-an12umo3kado3ftqh58qqhd3558duqe4.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

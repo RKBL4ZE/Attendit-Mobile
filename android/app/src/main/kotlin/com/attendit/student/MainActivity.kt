@@ -1,4 +1,4 @@
-package com.example.Attendit
+package com.attendit.student
 
 import io.flutter.embedding.android.FlutterActivity
 
