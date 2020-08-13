@@ -1,3 +1,4 @@
+import 'package:Attendit/core/navigator/bloc/navigator_bloc.dart';
 import 'package:Attendit/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,12 @@ class _LoginButtonState extends State<LoginButton> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocBuilder(
+    return BlocConsumer(
+        listener: (context, state) {
+          if (state is UserLogedIn) {
+            BlocProvider.of<NavigatorBloc>(context).add(NavigateToHomeEvent());
+          }
+        },
         cubit: BlocProvider.of<AuthBloc>(context),
         builder: (context, state) => Container(
               margin: EdgeInsets.symmetric(vertical: 10),
