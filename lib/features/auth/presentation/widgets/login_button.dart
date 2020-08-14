@@ -29,7 +29,7 @@ class LoginButton extends StatefulWidget {
 class _LoginButtonState extends State<LoginButton> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    //Size size = MediaQuery.of(context).size;
     return BlocConsumer(
         listener: (context, state) {
           if (state is UserLogedIn) {
@@ -38,31 +38,31 @@ class _LoginButtonState extends State<LoginButton> {
         },
         cubit: BlocProvider.of<AuthBloc>(context),
         builder: (context, state) => Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              width: size.width * 0.8,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(29),
-                child: FlatButton(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-                  color: Colors.purple[700],
-                  onPressed: () {
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                    if (widget.usernameController.text.length < 11 ||
-                        widget.passwordController.text.length < 8) {
-                      context
-                          .bloc<AuthBloc>()
-                          .add(ErrorEvent('Please enter valid credentials'));
-                    } else {
-                      context.bloc<AuthBloc>().add(LoginEvent(
-                          userType: "student",
-                          password: widget.passwordController.text,
-                          username: widget.usernameController.text));
-                    }
-                  },
-                  child: Center(child: setUpButtonChild()),
-                ),
-              ),
-            ));
+            //margin: EdgeInsets.symmetric(vertical: 10),
+            //width: size.width * 0.8,
+            height: 45.0,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              color: Theme.of(context).primaryColor,
+              onPressed: () {
+                FocusScope.of(context).requestFocus(new FocusNode());
+                if (widget.usernameController.text.length < 11 ||
+                    widget.passwordController.text.length < 8) {
+                  context
+                      .bloc<AuthBloc>()
+                      .add(ErrorEvent('Please enter valid credentials'));
+                } else {
+                  context.bloc<AuthBloc>().add(LoginEvent(
+                      userType: "student",
+                      password: widget.passwordController.text,
+                      username: widget.usernameController.text));
+                }
+              },
+              /* shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)), */
+              child: Center(child: setUpButtonChild()),
+            )));
   }
 
   Widget setUpButtonChild() {
@@ -71,7 +71,7 @@ class _LoginButtonState extends State<LoginButton> {
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       );
     } else if (widget.state is UserLogedIn) {
-      return Icon(Icons.check, color: Colors.lightBlueAccent);
+      return Icon(Icons.check, size: 30, color: Colors.white);
     } else
       return new Text(
         "Login",

@@ -4,7 +4,6 @@ import 'package:Attendit/core/injection/injection.dart';
 
 import 'package:Attendit/features/result/presentation/externals/pages/external.dart';
 
-import 'package:Attendit/features/static_pages/online_classes/student_OnlineClassList_list.dart';
 import 'package:Attendit/features/virtual_id_card/presentation/bloc/virtualidcard_bloc.dart';
 import 'package:Attendit/features/virtual_id_card/presentation/pages/virtual_id.dart';
 
@@ -84,22 +83,8 @@ class MenuPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        menuContent(IconsService.onlineClasses,
-                            "Online Classes", OnlineClassList(), context),
-                        SizedBox(
-                          width: 10,
-                        ),
                         menuContent(IconsService.exteralMarks, "External Marks",
                             ExternalPage(), context),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        menuContent(IconsService.assignment, "Assignment",
-                            Scaffold(body: Text("soon!!")), context),
                         SizedBox(
                           width: 10,
                         ),
@@ -108,6 +93,20 @@ class MenuPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //   Container(
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       children: <Widget>[
+                  //         menuContent(IconsService.assignment, "Assignment",
+                  //             Scaffold(body: Text("soon!!")), context),
+                  //         SizedBox(
+                  //           width: 10,
+                  //         ),
+                  //         menuContent(IconsService.contactUs, "Contact Us",
+                  //             Scaffold(body: Text("soon!!")), context),
+                  //       ],
+                  //     ),
+                  //   ),
                   Row(
                     children: <Widget>[
                       menuContent(IconsService.aboutUs, "About Us",

@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 
-class RoundedPasswordField extends StatefulWidget {
+class RoundedNewPasswordField extends StatefulWidget {
   final String hintText;
   final ValueChanged<String> onChanged;
-  final TextEditingController passwordController;
+  final TextEditingController newPasswordController;
   final bool enabled;
 
-  const RoundedPasswordField({
+  const RoundedNewPasswordField({
     Key key,
     this.onChanged,
-    this.passwordController,
+    this.newPasswordController,
     this.hintText,
     this.enabled = true,
   }) : super(key: key);
 
   @override
-  _RoundedPasswordFieldState createState() => _RoundedPasswordFieldState();
+  _RoundedNewPasswordFieldState createState() =>
+      _RoundedNewPasswordFieldState();
 }
 
-class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
+class _RoundedNewPasswordFieldState extends State<RoundedNewPasswordField> {
   bool visible = true;
 
   @override
@@ -31,7 +32,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
       width: MediaQuery.of(context).size.width,
       child: TextField(
         enabled: widget.enabled,
-        controller: widget.passwordController,
+        controller: widget.newPasswordController,
         style: TextStyle(
           color: Colors.grey,
         ),

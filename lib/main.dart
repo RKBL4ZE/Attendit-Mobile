@@ -1,9 +1,10 @@
+import 'package:Attendit/core/theme/bloc/theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:injectable/injectable.dart';
 
-import 'config/styles.dart';
 import 'core/injection/injection.dart';
 import 'core/navigator/bloc/navigator_bloc.dart';
 import 'core/navigator/navigator.service.dart';
@@ -51,25 +52,22 @@ class MyApp extends StatelessWidget {
         BlocProvider<NavigatorBloc>(
             create: (_) =>
                 NavigatorBloc(navigatorKey: _navservice.navigatorKey)),
-        BlocProvider<AuthBloc>(create: (_) => getIt())
+        BlocProvider<AuthBloc>(create: (_) => getIt()),
+        BlocProvider<ThemeBloc>(
+          create: (_) => ThemeBloc(),
+        )
       ],
-      child: MaterialApp(
-        navigatorKey: _navservice.navigatorKey,
-        debugShowCheckedModeBanner: false,
-        title: 'ATTENDIT',
-        theme: ThemeData.light().copyWith(
-          primaryColor: PrimaryStyle.primary,
-          accentColor: PrimaryStyle.accent,
-          //textTheme:TextTheme(headline6: TextStyle(color: Colors.black) ),
-          splashColor: PrimaryStyle.splash,
-          primaryColorBrightness: Brightness.light,
-          //accentColor: Color.fromRGBO(255, 255, 255, 1),
-          //fontFamily: 'Karala',
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) => MaterialApp(
+          navigatorKey: _navservice.navigatorKey,
+          debugShowCheckedModeBanner: false,
+          title: 'ATTENDIT',
+          theme: state.themeData,
+          routes: {
+            '/': (_) => LoginPage(),
+            '/navbar': (_) => NavBar(),
+          },
         ),
-        routes: {
-          '/': (_) => LoginPage(),
-          '/navbar': (_) => NavBar(),
-        },
       ),
     );
   }

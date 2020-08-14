@@ -13,7 +13,12 @@ class AuthWelcomeSuccess extends AuthState {}
 
 class UserLogedIn extends AuthState {}
 
-class UserNewPassword extends AuthState {}
+class UserNewPassword extends AuthState {
+  final String username;
+  final String password;
+
+  UserNewPassword({this.username, this.password});
+}
 
 class UserLoggedOut extends AuthState {}
 

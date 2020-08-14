@@ -127,8 +127,8 @@ class _NavBarState extends State<NavBar> {
       appBar: AppBar(
         title: pageIndex == 0 || pageIndex == _pages.length - 1
             ? SvgPicture.asset(
-                'assets/images/logo-black.svg',
-                color: Colors.black,
+                'assets/images/logo.svg',
+                //color: Colors.black,
                 height: 50,
               )
             : Text(
